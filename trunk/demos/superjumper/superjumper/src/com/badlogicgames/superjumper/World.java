@@ -29,7 +29,7 @@ public class World {
     public final List<Spring> springs;
     public final List<Squirrel> squirrels;
     public final List<Coin> coins;
-    public Castle castle;
+    public final Castle castle;
     public final WorldListener listener;
     public final Random rand;
 
@@ -44,16 +44,18 @@ public class World {
         this.squirrels = new ArrayList<Squirrel>();
         this.coins = new ArrayList<Coin>();
         this.listener = listener;
-        rand = new Random();
-        generateLevel();
-
+        this.rand = new Random();
         this.heightSoFar = 0;
         this.score = 0;
         this.state = WORLD_STATE_RUNNING;
+        
+        float y = generateLevel();
+        
+        castle = new Castle(WORLD_WIDTH / 2, y);
     }
 
-    private void generateLevel() {
-        float y = Platform.PLATFORM_HEIGHT / 2;
+	private float generateLevel() {
+		float y = Platform.PLATFORM_HEIGHT / 2;
         float maxJumpHeight = Bob.BOB_JUMP_VELOCITY * Bob.BOB_JUMP_VELOCITY
                 / (2 * -gravity.y);
         while (y < WORLD_HEIGHT - WORLD_WIDTH / 2) {
@@ -91,9 +93,9 @@ public class World {
             y += (maxJumpHeight - 0.5f);
             y -= rand.nextFloat() * (maxJumpHeight / 3);
         }
-
-        castle = new Castle(WORLD_WIDTH / 2, y);
-    }
+        return y;
+        
+	}
 
     public void update(float deltaTime, float accelX) {
         updateBob(deltaTime, accelX);
@@ -146,7 +148,7 @@ public class World {
     private void checkCollisions() {
         checkPlatformCollisions();
         checkSquirrelCollisions();
-        checkItemCollisions();
+        checkCoinCollisions();
         checkCastleCollisions();
     }
 
@@ -182,7 +184,7 @@ public class World {
         }
     }
 
-    private void checkItemCollisions() {
+    private void checkCoinCollisions() {
         int len = coins.size();
         for (int i = 0; i < len; i++) {
             Coin coin = coins.get(i);
