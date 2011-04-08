@@ -12,18 +12,16 @@ public class Platform extends DynamicGameObject {
     
     int type;
     int state;
-    float stateTime;
     
     public Platform(int type, float x, float y) {
         super(x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT);
         this.type = type;
         this.state = PLATFORM_STATE_NORMAL;
-        this.stateTime = 0;
         if(type == PLATFORM_TYPE_MOVING) {
             velocity.x = PLATFORM_VELOCITY;
         }
     }
-    
+    @Override
     public void update(float deltaTime) {
         if(type == PLATFORM_TYPE_MOVING) {
             position.add(velocity.x * deltaTime, 0);

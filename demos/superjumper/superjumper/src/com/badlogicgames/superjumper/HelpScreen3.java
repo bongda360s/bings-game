@@ -57,6 +57,7 @@ public class HelpScreen3 extends Screen {
       GLCommon gl = Gdx.gl;
       gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
       guiCam.update();
+      batcher.setProjectionMatrix(guiCam.combined);
       guiCam.apply(Gdx.gl10);
       
       gl.glEnable(GL10.GL_TEXTURE_2D);

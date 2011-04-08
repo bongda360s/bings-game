@@ -10,12 +10,10 @@ public class Bob extends DynamicGameObject{
     public static final float BOB_HEIGHT = 0.8f;
     
     int state;
-    float stateTime;    
 
     public Bob(float x, float y) {
         super(x, y, BOB_WIDTH, BOB_HEIGHT);
-        state = BOB_STATE_FALL;
-        stateTime = 0;        
+        state = BOB_STATE_FALL;    
     }
 
     public void update(float deltaTime) {     
