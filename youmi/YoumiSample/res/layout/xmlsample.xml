@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 需要设置命名空间 :umadsdk -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:umadsdk="http://schemas.android.com/apk/res/com.youmi"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:background="@drawable/bg"
+    >
+    
+  <net.youmi.android.AdView
+   android:id="@+id/adView"  
+   android:layout_width="fill_parent"  
+   android:layout_height="wrap_content"
+   umadsdk:textColor="#ffffff" 
+   umadsdk:backgroundTransparent="155"
+   umadsdk:backgroundColor="#808080" 
+   /> 
+</LinearLayout>
