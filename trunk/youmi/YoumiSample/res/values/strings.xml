@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, HelloYoumi!</string>
+    <string name="app_name">有米广告示例程序</string>
+</resources>
