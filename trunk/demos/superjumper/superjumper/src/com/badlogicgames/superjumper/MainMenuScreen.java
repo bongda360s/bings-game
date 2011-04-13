@@ -76,7 +76,7 @@ public class MainMenuScreen extends Screen {
 		batcher.begin();
 		batcher.draw(Assets.logo, 160 - 274 / 2, 480 - 10 - 142, 274, 142);
 		batcher.draw(Assets.mainMenu, 10, (int)(200 - 110 / 2), 300, 110);
-		batcher.draw(Settings.soundEnabled ? Assets.soundOn : Assets.soundOff, 0, 0, 64, 64);
+		batcher.draw(Settings.soundEnabled ? Assets.soundOn : Assets.soundOff, 0, 32, 64, 64);
 		batcher.end();	
 	}
 
