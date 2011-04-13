@@ -6,6 +6,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/superjumper"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="libs/GoogleAdMobAdsSdk-4.0.4.jar"/>
+	<classpathentry kind="lib" path="libs/youmiad-android.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
