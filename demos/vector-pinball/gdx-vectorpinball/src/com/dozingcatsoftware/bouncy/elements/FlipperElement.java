@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.joints.RevoluteJoint;
 import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
 import com.dozingcatsoftware.bouncy.Field;
 import com.dozingcatsoftware.bouncy.IFieldRenderer;
+import com.dozingcatsoftware.bouncy.util.Assests;
 
 import static com.dozingcatsoftware.bouncy.util.MathUtils.*;
 
@@ -119,6 +120,7 @@ public class FlipperElement extends FieldElement {
 	}
 
 	public void setFlipperEngaged (boolean active) {
+		//Assests.playSound(Assests.flatterSound);
 		// only adjust speed if state is changing, so we don't accelerate flipper that's been slowed down in tick()
 		if (active != this.isFlipperEngaged()) {
 			float speed = (active) ? upspeed : -downspeed;

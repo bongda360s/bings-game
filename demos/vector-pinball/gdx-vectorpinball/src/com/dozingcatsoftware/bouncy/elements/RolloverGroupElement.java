@@ -12,6 +12,8 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.dozingcatsoftware.bouncy.Field;
 import com.dozingcatsoftware.bouncy.IFieldRenderer;
+import com.dozingcatsoftware.bouncy.util.Assests;
+import com.dozingcatsoftware.bouncy.util.Settings;
 
 import static com.dozingcatsoftware.bouncy.util.MathUtils.*;
 
@@ -45,6 +47,7 @@ public class RolloverGroupElement extends FieldElement {
 	List<Rollover> rolloversHitOnPreviousTick = new ArrayList<Rollover>();
 
 	@Override public void finishCreate (Map params, World world) {
+		this.score = 150;
 		this.canToggleOff = Boolean.TRUE.equals(params.get("toggleOff"));
 		this.cycleOnFlipper = Boolean.TRUE.equals(params.get("cycleOnFlipper"));
 		this.ignoreBall = Boolean.TRUE.equals(params.get("ignoreBall"));
@@ -166,6 +169,8 @@ public class RolloverGroupElement extends FieldElement {
 
 	@Override public void flipperActivated (Field field) {
 		if (this.cycleOnFlipper) {
+			//Assests.playSound(Assests.rolloverSound);
+			//Settings.addScore(score);
 			this.cycleRollovers();
 		}
 	}

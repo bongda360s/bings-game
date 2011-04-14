@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.WindowedMean;
 import com.dozingcatsoftware.bouncy.elements.FieldElement;
+import com.dozingcatsoftware.bouncy.util.Assests;
 
 public class Bouncy extends InputAdapter implements ApplicationListener {
 	OrthographicCamera cam;
@@ -26,6 +27,7 @@ public class Bouncy extends InputAdapter implements ApplicationListener {
 		field = new Field();
 		field.resetForLevel(level);
 		Gdx.input.setInputProcessor(this);
+		//Assests.load();
 	}
 
 	@Override public void resume () {
