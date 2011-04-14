@@ -11,6 +11,8 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.dozingcatsoftware.bouncy.Field;
 import com.dozingcatsoftware.bouncy.IFieldRenderer;
+import com.dozingcatsoftware.bouncy.util.Assests;
+import com.dozingcatsoftware.bouncy.util.Settings;
 
 import static com.dozingcatsoftware.bouncy.util.MathUtils.*;
 
@@ -23,10 +25,13 @@ import static com.dozingcatsoftware.bouncy.util.MathUtils.*;
 public class DropTargetGroupElement extends FieldElement {
 
 	// store all bodies and positions, use Body's active flag to determine which targets have been hit
+	
 	List<Body> allBodies = new ArrayList<Body>();
 	Map<Body, float[]> bodyPositions = new HashMap<Body, float[]>();
 
+	
 	@Override public void finishCreate (Map params, World world) {
+		score = 50;
 		// individual targets are specified in "positions" list
 		List<List> positions = (List<List>)params.get("positions");
 		for (List pos : positions) {
@@ -52,10 +57,13 @@ public class DropTargetGroupElement extends FieldElement {
 
 	@Override public void handleCollision (Body ball, Body bodyHit, final Field field) {
 		bodyHit.setActive(false);
+		//Assests.playSound(Assests.scoreSound);
+		//Settings.addScore(score);
 		// if all hit, notify delegate and check for reset parameter
 		if (allTargetsHit()) {
+			//Assests.playSound(Assests.rewardsSound);
+			//Settings.addScore(score*5);
 			field.getDelegate().allDropTargetsInGroupHit(field, this);
-
 			float restoreTime = asFloat(this.parameters.get("reset"));
 			if (restoreTime > 0) {
 				field.scheduleAction((long)(restoreTime * 1000), new Runnable() {

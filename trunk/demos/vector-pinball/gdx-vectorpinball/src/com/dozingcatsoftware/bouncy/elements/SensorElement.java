@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.dozingcatsoftware.bouncy.Field;
 import com.dozingcatsoftware.bouncy.IFieldRenderer;
+import com.dozingcatsoftware.bouncy.util.Assests;
 
 import static com.dozingcatsoftware.bouncy.util.MathUtils.*;
 
@@ -76,6 +77,7 @@ public class SensorElement extends FieldElement {
 		for (int i = 0; i < len; i++) {
 			Body ball = field.getBalls().get(i);
 			if (ballInRange(ball)) {
+				//Assests.playSound(Assests.flatterBallSound);
 				field.getDelegate().ballInSensorRange(field, this);
 				return;
 			}
