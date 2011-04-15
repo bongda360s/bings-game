@@ -20,22 +20,22 @@ public class Assests {
 	
 	public static void load(){
 		
-		music = Gdx.audio.newMusic(Gdx.files.internal("data/pinball.mp3"));
+		music = Gdx.audio.newMusic(Gdx.files.internal("data/pinball.ogg"));
 		music.setLooping(true);
         music.setVolume(0.5f);         
         if(Settings.soundEnabled)
             music.play();
         
-		gameReadySound = Gdx.audio.newSound(Gdx.files.internal("data/sound1.mp3"));
-		ballReadySound = Gdx.audio.newSound(Gdx.files.internal("data/sound4.mp3"));
-		impluseBallSound = Gdx.audio.newSound(Gdx.files.internal("data/sound45.mp3"));
-		scoreSound = Gdx.audio.newSound(Gdx.files.internal("data/sound136.mp3"));
-		rewardsSound = Gdx.audio.newSound(Gdx.files.internal("data/sound560.mp3"));
-		gameoverSound = Gdx.audio.newSound(Gdx.files.internal("data/sound827.mp3"));
-		ringSound = Gdx.audio.newSound(Gdx.files.internal("data/sound240.mp3"));
-		flatterBallSound = Gdx.audio.newSound(Gdx.files.internal("data/sound34.mp3"));
-		flatterSound = Gdx.audio.newSound(Gdx.files.internal("data/sound22.mp3"));
-		rolloverSound = Gdx.audio.newSound(Gdx.files.internal("data/sound39.mp3"));
+		gameReadySound = Gdx.audio.newSound(Gdx.files.internal("data/sound1.ogg"));
+		ballReadySound = Gdx.audio.newSound(Gdx.files.internal("data/sound4.ogg"));
+		impluseBallSound = Gdx.audio.newSound(Gdx.files.internal("data/sound45.ogg"));
+		scoreSound = Gdx.audio.newSound(Gdx.files.internal("data/sound136.ogg"));
+		rewardsSound = Gdx.audio.newSound(Gdx.files.internal("data/sound560.ogg"));
+		gameoverSound = Gdx.audio.newSound(Gdx.files.internal("data/sound827.ogg"));
+		ringSound = Gdx.audio.newSound(Gdx.files.internal("data/sound240.ogg"));
+		flatterBallSound = Gdx.audio.newSound(Gdx.files.internal("data/sound34.ogg"));
+		flatterSound = Gdx.audio.newSound(Gdx.files.internal("data/sound22.ogg"));
+		rolloverSound = Gdx.audio.newSound(Gdx.files.internal("data/sound39.ogg"));
 	}
 	
 	public static void playSound(Sound sound){

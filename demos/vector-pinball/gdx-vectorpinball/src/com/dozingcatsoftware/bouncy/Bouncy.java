@@ -27,7 +27,7 @@ public class Bouncy extends InputAdapter implements ApplicationListener {
 		field = new Field();
 		field.resetForLevel(level);
 		Gdx.input.setInputProcessor(this);
-		//Assests.load();
+		Assests.load();
 	}
 
 	@Override public void resume () {
