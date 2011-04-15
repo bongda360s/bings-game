@@ -168,9 +168,7 @@ public class RolloverGroupElement extends FieldElement {
 	}
 
 	@Override public void flipperActivated (Field field) {
-		if (this.cycleOnFlipper) {
-			//Assests.playSound(Assests.rolloverSound);
-			//Settings.addScore(score);
+		if (this.cycleOnFlipper) {			
 			this.cycleRollovers();
 		}
 	}

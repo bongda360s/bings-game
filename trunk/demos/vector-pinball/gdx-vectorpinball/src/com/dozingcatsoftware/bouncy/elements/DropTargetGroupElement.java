@@ -11,7 +11,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.dozingcatsoftware.bouncy.Field;
 import com.dozingcatsoftware.bouncy.IFieldRenderer;
-import com.dozingcatsoftware.bouncy.util.Assests;
 import com.dozingcatsoftware.bouncy.util.Settings;
 
 import static com.dozingcatsoftware.bouncy.util.MathUtils.*;
@@ -57,12 +56,8 @@ public class DropTargetGroupElement extends FieldElement {
 
 	@Override public void handleCollision (Body ball, Body bodyHit, final Field field) {
 		bodyHit.setActive(false);
-		//Assests.playSound(Assests.scoreSound);
-		//Settings.addScore(score);
 		// if all hit, notify delegate and check for reset parameter
 		if (allTargetsHit()) {
-			//Assests.playSound(Assests.rewardsSound);
-			//Settings.addScore(score*5);
 			field.getDelegate().allDropTargetsInGroupHit(field, this);
 			float restoreTime = asFloat(this.parameters.get("reset"));
 			if (restoreTime > 0) {
