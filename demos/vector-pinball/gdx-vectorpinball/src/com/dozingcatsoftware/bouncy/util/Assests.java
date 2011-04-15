@@ -19,13 +19,13 @@ public class Assests {
 	public static Sound rolloverSound;
 	
 	public static void load(){
-		/*
+		
 		music = Gdx.audio.newMusic(Gdx.files.internal("data/pinball.mp3"));
 		music.setLooping(true);
         music.setVolume(0.5f);         
         if(Settings.soundEnabled)
             music.play();
-        */
+        
 		gameReadySound = Gdx.audio.newSound(Gdx.files.internal("data/sound1.mp3"));
 		ballReadySound = Gdx.audio.newSound(Gdx.files.internal("data/sound4.mp3"));
 		impluseBallSound = Gdx.audio.newSound(Gdx.files.internal("data/sound45.mp3"));
