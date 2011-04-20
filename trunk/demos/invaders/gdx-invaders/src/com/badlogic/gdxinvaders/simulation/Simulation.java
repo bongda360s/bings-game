@@ -15,6 +15,7 @@ package com.badlogic.gdxinvaders.simulation;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.Vector3;
 
@@ -36,22 +37,25 @@ public class Simulation {
 	public int wave = 0;
 	private ArrayList<Shot> removedShots = new ArrayList<Shot>();
 	private ArrayList<Explosion> removedExplosions = new ArrayList<Explosion>();
-
+	private  Music[] backgroundMusics = new Music[2];
+	
 	public Simulation () {
+		backgroundMusics[0] = Gdx.audio.newMusic(Gdx.files.internal("data/background1.ogg"));
+		backgroundMusics[1] = Gdx.audio.newMusic(Gdx.files.internal("data/background2.ogg"));
 		populate();
 		wave++;
 	}
 
 	private void populate () {
 		if(wave%2==1){
-			Assests.backgroundMusics[0].stop();
-			Assests.backgroundMusics[1].setLooping(true);
-			Assests.backgroundMusics[1].play();
+			backgroundMusics[0].stop();
+			backgroundMusics[1].setLooping(true);
+			backgroundMusics[1].play();
 		}
 		else{
-			Assests.backgroundMusics[1].stop();
-			Assests.backgroundMusics[0].setLooping(true);
-			Assests.backgroundMusics[0].play();
+			backgroundMusics[1].stop();
+			backgroundMusics[0].setLooping(true);
+			backgroundMusics[0].play();
 		}
 
 		ship = new Ship();

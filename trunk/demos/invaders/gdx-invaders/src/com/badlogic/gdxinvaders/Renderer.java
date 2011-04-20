@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Mesh;
@@ -32,7 +33,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.loaders.ModelLoader;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdxinvaders.simulation.Assests;
 import com.badlogic.gdxinvaders.simulation.Block;
 import com.badlogic.gdxinvaders.simulation.Explosion;
 import com.badlogic.gdxinvaders.simulation.Invader;
@@ -64,10 +64,99 @@ public class Renderer {
 
 	/** perspective camera **/
 	private PerspectiveCamera camera;
-
+	
+	private Texture earth;
+	/** the font **/
+	private BitmapFont font;
+	/** the background texture **/
+	private Texture background;
+	/** the ship mesh **/
+	private Mesh shipMesh;
+	/** the ship texture **/
+	private Texture shipTexture;
+	/** the invader mesh **/
+	private Mesh invaderMesh;
+	/** the invader texture **/
+	private Texture invaderTexture;
+	/** the block mesh **/
+	private Mesh blockMesh;
+	/** the shot mesh **/
+	private Mesh shotMesh;
+	/** the explosion mesh **/
+	private Mesh explosionMesh;
+	/** the explosion texture **/
+	private Texture explosionTexture;
 	public Renderer (Application app) {
 		spriteBatch = new SpriteBatch();			
-		camera = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());		
+		camera = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		font = new BitmapFont(Gdx.files.internal("data/font10.fnt"), Gdx.files.internal("data/font10.png"), false);
+		earth = new Texture(Gdx.files.internal("data/earth.png"));
+		earth.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		background = new Texture(Gdx.files.internal("data/background.png"));
+		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+
+			try{
+			InputStream in = Gdx.files.internal("data/ship.obj").read();
+			shipMesh = ModelLoader.loadObj(in);
+			in.close();
+	
+			in = Gdx.files.internal("data/invader.obj").read();
+			invaderMesh = ModelLoader.loadObj(in);
+			in.close();
+	
+			in = Gdx.files.internal("data/block.obj").read();
+			blockMesh = ModelLoader.loadObj(in);
+			in.close();
+	
+			in = Gdx.files.internal("data/shot.obj").read();
+			shotMesh = ModelLoader.loadObj(in);
+			in.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			shipTexture = new Texture(Gdx.files.internal("data/ship.png"), true);
+			shipTexture.setFilter(TextureFilter.MipMap, TextureFilter.Linear);				
+			invaderTexture = new Texture(Gdx.files.internal("data/invader.png"), true);
+			invaderTexture.setFilter(TextureFilter.MipMap, TextureFilter.Linear);
+	
+			explosionTexture = new Texture(Gdx.files.internal("data/explode.png"), true);
+			explosionTexture.setFilter(TextureFilter.MipMap, TextureFilter.Linear);
+			explosionMesh = new Mesh(true, 4 * 16, 0, new VertexAttribute(Usage.Position, 3, "a_position"),
+					new VertexAttribute(Usage.TextureCoordinates, 2, "a_texCoord"));
+			explosionMesh = new Mesh(true, 4 * 16, 0, new VertexAttribute(Usage.Position, 3, "a_position"),
+					new VertexAttribute(Usage.TextureCoordinates, 2, "a_texCoord"));
+
+			float[] vertices = new float[4 * 16 * (3 + 2)];
+			int idx = 0;
+			for (int row = 0; row < 4; row++) {
+				for (int column = 0; column < 4; column++) {
+					vertices[idx++] = 1;
+					vertices[idx++] = 1;
+					vertices[idx++] = 0;
+					vertices[idx++] = 0.25f + column * 0.25f;
+					vertices[idx++] = 0 + row * 0.25f;
+
+					vertices[idx++] = -1;
+					vertices[idx++] = 1;
+					vertices[idx++] = 0;
+					vertices[idx++] = 0 + column * 0.25f;
+					vertices[idx++] = 0 + row * 0.25f;
+
+					vertices[idx++] = -1;
+					vertices[idx++] = -1;
+					vertices[idx++] = 0;
+					vertices[idx++] = 0f + column * 0.25f;
+					vertices[idx++] = 0.25f + row * 0.25f;
+
+					vertices[idx++] = 1;
+					vertices[idx++] = -1;
+					vertices[idx++] = 0;
+					vertices[idx++] = 0.25f + column * 0.25f;
+					vertices[idx++] = 0.25f + row * 0.25f;
+				}
+			}
+
+			explosionMesh.setVertices(vertices);
 	}
 
 	public void render (Application app, Simulation simulation) {
@@ -112,7 +201,7 @@ public class Renderer {
 		}
 		spriteBatch.enableBlending();
 		spriteBatch.setBlendFunction(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
-		Assests.font.draw(spriteBatch, status, 0, 320);		
+		font.draw(spriteBatch, status, 0, 320);		
 		spriteBatch.end();
 
 		invaderAngle += app.getGraphics().getDeltaTime() * 90;
@@ -126,10 +215,10 @@ public class Renderer {
 		spriteBatch.begin();
 		spriteBatch.disableBlending();
 		spriteBatch.setColor(Color.WHITE);
-		spriteBatch.draw(Assests.background, 0, 0, 480, 320, 0, 0, 1024, 729, false, false);
+		spriteBatch.draw(background, 0, 0, 480, 320, 0, 0, 1024, 729, false, false);
 		spriteBatch.enableBlending();
 		//System.out.println(shipPosition.x + " " + shipPosition.y + " " + shipPosition.z);
-		spriteBatch.draw(Assests.earth, 60 - shipPosition.x, 40, 360, 240, 0, 0, 512, 512, false, false);
+		spriteBatch.draw(earth, 60 - shipPosition.x, 40, 360, 240, 0, 0, 512, 512, false, false);
 		spriteBatch.end();
 	}
 
@@ -154,24 +243,24 @@ public class Renderer {
 	private void renderShip (GL10 gl, Ship ship, Application app) {
 		if (ship.isExploding) return;
 
-		Assests.shipTexture.bind();
+		shipTexture.bind();
 		gl.glPushMatrix();
 		//System.out.println(ship.position.x+" "+ ship.position.y+" "+ship.position.z);
 		gl.glTranslatef(ship.position.x, ship.position.y, ship.position.z);
 		gl.glRotatef(45 * (-app.getInput().getAccelerometerY() / 5), 0, 0, 1);
 		gl.glRotatef(180, 0, 1, 0);
-		Assests.shipMesh.render(GL10.GL_TRIANGLES);
+		shipMesh.render(GL10.GL_TRIANGLES);
 		gl.glPopMatrix();
 	}
 
 	private void renderInvaders (GL10 gl, ArrayList<Invader> invaders) {
-		Assests.invaderTexture.bind();
+		invaderTexture.bind();
 		for (int i = 0; i < invaders.size(); i++) {
 			Invader invader = invaders.get(i);
 			gl.glPushMatrix();
 			gl.glTranslatef(invader.position.x, invader.position.y, invader.position.z);
 			gl.glRotatef(invaderAngle, 0, 1, 0);
-			Assests.invaderMesh.render(GL10.GL_TRIANGLES);
+			invaderMesh.render(GL10.GL_TRIANGLES);
 			gl.glPopMatrix();
 		}
 	}
@@ -184,7 +273,7 @@ public class Renderer {
 			Block block = blocks.get(i);
 			gl.glPushMatrix();
 			gl.glTranslatef(block.position.x, block.position.y, block.position.z);
-			Assests.blockMesh.render(GL10.GL_TRIANGLES);
+			blockMesh.render(GL10.GL_TRIANGLES);
 			gl.glPopMatrix();
 		}
 		gl.glColor4f(1, 1, 1, 1);
@@ -197,7 +286,7 @@ public class Renderer {
 			Shot shot = shots.get(i);
 			gl.glPushMatrix();
 			gl.glTranslatef(shot.position.x, shot.position.y, shot.position.z);
-			Assests.shotMesh.render(GL10.GL_TRIANGLES);
+			shotMesh.render(GL10.GL_TRIANGLES);
 			gl.glPopMatrix();
 		}
 		gl.glColor4f(1, 1, 1, 1);
@@ -206,12 +295,12 @@ public class Renderer {
 	private void renderExplosions (GL10 gl, ArrayList<Explosion> explosions) {
 		gl.glEnable(GL10.GL_BLEND);
 		gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
-		Assests.explosionTexture.bind();
+		explosionTexture.bind();
 		for (int i = 0; i < explosions.size(); i++) {
 			Explosion explosion = explosions.get(i);
 			gl.glPushMatrix();
 			gl.glTranslatef(explosion.position.x, explosion.position.y, explosion.position.z);
-			Assests.explosionMesh.render(GL10.GL_TRIANGLE_FAN, (int)((explosion.aliveTime / Explosion.EXPLOSION_LIVE_TIME) * 15) * 4, 4);
+			explosionMesh.render(GL10.GL_TRIANGLE_FAN, (int)((explosion.aliveTime / Explosion.EXPLOSION_LIVE_TIME) * 15) * 4, 4);
 			gl.glPopMatrix();
 		}
 		gl.glDisable(GL10.GL_BLEND);
@@ -219,15 +308,14 @@ public class Renderer {
 
 	public void dispose () {
 		spriteBatch.dispose();
-//		shipTexture.dispose();
-//		invaderTexture.dispose();
-//		backgroundTexture.dispose();
-//		explosionTexture.dispose();
-//		font.dispose();
-//		explosionMesh.dispose();
-//		shipMesh.dispose();
-//		invaderMesh.dispose();
-//		shotMesh.dispose();
-//		blockMesh.dispose();
+		shipTexture.dispose();
+		invaderTexture.dispose();
+		explosionTexture.dispose();
+		font.dispose();
+		explosionMesh.dispose();
+		shipMesh.dispose();
+		invaderMesh.dispose();
+		shotMesh.dispose();
+		blockMesh.dispose();
 	}
 }
