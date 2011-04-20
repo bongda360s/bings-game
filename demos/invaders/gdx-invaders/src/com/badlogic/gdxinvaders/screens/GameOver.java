@@ -26,7 +26,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdxinvaders.simulation.Assests;
 
 /**
  * The game over screen displays the final score and a game over text and waits for the user to touch the screen in which case it
@@ -43,16 +42,28 @@ public class GameOver implements Screen {
 	/** view & transform matrix **/
 	private final Matrix4 viewMatrix = new Matrix4();
 	private final Matrix4 transformMatrix = new Matrix4();
-
+	/** the background texture **/
+	private Texture background;	
+	/** the logo texture **/
+	private Texture logo;	
+	/** the font **/
+	private BitmapFont font;
 	public GameOver (Application app) {
+		background = new Texture(Gdx.files.internal("data/background.png"));
+		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		logo = new Texture(Gdx.files.internal("data/title.png"));
+		logo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		font = new BitmapFont(Gdx.files.internal("data/font16.fnt"), Gdx.files.internal("data/font16.png"), false);
 		spriteBatch = new SpriteBatch();			
 	}
 
 	@Override public void dispose () {
 		spriteBatch.dispose();
-//		background.dispose();
-//		logo.dispose();
-//		font.dispose();
+		background.dispose();
+		logo.dispose();
+		font.dispose();
 	}
 
 	@Override public boolean isDone () {
@@ -68,13 +79,13 @@ public class GameOver implements Screen {
 		spriteBatch.begin();
 		spriteBatch.disableBlending();
 		spriteBatch.setColor(Color.WHITE);
-		spriteBatch.draw(Assests.background, 0, 0, 480, 320, 0, 0, 512, 512, false, false);
+		spriteBatch.draw(background, 0, 0, 480, 320, 0, 0, 512, 512, false, false);
 		spriteBatch.enableBlending();
-		spriteBatch.draw(Assests.logo, 0, 320-128, 480, 128, 0, 256, 512, 256, false, false);
+		spriteBatch.draw(logo, 0, 320-128, 480, 128, 0, 256, 512, 256, false, false);
 		String text = "It is the end my friend.\nTouch to continue!";
-		TextBounds bounds = Assests.font.getMultiLineBounds(text);
+		TextBounds bounds = font.getMultiLineBounds(text);
 		spriteBatch.setBlendFunction(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
-		Assests.font.drawMultiLine(spriteBatch, text, 0, 160 + bounds.height / 2, 480, HAlignment.CENTER);		
+		font.drawMultiLine(spriteBatch, text, 0, 160 + bounds.height / 2, 480, HAlignment.CENTER);		
 		spriteBatch.end();
 	}
 

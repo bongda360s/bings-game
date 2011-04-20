@@ -13,14 +13,23 @@
 
 package com.badlogic.gdxinvaders.screens;
 
+import java.io.InputStream;
+
 import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.Mesh;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.VertexAttribute;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.VertexAttributes.Usage;
+import com.badlogic.gdx.graphics.g3d.loaders.ModelLoader;
 import com.badlogic.gdxinvaders.Renderer;
-import com.badlogic.gdxinvaders.simulation.Assests;
 import com.badlogic.gdxinvaders.simulation.Simulation;
 import com.badlogic.gdxinvaders.simulation.SimulationListener;
 
@@ -30,19 +39,30 @@ public class GameLoop implements Screen, SimulationListener {
 	/** the renderer **/
 	private final Renderer renderer;
 	
-
+	private  Music[] backgroundMusics = new Music[2];
+	/** explosion sound **/
+	private  Sound explosion;
+	/** shot sound **/
+	private  Sound shot;
+	
+	
 	public GameLoop (Application app) {
+		backgroundMusics[0] = Gdx.audio.newMusic(Gdx.files.internal("data/background1.ogg"));
+		backgroundMusics[1] = Gdx.audio.newMusic(Gdx.files.internal("data/background2.ogg"));
+		explosion = Gdx.audio.newSound(Gdx.files.getFileHandle("data/explosion.ogg", FileType.Internal));
+		shot = Gdx.audio.newSound(Gdx.files.getFileHandle("data/shot.ogg", FileType.Internal));
+
 		simulation = new Simulation();
 		simulation.listener = this;
-		renderer = new Renderer(app);		
+		renderer = new Renderer(app);
 	}
 
 	@Override public void dispose () {
 		renderer.dispose();
-		Assests.backgroundMusics[0].stop();
-		Assests.backgroundMusics[1].stop();
-//		shot.dispose();
-//		explosion.dispose();
+		shot.dispose();
+		explosion.dispose();
+		backgroundMusics[0].dispose();
+		backgroundMusics[1].dispose();
 	}
 
 	@Override public boolean isDone () {
@@ -70,10 +90,10 @@ public class GameLoop implements Screen, SimulationListener {
 	}
 
 	@Override public void explosion () {
-		Assests.explosion.play();
+		explosion.play();
 	}
 
 	@Override public void shot () {
-		Assests.shot.play();
+		shot.play();
 	}
 }

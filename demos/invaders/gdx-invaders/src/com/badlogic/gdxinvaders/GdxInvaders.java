@@ -20,19 +20,18 @@ import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdxinvaders.screens.GameLoop;
 import com.badlogic.gdxinvaders.screens.GameOver;
+import com.badlogic.gdxinvaders.screens.LoadingScreen;
 import com.badlogic.gdxinvaders.screens.MainMenu;
 import com.badlogic.gdxinvaders.screens.Screen;
-import com.badlogic.gdxinvaders.simulation.Assests;
 
-public class GdxInvaders implements ApplicationListener {	
+public class GdxInvaders implements ApplicationListener  {	
 	/** flag indicating whether we were initialized already **/
 	private boolean isInitialized = false;
 
 	/** the current screen **/
 	private Screen screen;
 
-	@Override public void dispose () {
-		Assests.dispose();
+	@Override public void dispose () {	
 	}
 
 	@Override public void render () {
@@ -48,9 +47,12 @@ public class GdxInvaders implements ApplicationListener {
 		if (screen.isDone()) {
 			// dispose the current screen
 			screen.dispose();
-
-			// if this screen is a main menu screen we switch to
+			
 			// the game loop
+			if (screen instanceof LoadingScreen)
+				screen  = new MainMenu(app);
+			else
+			// if this screen is a main menu screen we switch to	
 			if (screen instanceof MainMenu)
 				screen = new GameLoop(app);
 			else
@@ -70,25 +72,23 @@ public class GdxInvaders implements ApplicationListener {
 	}
 
 	@Override public void create () {
-		if (!isInitialized) {
-			Assests.load();
-			screen = new MainMenu(Gdx.app);
-			//Assests.music.setVolume(0.5f);
-			Assests.music.setLooping(true);
-			Assests.music.play();
-			isInitialized = true;
+		if (!isInitialized) {	
+			screen = new LoadingScreen(Gdx.app);
+			//loadAssests();
+			//screen = new MainMenu(Gdx.app);
+			isInitialized = true;			
 		}
 	}
-
+	
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
-		System.out.println("resume");
 	}
+	
+	
 }
