@@ -22,6 +22,10 @@ import com.badlogic.gdx.backends.jogl.JoglApplication;
  */
 public class GdxInvadersDesktop {
 	public static void main (String[] argv) {
-		new JoglApplication(new GdxInvaders(),"Gdx Invaders", 800, 480, false);		
+		try{
+			new JoglApplication(new GdxInvaders(),"Gdx Invaders", 800, 480, false);
+		}catch(Exception exp){
+			exp.printStackTrace();
+		}
 	}
 }

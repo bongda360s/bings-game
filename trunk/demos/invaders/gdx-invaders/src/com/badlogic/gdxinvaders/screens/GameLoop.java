@@ -28,8 +28,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.loaders.ModelLoader;
 import com.badlogic.gdxinvaders.Renderer;
+import com.badlogic.gdxinvaders.simulation.Settings;
 import com.badlogic.gdxinvaders.simulation.Simulation;
 import com.badlogic.gdxinvaders.simulation.SimulationListener;
 
@@ -39,30 +41,23 @@ public class GameLoop implements Screen, SimulationListener {
 	/** the renderer **/
 	private final Renderer renderer;
 	
-	private  Music[] backgroundMusics = new Music[2];
 	/** explosion sound **/
 	private  Sound explosion;
 	/** shot sound **/
 	private  Sound shot;
-	
-	
 	public GameLoop (Application app) {
-		backgroundMusics[0] = Gdx.audio.newMusic(Gdx.files.internal("data/background1.ogg"));
-		backgroundMusics[1] = Gdx.audio.newMusic(Gdx.files.internal("data/background2.ogg"));
-		explosion = Gdx.audio.newSound(Gdx.files.getFileHandle("data/explosion.ogg", FileType.Internal));
-		shot = Gdx.audio.newSound(Gdx.files.getFileHandle("data/shot.ogg", FileType.Internal));
-
+		explosion = Gdx.audio.newSound(Gdx.files.internal("data/explosion.ogg"));
+		shot = Gdx.audio.newSound(Gdx.files.internal("data/shot.ogg"));
 		simulation = new Simulation();
 		simulation.listener = this;
 		renderer = new Renderer(app);
 	}
 
 	@Override public void dispose () {
-		renderer.dispose();
 		shot.dispose();
 		explosion.dispose();
-		backgroundMusics[0].dispose();
-		backgroundMusics[1].dispose();
+		renderer.dispose();
+		simulation.dispose();
 	}
 
 	@Override public boolean isDone () {
@@ -90,10 +85,10 @@ public class GameLoop implements Screen, SimulationListener {
 	}
 
 	@Override public void explosion () {
-		explosion.play();
+		explosion.play(Settings.soundVolume);
 	}
 
 	@Override public void shot () {
-		shot.play();
+		shot.play(Settings.soundVolume);
 	}
 }
