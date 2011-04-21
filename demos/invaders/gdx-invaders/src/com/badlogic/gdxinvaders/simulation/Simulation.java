@@ -50,8 +50,9 @@ public class Simulation implements Disposable {
 
 		backgroundMusics[wave & 1].stop();
 		backgroundMusics[1 - wave & 1].setLooping(true);
-		backgroundMusics[1 - wave & 1].setVolume(Settings.musicVolume);
+		backgroundMusics[1 - wave & 1].setVolume(Settings.getMusicVolume());
 		backgroundMusics[1 - wave & 1].play();
+		Settings.music = backgroundMusics[1 - wave & 1];
 
 		ship = new Ship();
 		for (int row = 0; row < 4; row++) {

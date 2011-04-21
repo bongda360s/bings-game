@@ -85,10 +85,10 @@ public class GameLoop implements Screen, SimulationListener {
 	}
 
 	@Override public void explosion () {
-		explosion.play(Settings.soundVolume);
+		explosion.play(Settings.getSoundVolume());
 	}
 
 	@Override public void shot () {
-		shot.play(Settings.soundVolume);
+		shot.play(Settings.getSoundVolume());
 	}
 }

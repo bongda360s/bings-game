@@ -54,7 +54,7 @@ public class MainMenu implements Screen {
 		this.spriteBatch = new SpriteBatch();
 		font = new BitmapFont(Gdx.files.internal("data/font10.fnt"), Gdx.files.internal("data/font10.png"), false);
 		music = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/menu.ogg", FileType.Internal));
-		music.setVolume(Settings.musicVolume);
+		music.setVolume(Settings.getMusicVolume());
 		music.play();
 		earth = TextureDict.loadTexture("data/earth.png").get();
 		earth.setFilter(TextureFilter.Linear, TextureFilter.Linear);

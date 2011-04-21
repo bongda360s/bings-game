@@ -37,8 +37,9 @@ public class LoadingScreen implements Screen {
 	
 	public LoadingScreen(Application app){
 		music = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/menu.ogg", FileType.Internal));
-		music.setVolume(Settings.musicVolume);
+		music.setVolume(Settings.getMusicVolume());
 		music.play();
+		Settings.music = music;
 		this.spriteBatch = new SpriteBatch();
 		earth = TextureDict.loadTexture("data/earth.png").get();
 		earth.setFilter(TextureFilter.Linear, TextureFilter.Linear);
