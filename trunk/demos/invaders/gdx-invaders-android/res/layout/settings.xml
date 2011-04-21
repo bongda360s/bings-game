@@ -4,9 +4,10 @@
   android:layout_width="fill_parent"
   android:layout_height="fill_parent" 
   android:orientation="vertical"
-  android:paddingTop = "20dip"
+  android:paddingTop = "10dip"
   android:paddingLeft = "15dip"
   android:paddingRight = "15dip"
+  android:paddingBottom = "10dip"
   >
     <TextView android:text="背景音乐" 
     android:id="@+id/textView1" 
@@ -14,7 +15,7 @@
     android:layout_width="wrap_content">
     </TextView>
     <SeekBar android:layout_height="wrap_content" 
-    android:id="@+id/seekBar1" 
+    android:id="@+id/barMusic" 
     android:layout_width="fill_parent"
     android:max="100"
     android:progress="80">
@@ -22,24 +23,26 @@
     <TextView android:text="音效" 
     android:id="@+id/textView2" 
     android:layout_width="wrap_content" 
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingTop = "10dip">
     </TextView>
     <SeekBar android:layout_height="wrap_content" 
-    android:id="@+id/seekBar2" 
+    android:id="@+id/barSound" 
     android:layout_width="fill_parent"
     android:max="100"
     android:progress="80">
     </SeekBar>
-    <TextView android:text="点击广告几次后它消失" 
-    android:id="@+id/textView3" 
+    <TextView android:text="点击广告多少次后它消失：5次" 
+    android:id="@+id/txtAD" 
     android:layout_width="wrap_content" 
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingTop = "10dip">
     </TextView>
     <SeekBar android:layout_height="wrap_content" 
-    android:id="@+id/seekBar3" 
+    android:id="@+id/barAD" 
     android:layout_width="fill_parent"
-    android:max="11"
-    android:progress="10">
+    android:max="4"
+    android:progress="4">
     </SeekBar>
   
 </LinearLayout>
