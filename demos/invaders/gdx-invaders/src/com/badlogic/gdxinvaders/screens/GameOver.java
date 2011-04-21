@@ -19,6 +19,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.TextureDict;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -35,8 +36,6 @@ import com.badlogic.gdx.math.Matrix4;
  * 
  */
 public class GameOver implements Screen {
-	/** the SpriteBatch used to draw the background, logo and text **/
-	private final SpriteBatch spriteBatch;
 	/** is done flag **/
 	private boolean isDone = false;
 	/** view & transform matrix **/
@@ -48,21 +47,19 @@ public class GameOver implements Screen {
 	private Texture logo;	
 	/** the font **/
 	private BitmapFont font;
+	private final SpriteBatch spriteBatch;
 	public GameOver (Application app) {
-		background = new Texture(Gdx.files.internal("data/background.png"));
-		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
-		logo = new Texture(Gdx.files.internal("data/title.png"));
+		background = TextureDict.loadTexture("data/background.png").get();	 
+		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);		
+		logo = TextureDict.loadTexture("data/title.png").get();	
 		logo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		font = new BitmapFont(Gdx.files.internal("data/font16.fnt"), Gdx.files.internal("data/font16.png"), false);
-		spriteBatch = new SpriteBatch();			
+		this.spriteBatch = new SpriteBatch();		
 	}
 
 	@Override public void dispose () {
 		spriteBatch.dispose();
-		background.dispose();
-		logo.dispose();
 		font.dispose();
 	}
 

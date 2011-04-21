@@ -20,6 +20,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.TextureDict;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -35,8 +36,6 @@ import com.badlogic.gdxinvaders.simulation.Settings;
  * 
  */
 public class MainMenu implements Screen {
-	/** the SpriteBatch used to draw the background, logo and text **/
-	private final SpriteBatch spriteBatch;
 	/** is done flag **/
 	private boolean isDone = false;
 	/** view & transform matrix **/
@@ -50,15 +49,18 @@ public class MainMenu implements Screen {
 	/** the background texture **/
 	private Texture background;
 	private Texture logo;
+	private final SpriteBatch spriteBatch;
 	public MainMenu (Application app) {
-		spriteBatch = new SpriteBatch();	
+		this.spriteBatch = new SpriteBatch();
 		font = new BitmapFont(Gdx.files.internal("data/font10.fnt"), Gdx.files.internal("data/font10.png"), false);
 		music = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/menu.ogg", FileType.Internal));
-		earth = new Texture(Gdx.files.internal("data/earth.png"));
+		music.setVolume(Settings.musicVolume);
+		music.play();
+		earth = TextureDict.loadTexture("data/earth.png").get();
 		earth.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		background = new Texture(Gdx.files.internal("data/background.png"));
+		background = TextureDict.loadTexture("data/background.png").get();
 		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		logo = new Texture(Gdx.files.internal("data/title.png"));
+		logo = TextureDict.loadTexture("data/title.png").get();
 		logo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 	}
 
@@ -90,11 +92,7 @@ public class MainMenu implements Screen {
 	}
 
 	@Override public void dispose () {
-		spriteBatch.dispose();
 		music.stop();
-		background.dispose();
-		earth.dispose();
-		logo.dispose();
 		font.dispose();
 	}
 }

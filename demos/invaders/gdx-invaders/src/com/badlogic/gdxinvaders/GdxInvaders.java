@@ -18,20 +18,27 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.TextureDict;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdxinvaders.screens.GameLoop;
 import com.badlogic.gdxinvaders.screens.GameOver;
 import com.badlogic.gdxinvaders.screens.LoadingScreen;
 import com.badlogic.gdxinvaders.screens.MainMenu;
 import com.badlogic.gdxinvaders.screens.Screen;
+import com.badlogic.gdxinvaders.screens.ShowLogo;
 
 public class GdxInvaders implements ApplicationListener  {	
 	/** flag indicating whether we were initialized already **/
 	private boolean isInitialized = false;
-
 	/** the current screen **/
 	private Screen screen;
-
+	
+	public GdxInvaders(){
+	}
+	
 	@Override public void dispose () {	
+		TextureDict.unloadAll();
+		screen.dispose();
 	}
 
 	@Override public void render () {
@@ -47,15 +54,17 @@ public class GdxInvaders implements ApplicationListener  {
 		if (screen.isDone()) {
 			// dispose the current screen
 			screen.dispose();
-			
+			if (screen instanceof ShowLogo)
+				screen = new LoadingScreen(app);
+			else
 			// the game loop
 			if (screen instanceof LoadingScreen)
-				screen  = new MainMenu(app);
+				screen  = new GameLoop(app);
 			else
 			// if this screen is a main menu screen we switch to	
-			if (screen instanceof MainMenu)
-				screen = new GameLoop(app);
-			else
+//			if (screen instanceof MainMenu)
+//				screen = new GameLoop(app);
+//			else
 			// if this screen is a game loop screen we switch to the
 			// game over screen
 			if (screen instanceof GameLoop)
@@ -63,7 +72,8 @@ public class GdxInvaders implements ApplicationListener  {
 			else
 			// if this screen is a game over screen we switch to the
 			// main menu screen
-			if (screen instanceof GameOver) screen = new MainMenu(app);
+			if (screen instanceof GameOver) 
+				screen = new GameLoop(app);
 		}
 	}
 
@@ -73,7 +83,8 @@ public class GdxInvaders implements ApplicationListener  {
 
 	@Override public void create () {
 		if (!isInitialized) {	
-			screen = new LoadingScreen(Gdx.app);
+			screen = new ShowLogo(Gdx.app);
+			//screen = new LoadingScreen(Gdx.app);
 			//loadAssests();
 			//screen = new MainMenu(Gdx.app);
 			isInitialized = true;			

@@ -18,8 +18,9 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Disposable;
 
-public class Simulation {
+public class Simulation implements Disposable {
 	public final static float PLAYFIELD_MIN_X = -14;
 	public final static float PLAYFIELD_MAX_X = 14;
 	public final static float PLAYFIELD_MIN_Z = -15;
@@ -34,7 +35,7 @@ public class Simulation {
 	public transient SimulationListener listener;
 	public float multiplier = 1;
 	public int score;
-	public int wave = 0;
+	public int wave = 1;
 	private ArrayList<Shot> removedShots = new ArrayList<Shot>();
 	private ArrayList<Explosion> removedExplosions = new ArrayList<Explosion>();
 	private  Music[] backgroundMusics = new Music[2];
@@ -43,20 +44,14 @@ public class Simulation {
 		backgroundMusics[0] = Gdx.audio.newMusic(Gdx.files.internal("data/background1.ogg"));
 		backgroundMusics[1] = Gdx.audio.newMusic(Gdx.files.internal("data/background2.ogg"));
 		populate();
-		wave++;
 	}
 
 	private void populate () {
-		if(wave%2==1){
-			backgroundMusics[0].stop();
-			backgroundMusics[1].setLooping(true);
-			backgroundMusics[1].play();
-		}
-		else{
-			backgroundMusics[1].stop();
-			backgroundMusics[0].setLooping(true);
-			backgroundMusics[0].play();
-		}
+
+		backgroundMusics[wave & 1].stop();
+		backgroundMusics[1 - wave & 1].setLooping(true);
+		backgroundMusics[1 - wave & 1].setVolume(Settings.musicVolume);
+		backgroundMusics[1 - wave & 1].play();
 
 		ship = new Ship();
 		for (int row = 0; row < 4; row++) {
@@ -202,7 +197,7 @@ public class Simulation {
 	}
 
 	private void checkNextLevel () {
-		if (invaders.size() == 0 && ship.lives > 0) {
+		if (invaders.size() <= 0 && ship.lives > 0) {
 			blocks.clear();
 			shots.clear();
 			shipShot = null;
@@ -236,5 +231,12 @@ public class Simulation {
 			shots.add(shipShot);
 			if (listener != null) listener.shot();
 		}
+	}
+
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+		backgroundMusics[0].dispose();
+		backgroundMusics[1].dispose();
 	}
 }

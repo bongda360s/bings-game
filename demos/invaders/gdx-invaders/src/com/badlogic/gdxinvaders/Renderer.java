@@ -25,6 +25,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.TextureDict;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
@@ -47,7 +48,7 @@ import com.badlogic.gdxinvaders.simulation.Simulation;
  */
 public class Renderer {
 	/** sprite batch to draw text **/
-	private SpriteBatch spriteBatch;
+	private final SpriteBatch spriteBatch;
 	
 	/** the rotation angle of all invaders around y **/
 	private float invaderAngle = 0;
@@ -86,16 +87,17 @@ public class Renderer {
 	private Mesh explosionMesh;
 	/** the explosion texture **/
 	private Texture explosionTexture;
-	public Renderer (Application app) {
-		spriteBatch = new SpriteBatch();			
+
+	public Renderer (Application app) {	
+		this.spriteBatch = new SpriteBatch();
 		camera = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		font = new BitmapFont(Gdx.files.internal("data/font10.fnt"), Gdx.files.internal("data/font10.png"), false);
-		earth = new Texture(Gdx.files.internal("data/earth.png"));
+		earth = TextureDict.loadTexture("data/earth.png").get();
 		earth.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		background = new Texture(Gdx.files.internal("data/background.png"));
+		background = TextureDict.loadTexture("data/background.png").get();
 		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
-			try{
+		try{
 			InputStream in = Gdx.files.internal("data/ship.obj").read();
 			shipMesh = ModelLoader.loadObj(in);
 			in.close();
@@ -155,8 +157,7 @@ public class Renderer {
 					vertices[idx++] = 0.25f + row * 0.25f;
 				}
 			}
-
-			explosionMesh.setVertices(vertices);
+		explosionMesh.setVertices(vertices);
 	}
 
 	public void render (Application app, Simulation simulation) {
