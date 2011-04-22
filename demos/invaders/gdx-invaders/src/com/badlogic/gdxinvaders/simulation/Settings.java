@@ -6,8 +6,19 @@ import com.badlogic.gdx.audio.Music;
 public class Settings {
 	public static float matricWidth = 480;
 	public static float matricHeight = 320;
+	
 	private static float soundVolume = 0.7f;
+	private static float musicVolume = 0.7f;
+	private static int adCount = 5;
 	public static Music music;
+	
+	public static int getAdCount() {
+		return adCount;
+	}
+	public static void setAdCount(int count) {
+		adCount = count;
+	}
+	
 	/**
 	 * @return the soundVolume
 	 */
@@ -20,7 +31,7 @@ public class Settings {
 	public static void setSoundVolume(float volume) {
 		soundVolume = volume;
 	}
-	private static float musicVolume = 0.7f;
+	
 	/**
 	 * @return the musicVolume
 	 */
@@ -36,5 +47,10 @@ public class Settings {
 			music.setVolume(volume);
 	}
 
-	public static int adCount = Integer.MAX_VALUE;
+	public static void loadSettings(){
+		
+	}
+	public static void saveSettings(){
+		
+	}
 }

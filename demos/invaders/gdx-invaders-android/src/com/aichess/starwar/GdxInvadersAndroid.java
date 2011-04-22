@@ -6,6 +6,8 @@ import net.youmi.android.AdManager;
 import net.youmi.android.AdView;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -40,18 +42,31 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 	@Override
 	public void onBackPressed() {
 		
-//		new AlertDialog.Builder(GdxInvadersAndroid.this)
-//		.setMessage("��ȷ��Ҫ�뿪��Ϸ��")
-//		.setIcon(android.R.drawable.btn_dialog)
-//		.setNegativeButton(arg0, arg1);
+		new AlertDialog.Builder(GdxInvadersAndroid.this)
+		.setMessage("您确定要退出吗？")
+		.setIcon(android.R.drawable.btn_dialog)
+		.setNegativeButton("取消", new OnClickListener(){
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}})
+			.setPositiveButton("确定", new OnClickListener(){
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				System.runFinalizersOnExit(true);
+				System.exit(0);				
+			}});
 		super.onBackPressed();
 	}
 
 	private final int settingID = 1;
 	private final int bulletinID = 2;
+	private int adCount = 5;
+	private boolean bReceiveAD = false;
 	private View view;
 	static{ 
-    	AdManager.init("f67d5f8c4e102945", "46ffddb0a2f1cf4d", 31, false,"1.0");   
+    	AdManager.init("f67d5f8c4e102945", "46ffddb0a2f1cf4d", 31, false,"1.0");
+    	Settings.loadSettings();
     }
 	
 	AdView adView;
@@ -62,12 +77,13 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 
 	@Override
 	public void onReceiveAd() {
+		bReceiveAD = true;
 	}
 	
 	/** Called when the activity is first created. */
 	@Override public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
-		
+		adCount = Settings.getAdCount();
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -94,8 +110,8 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Settings.adCount--;
-				if(Settings.adCount==0)
+				adCount--;
+				if(adCount==0)
 					adView.setVisibility(View.INVISIBLE);
 			}
 		});
@@ -159,6 +175,9 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 						boolean fromUser) {
 					TextView txtAD = (TextView)view.findViewById(R.id.txtAD);
 					txtAD.setText(String.format("激活%d个广告后，广告条消失", seekBar.getProgress()+1));
+					adCount = seekBar.getProgress()+1;
+					Settings.setAdCount(adCount);
+					adView.setVisibility(View.VISIBLE);
 				}
 			});
 	        
