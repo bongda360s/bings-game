@@ -39,10 +39,12 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 	 */
 	@Override
 	public void onBackPressed() {
+		
 //		new AlertDialog.Builder(GdxInvadersAndroid.this)
-//		.setMessage("ÄúÈ·¶¨ÒªÀë¿ªÓÎÏ·Âğ£¿")
+//		.setMessage("ï¿½ï¿½È·ï¿½ï¿½Òªï¿½ë¿ªï¿½ï¿½Ï·ï¿½ï¿½")
 //		.setIcon(android.R.drawable.btn_dialog)
 //		.setNegativeButton(arg0, arg1);
+		super.onBackPressed();
 	}
 
 	private final int settingID = 1;
@@ -100,7 +102,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         frameLayout.addView(adView);
         
         ImageView settingsView = new ImageView(GdxInvadersAndroid.this);
-        settingsView.setImageResource(R.drawable.ressettings);
+        settingsView.setImageResource(R.drawable.settings);
         //settingsView.setAlpha(180);
         FrameLayout.LayoutParams settingsParams = new FrameLayout.LayoutParams(72, 72);
         settingsParams.gravity = Gravity.LEFT | Gravity.BOTTOM;
@@ -117,7 +119,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         frameLayout.addView(settingsView);
         
         ImageView bulletinView = new ImageView(GdxInvadersAndroid.this);
-        bulletinView.setImageResource(R.drawable.resbulletin);
+        bulletinView.setImageResource(R.drawable.rss_icon);
         //bulletinView.setAlpha(180);
         FrameLayout.LayoutParams bulletinParams = new FrameLayout.LayoutParams(72, 72);
         bulletinParams.gravity = Gravity.RIGHT | Gravity.BOTTOM;
@@ -156,7 +158,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 				public void onProgressChanged(SeekBar seekBar, int progress,
 						boolean fromUser) {
 					TextView txtAD = (TextView)view.findViewById(R.id.txtAD);
-					txtAD.setText(String.format("µã»÷¹ã¸æ¶àÉÙ´ÎºóËüÏûÊ§£º%d´Î", seekBar.getProgress()+1));
+					txtAD.setText(String.format("æ¿€æ´»%dä¸ªå¹¿å‘Šåï¼Œå¹¿å‘Šæ¡æ¶ˆå¤±", seekBar.getProgress()+1));
 				}
 			});
 	        
