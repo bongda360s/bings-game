@@ -32,7 +32,7 @@
     android:max="100"
     android:progress="80">
     </SeekBar>
-    <TextView android:text="点击广告多少次后它消失：5次" 
+    <TextView android:text="激活5个广告后，广告条消失" 
     android:id="@+id/txtAD" 
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content"
