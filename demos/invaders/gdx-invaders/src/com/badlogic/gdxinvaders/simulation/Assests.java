@@ -36,6 +36,7 @@ public class Assests {
 	/** the shot mesh **/
 	public static Mesh shotMesh;
 	/** the background texture **/
+	public static Mesh missileMesh;
 	//public static Texture backgroundTexture;
 	/** the explosion mesh **/
 	public static Mesh explosionMesh;
@@ -47,6 +48,7 @@ public class Assests {
 	public static Sound explosion;
 	/** shot sound **/
 	public static Sound shot;
+	public static Sound missile;
 	public static Music[] backgroundMusics = new Music[2];
 	public static void load(){
 		background = new Texture(Gdx.files.internal("data/background.png"));
@@ -72,6 +74,10 @@ public class Assests {
 
 		in = Gdx.files.internal("data/shot.obj").read();
 		shotMesh = ModelLoader.loadObj(in);
+		in.close();
+		
+		in = Gdx.files.internal("data/missile.obj").read();
+		missileMesh = ModelLoader.loadObj(in);
 		in.close();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -124,6 +130,7 @@ public class Assests {
 			music = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/menu.ogg", FileType.Internal));
 			explosion = Gdx.audio.newSound(Gdx.files.getFileHandle("data/explosion.ogg", FileType.Internal));
 			shot = Gdx.audio.newSound(Gdx.files.getFileHandle("data/shot.ogg", FileType.Internal));
+			missile = Gdx.audio.newSound(Gdx.files.getFileHandle("data/missile.ogg", FileType.Internal));
 			backgroundMusics[0] = Gdx.audio.newMusic(Gdx.files.internal("data/background1.ogg"));
 			backgroundMusics[1] = Gdx.audio.newMusic(Gdx.files.internal("data/background2.ogg"));
 	}
@@ -138,11 +145,13 @@ public class Assests {
 		invaderTexture.dispose();
 		blockMesh.dispose();
 		shotMesh.dispose();
+		missileMesh.dispose();
 		//backgroundTexture.dispose();
 		explosionMesh.dispose();
 		explosionTexture.dispose();
 		explosion.dispose();
 		shot.dispose();
+		missile.dispose();
 		backgroundMusics[0].dispose();
 		backgroundMusics[1].dispose();
 	}

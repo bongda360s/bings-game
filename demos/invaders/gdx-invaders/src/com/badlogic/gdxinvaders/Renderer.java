@@ -37,6 +37,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdxinvaders.simulation.Block;
 import com.badlogic.gdxinvaders.simulation.Explosion;
 import com.badlogic.gdxinvaders.simulation.Invader;
+import com.badlogic.gdxinvaders.simulation.Missile;
 import com.badlogic.gdxinvaders.simulation.Ship;
 import com.badlogic.gdxinvaders.simulation.Shot;
 import com.badlogic.gdxinvaders.simulation.Simulation;
@@ -83,6 +84,7 @@ public class Renderer {
 	private Mesh blockMesh;
 	/** the shot mesh **/
 	private Mesh shotMesh;
+	private Mesh missileMesh;
 	/** the explosion mesh **/
 	private Mesh explosionMesh;
 	/** the explosion texture **/
@@ -112,6 +114,10 @@ public class Renderer {
 	
 			in = Gdx.files.internal("data/shot.obj").read();
 			shotMesh = ModelLoader.loadObj(in);
+			in.close();
+			
+			in = Gdx.files.internal("data/missile.obj").read();
+			missileMesh = ModelLoader.loadObj(in);
 			in.close();
 			}catch(Exception e){
 				e.printStackTrace();
@@ -184,6 +190,7 @@ public class Renderer {
 
 		gl.glDisable(GL10.GL_LIGHTING);
 		renderShots(gl, simulation.shots);
+		renderMissiles(gl,simulation.missiles);
 
 		gl.glEnable(GL10.GL_TEXTURE_2D);
 		renderExplosions(gl, simulation.explosions);
@@ -218,8 +225,7 @@ public class Renderer {
 		spriteBatch.setColor(Color.WHITE);
 		spriteBatch.draw(background, 0, 0, 480, 320, 0, 0, 1024, 729, false, false);
 		spriteBatch.enableBlending();
-		//System.out.println(shipPosition.x + " " + shipPosition.y + " " + shipPosition.z);
-		spriteBatch.draw(earth, 60 - shipPosition.x, 40, 360, 240, 0, 0, 512, 512, false, false);
+		spriteBatch.draw(earth, 60 - shipPosition.x, 40 - Gdx.input.getAccelerometerX(), 360, 240, 0, 0, 512, 512, false, false);
 		spriteBatch.end();
 	}
 
@@ -292,6 +298,18 @@ public class Renderer {
 		}
 		gl.glColor4f(1, 1, 1, 1);
 	}
+	
+	private void renderMissiles (GL10 gl, ArrayList<Missile> missiles) {
+		gl.glColor4f(1, 1, 0, 1);
+		for (int i = 0; i < missiles.size(); i++) {
+			Missile missile = missiles.get(i);
+			gl.glPushMatrix();
+			gl.glTranslatef(missile.position.x, missile.position.y, missile.position.z);
+			shotMesh.render(GL10.GL_TRIANGLES);
+			gl.glPopMatrix();
+		}
+		gl.glColor4f(1, 1, 1, 1);
+	}
 
 	private void renderExplosions (GL10 gl, ArrayList<Explosion> explosions) {
 		gl.glEnable(GL10.GL_BLEND);
@@ -317,6 +335,7 @@ public class Renderer {
 		shipMesh.dispose();
 		invaderMesh.dispose();
 		shotMesh.dispose();
+		missileMesh.dispose();
 		blockMesh.dispose();
 	}
 }

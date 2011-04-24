@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">星际捍卫者</string>
+    <string name="bulletinBoard">英雄榜</string>
 </resources>

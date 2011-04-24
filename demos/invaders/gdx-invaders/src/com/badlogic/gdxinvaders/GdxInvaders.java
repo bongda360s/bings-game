@@ -26,6 +26,7 @@ import com.badlogic.gdxinvaders.screens.LoadingScreen;
 import com.badlogic.gdxinvaders.screens.MainMenu;
 import com.badlogic.gdxinvaders.screens.Screen;
 import com.badlogic.gdxinvaders.screens.ShowLogo;
+import com.badlogic.gdxinvaders.simulation.Settings;
 
 public class GdxInvaders implements ApplicationListener  {	
 	/** flag indicating whether we were initialized already **/
@@ -36,7 +37,8 @@ public class GdxInvaders implements ApplicationListener  {
 	public GdxInvaders(){
 	}
 	
-	@Override public void dispose () {	
+	@Override public void dispose () {
+		Settings.save();
 		TextureDict.unloadAll();
 		screen.dispose();
 	}
@@ -82,7 +84,8 @@ public class GdxInvaders implements ApplicationListener  {
 	}
 
 	@Override public void create () {
-		if (!isInitialized) {	
+		if (!isInitialized) {
+			Settings.load();
 			screen = new ShowLogo(Gdx.app);
 			//screen = new LoadingScreen(Gdx.app);
 			//loadAssests();
@@ -93,7 +96,7 @@ public class GdxInvaders implements ApplicationListener  {
 	
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub		
+		Settings.save();	
 	}
 
 	@Override

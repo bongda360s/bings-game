@@ -45,15 +45,18 @@ public class GameLoop implements Screen, SimulationListener {
 	private  Sound explosion;
 	/** shot sound **/
 	private  Sound shot;
+	private Sound missile;
 	public GameLoop (Application app) {
 		explosion = Gdx.audio.newSound(Gdx.files.internal("data/explosion.ogg"));
 		shot = Gdx.audio.newSound(Gdx.files.internal("data/shot.ogg"));
+		missile = Gdx.audio.newSound(Gdx.files.internal("data/missile.ogg"));
 		simulation = new Simulation();
 		simulation.listener = this;
 		renderer = new Renderer(app);
 	}
 
 	@Override public void dispose () {
+		missile.dispose();
 		shot.dispose();
 		explosion.dispose();
 		renderer.dispose();
@@ -82,6 +85,9 @@ public class GameLoop implements Screen, SimulationListener {
 		if (input.isKeyPressed(Keys.KEYCODE_DPAD_RIGHT)) simulation.moveShipRight(app.getGraphics().getDeltaTime(), 0.5f);
 
 		if (input.isTouched() || input.isKeyPressed(Keys.KEYCODE_SPACE)) simulation.shot();
+		if (input.getAccelerometerX() < 0) simulation.launch();
+			
+			
 	}
 
 	@Override public void explosion () {
@@ -90,5 +96,8 @@ public class GameLoop implements Screen, SimulationListener {
 
 	@Override public void shot () {
 		shot.play(Settings.getSoundVolume());
+	}
+	@Override public void launch(){
+		missile.play(Settings.getSoundVolume());
 	}
 }
