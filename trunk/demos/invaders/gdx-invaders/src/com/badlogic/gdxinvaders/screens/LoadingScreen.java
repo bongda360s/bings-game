@@ -38,6 +38,7 @@ public class LoadingScreen implements Screen {
 	public LoadingScreen(Application app){
 		music = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/menu.ogg", FileType.Internal));
 		music.setVolume(Settings.getMusicVolume());
+		music.setLooping(true);
 		music.play();
 		Settings.music = music;
 		this.spriteBatch = new SpriteBatch();
@@ -83,7 +84,7 @@ public class LoadingScreen implements Screen {
 		spriteBatch.setColor(Color.WHITE);		
 		spriteBatch.draw(background, 0, 0, Settings.matricWidth, Settings.matricHeight, 0, 0, 1024, 729, false, false);
 		spriteBatch.enableBlending();
-		spriteBatch.draw(earth, localX, 40, Settings.matricWidth - 2*localX, 240, (int)earthLeft, (int)earthTop, (int)earthWidth, (int)earthHeight, false, false);
+		spriteBatch.draw(earth, localX - Gdx.input.getAccelerometerY(), 40 - Gdx.input.getAccelerometerX(), Settings.matricWidth - 2*localX, 240, (int)earthLeft, (int)earthTop, (int)earthWidth, (int)earthHeight, false, false);
 		spriteBatch.setBlendFunction(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);		
 		spriteBatch.end();
 		updateEarth(app);

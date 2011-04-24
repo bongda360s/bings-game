@@ -17,4 +17,6 @@ public interface SimulationListener {
 	public void explosion ();
 
 	public void shot ();
+	
+	public void launch();
 }

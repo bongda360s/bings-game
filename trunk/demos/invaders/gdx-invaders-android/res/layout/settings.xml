@@ -4,10 +4,10 @@
   android:layout_width="fill_parent"
   android:layout_height="fill_parent" 
   android:orientation="vertical"
-  android:paddingTop = "10dip"
-  android:paddingLeft = "15dip"
-  android:paddingRight = "15dip"
-  android:paddingBottom = "10dip"
+  android:paddingTop = "10px"
+  android:paddingLeft = "15px"
+  android:paddingRight = "15px"
+  android:paddingBottom = "10px"
   >
     <TextView android:text="背景音乐" 
     android:id="@+id/textView1" 
@@ -24,7 +24,7 @@
     android:id="@+id/textView2" 
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content"
-    android:paddingTop = "10dip">
+    android:paddingTop = "10px">
     </TextView>
     <SeekBar android:layout_height="wrap_content" 
     android:id="@+id/barSound" 
@@ -36,7 +36,7 @@
     android:id="@+id/txtAD" 
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content"
-    android:paddingTop = "10dip">
+    android:paddingTop = "10px">
     </TextView>
     <SeekBar android:layout_height="wrap_content" 
     android:id="@+id/barAD" 

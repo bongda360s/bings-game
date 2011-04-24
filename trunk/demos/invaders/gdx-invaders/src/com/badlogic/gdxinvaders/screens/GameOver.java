@@ -16,6 +16,7 @@ package com.badlogic.gdxinvaders.screens;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
@@ -27,6 +28,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdxinvaders.simulation.Settings;
 
 /**
  * The game over screen displays the final score and a game over text and waits for the user to touch the screen in which case it
@@ -47,8 +49,15 @@ public class GameOver implements Screen {
 	private Texture logo;	
 	/** the font **/
 	private BitmapFont font;
+	/** the background music **/
+	private Music music;
 	private final SpriteBatch spriteBatch;
 	public GameOver (Application app) {
+		music = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/menu.ogg", FileType.Internal));
+		music.setVolume(Settings.getMusicVolume());
+		music.setLooping(true);
+		music.play();
+		Settings.music = music;
 		background = TextureDict.loadTexture("data/background.png").get();	 
 		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);		
 		logo = TextureDict.loadTexture("data/title.png").get();	
@@ -61,6 +70,7 @@ public class GameOver implements Screen {
 	@Override public void dispose () {
 		spriteBatch.dispose();
 		font.dispose();
+		music.stop();
 	}
 
 	@Override public boolean isDone () {

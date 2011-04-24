@@ -1,6 +1,14 @@
 
 package com.aichess.starwar;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import net.youmi.android.AdListener;
 import net.youmi.android.AdManager;
 import net.youmi.android.AdView;
@@ -25,15 +33,19 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.surfaceview.FillResolutionStrategy;
 import com.badlogic.gdxinvaders.GdxInvaders;
+import com.badlogic.gdxinvaders.simulation.Fighting;
 import com.badlogic.gdxinvaders.simulation.Invader;
 import com.badlogic.gdxinvaders.simulation.Settings;
+import com.google.gson.Gson;
 
 public class GdxInvadersAndroid extends AndroidApplication implements AdListener {
 	/* (non-Javadoc)
@@ -41,10 +53,9 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 	 */
 	@Override
 	public void onBackPressed() {
-		
 		new AlertDialog.Builder(GdxInvadersAndroid.this)
 		.setMessage("您确定要退出吗？")
-		.setIcon(android.R.drawable.btn_dialog)
+		.setIcon(android.R.drawable.alert_dark_frame)
 		.setNegativeButton("取消", new OnClickListener(){
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -53,10 +64,11 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 			.setPositiveButton("确定", new OnClickListener(){
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
+				Settings.save();
 				System.runFinalizersOnExit(true);
 				System.exit(0);				
-			}});
-		super.onBackPressed();
+			}})
+			.show();
 	}
 
 	private final int settingID = 1;
@@ -66,13 +78,13 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 	private View view;
 	static{ 
     	AdManager.init("f67d5f8c4e102945", "46ffddb0a2f1cf4d", 31, false,"1.0");
-    	Settings.loadSettings();
     }
 	
 	AdView adView;
 	
 	@Override
 	public void onConnectFailed() {
+		System.out.println("received faild");
 	}
 
 	@Override
@@ -135,7 +147,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         frameLayout.addView(settingsView);
         
         ImageView bulletinView = new ImageView(GdxInvadersAndroid.this);
-        bulletinView.setImageResource(R.drawable.rss_icon);
+        bulletinView.setImageResource(R.drawable.settings);
         //bulletinView.setAlpha(180);
         FrameLayout.LayoutParams bulletinParams = new FrameLayout.LayoutParams(72, 72);
         bulletinParams.gravity = Gravity.RIGHT | Gravity.BOTTOM;
@@ -144,6 +156,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         bulletinView.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
+				showDialog(bulletinID);
 			}
 		});
         frameLayout.addView(bulletinView);        
@@ -163,6 +176,9 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 		case settingID:
 			view = inflater.inflate(R.layout.settings, null);
 	        SeekBar barAD = (SeekBar)view.findViewById(R.id.barAD);
+	        barAD.setProgress(Settings.getAdCount()-1);
+	        final TextView txtAD = (TextView)view.findViewById(R.id.txtAD);
+			txtAD.setText(String.format("激活%d个广告后，广告条消失", barAD.getProgress()+1));
 	        barAD.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {				
 				@Override
 				public void onStopTrackingTouch(SeekBar seekBar) {
@@ -173,7 +189,6 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 				@Override
 				public void onProgressChanged(SeekBar seekBar, int progress,
 						boolean fromUser) {
-					TextView txtAD = (TextView)view.findViewById(R.id.txtAD);
 					txtAD.setText(String.format("激活%d个广告后，广告条消失", seekBar.getProgress()+1));
 					adCount = seekBar.getProgress()+1;
 					Settings.setAdCount(adCount);
@@ -182,6 +197,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 			});
 	        
 	        SeekBar barMusic = (SeekBar)view.findViewById(R.id.barMusic);
+	        barMusic.setProgress((int)(Settings.getMusicVolume()*100));
 	        barMusic.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {				
 				@Override
 				public void onStopTrackingTouch(SeekBar seekBar) {
@@ -197,6 +213,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 			});
 	        
 	        SeekBar barSound = (SeekBar)view.findViewById(R.id.barSound);
+	        barSound.setProgress((int)(Settings.getSoundVolume()*100));
 	        barSound.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {				
 				@Override
 				public void onStopTrackingTouch(SeekBar seekBar) {
@@ -214,8 +231,70 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 			return new AlertDialog.Builder(GdxInvadersAndroid.this)
 			.setView(view)
 			.show();			
-		case bulletinID:
-			return null;
+		case bulletinID:			
+			InputStream in = null;
+				
+			try {
+				String url = "http://androidgame.sinaapp.com/rs.php?a="+Settings.appNo;
+			    URLConnection connection = new URL(url).openConnection();
+			    connection.setConnectTimeout(1000 * 6); // 设置连接超时时间: 6s
+			    connection.setReadTimeout(1000 * 6); // 设置读取超时时间: 6s
+			    connection.connect();
+
+			    in = connection.getInputStream();
+
+			    // 获取HTTP响应结果
+			    int length;
+			    byte[] buffer = new byte[1024 * 4];
+			    StringBuilder stringBuffer = new StringBuilder();
+			    while ((length = in.read(buffer)) != -1) {
+			        stringBuffer.append(new String(buffer, 0, length));
+			    }
+			    String response = stringBuffer.toString();
+			    System.out.println(response);
+			    if(!response.trim().equals("false")){
+			    	Gson json = new Gson();
+			    	Settings.setNetFightings(json.fromJson(response, (new ArrayList<Fighting>()).getClass()));
+			    }
+			}
+			catch (Exception e) {
+			    // 出错处理代码...
+			}
+			finally {
+			    // 关闭输入流
+				try{
+					in.close();
+				}catch(Exception e){}
+			}
+			
+			List<Fighting> fightings = Settings.getNetFightings();
+			if(fightings == null || fightings.size() == 0)
+				fightings = Settings.getFightings();
+			ArrayList<HashMap<String, Object>> scores = new ArrayList<HashMap<String, Object>>();
+	        for (int i = 0,length = fightings.size(); i < length; i++) {
+	            HashMap<String, Object> score = new HashMap<String, Object>();
+	            score.put("img", R.drawable.icon);
+	            score.put("name", fightings.get(i).getName());
+	            score.put("score", fightings.get(i).getScore());
+	            scores.add(score);
+	        }
+	       
+	        SimpleAdapter saImageItems = new SimpleAdapter(GdxInvadersAndroid.this,
+	        		scores,
+	        		R.layout.score,
+	                new String[] { "img", "name", "score" },
+	                new int[] { R.id.img, R.id.name, R.id.score });
+	        
+	        view = inflater.inflate(R.layout.fightings, null);	        
+	        ((ListView) view.findViewById(R.id.lstFighting)).setAdapter(saImageItems);
+	        AlertDialog dialog = new AlertDialog.Builder(GdxInvadersAndroid.this)
+			.setView(view)
+			.show();
+	        Window window = dialog.getWindow();
+	        WindowManager.LayoutParams lp = window.getAttributes(); 
+	        lp.alpha = 0.7f;
+	        window.setAttributes(lp);
+	        return dialog;
 		}
 		return super.onCreateDialog(id);
 	}

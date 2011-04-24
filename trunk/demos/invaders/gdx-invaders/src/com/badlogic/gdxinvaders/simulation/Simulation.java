@@ -29,14 +29,17 @@ public class Simulation implements Disposable {
 	public ArrayList<Invader> invaders = new ArrayList<Invader>();
 	public ArrayList<Block> blocks = new ArrayList<Block>();
 	public ArrayList<Shot> shots = new ArrayList<Shot>();
+	public ArrayList<Missile> missiles = new ArrayList<Missile>();
 	public ArrayList<Explosion> explosions = new ArrayList<Explosion>();
 	public Ship ship;
 	public Shot shipShot = null;
+	public Missile missileLaunch = null;
 	public transient SimulationListener listener;
 	public float multiplier = 1;
 	public int score;
-	public int wave = 1;
+	public int wave;
 	private ArrayList<Shot> removedShots = new ArrayList<Shot>();
+	private ArrayList<Missile> removedMissiles = new ArrayList<Missile>();
 	private ArrayList<Explosion> removedExplosions = new ArrayList<Explosion>();
 	private  Music[] backgroundMusics = new Music[2];
 	
@@ -47,7 +50,7 @@ public class Simulation implements Disposable {
 	}
 
 	private void populate () {
-
+		wave++;
 		backgroundMusics[wave & 1].stop();
 		backgroundMusics[1 - wave & 1].setLooping(true);
 		backgroundMusics[1 - wave & 1].setVolume(Settings.getMusicVolume());
@@ -75,6 +78,7 @@ public class Simulation implements Disposable {
 		ship.update(delta);
 		updateInvaders(delta);
 		updateShots(delta);
+		updateMissiles(delta);
 		updateExplosions(delta);
 		checkShipCollision();
 		checkInvaderCollision();
@@ -110,6 +114,18 @@ public class Simulation implements Disposable {
 		}
 	}
 
+	private void updateMissiles (float delta) {
+		removedMissiles.clear();
+		for (int i = 0; i < missiles.size(); i++) {
+			Missile missile = missiles.get(i);
+			missile.update(delta);
+			if (missile.hasLeftField) removedMissiles.add(missile);
+		}
+
+		for (int i = 0; i < removedMissiles.size(); i++)
+			missiles.remove(removedMissiles.get(i));	
+	}
+	
 	public void updateExplosions (float delta) {
 		removedExplosions.clear();
 		for (int i = 0; i < explosions.size(); i++) {
@@ -123,18 +139,32 @@ public class Simulation implements Disposable {
 	}
 
 	private void checkInvaderCollision () {
-		if (shipShot == null) return;
-
-		for (int j = 0; j < invaders.size(); j++) {
-			Invader invader = invaders.get(j);
-			if (invader.position.dst(shipShot.position) < Invader.INVADER_RADIUS) {
-				shots.remove(shipShot);
-				shipShot = null;
-				invaders.remove(invader);
-				explosions.add(new Explosion(invader.position));
-				if (listener != null) listener.explosion();
-				score += Invader.INVADER_POINTS;
-				break;
+		if (shipShot != null){
+			for (int j = 0; j < invaders.size(); j++) {
+				Invader invader = invaders.get(j);
+				if (invader.position.dst(shipShot.position) < Invader.INVADER_RADIUS) {
+					shots.remove(shipShot);
+					shipShot = null;
+					invaders.remove(invader);
+					explosions.add(new Explosion(invader.position));
+					if (listener != null) listener.explosion();
+					score += Invader.INVADER_POINTS;
+					break;
+				}
+			}
+		}
+		if (missileLaunch != null){
+			for (int j = 0; j < invaders.size(); j++) {
+				Invader invader = invaders.get(j);
+				if (invader.position.dst(missileLaunch.position) < Invader.INVADER_RADIUS + 3) {
+					missiles.remove(missileLaunch);
+					missileLaunch = null;
+					invaders.remove(invader);
+					explosions.add(new Explosion(invader.position));
+					if (listener != null) listener.explosion();
+					score += Invader.INVADER_POINTS;
+					break;
+				}
 			}
 		}
 	}
@@ -178,7 +208,6 @@ public class Simulation implements Disposable {
 
 	private void checkBlockCollision () {
 		removedShots.clear();
-
 		for (int i = 0; i < shots.size(); i++) {
 			Shot shot = shots.get(i);
 
@@ -198,17 +227,19 @@ public class Simulation implements Disposable {
 	}
 
 	private void checkNextLevel () {
-		if (invaders.size() <= 0 && ship.lives > 0) {
+		if (invaders.size() <= 0 && ship.lives > 0) {			
 			blocks.clear();
 			shots.clear();
 			shipShot = null;
+			missiles.clear();
+			missileLaunch=null;
 			Vector3 shipPosition = ship.position;
 			int lives = ship.lives;
 			populate();
 			ship.position.set(shipPosition);
 			ship.lives = lives;
 			multiplier += 0.1f;
-			wave++;
+			
 		}
 	}
 
@@ -233,7 +264,15 @@ public class Simulation implements Disposable {
 			if (listener != null) listener.shot();
 		}
 	}
-
+	
+	public void launch () {
+		if (missileLaunch == null && !ship.isExploding) {
+			missileLaunch = new Missile(ship.position);
+			missiles.add(missileLaunch);
+			if (listener != null) listener.launch();
+		}
+	}
+	
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
