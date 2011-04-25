@@ -27,12 +27,23 @@ import com.badlogic.gdxinvaders.screens.MainMenu;
 import com.badlogic.gdxinvaders.screens.Screen;
 import com.badlogic.gdxinvaders.screens.ShowLogo;
 import com.badlogic.gdxinvaders.simulation.Settings;
+import com.badlogic.gdxinvaders.simulation.SimulationListener;
 
 public class GdxInvaders implements ApplicationListener  {	
 	/** flag indicating whether we were initialized already **/
 	private boolean isInitialized = false;
 	/** the current screen **/
 	private Screen screen;
+	
+//	public interface OnSubmitScoreListener{
+//		void onSubmitListener(int score);
+//	}
+//	
+//	private OnSubmitScoreListener submitScoreListener;
+//	
+//	public void setOnSubmitScoreListener(OnSubmitScoreListener onSubmitScoreListener){
+//		submitScoreListener = onSubmitScoreListener;
+//	}
 	
 	public GdxInvaders(){
 	}
@@ -50,10 +61,12 @@ public class GdxInvaders implements ApplicationListener  {
 
 		// render the screen
 		screen.render(app);
-
+		int score = 0;
 		// when the screen is done we change to the
 		// next screen
 		if (screen.isDone()) {
+			if(screen instanceof GameLoop)
+				score = ((GameLoop)screen).getScore();
 			// dispose the current screen
 			screen.dispose();
 			if (screen instanceof ShowLogo)
@@ -69,8 +82,11 @@ public class GdxInvaders implements ApplicationListener  {
 //			else
 			// if this screen is a game loop screen we switch to the
 			// game over screen
-			if (screen instanceof GameLoop)
+			if (screen instanceof GameLoop){
 				screen = new GameOver(app);
+//				if(submitScoreListener!=null)
+//					submitScoreListener.onSubmitListener(score);
+			}
 			else
 			// if this screen is a game over screen we switch to the
 			// main menu screen

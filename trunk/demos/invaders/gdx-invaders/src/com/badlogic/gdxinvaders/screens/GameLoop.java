@@ -100,4 +100,7 @@ public class GameLoop implements Screen, SimulationListener {
 	@Override public void launch(){
 		missile.play(Settings.getSoundVolume());
 	}
+	@Override public int getScore(){
+		return simulation.score;
+	}
 }
