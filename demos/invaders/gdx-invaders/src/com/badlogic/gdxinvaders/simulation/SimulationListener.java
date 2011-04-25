@@ -19,4 +19,6 @@ public interface SimulationListener {
 	public void shot ();
 	
 	public void launch();
+	
+	public int getScore();
 }

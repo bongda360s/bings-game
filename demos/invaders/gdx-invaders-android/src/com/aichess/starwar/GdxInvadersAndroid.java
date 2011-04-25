@@ -14,12 +14,14 @@ import net.youmi.android.AdManager;
 import net.youmi.android.AdView;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.AttributeSet;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.Gravity;
@@ -31,6 +33,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -108,7 +111,15 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         mainLayoutParams.gravity = Gravity.CENTER;
         frameLayout.setLayoutParams(mainLayoutParams);
         
-        View view = initializeForView(new GdxInvaders(), false, new FillResolutionStrategy(), 20);        
+        GdxInvaders invaders = new GdxInvaders();
+//        invaders.setOnSubmitScoreListener(new GdxInvaders.OnSubmitScoreListener() {
+//			
+//			@Override
+//			public void onSubmitListener(final int score) {				
+//				new ShowDialogRunnable().run();				
+//			}
+//		});
+        View view = initializeForView(invaders, false, new FillResolutionStrategy(), 20);        
         view.setLayoutParams(createLayoutParams());
         frameLayout.addView(view);
 
@@ -287,13 +298,50 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 	        
 	        view = inflater.inflate(R.layout.fightings, null);	        
 	        ((ListView) view.findViewById(R.id.lstFighting)).setAdapter(saImageItems);
-	        AlertDialog dialog = new AlertDialog.Builder(GdxInvadersAndroid.this)
+	        final AlertDialog dialog = new AlertDialog.Builder(GdxInvadersAndroid.this)
 			.setView(view)
 			.show();
 	        Window window = dialog.getWindow();
 	        WindowManager.LayoutParams lp = window.getAttributes(); 
-	        lp.alpha = 0.7f;
+	        lp.alpha = 0.8f;
 	        window.setAttributes(lp);
+
+			final int score = 100;
+			TextView txtTitle = (TextView)view.findViewById(R.id.txtTitle);
+			txtTitle.setText("最好成绩是："+Integer.toString(score)+"。请在下面英雄榜上留下您的大名");
+			Button btnSubmit = (Button)view.findViewById(R.id.btnSubmit);
+			btnSubmit.setOnClickListener(new Button.OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					EditText txt = null;
+					// TODO Auto-generated method stub
+					String name = ((EditText)view.findViewById(R.id.txtName)).getText().toString();
+					if(name.equals(""))
+						name = "无名";
+					
+					try {
+						TelephonyManager telephonyManager=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+						String imei=telephonyManager.getDeviceId();
+						String url = String.format("http://androidgame.sinaapp.com/ws.php?n=%s&s=%d&pn=%s&a=%d", name,score,imei,Settings.appNo);
+					    URLConnection connection = new URL(url).openConnection();
+					    connection.setConnectTimeout(1000 * 6); // 设置连接超时时间: 6s
+					    connection.setReadTimeout(1000 * 6); // 设置读取超时时间: 6s
+					    connection.connect();
+					}
+					catch (Exception e) {
+					    // 出错处理代码...
+					}
+					dialog.dismiss();
+				}});
+			Button btnCancel = (Button)view.findViewById(R.id.btnCancel);
+			btnCancel.setOnClickListener(new Button.OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					dialog.dismiss();
+				}});	        
 	        return dialog;
 		}
 		return super.onCreateDialog(id);
