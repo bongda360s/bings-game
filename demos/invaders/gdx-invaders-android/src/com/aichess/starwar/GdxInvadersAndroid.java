@@ -119,7 +119,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 //				new ShowDialogRunnable().run();				
 //			}
 //		});
-        View view = initializeForView(invaders, false, new FillResolutionStrategy(), 20);        
+        View view = initializeForView(invaders, false);        
         view.setLayoutParams(createLayoutParams());
         frameLayout.addView(view);
 
@@ -265,7 +265,8 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 			    System.out.println(response);
 			    if(!response.trim().equals("false")){
 			    	Gson json = new Gson();
-			    	Settings.setNetFightings(json.fromJson(response, (new ArrayList<Fighting>()).getClass()));
+			    	List<Fighting> fightings = json.fromJson(response, (new ArrayList<Fighting>()).getClass());
+			    	Settings.setNetFightings(fightings);
 			    }
 			}
 			catch (Exception e) {

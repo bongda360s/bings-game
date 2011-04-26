@@ -55,10 +55,10 @@ public class Settings {
 
 	private static List<Fighting> netFightings = null;
     
-    public final static String file = ".simulation";
+    public final static String file = "starwar.dat";
 	
-	private static float soundVolume = 0.7f;
-	private static float musicVolume = 0.7f;
+	private static float soundVolume = 0f;
+	private static float musicVolume = 0f;
 	private static int adCount = 5;	
 	
 	public static int getAdCount() {
@@ -99,9 +99,6 @@ public class Settings {
     public static void load() {
         BufferedReader in = null;
         try {
-        	//FileHandle handle = Gdx.files.external(file);
-        	//InputStreamReader isr = new InputStreamReader(handle.read());
-        	//in = new BufferedReader(isr);
             in = new BufferedReader(new InputStreamReader(Gdx.files.external(file).read()));
                        
             soundVolume = Float.parseFloat(in.readLine());
@@ -112,7 +109,7 @@ public class Settings {
             fightings = (List<Fighting>)gson.fromJson(strFight, fightings.getClass());
         } 
         catch (Exception e) {
-            e.printStackTrace();       
+            //nothing to do ,we have default...      
         } finally {
             try {
                 if (in != null)
