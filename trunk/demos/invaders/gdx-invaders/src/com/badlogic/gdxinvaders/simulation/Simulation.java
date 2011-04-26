@@ -14,6 +14,7 @@
 package com.badlogic.gdxinvaders.simulation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -41,8 +42,18 @@ public class Simulation implements Disposable {
 	private ArrayList<Shot> removedShots = new ArrayList<Shot>();
 	private ArrayList<Missile> removedMissiles = new ArrayList<Missile>();
 	private ArrayList<Explosion> removedExplosions = new ArrayList<Explosion>();
-	private  Music[] backgroundMusics = new Music[2];
-	
+	private Music[] backgroundMusics = new Music[2];
+	private final boolean[][] array = {
+		{true,true,true,true,true,true,true,true,true},
+		{true,true,true,true,true,true,true,true,true},
+		{false,true,true,true,true,true,true,true,false},
+		{false,true,true,true,true,true,true,true,false},
+		{false,true,true,true,true,true,true,true,false},
+		{false,false,true,true,true,true,true,false,false},
+		{false,false,true,true,true,true,true,false,false},
+		{false,false,false,true,true,true,false,false,false},
+		{false,false,false,true,true,true,false,false,false},
+		{false,false,false,false,true,false,false,false,false}};
 	public Simulation () {
 		backgroundMusics[0] = Gdx.audio.newMusic(Gdx.files.internal("data/background1.ogg"));
 		backgroundMusics[1] = Gdx.audio.newMusic(Gdx.files.internal("data/background2.ogg"));
@@ -50,18 +61,19 @@ public class Simulation implements Disposable {
 	}
 
 	private void populate () {
-		wave++;
-		backgroundMusics[wave & 1].stop();
-		backgroundMusics[1 - wave & 1].setLooping(true);
-		backgroundMusics[1 - wave & 1].setVolume(Settings.getMusicVolume());
-		backgroundMusics[1 - wave & 1].play();
-		Settings.music = backgroundMusics[1 - wave & 1];
-
 		ship = new Ship();
+		int weight = wave < 10 ? 10 - wave : 1;		
+		int[] nos =  {(int)(Math.random() * weight),(int)(Math.random() * weight),(int)(Math.random() * weight),(int)(Math.random() * weight)};
+		Arrays.sort(nos);
+		
+		boolean[][] invaderArray = {array[nos[0]],array[nos[1]],array[nos[2]],array[nos[3]]};
+		
 		for (int row = 0; row < 4; row++) {
 			for (int column = 0; column < 8; column++) {
-				Invader invader = new Invader(new Vector3(-PLAYFIELD_MAX_X / 2 + column * 2f, 0, PLAYFIELD_MIN_Z + row * 2f));
-				invaders.add(invader);
+				if(invaderArray[row][column]){
+					Invader invader = new Invader(new Vector3(-PLAYFIELD_MAX_X / 2 + column * 2f, 0, PLAYFIELD_MIN_Z + row * 2f));
+					invaders.add(invader);
+				}
 			}
 		}
 
@@ -72,6 +84,12 @@ public class Simulation implements Disposable {
 			blocks.add(new Block(new Vector3(-10 + shield * 10 + 1, 0, -3)));
 			blocks.add(new Block(new Vector3(-10 + shield * 10 + 1, 0, -2)));
 		}
+		wave++;
+		backgroundMusics[wave & 1].stop();
+		backgroundMusics[1 - wave & 1].setLooping(true);
+		backgroundMusics[1 - wave & 1].setVolume(Settings.getMusicVolume());
+		backgroundMusics[1 - wave & 1].play();
+		Settings.music = backgroundMusics[1 - wave & 1];
 	}
 
 	public void update (float delta) {
@@ -106,9 +124,9 @@ public class Simulation implements Disposable {
 
 		if (shipShot != null && shipShot.hasLeftField) shipShot = null;
 
-		if (Math.random() < 0.01 * multiplier && invaders.size() > 0) {
+		if (Math.random() < 0.01 * multiplier * wave && invaders.size() > 0) {
 			int index = (int)(Math.random() * (invaders.size() - 1));
-			Shot shot = new Shot(invaders.get(index).position, true);
+			Shot shot = new Shot(invaders.get(index).position, true,wave * Math.random() * Math.PI /100);
 			shots.add(shot);
 			if (listener != null) listener.shot();
 		}
@@ -259,7 +277,7 @@ public class Simulation implements Disposable {
 
 	public void shot () {
 		if (shipShot == null && !ship.isExploding) {
-			shipShot = new Shot(ship.position, false);
+			shipShot = new Shot(ship.position, false, Math.atan(ship.position.x/100));
 			shots.add(shipShot);
 			if (listener != null) listener.shot();
 		}
@@ -267,7 +285,7 @@ public class Simulation implements Disposable {
 	
 	public void launch () {
 		if (missileLaunch == null && !ship.isExploding) {
-			missileLaunch = new Missile(ship.position);
+			missileLaunch = new Missile(ship.position,false);
 			missiles.add(missileLaunch);
 			if (listener != null) listener.launch();
 		}

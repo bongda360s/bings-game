@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.TextureDict;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
@@ -30,10 +31,13 @@ public class LoadingScreen implements Screen {
 	private final float totalAnimateTime = 1;
 	private Texture earth;
 	private Texture background;
+	private Texture title;
 	private final SpriteBatch spriteBatch;
 	private boolean isDone = false;
 	/** the background music **/
 	private Music music;
+	/** the font **/
+	private BitmapFont font;
 	
 	public LoadingScreen(Application app){
 		music = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/menu.ogg", FileType.Internal));
@@ -45,7 +49,8 @@ public class LoadingScreen implements Screen {
 		earth = TextureDict.loadTexture("data/earth.png").get();
 		earth.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		background = TextureDict.loadTexture("data/background.png").get();
-		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);		
+		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		title = TextureDict.loadTexture("data/landing.png").get();
 	}
 	
 	@Override
@@ -85,7 +90,12 @@ public class LoadingScreen implements Screen {
 		spriteBatch.draw(background, 0, 0, Settings.matricWidth, Settings.matricHeight, 0, 0, 1024, 729, false, false);
 		spriteBatch.enableBlending();
 		spriteBatch.draw(earth, localX - Gdx.input.getAccelerometerY(), 40 - Gdx.input.getAccelerometerX(), Settings.matricWidth - 2*localX, 240, (int)earthLeft, (int)earthTop, (int)earthWidth, (int)earthHeight, false, false);
-		spriteBatch.setBlendFunction(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);		
+		if(animationCompleted){
+			spriteBatch.draw(title, Settings.matricWidth/2 - 120, 0, 256, 72, 0, 0, 256, 72, false,false);
+			spriteBatch.draw(title, Settings.matricWidth/2-64, Settings.matricHeight - 72, 128, 32, 0, 80, 142, 32, false,false);
+		}
+		spriteBatch.setBlendFunction(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
+		
 		spriteBatch.end();
 		updateEarth(app);
 	}

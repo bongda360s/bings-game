@@ -20,18 +20,23 @@ public class Shot {
 	public final Vector3 position = new Vector3();
 	public boolean isInvaderShot;
 	public boolean hasLeftField = false;
+	public double angle = 0;
 
-	public Shot (Vector3 position, boolean isInvaderShot) {
+	public Shot (Vector3 position, boolean isInvaderShot, double angle) {
 		this.position.set(position);
 		this.isInvaderShot = isInvaderShot;
+		this.angle = angle;
 	}
 
 	public void update (float delta) {
-		if (isInvaderShot)
-			position.z += SHOT_VELOCITY * delta;
-		else
-			position.z -= SHOT_VELOCITY * delta;
-
+		if (isInvaderShot){
+			position.z += SHOT_VELOCITY * delta * Math.cos(angle);
+			position.x += SHOT_VELOCITY * delta * Math.sin(angle);
+		}
+		else{
+			position.z -= SHOT_VELOCITY * delta * Math.cos(angle);
+			position.x -= SHOT_VELOCITY * delta * Math.sin(angle);
+		}	
 		if (position.z > Simulation.PLAYFIELD_MAX_Z) hasLeftField = true;
 		if (position.z < Simulation.PLAYFIELD_MIN_Z) hasLeftField = true;
 	}
