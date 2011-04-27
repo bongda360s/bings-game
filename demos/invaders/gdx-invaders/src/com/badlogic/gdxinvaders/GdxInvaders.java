@@ -26,6 +26,7 @@ import com.badlogic.gdxinvaders.screens.LoadingScreen;
 import com.badlogic.gdxinvaders.screens.MainMenu;
 import com.badlogic.gdxinvaders.screens.Screen;
 import com.badlogic.gdxinvaders.screens.ShowLogo;
+import com.badlogic.gdxinvaders.simulation.Fighting;
 import com.badlogic.gdxinvaders.simulation.Settings;
 import com.badlogic.gdxinvaders.simulation.SimulationListener;
 
@@ -65,8 +66,10 @@ public class GdxInvaders implements ApplicationListener  {
 		// when the screen is done we change to the
 		// next screen
 		if (screen.isDone()) {
-			if(screen instanceof GameLoop)
+			if(screen instanceof GameLoop){
 				score = ((GameLoop)screen).getScore();
+				Settings.getFightings().add(new Fighting(Settings.heroNames[(int)(Math.random()*(Settings.heroNames.length-1))], score, Settings.phoneName));
+			}
 			// dispose the current screen
 			screen.dispose();
 			if (screen instanceof ShowLogo)

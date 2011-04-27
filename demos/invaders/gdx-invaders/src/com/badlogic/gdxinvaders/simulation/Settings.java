@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
@@ -19,6 +21,9 @@ public class Settings {
 	public static float matricHeight = 320;
 	public static Music music;
 	public static int appNo = 1;
+	public static String phoneName;
+	public static String[] heroNames = {"Hecate","Gaea","Uranus","Cronus","Rhea",
+		"Oceanus","Tethys","Hyperion"};
     private static List<Fighting> fightings;
     /**
 	 * @return the fightings
@@ -26,11 +31,11 @@ public class Settings {
 	public static List<Fighting> getFightings() {
 		if(fightings==null || fightings.size() == 0){
 			fightings = new ArrayList<Fighting>();
-			fightings.add(new Fighting("Bing",1000));
-	    	fightings.add(new Fighting("Lele",800));
-	    	fightings.add(new Fighting("Tangtang",600));
-	    	fightings.add(new Fighting("Dengyue",300));
-	    	fightings.add(new Fighting("Spring",100));
+			fightings.add(new Fighting("Zeus",1000,""));
+	    	fightings.add(new Fighting("Hera",800,""));
+	    	fightings.add(new Fighting("Poseidon",600,""));
+	    	fightings.add(new Fighting("Hades",300,""));
+	    	fightings.add(new Fighting("Demeter",100,""));
 		}
 		return fightings;
 	}
@@ -40,6 +45,7 @@ public class Settings {
 	public static void setFightings(List<Fighting> fightings) {
 		Settings.fightings = fightings;
 	}
+
 	/**
 	 * @return the netFightings
 	 */
@@ -141,9 +147,19 @@ public class Settings {
     }
     
     public static void addFighting(Fighting fighting){
-    	fightings.add(0, fighting);
-    	fightings.remove(fightings.size()-1);
+    	fightings.add(fighting);
+	    Collections.sort(fightings,new FightingComparator());
     }
     
+    public static int getHighScore(String phoneName){
+    	int highScore = 0;
+    	for(int i = 0, length = fightings.size(); i < length; ++i){
+    		if(fightings.get(i).getPhoneName().equals(phoneName)){
+    			highScore = fightings.get(i).getScore();
+    		}
+    	}
+    	return highScore;
+    }
 }
+
 

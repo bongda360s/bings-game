@@ -3,6 +3,7 @@ package com.aichess.starwar;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ import com.badlogic.gdxinvaders.simulation.Fighting;
 import com.badlogic.gdxinvaders.simulation.Invader;
 import com.badlogic.gdxinvaders.simulation.Settings;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class GdxInvadersAndroid extends AndroidApplication implements AdListener {
 	/* (non-Javadoc)
@@ -57,8 +59,9 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 	@Override
 	public void onBackPressed() {
 		new AlertDialog.Builder(GdxInvadersAndroid.this)
-		.setMessage("您确定要退出吗？")
-		.setIcon(android.R.drawable.alert_dark_frame)
+		.setTitle("退出确认")
+		.setMessage("您确定要退出星际捍卫者吗？")
+		.setIcon(android.R.drawable.title_bar)
 		.setNegativeButton("取消", new OnClickListener(){
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -98,6 +101,8 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 	/** Called when the activity is first created. */
 	@Override public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
+		TelephonyManager telephonyManager=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+		Settings.phoneName = telephonyManager.getDeviceId();
 		adCount = Settings.getAdCount();
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -265,7 +270,9 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 			    System.out.println(response);
 			    if(!response.trim().equals("false")){
 			    	Gson json = new Gson();
-			    	List<Fighting> fightings = json.fromJson(response, (new ArrayList<Fighting>()).getClass());
+			    	Type listType = new TypeToken<List<Fighting>>() {}.getType();
+			    	List<Fighting> fightings = json.fromJson(response, listType);
+			    	
 			    	Settings.setNetFightings(fightings);
 			    }
 			}
@@ -283,11 +290,14 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 			if(fightings == null || fightings.size() == 0)
 				fightings = Settings.getFightings();
 			ArrayList<HashMap<String, Object>> scores = new ArrayList<HashMap<String, Object>>();
-	        for (int i = 0,length = fightings.size(); i < length; i++) {
+	        for (int i = 0,length = fightings.size(); i < length && i < 5; i++) {
+	        	if(fightings.get(i)==null)
+	        		break;
 	            HashMap<String, Object> score = new HashMap<String, Object>();
 	            score.put("img", R.drawable.icon);
-	            score.put("name", fightings.get(i).getName());
-	            score.put("score", fightings.get(i).getScore());
+	            Fighting fighting = fightings.get(i);
+	            score.put("name", fighting.getName());
+	            score.put("score", fighting.getScore());
 	            scores.add(score);
 	        }
 	       
@@ -307,9 +317,9 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 	        lp.alpha = 0.8f;
 	        window.setAttributes(lp);
 
-			final int score = 100;
+			final int score = Settings.getFightings().get(0).getScore();
 			TextView txtTitle = (TextView)view.findViewById(R.id.txtTitle);
-			txtTitle.setText("最好成绩是："+Integer.toString(score)+"。请在下面英雄榜上留下您的大名");
+			txtTitle.setText("最好成绩是："+Integer.toString(score)+",请在英雄榜上留下您的大名");
 			Button btnSubmit = (Button)view.findViewById(R.id.btnSubmit);
 			btnSubmit.setOnClickListener(new Button.OnClickListener(){
 
@@ -319,12 +329,10 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 					// TODO Auto-generated method stub
 					String name = ((EditText)view.findViewById(R.id.txtName)).getText().toString();
 					if(name.equals(""))
-						name = "无名";
-					
-					try {
-						TelephonyManager telephonyManager=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-						String imei=telephonyManager.getDeviceId();
-						String url = String.format("http://androidgame.sinaapp.com/ws.php?n=%s&s=%d&pn=%s&a=%d", name,score,imei,Settings.appNo);
+						name = "unknown hero";
+					Settings.getFightings().get(0).setName(name);
+					try {						
+						String url = String.format("http://androidgame.sinaapp.com/ws.php?n=%s&s=%d&pn=%s&a=%d", name,score,Settings.phoneName,Settings.appNo);
 					    URLConnection connection = new URL(url).openConnection();
 					    connection.setConnectTimeout(1000 * 6); // 设置连接超时时间: 6s
 					    connection.setReadTimeout(1000 * 6); // 设置读取超时时间: 6s
@@ -334,6 +342,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 					    // 出错处理代码...
 					}
 					dialog.dismiss();
+					
 				}});
 			Button btnCancel = (Button)view.findViewById(R.id.btnCancel);
 			btnCancel.setOnClickListener(new Button.OnClickListener(){
