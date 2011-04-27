@@ -3,6 +3,7 @@ package com.badlogic.gdxinvaders.simulation;
 public class Fighting {
 	private String name;
 	private int score;
+	private String phoneName;
 	public String getName() {
 		return name;
 	}
@@ -15,8 +16,21 @@ public class Fighting {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	public Fighting(String name,int score){
+	public Fighting(String name,int score,String phoneName){
 		this.name = name;
 		this.score = score;
+		this.phoneName = phoneName;
+	}
+	/**
+	 * @return the phoneName
+	 */
+	public String getPhoneName() {
+		return phoneName;
+	}
+	/**
+	 * @param phoneName the phoneName to set
+	 */
+	public void setPhoneName(String phoneName) {
+		this.phoneName = phoneName;
 	}
 }
