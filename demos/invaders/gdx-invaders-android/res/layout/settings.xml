@@ -9,7 +9,7 @@
   android:paddingRight = "15px"
   android:paddingBottom = "10px"
   >
-    <TextView android:text="背景音乐" 
+    <TextView android:text="@string/background_music" 
     android:id="@+id/textView1" 
     android:layout_height="wrap_content" 
     android:layout_width="wrap_content">
@@ -20,7 +20,7 @@
     android:max="100"
     android:progress="80">
     </SeekBar>
-    <TextView android:text="音效" 
+    <TextView android:text="@string/sound" 
     android:id="@+id/textView2" 
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
     android:max="100"
     android:progress="80">
     </SeekBar>
-    <TextView android:text="激活5个广告后，广告条消失" 
+    <TextView android:text="@string/ad_5message" 
     android:id="@+id/txtAD" 
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content"
