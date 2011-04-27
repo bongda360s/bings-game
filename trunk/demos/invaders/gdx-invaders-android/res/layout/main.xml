@@ -8,6 +8,7 @@
     android:id="@+id/imgLoading" 
     android:layout_width="fill_parent" 
     android:layout_height="fill_parent" 
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:scaleType="fitXY">
     </ImageView>
 </LinearLayout>

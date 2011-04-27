@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">星际捍卫者</string>
-    <string name="bulletinBoard">英雄榜</string>
+    <string name="app_name">Star war</string>
+    <string name="bulletinBoard">Hero World</string>
+    <string name="best_result">Best result was:%d, please leave your name in hero world</string>
+    <string name="ad_message">Active %d ads, banner ads disappeared</string>
+    <string name="ad_5message">Active 5 ads, banner ads disappeared</string>
+    <string name="system_setting">System settings</string>
+    <string name="cancel_title">Cancel confirm</string>
+    <string name="cancel_confirm">Do you really want to exit Star war?</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="submit">Submit</string>
+    <string name="next_time">Next time</string>
+    <string name="background_music">Music</string>
+    <string name="sound">Sound</string>
+    <string name="unsung_hero">Unsung hero</string>
 </resources>

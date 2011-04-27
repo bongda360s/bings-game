@@ -28,6 +28,7 @@ public class LoadingScreen implements Screen {
 	private float earthWidth = 384;
 	private float earthHeight = 256;
 	private float localX = 0;
+	private float localY = 0;
 	private final float totalAnimateTime = 1;
 	private Texture earth;
 	private Texture background;
@@ -65,15 +66,18 @@ public class LoadingScreen implements Screen {
 			earthTop -= 30 * delta / totalAnimateTime;
 			earthWidth += (512-384) * delta / totalAnimateTime;
 			earthHeight += (512-256) * delta / totalAnimateTime;
-			if(earthLeft <=32)
+			if(earthLeft <=32){
 				localX += 120 * delta / totalAnimateTime;
+				localY += 80 * delta / totalAnimateTime;
+			}
 		}
-		if(earthLeft <= 0 || earthTop <= 0 || earthWidth >= 512 || earthHeight >=512 || localX >=60){
+		if(earthLeft <= 0 || earthTop <= 0 || earthWidth >= 512 || earthHeight >=512 || localX >=60 || localY >=40){
 			earthLeft = 0;
 			earthTop = 0;
 			earthWidth = 512;
 			earthHeight = 512;
 			localX = 60;
+			localY = 40;
 			animationCompleted = true;
 		}
 	}
@@ -89,7 +93,7 @@ public class LoadingScreen implements Screen {
 		spriteBatch.setColor(Color.WHITE);		
 		spriteBatch.draw(background, 0, 0, Settings.matricWidth, Settings.matricHeight, 0, 0, 1024, 729, false, false);
 		spriteBatch.enableBlending();
-		spriteBatch.draw(earth, localX - Gdx.input.getAccelerometerY(), 40 - Gdx.input.getAccelerometerX(), Settings.matricWidth - 2*localX, 240, (int)earthLeft, (int)earthTop, (int)earthWidth, (int)earthHeight, false, false);
+		spriteBatch.draw(earth, localX - Gdx.input.getAccelerometerY(), localY - Gdx.input.getAccelerometerX(), Settings.matricWidth - 2*localX, 240, (int)earthLeft, (int)earthTop, (int)earthWidth, (int)earthHeight, false, false);
 		if(animationCompleted){
 			spriteBatch.draw(title, Settings.matricWidth/2 - 120, 0, 256, 72, 0, 0, 256, 72, false,false);
 			spriteBatch.draw(title, Settings.matricWidth/2-64, Settings.matricHeight - 72, 128, 32, 0, 80, 142, 32, false,false);
