@@ -181,7 +181,9 @@ public class Renderer {
 		gl.glViewport(0, 0, app.getGraphics().getWidth(), app.getGraphics().getHeight());
 
 		renderBackground(gl,simulation);
-
+		if(Settings.getStatus() == 2){
+			renderAward(gl,simulation);
+		}
 		gl.glDisable(GL10.GL_DITHER);
 		gl.glEnable(GL10.GL_DEPTH_TEST);
 		gl.glEnable(GL10.GL_CULL_FACE);
@@ -192,11 +194,8 @@ public class Renderer {
 		gl.glEnable(GL10.GL_TEXTURE_2D);
 
 		renderShip(gl, simulation.ship, app);		
-		if(Settings.status == 2){
-			renderAward(gl,simulation);
-		}
-		else{	
-			if(Settings.status==0){
+		if(Settings.getStatus() != 2){
+			if(Settings.getStatus()==0){
 				spriteBatch.draw(playing, Settings.matricWidth/2-64, Settings.matricHeight/2 - 64, 64, 64, 0, 0, 128, 128, false, false);
 			}
 			renderInvaders(gl, simulation.invaders);
@@ -208,16 +207,13 @@ public class Renderer {
 			renderMissiles(gl,simulation.missiles);
 	
 			gl.glEnable(GL10.GL_TEXTURE_2D);
-			renderExplosions(gl, simulation.explosions);
-	
-			gl.glDisable(GL10.GL_CULL_FACE);
-			gl.glDisable(GL10.GL_DEPTH_TEST);
+			renderExplosions(gl, simulation.explosions);			
 	
 			invaderAngle += app.getGraphics().getDeltaTime() * 90;
-			if (invaderAngle > 360) invaderAngle -= 360;
-			
-			
+			if (invaderAngle > 360) invaderAngle -= 360;			
 		}
+		gl.glDisable(GL10.GL_CULL_FACE);
+		gl.glDisable(GL10.GL_DEPTH_TEST);
 	}
 
 	private void renderBackground (GL10 gl, Simulation simulation) {
@@ -245,15 +241,15 @@ public class Renderer {
 		spriteBatch.begin();
 		spriteBatch.enableBlending();
 		spriteBatch.setColor(Color.WHITE);
-		spriteBatch.draw(award, Settings.matricWidth/2 - 64, Settings.matricHeight/2, 64, 64, 0, 0, 64, 64, false, false);
-		spriteBatch.draw(planeDemo, Settings.matricWidth/2 - 64, Settings.matricHeight/2 - 90, 64, 64, 0, 0, 64, 64, false, false);
-		font.draw(spriteBatch, " + " + simulation.awardScore, Settings.matricWidth/2, Settings.matricHeight/2 - 64);
-		font.draw(spriteBatch, " + " + simulation.awardShip, Settings.matricWidth/2, Settings.matricHeight/2 - 90);
+		spriteBatch.draw(award, Settings.matricWidth/2 - 32, Settings.matricHeight/2, 32, 32, 0, 0, 64, 64, false, false);
+		spriteBatch.draw(planeDemo, Settings.matricWidth/2 - 32, Settings.matricHeight/2 - 40, 32, 32, 0, 0, 64, 64, false, false);
+		font.draw(spriteBatch, " + " + simulation.awardScore, Settings.matricWidth/2, Settings.matricHeight/2 + 32);
+		font.draw(spriteBatch, " + " + simulation.awardShip, Settings.matricWidth/2, Settings.matricHeight/2 - 8);
 		if(simulation.awardWait > 5){
-			String strStart = "touch screen to start";
+			String strStart = "Touch to continue";
 			TextBounds bounds = font.getBounds(strStart);
-			font.scale(0.5f);
-			font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight/2 - 140);
+			//font.scale(0.5f);
+			font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight/2 - 50);
 		}
 		spriteBatch.end();
 	}
@@ -360,7 +356,7 @@ public class Renderer {
 		shipTexture.dispose();
 		invaderTexture.dispose();
 		explosionTexture.dispose();
-		//font.dispose();
+		font.dispose();
 		explosionMesh.dispose();
 		shipMesh.dispose();
 		invaderMesh.dispose();

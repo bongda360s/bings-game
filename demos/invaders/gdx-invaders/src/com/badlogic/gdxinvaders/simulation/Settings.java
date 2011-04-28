@@ -17,26 +17,27 @@ import com.badlogic.gdx.files.FileHandle;
 import com.google.gson.Gson;
 
 public class Settings {
-    public static float matricWidth = 480;
-	public static float matricHeight = 320;
-	public static Music music;
-	public static int appNo = 1;
-	public static String phoneName;
-	public static String[] heroNames = {"Hecate","Gaea","Uranus","Cronus","Rhea",
+    public static final float matricWidth = 480;
+	public static final float matricHeight = 320;
+	public static final int appNo = 1;
+	public static final String[] heroNames = {"Hecate","Gaea","Uranus","Cronus","Rhea",
 		"Oceanus","Tethys","Hyperion"};
+	public final static String file = "starwar.dat";
+	
+	private static int adCount = 5;	
+	private static Music music;
+	private static String phoneName;
     private static List<Fighting> fightings;
-	private static List<Fighting> netFightings = null;    
-    public final static String file = "starwar.dat";	
+	private static List<Fighting> netFightings;
 	private static float soundVolume = 0f;
-	private static float musicVolume = 0f;
-	private static int adCount = 5;
-	public static int status = 1; //0:stop 1:playing 2:award
+	private static float musicVolume = 0f;	
+	private static int status = 1; //0:stop 1:playing 2:award
     /**
 	 * @return the fightings
 	 */
-	public static List<Fighting> getFightings() {
-		if(fightings==null || fightings.size() == 0){
-			fightings = new ArrayList<Fighting>();
+	public static synchronized List<Fighting> getFightings() {
+		if(fightings==null || fightings.isEmpty()){
+			fightings = new ArrayList<Fighting>(5);
 			fightings.add(new Fighting("Zeus",1000,""));
 	    	fightings.add(new Fighting("Hera",800,""));
 	    	fightings.add(new Fighting("Poseidon",600,""));
@@ -145,8 +146,8 @@ public class Settings {
     }
     
     public static void addFighting(Fighting fighting){
-    	fightings.add(fighting);
-	    Collections.sort(fightings,new FightingComparator());
+    	getFightings().add(fighting);
+	    Collections.sort(getFightings(),new FightingComparator());
     }
     
     public static int getHighScore(String phoneName){
@@ -154,10 +155,47 @@ public class Settings {
     	for(int i = 0, length = fightings.size(); i < length; ++i){
     		if(fightings.get(i).getPhoneName().equals(phoneName)){
     			highScore = fightings.get(i).getScore();
+    			break;
     		}
     	}
     	return highScore;
     }
+	/**
+	 * @return the music
+	 */
+	public static Music getMusic() {
+		return music;
+	}
+	/**
+	 * @param music the music to set
+	 */
+	public static void setMusic(Music music) {
+		Settings.music = music;
+	}
+	/**
+	 * @return the phoneName
+	 */
+	public static String getPhoneName() {
+		return phoneName;
+	}
+	/**
+	 * @param phoneName the phoneName to set
+	 */
+	public static void setPhoneName(String phoneName) {
+		Settings.phoneName = phoneName;
+	}
+	/**
+	 * @return the status
+	 */
+	public static int getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public static void setStatus(int status) {
+		Settings.status = status;
+	}
 }
 
 

@@ -57,7 +57,7 @@ public class GameOver implements Screen {
 		music.setVolume(Settings.getMusicVolume());
 		music.setLooping(true);
 		music.play();
-		Settings.music = music;
+		Settings.setMusic(music);
 		background = TextureDict.loadTexture("data/background.png").get();	 
 		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);		
 		logo = TextureDict.loadTexture("data/title.png").get();	
@@ -89,7 +89,7 @@ public class GameOver implements Screen {
 		spriteBatch.draw(background, 0, 0, 480, 320, 0, 0, 512, 512, false, false);
 		spriteBatch.enableBlending();
 		spriteBatch.draw(logo, 0, 320-128, 480, 128, 0, 256, 512, 256, false, false);
-		String text = "It is the end my friend.\nTouch to continue!";
+		String text = "Touch to continue!";
 		TextBounds bounds = font.getMultiLineBounds(text);
 		spriteBatch.setBlendFunction(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
 		font.drawMultiLine(spriteBatch, text, 0, 160 + bounds.height / 2, 480, HAlignment.CENTER);		

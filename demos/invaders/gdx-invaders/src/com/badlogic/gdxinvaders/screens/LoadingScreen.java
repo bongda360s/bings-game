@@ -45,7 +45,7 @@ public class LoadingScreen implements Screen {
 		music.setVolume(Settings.getMusicVolume());
 		music.setLooping(true);
 		music.play();
-		Settings.music = music;
+		Settings.setMusic(music);
 		this.spriteBatch = new SpriteBatch();
 		earth = TextureDict.loadTexture("data/earth.png").get();
 		earth.setFilter(TextureFilter.Linear, TextureFilter.Linear);

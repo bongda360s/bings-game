@@ -81,7 +81,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 	@Override public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
 		TelephonyManager telephonyManager=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-		Settings.phoneName = telephonyManager.getDeviceId();
+		Settings.setPhoneName(telephonyManager.getDeviceId());
 		adCount = Settings.getAdCount();
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -100,14 +100,6 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         mainView.setLayoutParams(createLayoutParams());
         frameLayout.addView(mainView);
         
-        //progressbar view
-//        final ProgressBar progressBar = new ProgressBar(getApplicationContext());
-//		FrameLayout.LayoutParams progressParams = new FrameLayout.LayoutParams(128,128); 
-//		progressParams.gravity = Gravity.CENTER;
-//		progressBar.setLayoutParams(progressParams);
-//		frameLayout.addView(progressBar);
-//		progressBar.setVisibility(View.INVISIBLE);
-        
         //youmi ad
         adView = new AdView(this,Color.GRAY, Color.WHITE, 100);
 		adView.setAdListener(this);
@@ -117,7 +109,6 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 		adView.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				adCount--;
 				if(adCount==0)
 					adView.setVisibility(View.INVISIBLE);
@@ -136,7 +127,6 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         settingsView.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				showDialog(settingID);
 			}
 		});        
@@ -152,8 +142,6 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         bulletinView.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-//				progressBar.setVisibility(View.VISIBLE);
-//				progressBar.requestFocus();
 				InputStream in = null;				
 				try {
 					String url = "http://androidgame.sinaapp.com/rs.php?a="+Settings.appNo;
@@ -211,14 +199,13 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 		        ((ListView) bulletinDialogView.findViewById(R.id.lstFighting)).setAdapter(saImageItems);
 		        for(int i = 0, length = Settings.getFightings().size(); i < length; ++i){
 		        	Fighting fighting = Settings.getFightings().get(i);
-		        	if(fighting.getPhoneName().equals(Settings.phoneName)){
+		        	if(fighting.getPhoneName().equals(Settings.getPhoneName())){
 		        		highestScore = fighting.getScore();
 		        		break;
 		        	}
 		        }
 				TextView txtTitle = (TextView)bulletinDialogView.findViewById(R.id.txtTitle);
 				txtTitle.setText(String.format(getResources().getString(R.string.best_result), highestScore));
-//				progressBar.setVisibility(View.INVISIBLE);
 				showDialog(bulletinID);
 			}
 		});
@@ -310,27 +297,30 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 			btnSubmit.setOnClickListener(new Button.OnClickListener(){
 				@Override
 				public void onClick(View v) {
-					String name = ((EditText)bulletinDialogView.findViewById(R.id.txtName)).getText().toString();
-					if(name.equals(""))
-						name = getResources().getString(R.string.unsung_hero);
-					for(int i = 0, length = Settings.getFightings().size(); i < length; ++i){
-			        	Fighting fighting = Settings.getFightings().get(i);
-			        	if(fighting.getPhoneName().equals(Settings.phoneName)){
-			        		fighting.setName(name);
-			        		break;
-			        	}
-			        }
-					try {						
-						String url = String.format("http://androidgame.sinaapp.com/ws.php?n=%s&s=%d&pn=%s&a=%d", name,highestScore,Settings.phoneName,Settings.appNo);
-					    URLConnection connection = new URL(url).openConnection();
-					    connection.setConnectTimeout(1000 * 6); // 设置连接超时时间: 6s
-					    connection.setReadTimeout(1000 * 6); // 设置读取超时时间: 6s
-					    connection.connect();
+					if(highestScore > 0){
+						EditText editText = ((EditText)bulletinDialogView.findViewById(R.id.txtName));
+						String name = editText.getText().toString();
+						if(name.equals(""))
+							name = getResources().getString(R.string.unsung_hero);
+						for(int i = 0, length = Settings.getFightings().size(); i < length; ++i){
+				        	Fighting fighting = Settings.getFightings().get(i);
+				        	if(fighting.getPhoneName().equals(Settings.getPhoneName())){
+				        		fighting.setName(name);
+				        		break;
+				        	}
+				        }
+						try {						
+							String url = String.format("http://androidgame.sinaapp.com/ws.php?n=%s&s=%d&pn=%s&a=%d", name,highestScore,Settings.getPhoneName(),Settings.appNo);
+						    URLConnection connection = new URL(url).openConnection();
+						    connection.setConnectTimeout(1000 * 6); // 设置连接超时时间: 6s
+						    connection.setReadTimeout(1000 * 6); // 设置读取超时时间: 6s
+						    connection.connect();
+						}
+						catch (Exception e) {
+						    // 出错处理代码...
+						}
+						dialog.dismiss();
 					}
-					catch (Exception e) {
-					    // 出错处理代码...
-					}
-					dialog.dismiss();					
 				}});
 			Button btnCancel = (Button)bulletinDialogView.findViewById(R.id.btnCancel);
 			btnCancel.setOnClickListener(new Button.OnClickListener(){
