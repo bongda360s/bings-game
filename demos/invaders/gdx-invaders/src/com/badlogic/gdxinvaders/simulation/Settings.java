@@ -25,6 +25,12 @@ public class Settings {
 	public static String[] heroNames = {"Hecate","Gaea","Uranus","Cronus","Rhea",
 		"Oceanus","Tethys","Hyperion"};
     private static List<Fighting> fightings;
+	private static List<Fighting> netFightings = null;    
+    public final static String file = "starwar.dat";	
+	private static float soundVolume = 0f;
+	private static float musicVolume = 0f;
+	private static int adCount = 5;
+	public static int status = 1; //0:stop 1:playing 2:award
     /**
 	 * @return the fightings
 	 */
@@ -57,15 +63,7 @@ public class Settings {
 	 */
 	public static void setNetFightings(List<Fighting> netFightings) {
 		Settings.netFightings = netFightings;
-	}
-
-	private static List<Fighting> netFightings = null;
-    
-    public final static String file = "starwar.dat";
-	
-	private static float soundVolume = 0f;
-	private static float musicVolume = 0f;
-	private static int adCount = 5;	
+	}	
 	
 	public static int getAdCount() {
 		return adCount;

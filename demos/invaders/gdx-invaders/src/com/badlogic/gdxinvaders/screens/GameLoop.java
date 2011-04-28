@@ -36,11 +36,16 @@ import com.badlogic.gdxinvaders.simulation.Simulation;
 import com.badlogic.gdxinvaders.simulation.SimulationListener;
 
 public class GameLoop implements Screen, SimulationListener {
+	public enum status{
+		playing,
+		pause,
+		award
+	}
+	
 	/** the simulation **/
 	private final Simulation simulation;
 	/** the renderer **/
-	private final Renderer renderer;
-	
+	private final Renderer renderer;	
 	/** explosion sound **/
 	private  Sound explosion;
 	/** shot sound **/
@@ -53,6 +58,7 @@ public class GameLoop implements Screen, SimulationListener {
 		simulation = new Simulation();
 		simulation.listener = this;
 		renderer = new Renderer(app);
+		
 	}
 
 	@Override public void dispose () {
@@ -73,6 +79,10 @@ public class GameLoop implements Screen, SimulationListener {
 	}
 
 	@Override public void update (Application app) {
+		updateApp(app);			
+	}
+
+	private void updateApp(Application app) {
 		simulation.update(app.getGraphics().getDeltaTime());
 
 		Input input = app.getInput();
@@ -81,13 +91,11 @@ public class GameLoop implements Screen, SimulationListener {
 		else
 			simulation.moveShipRight(app.getGraphics().getDeltaTime(), Math.abs(input.getAccelerometerY()) / 10);
 
-		if (input.isKeyPressed(Keys.KEYCODE_DPAD_LEFT)) simulation.moveShipLeft(app.getGraphics().getDeltaTime(), 0.5f);
-		if (input.isKeyPressed(Keys.KEYCODE_DPAD_RIGHT)) simulation.moveShipRight(app.getGraphics().getDeltaTime(), 0.5f);
+		if (input.isKeyPressed(Keys.DPAD_LEFT)) simulation.moveShipLeft(app.getGraphics().getDeltaTime(), 0.5f);
+		if (input.isKeyPressed(Keys.DPAD_RIGHT)) simulation.moveShipRight(app.getGraphics().getDeltaTime(), 0.5f);
 
-		if (input.isTouched() || input.isKeyPressed(Keys.KEYCODE_SPACE)) simulation.shot();
+		if (input.isTouched() || input.isKeyPressed(Keys.SPACE)) simulation.shot();
 		if (input.getAccelerometerX() < 0) simulation.launch();
-			
-			
 	}
 
 	@Override public void explosion () {

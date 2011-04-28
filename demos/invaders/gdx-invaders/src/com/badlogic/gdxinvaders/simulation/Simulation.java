@@ -15,11 +15,13 @@ package com.badlogic.gdxinvaders.simulation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdxinvaders.screens.GameLoop;
 
 public class Simulation implements Disposable {
 	public final static float PLAYFIELD_MIN_X = -14;
@@ -54,10 +56,16 @@ public class Simulation implements Disposable {
 		{false,false,false,true,true,true,false,false,false},
 		{false,false,false,true,true,true,false,false,false},
 		{false,false,false,false,true,false,false,false,false}};
+	private Date loopbegin = new Date();
+	private float totalElapse = 0f;
+	public int awardScore = 0;
+	public int awardShip = 0;
+	public float awardWait = 0f;
 	public Simulation () {
 		backgroundMusics[0] = Gdx.audio.newMusic(Gdx.files.internal("data/background1.ogg"));
 		backgroundMusics[1] = Gdx.audio.newMusic(Gdx.files.internal("data/background2.ogg"));
 		populate();
+		
 	}
 
 	private void populate () {
@@ -93,15 +101,17 @@ public class Simulation implements Disposable {
 	}
 
 	public void update (float delta) {
-		ship.update(delta);
-		updateInvaders(delta);
-		updateShots(delta);
-		updateMissiles(delta);
-		updateExplosions(delta);
-		checkShipCollision();
-		checkInvaderCollision();
-		checkBlockCollision();
-		checkNextLevel();
+		if(Settings.status == 1){
+			ship.update(delta);
+			updateInvaders(delta);
+			updateShots(delta);
+			updateMissiles(delta);
+			updateExplosions(delta);
+			checkShipCollision();
+			checkInvaderCollision();
+			checkBlockCollision();
+			checkNextLevel();
+		}
 	}
 
 	private void updateInvaders (float delta) {
@@ -245,19 +255,30 @@ public class Simulation implements Disposable {
 	}
 
 	private void checkNextLevel () {
-		if (invaders.size() <= 0 && ship.lives > 0) {			
-			blocks.clear();
-			shots.clear();
-			shipShot = null;
-			missiles.clear();
-			missileLaunch=null;
-			Vector3 shipPosition = ship.position;
-			int lives = ship.lives;
-			populate();
-			ship.position.set(shipPosition);
-			ship.lives = lives;
-			multiplier += 0.1f;
-			
+		if(Settings.status == 1){
+			awardWait = 0;
+			totalElapse += Gdx.graphics.getDeltaTime();
+			if (invaders.size() <= 0 && ship.lives > 0) {			
+				blocks.clear();
+				shots.clear();
+				shipShot = null;
+				missiles.clear();
+				missileLaunch=null;
+				Vector3 shipPosition = ship.position;
+				int lives = ship.lives;
+				populate();
+				ship.position.set(shipPosition);
+				ship.lives = lives;
+				multiplier += 0.1f;	
+				awardScore = (int)(wave * 2000 * (0.5 - Math.tan(totalElapse/60)));
+				awardShip = awardScore/1000 > 2? 2 : awardScore/1000;
+				score += awardScore;
+				totalElapse = 0;
+				Settings.status = 2; //award				
+			}
+		}
+		else if(Settings.status == 2){			
+			awardWait += Gdx.graphics.getDeltaTime();
 		}
 	}
 
@@ -276,10 +297,15 @@ public class Simulation implements Disposable {
 	}
 
 	public void shot () {
-		if (shipShot == null && !ship.isExploding) {
-			shipShot = new Shot(ship.position, false, Math.atan(ship.position.x/100));
-			shots.add(shipShot);
-			if (listener != null) listener.shot();
+		if(Settings.status == 1){
+			if (shipShot == null && !ship.isExploding) {
+				shipShot = new Shot(ship.position, false, Math.atan(ship.position.x/100));
+				shots.add(shipShot);
+				if (listener != null) listener.shot();
+			}
+		}
+		if(Settings.status == 2 && awardWait > 5){
+			Settings.status = 1;
 		}
 	}
 	
