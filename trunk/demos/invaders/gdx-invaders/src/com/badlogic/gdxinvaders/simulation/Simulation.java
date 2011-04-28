@@ -56,6 +56,17 @@ public class Simulation implements Disposable {
 		{false,false,false,true,true,true,false,false,false},
 		{false,false,false,true,true,true,false,false,false},
 		{false,false,false,false,true,false,false,false,false}};
+//	private final boolean[][] array = {
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,false,false,false,false,false},
+//			{false,false,false,false,false,false,false,false,false}};
 	private Date loopbegin = new Date();
 	private float totalElapse = 0f;
 	public int awardScore = 0;
@@ -97,11 +108,11 @@ public class Simulation implements Disposable {
 		backgroundMusics[1 - wave & 1].setLooping(true);
 		backgroundMusics[1 - wave & 1].setVolume(Settings.getMusicVolume());
 		backgroundMusics[1 - wave & 1].play();
-		Settings.music = backgroundMusics[1 - wave & 1];
+		Settings.setMusic(backgroundMusics[1 - wave & 1]);
 	}
 
 	public void update (float delta) {
-		if(Settings.status == 1){
+		if(Settings.getStatus() == 1){
 			ship.update(delta);
 			updateInvaders(delta);
 			updateShots(delta);
@@ -109,9 +120,9 @@ public class Simulation implements Disposable {
 			updateExplosions(delta);
 			checkShipCollision();
 			checkInvaderCollision();
-			checkBlockCollision();
-			checkNextLevel();
+			checkBlockCollision();			
 		}
+		checkNextLevel();
 	}
 
 	private void updateInvaders (float delta) {
@@ -255,7 +266,7 @@ public class Simulation implements Disposable {
 	}
 
 	private void checkNextLevel () {
-		if(Settings.status == 1){
+		if(Settings.getStatus() == 1){
 			awardWait = 0;
 			totalElapse += Gdx.graphics.getDeltaTime();
 			if (invaders.size() <= 0 && ship.lives > 0) {			
@@ -270,14 +281,14 @@ public class Simulation implements Disposable {
 				ship.position.set(shipPosition);
 				ship.lives = lives;
 				multiplier += 0.1f;	
-				awardScore = (int)(wave * 2000 * (0.5 - Math.tan(totalElapse/60)));
+				awardScore = (int)(wave * 2000 * (0.5 - Math.atan(totalElapse/60)));
 				awardShip = awardScore/1000 > 2? 2 : awardScore/1000;
 				score += awardScore;
 				totalElapse = 0;
-				Settings.status = 2; //award				
+				Settings.setStatus(2); //award				
 			}
 		}
-		else if(Settings.status == 2){			
+		else if(Settings.getStatus() == 2){			
 			awardWait += Gdx.graphics.getDeltaTime();
 		}
 	}
@@ -297,15 +308,15 @@ public class Simulation implements Disposable {
 	}
 
 	public void shot () {
-		if(Settings.status == 1){
+		if(Settings.getStatus() == 1){
 			if (shipShot == null && !ship.isExploding) {
 				shipShot = new Shot(ship.position, false, Math.atan(ship.position.x/100));
 				shots.add(shipShot);
 				if (listener != null) listener.shot();
 			}
 		}
-		if(Settings.status == 2 && awardWait > 5){
-			Settings.status = 1;
+		if(Settings.getStatus() == 2 && awardWait > 5){
+			Settings.setStatus(1);
 		}
 	}
 	

@@ -68,33 +68,32 @@ public class GdxInvaders implements ApplicationListener  {
 		if (screen.isDone()) {
 			if(screen instanceof GameLoop){
 				score = ((GameLoop)screen).getScore();
-				Settings.getFightings().add(new Fighting(Settings.heroNames[(int)(Math.random()*(Settings.heroNames.length-1))], score, Settings.phoneName));
+				Settings.addFighting(new Fighting(Settings.heroNames[(int)(Math.random()*(Settings.heroNames.length-1))], score, Settings.getPhoneName()));
 			}
 			// dispose the current screen
 			screen.dispose();
-			if (screen instanceof ShowLogo)
+			if (screen instanceof ShowLogo){
 				screen = new LoadingScreen(app);
+				Settings.setStatus(-1);
+			}
 			else
 			// the game loop
-			if (screen instanceof LoadingScreen)
+			if (screen instanceof LoadingScreen){
 				screen  = new GameLoop(app);
+				Settings.setStatus(1);
+			}
 			else
-			// if this screen is a main menu screen we switch to	
-//			if (screen instanceof MainMenu)
-//				screen = new GameLoop(app);
-//			else
-			// if this screen is a game loop screen we switch to the
 			// game over screen
 			if (screen instanceof GameLoop){
 				screen = new GameOver(app);
-//				if(submitScoreListener!=null)
-//					submitScoreListener.onSubmitListener(score);
+				Settings.setStatus(-1);
 			}
 			else
-			// if this screen is a game over screen we switch to the
 			// main menu screen
-			if (screen instanceof GameOver) 
+			if (screen instanceof GameOver) {
 				screen = new GameLoop(app);
+				Settings.setStatus(1);
+			}
 		}
 	}
 
