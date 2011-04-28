@@ -94,18 +94,19 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         FrameLayout frameLayout = new FrameLayout(this);       
         FrameLayout.LayoutParams mainLayoutParams = new FrameLayout.LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.FILL_PARENT);               
         mainLayoutParams.gravity = Gravity.CENTER;
-        frameLayout.setLayoutParams(mainLayoutParams);        
+        frameLayout.setLayoutParams(mainLayoutParams);  
+
         View mainView = initializeForView(new GdxInvaders(), false);        
         mainView.setLayoutParams(createLayoutParams());
         frameLayout.addView(mainView);
         
         //progressbar view
-        final ProgressBar progressBar = new ProgressBar(getApplicationContext());
-		FrameLayout.LayoutParams progressParams = new FrameLayout.LayoutParams(128,128); 
-		progressParams.gravity = Gravity.CENTER;
-		progressBar.setLayoutParams(progressParams);
-		frameLayout.addView(progressBar);
-		progressBar.setVisibility(View.INVISIBLE);
+//        final ProgressBar progressBar = new ProgressBar(getApplicationContext());
+//		FrameLayout.LayoutParams progressParams = new FrameLayout.LayoutParams(128,128); 
+//		progressParams.gravity = Gravity.CENTER;
+//		progressBar.setLayoutParams(progressParams);
+//		frameLayout.addView(progressBar);
+//		progressBar.setVisibility(View.INVISIBLE);
         
         //youmi ad
         adView = new AdView(this,Color.GRAY, Color.WHITE, 100);
@@ -120,13 +121,14 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 				adCount--;
 				if(adCount==0)
 					adView.setVisibility(View.INVISIBLE);
+				
 			}
 		});
         frameLayout.addView(adView);
         
         //settings view        
         ImageView settingsView = new ImageView(GdxInvadersAndroid.this);
-        settingsView.setImageResource(R.drawable.settings);
+        settingsView.setImageResource(android.R.drawable.ic_menu_preferences);
         FrameLayout.LayoutParams settingsParams = new FrameLayout.LayoutParams(72, 72);
         settingsParams.gravity = Gravity.LEFT | Gravity.BOTTOM;
         settingsView.setLayoutParams(settingsParams);
@@ -150,8 +152,8 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         bulletinView.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-				progressBar.setVisibility(View.VISIBLE);
-				progressBar.requestFocus();
+//				progressBar.setVisibility(View.VISIBLE);
+//				progressBar.requestFocus();
 				InputStream in = null;				
 				try {
 					String url = "http://androidgame.sinaapp.com/rs.php?a="+Settings.appNo;
@@ -216,7 +218,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 		        }
 				TextView txtTitle = (TextView)bulletinDialogView.findViewById(R.id.txtTitle);
 				txtTitle.setText(String.format(getResources().getString(R.string.best_result), highestScore));
-				progressBar.setVisibility(View.INVISIBLE);
+//				progressBar.setVisibility(View.INVISIBLE);
 				showDialog(bulletinID);
 			}
 		});

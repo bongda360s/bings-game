@@ -30,6 +30,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.loaders.ModelLoader;
 import com.badlogic.gdx.math.Matrix4;
@@ -38,6 +39,7 @@ import com.badlogic.gdxinvaders.simulation.Block;
 import com.badlogic.gdxinvaders.simulation.Explosion;
 import com.badlogic.gdxinvaders.simulation.Invader;
 import com.badlogic.gdxinvaders.simulation.Missile;
+import com.badlogic.gdxinvaders.simulation.Settings;
 import com.badlogic.gdxinvaders.simulation.Ship;
 import com.badlogic.gdxinvaders.simulation.Shot;
 import com.badlogic.gdxinvaders.simulation.Simulation;
@@ -55,10 +57,6 @@ public class Renderer {
 	private float invaderAngle = 0;
 	/** status string **/
 	private String status = "";
-	/** keeping track of the last score so we don't constantly construct a new string **/
-	private int lastScore = 0;
-	private int lastLives = 0;
-	private int lastWave = 0;
 	
 	/** view and transform matrix for text rendering **/
 	private Matrix4 viewMatrix = new Matrix4();
@@ -89,16 +87,27 @@ public class Renderer {
 	private Mesh explosionMesh;
 	/** the explosion texture **/
 	private Texture explosionTexture;
-
+	private Texture planeDemo;
+	private Texture level;
+	private Texture award;
+	private Texture playing;
 	public Renderer (Application app) {	
-		this.spriteBatch = new SpriteBatch();
+		spriteBatch = new SpriteBatch();
 		camera = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		font = new BitmapFont(Gdx.files.internal("data/font10.fnt"), Gdx.files.internal("data/font10.png"), false);
+		//font = new BitmapFont(Gdx.files.internal("data/font10.fnt"), Gdx.files.internal("data/font10.png"), false);
+		font = new BitmapFont();
 		earth = TextureDict.loadTexture("data/earth.png").get();
 		earth.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		background = TextureDict.loadTexture("data/background.png").get();
 		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-
+		planeDemo = TextureDict.loadTexture("data/planedemo.png").get();
+		planeDemo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		level = TextureDict.loadTexture("data/medal.png").get();
+		level.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		award = TextureDict.loadTexture("data/score.png").get();
+		award.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		playing = TextureDict.loadTexture("data/play.png").get();
+		playing.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		try{
 			InputStream in = Gdx.files.internal("data/ship.obj").read();
 			shipMesh = ModelLoader.loadObj(in);
@@ -171,7 +180,7 @@ public class Renderer {
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 		gl.glViewport(0, 0, app.getGraphics().getWidth(), app.getGraphics().getHeight());
 
-		renderBackground(gl,simulation.ship.position);
+		renderBackground(gl,simulation);
 
 		gl.glDisable(GL10.GL_DITHER);
 		gl.glEnable(GL10.GL_DEPTH_TEST);
@@ -182,41 +191,36 @@ public class Renderer {
 
 		gl.glEnable(GL10.GL_TEXTURE_2D);
 
-		renderShip(gl, simulation.ship, app);
-		renderInvaders(gl, simulation.invaders);
-
-		gl.glDisable(GL10.GL_TEXTURE_2D);
-		renderBlocks(gl, simulation.blocks);
-
-		gl.glDisable(GL10.GL_LIGHTING);
-		renderShots(gl, simulation.shots);
-		renderMissiles(gl,simulation.missiles);
-
-		gl.glEnable(GL10.GL_TEXTURE_2D);
-		renderExplosions(gl, simulation.explosions);
-
-		gl.glDisable(GL10.GL_CULL_FACE);
-		gl.glDisable(GL10.GL_DEPTH_TEST);
-
-		spriteBatch.setProjectionMatrix(viewMatrix);
-		spriteBatch.setTransformMatrix(transformMatrix);
-		spriteBatch.begin();
-		if (simulation.ship.lives != lastLives || simulation.score != lastScore || simulation.wave != lastWave) {
-			status = "lives: " + simulation.ship.lives + " wave: " + simulation.wave + " score: " + simulation.score;
-			lastLives = simulation.ship.lives;
-			lastScore = simulation.score;
-			lastWave = simulation.wave;
+		renderShip(gl, simulation.ship, app);		
+		if(Settings.status == 2){
+			renderAward(gl,simulation);
 		}
-		spriteBatch.enableBlending();
-		spriteBatch.setBlendFunction(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
-		font.draw(spriteBatch, status, 0, 320);		
-		spriteBatch.end();
-
-		invaderAngle += app.getGraphics().getDeltaTime() * 90;
-		if (invaderAngle > 360) invaderAngle -= 360;
+		else{	
+			if(Settings.status==0){
+				spriteBatch.draw(playing, Settings.matricWidth/2-64, Settings.matricHeight/2 - 64, 64, 64, 0, 0, 128, 128, false, false);
+			}
+			renderInvaders(gl, simulation.invaders);
+			gl.glDisable(GL10.GL_TEXTURE_2D);
+			renderBlocks(gl, simulation.blocks);
+	
+			gl.glDisable(GL10.GL_LIGHTING);
+			renderShots(gl, simulation.shots);
+			renderMissiles(gl,simulation.missiles);
+	
+			gl.glEnable(GL10.GL_TEXTURE_2D);
+			renderExplosions(gl, simulation.explosions);
+	
+			gl.glDisable(GL10.GL_CULL_FACE);
+			gl.glDisable(GL10.GL_DEPTH_TEST);
+	
+			invaderAngle += app.getGraphics().getDeltaTime() * 90;
+			if (invaderAngle > 360) invaderAngle -= 360;
+			
+			
+		}
 	}
 
-	private void renderBackground (GL10 gl,Vector3 shipPosition) {
+	private void renderBackground (GL10 gl, Simulation simulation) {
 		viewMatrix.setToOrtho2D(0, 0, 480, 320);
 		spriteBatch.setProjectionMatrix(viewMatrix);
 		spriteBatch.setTransformMatrix(transformMatrix);
@@ -225,10 +229,35 @@ public class Renderer {
 		spriteBatch.setColor(Color.WHITE);
 		spriteBatch.draw(background, 0, 0, 480, 320, 0, 0, 1024, 729, false, false);
 		spriteBatch.enableBlending();
-		spriteBatch.draw(earth, 60 - shipPosition.x, 40 - Gdx.input.getAccelerometerX(), 360, 240, 0, 0, 512, 512, false, false);
+		spriteBatch.draw(earth, 60 - simulation.ship.position.x, 40 - Gdx.input.getAccelerometerX(), 360, 240, 0, 0, 512, 512, false, false);
+		for(int i = 0; i < simulation.wave; ++i){
+			spriteBatch.draw(level, 16*i, Settings.matricHeight - 16, 16, 16, 0, 0, 64, 64, false, false);
+		}
+		for(int i = 0; i < simulation.ship.lives; ++i){
+			spriteBatch.draw(planeDemo, 16*i, Settings.matricHeight - 37, 16, 16, 0, 0, 64, 64, false, false);
+		}
+		spriteBatch.draw(award, 0, Settings.matricHeight - 58, 16, 16, 0, 0, 64, 64, false, false);
+		font.draw(spriteBatch, Integer.toString(simulation.score), 16, Settings.matricHeight - 38);
 		spriteBatch.end();
 	}
-
+	
+	private void renderAward(GL10 gl, Simulation simulation){
+		spriteBatch.begin();
+		spriteBatch.enableBlending();
+		spriteBatch.setColor(Color.WHITE);
+		spriteBatch.draw(award, Settings.matricWidth/2 - 64, Settings.matricHeight/2, 64, 64, 0, 0, 64, 64, false, false);
+		spriteBatch.draw(planeDemo, Settings.matricWidth/2 - 64, Settings.matricHeight/2 - 90, 64, 64, 0, 0, 64, 64, false, false);
+		font.draw(spriteBatch, " + " + simulation.awardScore, Settings.matricWidth/2, Settings.matricHeight/2 - 64);
+		font.draw(spriteBatch, " + " + simulation.awardShip, Settings.matricWidth/2, Settings.matricHeight/2 - 90);
+		if(simulation.awardWait > 5){
+			String strStart = "touch screen to start";
+			TextBounds bounds = font.getBounds(strStart);
+			font.scale(0.5f);
+			font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight/2 - 140);
+		}
+		spriteBatch.end();
+	}
+	
 	final Vector3 dir = new Vector3();
 
 	private void setProjectionAndCamera (Graphics graphics, Ship ship, Application app) {
@@ -324,13 +353,14 @@ public class Renderer {
 		}
 		gl.glDisable(GL10.GL_BLEND);
 	}
+	
 
 	public void dispose () {
 		spriteBatch.dispose();
 		shipTexture.dispose();
 		invaderTexture.dispose();
 		explosionTexture.dispose();
-		font.dispose();
+		//font.dispose();
 		explosionMesh.dispose();
 		shipMesh.dispose();
 		invaderMesh.dispose();
