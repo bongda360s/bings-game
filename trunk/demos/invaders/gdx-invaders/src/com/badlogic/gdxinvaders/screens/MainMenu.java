@@ -25,6 +25,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdxinvaders.simulation.Settings;
 
@@ -52,7 +53,8 @@ public class MainMenu implements Screen {
 	private final SpriteBatch spriteBatch;
 	public MainMenu (Application app) {
 		this.spriteBatch = new SpriteBatch();
-		font = new BitmapFont(Gdx.files.internal("data/font10.fnt"), Gdx.files.internal("data/font10.png"), false);
+		font = new BitmapFont();
+		font.setColor(Color.GREEN);
 		music = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/menu.ogg", FileType.Internal));
 		music.setVolume(Settings.getMusicVolume());
 		music.play();
@@ -77,12 +79,18 @@ public class MainMenu implements Screen {
 		spriteBatch.draw(earth, 60, 40, 360, 240, 0, 0, 512, 512, false, false);
 		spriteBatch.draw(logo, 0, 320-128, 480, 128, 0, 0, 512, 256, false, false);
 		spriteBatch.setBlendFunction(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
-		String text = "Touch screen to start!";
-		int width = font.getBounds(text).width;	
-		font.draw(spriteBatch, text, 240 - width / 2, 128);
+		spriteBatch.end();
+		renderPlay();
+	}
+	private void renderPlay(){
+		spriteBatch.begin();
+		spriteBatch.enableBlending();
+		spriteBatch.setColor(Color.WHITE);
+		String strStart = "Touch to continue.";
+		TextBounds bounds = font.getBounds(strStart);
+		font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight - 30);
 		spriteBatch.end();
 	}
-
 	@Override public void update (Application app) {
 		isDone = app.getInput().isTouched();
 	}

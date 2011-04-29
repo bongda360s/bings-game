@@ -58,7 +58,6 @@ public class GameLoop implements Screen, SimulationListener {
 		simulation = new Simulation();
 		simulation.listener = this;
 		renderer = new Renderer(app);
-		
 	}
 
 	@Override public void dispose () {
@@ -84,8 +83,8 @@ public class GameLoop implements Screen, SimulationListener {
 
 	private void updateApp(Application app) {	
 		Input input = app.getInput();
-		if(Settings.getStatus()==1){	
-			simulation.update(app.getGraphics().getDeltaTime());			
+		simulation.update(app.getGraphics().getDeltaTime());	
+		if(Settings.getStatus()==1){				
 			if (input.getAccelerometerY() < 0)
 				simulation.moveShipLeft(app.getGraphics().getDeltaTime(), Math.abs(input.getAccelerometerY()) / 10);
 			else
@@ -97,7 +96,8 @@ public class GameLoop implements Screen, SimulationListener {
 			if (input.isTouched() || input.isKeyPressed(Keys.SPACE)) simulation.shot();
 			if (input.getAccelerometerX() < 0) simulation.launch();
 		}
-		else if(Settings.getStatus()==0 && (input.isTouched() || input.isKeyPressed(Keys.SPACE))){
+		else if(input.isTouched() || input.isKeyPressed(Keys.SPACE)){
+			if(Settings.getStatus()==0 || (Settings.getStatus()==2 && simulation.awardWait > 2))
 				Settings.setStatus(1);
 		}
 	}
