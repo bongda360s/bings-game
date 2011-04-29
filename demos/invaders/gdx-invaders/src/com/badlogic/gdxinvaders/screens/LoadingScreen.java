@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.TextureDict;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdxinvaders.simulation.Settings;
@@ -52,6 +53,7 @@ public class LoadingScreen implements Screen {
 		background = TextureDict.loadTexture("data/background.png").get();
 		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		title = TextureDict.loadTexture("data/landing.png").get();
+		font = new BitmapFont();
 	}
 	
 	@Override
@@ -96,7 +98,10 @@ public class LoadingScreen implements Screen {
 		spriteBatch.draw(earth, localX - Gdx.input.getAccelerometerY(), localY - Gdx.input.getAccelerometerX(), Settings.matricWidth - 2*localX, 240, (int)earthLeft, (int)earthTop, (int)earthWidth, (int)earthHeight, false, false);
 		if(animationCompleted){
 			spriteBatch.draw(title, Settings.matricWidth/2 - 120, 0, 256, 72, 0, 0, 256, 72, false,false);
-			spriteBatch.draw(title, Settings.matricWidth/2-64, Settings.matricHeight - 72, 128, 32, 0, 80, 142, 32, false,false);
+			String strStart = "Touch to continue";
+			TextBounds bounds = font.getBounds(strStart);
+			//font.scale(0.5f);
+			font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight - 30);
 		}
 		spriteBatch.setBlendFunction(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
 		

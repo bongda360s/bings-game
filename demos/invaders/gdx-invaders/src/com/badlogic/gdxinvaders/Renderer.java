@@ -184,6 +184,7 @@ public class Renderer {
 		if(Settings.getStatus() == 2){
 			renderAward(gl,simulation);
 		}
+		
 		gl.glDisable(GL10.GL_DITHER);
 		gl.glEnable(GL10.GL_DEPTH_TEST);
 		gl.glEnable(GL10.GL_CULL_FACE);
@@ -195,9 +196,6 @@ public class Renderer {
 
 		renderShip(gl, simulation.ship, app);		
 		if(Settings.getStatus() != 2){
-			if(Settings.getStatus()==0){
-				spriteBatch.draw(playing, Settings.matricWidth/2-64, Settings.matricHeight/2 - 64, 64, 64, 0, 0, 128, 128, false, false);
-			}
 			renderInvaders(gl, simulation.invaders);
 			gl.glDisable(GL10.GL_TEXTURE_2D);
 			renderBlocks(gl, simulation.blocks);
@@ -211,6 +209,9 @@ public class Renderer {
 	
 			invaderAngle += app.getGraphics().getDeltaTime() * 90;
 			if (invaderAngle > 360) invaderAngle -= 360;			
+		}
+		if(Settings.getStatus()==0){
+			renderPlay(gl,simulation);
 		}
 		gl.glDisable(GL10.GL_CULL_FACE);
 		gl.glDisable(GL10.GL_DEPTH_TEST);
@@ -249,8 +250,19 @@ public class Renderer {
 			String strStart = "Touch to continue";
 			TextBounds bounds = font.getBounds(strStart);
 			//font.scale(0.5f);
-			font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight/2 - 50);
+			font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight - 30);
 		}
+		spriteBatch.end();
+	}
+	private void renderPlay(GL10 gl, Simulation simulation){
+		spriteBatch.begin();
+		spriteBatch.enableBlending();
+		spriteBatch.setColor(Color.WHITE);
+		String strStart = "Touch to continue";
+		TextBounds bounds = font.getBounds(strStart);
+		//font.scale(0.5f);
+		font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight - 30);
+		//spriteBatch.draw(playing, Settings.matricWidth/2 - 64, Settings.matricHeight/2 - 64, 128, 128, 0, 0, 128, 128, false, false);
 		spriteBatch.end();
 	}
 	

@@ -82,20 +82,24 @@ public class GameLoop implements Screen, SimulationListener {
 		updateApp(app);			
 	}
 
-	private void updateApp(Application app) {
-		simulation.update(app.getGraphics().getDeltaTime());
-
+	private void updateApp(Application app) {	
 		Input input = app.getInput();
-		if (input.getAccelerometerY() < 0)
-			simulation.moveShipLeft(app.getGraphics().getDeltaTime(), Math.abs(input.getAccelerometerY()) / 10);
-		else
-			simulation.moveShipRight(app.getGraphics().getDeltaTime(), Math.abs(input.getAccelerometerY()) / 10);
-
-		if (input.isKeyPressed(Keys.DPAD_LEFT)) simulation.moveShipLeft(app.getGraphics().getDeltaTime(), 0.5f);
-		if (input.isKeyPressed(Keys.DPAD_RIGHT)) simulation.moveShipRight(app.getGraphics().getDeltaTime(), 0.5f);
-
-		if (input.isTouched() || input.isKeyPressed(Keys.SPACE)) simulation.shot();
-		if (input.getAccelerometerX() < 0) simulation.launch();
+		if(Settings.getStatus()==1){	
+			simulation.update(app.getGraphics().getDeltaTime());			
+			if (input.getAccelerometerY() < 0)
+				simulation.moveShipLeft(app.getGraphics().getDeltaTime(), Math.abs(input.getAccelerometerY()) / 10);
+			else
+				simulation.moveShipRight(app.getGraphics().getDeltaTime(), Math.abs(input.getAccelerometerY()) / 10);
+	
+			if (input.isKeyPressed(Keys.DPAD_LEFT)) simulation.moveShipLeft(app.getGraphics().getDeltaTime(), 0.5f);
+			if (input.isKeyPressed(Keys.DPAD_RIGHT)) simulation.moveShipRight(app.getGraphics().getDeltaTime(), 0.5f);
+	
+			if (input.isTouched() || input.isKeyPressed(Keys.SPACE)) simulation.shot();
+			if (input.getAccelerometerX() < 0) simulation.launch();
+		}
+		else if(Settings.getStatus()==0 && (input.isTouched() || input.isKeyPressed(Keys.SPACE))){
+				Settings.setStatus(1);
+		}
 	}
 
 	@Override public void explosion () {

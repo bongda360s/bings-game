@@ -70,6 +70,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 	@Override
 	public void onConnectFailed() {
 		System.out.println("received faild");
+		
 	}
 
 	@Override
@@ -127,6 +128,8 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         settingsView.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
+				if(Settings.getStatus()==1)
+					Settings.setStatus(0);
 				showDialog(settingID);
 			}
 		});        
@@ -225,6 +228,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 	protected Dialog onCreateDialog(int id) {		
 		switch(id){
 		case settingID:
+			
 			LayoutInflater inflater = getLayoutInflater();
 			View view = inflater.inflate(R.layout.settings, null);
 	        SeekBar barAD = (SeekBar)view.findViewById(R.id.barAD);

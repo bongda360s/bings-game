@@ -281,7 +281,7 @@ public class Simulation implements Disposable {
 				ship.position.set(shipPosition);
 				ship.lives = lives;
 				multiplier += 0.1f;	
-				awardScore = (int)(wave * 2000 * (0.5 - Math.atan(totalElapse/60)));
+				awardScore = (int)(wave * 2000 * (1 - Math.atan(totalElapse/60)));
 				awardShip = awardScore/1000 > 2? 2 : awardScore/1000;
 				score += awardScore;
 				totalElapse = 0;
