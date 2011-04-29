@@ -96,6 +96,8 @@ public class Renderer {
 		camera = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		//font = new BitmapFont(Gdx.files.internal("data/font10.fnt"), Gdx.files.internal("data/font10.png"), false);
 		font = new BitmapFont();
+		font.setColor(Color.GREEN);
+		font.setColor(0x90, 0xEE, 0x90, 0xff);
 		earth = TextureDict.loadTexture("data/earth.png").get();
 		earth.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		background = TextureDict.loadTexture("data/background.png").get();
@@ -211,7 +213,7 @@ public class Renderer {
 			if (invaderAngle > 360) invaderAngle -= 360;			
 		}
 		if(Settings.getStatus()==0){
-			renderPlay(gl,simulation);
+			renderPlay();
 		}
 		gl.glDisable(GL10.GL_CULL_FACE);
 		gl.glDisable(GL10.GL_DEPTH_TEST);
@@ -246,23 +248,18 @@ public class Renderer {
 		spriteBatch.draw(planeDemo, Settings.matricWidth/2 - 32, Settings.matricHeight/2 - 40, 32, 32, 0, 0, 64, 64, false, false);
 		font.draw(spriteBatch, " + " + simulation.awardScore, Settings.matricWidth/2, Settings.matricHeight/2 + 32);
 		font.draw(spriteBatch, " + " + simulation.awardShip, Settings.matricWidth/2, Settings.matricHeight/2 - 8);
-		if(simulation.awardWait > 5){
-			String strStart = "Touch to continue";
-			TextBounds bounds = font.getBounds(strStart);
-			//font.scale(0.5f);
-			font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight - 30);
-		}
 		spriteBatch.end();
+		if(simulation.awardWait > 2){
+			renderPlay();
+		}
 	}
-	private void renderPlay(GL10 gl, Simulation simulation){
+	private void renderPlay(){
 		spriteBatch.begin();
 		spriteBatch.enableBlending();
 		spriteBatch.setColor(Color.WHITE);
-		String strStart = "Touch to continue";
+		String strStart = "Touch to continue.";
 		TextBounds bounds = font.getBounds(strStart);
-		//font.scale(0.5f);
 		font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight - 30);
-		//spriteBatch.draw(playing, Settings.matricWidth/2 - 64, Settings.matricHeight/2 - 64, 128, 128, 0, 0, 128, 128, false, false);
 		spriteBatch.end();
 	}
 	

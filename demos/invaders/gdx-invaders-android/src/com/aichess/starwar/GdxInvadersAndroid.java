@@ -10,6 +10,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpRequest;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.BasicHttpEntity;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.DefaultedHttpParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+
 import net.youmi.android.AdListener;
 import net.youmi.android.AdManager;
 import net.youmi.android.AdView;
@@ -113,7 +133,6 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 				adCount--;
 				if(adCount==0)
 					adView.setVisibility(View.INVISIBLE);
-				
 			}
 		});
         frameLayout.addView(adView);
@@ -145,41 +164,28 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         bulletinView.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-				InputStream in = null;				
+				HttpClient client = new DefaultHttpClient();
+				List<Fighting> fightings = null;
 				try {
 					String url = "http://androidgame.sinaapp.com/rs.php?a="+Settings.appNo;
-				    URLConnection connection = new URL(url).openConnection();
-				    connection.setConnectTimeout(1000 * 6); // 设置连接超时时间: 6s
-				    connection.setReadTimeout(1000 * 6); // 设置读取超时时间: 6s
-				    connection.connect();
-				    in = connection.getInputStream();
-				    // 获取HTTP响应结果
-				    int length;
-				    byte[] buffer = new byte[1024 * 4];
-				    StringBuilder stringBuffer = new StringBuilder();
-				    while ((length = in.read(buffer)) != -1) {
-				        stringBuffer.append(new String(buffer, 0, length));
-				    }
-				    String response = stringBuffer.toString();
-				    //System.out.println(response);
+					HttpGet httpGet = new HttpGet(url);
+					ResponseHandler<String> responseHandler = new BasicResponseHandler();
+					String response = client.execute(httpGet,responseHandler);
 				    if(!response.trim().equals("false")){
 				    	Gson json = new Gson();
 				    	Type listType = new TypeToken<List<Fighting>>() {}.getType();
-				    	List<Fighting> fightings = json.fromJson(response, listType);			    	
-				    	Settings.setNetFightings(fightings);
+				    	fightings = json.fromJson(response, listType);			    	
 				    }
-				}
-				catch (Exception e) {
-				    // 出错处理代码...
-				}
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
 				finally {
-				    // 关闭输入流
-					try{
-						in.close();
-					}catch(Exception e){}
-				}
-				
-				List<Fighting> fightings = Settings.getNetFightings();
+					client.getConnectionManager().shutdown();
+				}				
 				if(fightings == null || fightings.size() == 0)
 					fightings = Settings.getFightings();
 				ArrayList<HashMap<String, Object>> scores = new ArrayList<HashMap<String, Object>>();
@@ -313,15 +319,22 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 				        		break;
 				        	}
 				        }
+						HttpClient client = new DefaultHttpClient();
 						try {						
-							String url = String.format("http://androidgame.sinaapp.com/ws.php?n=%s&s=%d&pn=%s&a=%d", name,highestScore,Settings.getPhoneName(),Settings.appNo);
-						    URLConnection connection = new URL(url).openConnection();
-						    connection.setConnectTimeout(1000 * 6); // 设置连接超时时间: 6s
-						    connection.setReadTimeout(1000 * 6); // 设置读取超时时间: 6s
-						    connection.connect();
-						}
-						catch (Exception e) {
-						    // 出错处理代码...
+							String url = "http://androidgame.sinaapp.com/ws.php";
+							HttpPost httpPost = new HttpPost(url);
+							List <NameValuePair> params=new ArrayList<NameValuePair>();
+							params.add(new BasicNameValuePair("n", name));
+							params.add(new BasicNameValuePair("s", Integer.toString(highestScore)));
+							params.add(new BasicNameValuePair("pn", Settings.getPhoneName()));
+							params.add(new BasicNameValuePair("a", Integer.toString(Settings.appNo)));
+							httpPost.setEntity(new UrlEncodedFormEntity(params,HTTP.UTF_8));
+							HttpResponse response = client.execute(httpPost);
+							response.getEntity();
+						}catch (Exception e) {
+						    e.printStackTrace();
+						}finally{
+							client.getConnectionManager().shutdown();
 						}
 						dialog.dismiss();
 					}

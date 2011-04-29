@@ -45,28 +45,28 @@ public class Simulation implements Disposable {
 	private ArrayList<Missile> removedMissiles = new ArrayList<Missile>();
 	private ArrayList<Explosion> removedExplosions = new ArrayList<Explosion>();
 	private Music[] backgroundMusics = new Music[2];
-	private final boolean[][] array = {
-		{true,true,true,true,true,true,true,true,true},
-		{true,true,true,true,true,true,true,true,true},
-		{false,true,true,true,true,true,true,true,false},
-		{false,true,true,true,true,true,true,true,false},
-		{false,true,true,true,true,true,true,true,false},
-		{false,false,true,true,true,true,true,false,false},
-		{false,false,true,true,true,true,true,false,false},
-		{false,false,false,true,true,true,false,false,false},
-		{false,false,false,true,true,true,false,false,false},
-		{false,false,false,false,true,false,false,false,false}};
 //	private final boolean[][] array = {
-//			{false,false,false,false,true,false,false,false,false},
-//			{false,false,false,false,true,false,false,false,false},
-//			{false,false,false,false,true,false,false,false,false},
-//			{false,false,false,false,true,false,false,false,false},
-//			{false,false,false,false,true,false,false,false,false},
-//			{false,false,false,false,true,false,false,false,false},
-//			{false,false,false,false,true,false,false,false,false},
-//			{false,false,false,false,true,false,false,false,false},
-//			{false,false,false,false,false,false,false,false,false},
-//			{false,false,false,false,false,false,false,false,false}};
+//		{true,true,true,true,true,true,true,true,true},
+//		{true,true,true,true,true,true,true,true,true},
+//		{false,true,true,true,true,true,true,true,false},
+//		{false,true,true,true,true,true,true,true,false},
+//		{false,true,true,true,true,true,true,true,false},
+//		{false,false,true,true,true,true,true,false,false},
+//		{false,false,true,true,true,true,true,false,false},
+//		{false,false,false,true,true,true,false,false,false},
+//		{false,false,false,true,true,true,false,false,false},
+//		{false,false,false,false,true,false,false,false,false}};
+	private final boolean[][] array = {
+			{false,false,false,false,true,false,false,false,false},
+			{false,false,false,false,true,false,false,false,false},
+			{false,false,false,false,true,false,false,false,false},
+			{false,false,false,false,true,false,false,false,false},
+			{false,false,false,false,true,false,false,false,false},
+			{false,false,false,false,true,false,false,false,false},
+			{false,false,false,false,true,false,false,false,false},
+			{false,false,false,false,true,false,false,false,false},
+			{false,false,false,false,false,false,false,false,false},
+			{false,false,false,false,false,false,false,false,false}};
 	private Date loopbegin = new Date();
 	private float totalElapse = 0f;
 	public int awardScore = 0;
@@ -282,13 +282,13 @@ public class Simulation implements Disposable {
 				ship.lives = lives;
 				multiplier += 0.1f;	
 				awardScore = (int)(wave * 2000 * (1 - Math.atan(totalElapse/60)));
-				awardShip = awardScore/1000 > 2? 2 : awardScore/1000;
+				awardShip = awardScore > 1000 * wave? 1 : 0;
 				score += awardScore;
-				totalElapse = 0;
 				Settings.setStatus(2); //award				
 			}
 		}
-		else if(Settings.getStatus() == 2){			
+		else if(Settings.getStatus() == 2){	
+			totalElapse = 0;
 			awardWait += Gdx.graphics.getDeltaTime();
 		}
 	}
@@ -302,22 +302,16 @@ public class Simulation implements Disposable {
 
 	public void moveShipRight (float delta, float scale) {
 		if (ship.isExploding) return;
-
 		ship.position.x += delta * Ship.SHIP_VELOCITY * scale;
 		if (ship.position.x > PLAYFIELD_MAX_X) ship.position.x = PLAYFIELD_MAX_X;
 	}
 
 	public void shot () {
-		if(Settings.getStatus() == 1){
 			if (shipShot == null && !ship.isExploding) {
 				shipShot = new Shot(ship.position, false, Math.atan(ship.position.x/100));
 				shots.add(shipShot);
 				if (listener != null) listener.shot();
 			}
-		}
-		if(Settings.getStatus() == 2 && awardWait > 5){
-			Settings.setStatus(1);
-		}
 	}
 	
 	public void launch () {
