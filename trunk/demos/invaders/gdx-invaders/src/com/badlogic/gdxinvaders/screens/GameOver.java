@@ -88,11 +88,12 @@ public class GameOver implements Screen {
 		spriteBatch.setColor(Color.WHITE);
 		spriteBatch.draw(background, 0, 0, 480, 320, 0, 0, 512, 512, false, false);
 		spriteBatch.enableBlending();
-		spriteBatch.draw(logo, 0, 320-128, 480, 128, 0, 256, 512, 256, false, false);
-		String text = "Touch to continue!";
-		TextBounds bounds = font.getMultiLineBounds(text);
-		spriteBatch.setBlendFunction(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
-		font.drawMultiLine(spriteBatch, text, 0, 160 + bounds.height / 2, 480, HAlignment.CENTER);		
+		spriteBatch.draw(logo, 0, 320-128, 280, 128, 0, 256, 512, 256, false, false);
+		String strStart = "Touch to continue";
+		TextBounds bounds = font.getBounds(strStart);
+		//font.scale(0.5f);
+		font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight - 30);
+		spriteBatch.setBlendFunction(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);	
 		spriteBatch.end();
 	}
 
