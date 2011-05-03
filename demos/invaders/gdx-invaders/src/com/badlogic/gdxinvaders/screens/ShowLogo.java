@@ -48,8 +48,7 @@ public class ShowLogo implements Screen {
 	}
 
 	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub		
+	public void dispose() {	
 		spriteBatch.dispose();
 	}
 }

@@ -95,7 +95,8 @@ public class Simulation implements Disposable {
 				}
 			}
 		}
-
+		Missile missile = new Missile(new Vector3(10,10,10),true);
+		missiles.add(missile);
 		for (int shield = 0; shield < 3; shield++) {
 			blocks.add(new Block(new Vector3(-10 + shield * 10 - 1, 0, -2)));
 			blocks.add(new Block(new Vector3(-10 + shield * 10 - 1, 0, -3)));
@@ -283,6 +284,7 @@ public class Simulation implements Disposable {
 				multiplier += 0.1f;	
 				awardScore = (int)(wave * 2000 * (1 - Math.atan(totalElapse/60)));
 				awardShip = awardScore > 1000 * wave? 1 : 0;
+				ship.lives += awardShip;
 				score += awardScore;
 				Settings.setStatus(2); //award				
 			}

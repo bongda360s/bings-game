@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class Settings {
     public static final float matricWidth = 480;
@@ -23,7 +25,6 @@ public class Settings {
 	public static final String[] heroNames = {"Hecate","Gaea","Uranus","Cronus","Rhea",
 		"Oceanus","Tethys","Hyperion"};
 	public final static String file = "starwar.dat";
-	
 	private static int adCount = 5;	
 	private static Music music;
 	private static String phoneName;
@@ -32,10 +33,11 @@ public class Settings {
 	private static float soundVolume = 0f;
 	private static float musicVolume = 0f;	
 	private static int status = 1; //0:stop 1:playing 2:award
+	private static String touchToContinue = "Touch to continue.";
     /**
 	 * @return the fightings
 	 */
-	public static synchronized List<Fighting> getFightings() {
+	public static List<Fighting> getFightings() {
 		if(fightings==null || fightings.isEmpty()){
 			fightings = new ArrayList<Fighting>(5);
 			fightings.add(new Fighting("Zeus",1000,""));
@@ -80,7 +82,6 @@ public class Settings {
 		return soundVolume;
 	}
 	/**
-	 * @param soundVolume the soundVolume to set
 	 */
 	public static void setSoundVolume(float volume) {
 		soundVolume = volume;
@@ -93,7 +94,6 @@ public class Settings {
 		return musicVolume;
 	}
 	/**
-	 * @param musicVolume the musicVolume to set
 	 */
 	public static void setMusicVolume(float volume) {
 		musicVolume = volume;
@@ -111,7 +111,9 @@ public class Settings {
             adCount = Integer.parseInt(in.readLine());
             String strFight = in.readLine();
             Gson gson = new Gson();
-            fightings = (List<Fighting>)gson.fromJson(strFight, fightings.getClass());
+            Type listType = new TypeToken<List<Fighting>>() {}.getType();
+            fightings = (List<Fighting>)gson.fromJson(strFight, listType);
+            Collections.sort(fightings);
         } 
         catch (Exception e) {
             //nothing to do ,we have default...      
@@ -146,8 +148,8 @@ public class Settings {
     }
     
     public static void addFighting(Fighting fighting){
-    	getFightings().add(fighting);
-	    Collections.sort(getFightings(),new FightingComparator());
+    	fightings.add(fighting);
+	    Collections.sort(fightings);
     }
     
     public static int getHighScore(String phoneName){
@@ -195,6 +197,18 @@ public class Settings {
 	 */
 	public static void setStatus(int status) {
 		Settings.status = status;
+	}
+	/**
+	 * @return the touchToContinue
+	 */
+	public static String getTouchToContinue() {
+		return touchToContinue;
+	}
+	/**
+	 * @param touchToContinue the touchToContinue to set
+	 */
+	public static void setTouchToContinue(String touchToContinue) {
+		Settings.touchToContinue = touchToContinue;
 	}
 }
 

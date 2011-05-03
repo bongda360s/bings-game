@@ -23,7 +23,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdxinvaders.screens.GameLoop;
 import com.badlogic.gdxinvaders.screens.GameOver;
 import com.badlogic.gdxinvaders.screens.LoadingScreen;
-import com.badlogic.gdxinvaders.screens.MainMenu;
 import com.badlogic.gdxinvaders.screens.Screen;
 import com.badlogic.gdxinvaders.screens.ShowLogo;
 import com.badlogic.gdxinvaders.simulation.Fighting;

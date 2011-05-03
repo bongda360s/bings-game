@@ -53,9 +53,12 @@ public class LoadingScreen implements Screen {
 		earth.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		background = TextureDict.loadTexture("data/background.png").get();
 		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		title = TextureDict.loadTexture("data/landing.png").get();
+		title = TextureDict.loadTexture("data/title.png").get();
+		title.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		//font = new BitmapFont(Gdx.files.classpath("com/badlogic/gdx/utils/arial-15.fnt"),
+		//		Gdx.files.classpath("com/badlogic/gdx/utils/arial-15.png"), false);
 		font = new BitmapFont();
-		font.setColor(Color.GREEN);
+		font.setColor(1, 1, 0, 1);
 	}
 	
 	@Override
@@ -93,26 +96,30 @@ public class LoadingScreen implements Screen {
 		spriteBatch.setProjectionMatrix(viewMatrix);
 		spriteBatch.setTransformMatrix(transformMatrix);
 		spriteBatch.begin();
-		spriteBatch.disableBlending();
-		spriteBatch.setColor(Color.WHITE);		
+		spriteBatch.disableBlending();		
 		spriteBatch.draw(background, 0, 0, Settings.matricWidth, Settings.matricHeight, 0, 0, 1024, 729, false, false);
 		spriteBatch.enableBlending();
 		spriteBatch.draw(earth, localX - Gdx.input.getAccelerometerY(), localY - Gdx.input.getAccelerometerX(), Settings.matricWidth - 2*localX, 240, (int)earthLeft, (int)earthTop, (int)earthWidth, (int)earthHeight, false, false);
-		spriteBatch.setBlendFunction(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
+		spriteBatch.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
 		spriteBatch.end();
 		updateEarth(app);
 		if(animationCompleted){
+			renderTitle();
 			renderStartString();
 		}
 	}
-	
-	private void renderStartString(){
+	private void renderTitle(){
 		spriteBatch.begin();
 		spriteBatch.enableBlending();
+		spriteBatch.draw(title, 120, 2, 240, 80, 0, 145, 420, 65, false, false);
+		spriteBatch.end();
+	}
+	private void renderStartString(){
+		spriteBatch.begin();
+		spriteBatch.disableBlending();
 		spriteBatch.setColor(Color.WHITE);
 		String strStart = "Touch to continue.";
 		TextBounds bounds = font.getBounds(strStart);
-		//font.scale(0.5f);
 		font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight - 30);
 		spriteBatch.end();
 	}
@@ -130,6 +137,7 @@ public class LoadingScreen implements Screen {
 	public void dispose() {
 		spriteBatch.dispose();
 		music.stop();
+		font.dispose();
 	}
 
 }
