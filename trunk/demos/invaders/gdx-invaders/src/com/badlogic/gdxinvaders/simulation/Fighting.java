@@ -1,6 +1,6 @@
 package com.badlogic.gdxinvaders.simulation;
 
-public class Fighting {
+public class Fighting  implements Comparable{
 	private String name;
 	private int score;
 	private String phoneName;
@@ -32,5 +32,9 @@ public class Fighting {
 	 */
 	public void setPhoneName(String phoneName) {
 		this.phoneName = phoneName;
+	}
+	@Override
+	public int compareTo(Object o) {
+		return ((Fighting)o).getScore() - this.getScore();
 	}
 }

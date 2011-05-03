@@ -76,7 +76,7 @@ public class Assests {
 		shotMesh = ModelLoader.loadObj(in);
 		in.close();
 		
-		in = Gdx.files.internal("data/missile.obj").read();
+		in = Gdx.files.internal("data/shield.obj").read();
 		missileMesh = ModelLoader.loadObj(in);
 		in.close();
 		}catch(Exception e){

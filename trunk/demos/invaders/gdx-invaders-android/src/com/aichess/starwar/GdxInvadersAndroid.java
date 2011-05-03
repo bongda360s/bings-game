@@ -54,6 +54,8 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -78,15 +80,13 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 	static{ 
     	AdManager.init("f67d5f8c4e102945", "46ffddb0a2f1cf4d", 31, false,"1.0");
     }
-	
 	private final int settingID = 1;
 	private final int bulletinID = 2;
-	private int adCount = 5;
+	int adCount = 5;
 	private boolean bReceiveAD = false;
-	private View bulletinDialogView;
-	private int highestScore;	
-	private AdView adView;
-	
+	View bulletinDialogView;
+	int highestScore;	
+	AdView adView;
 	@Override
 	public void onConnectFailed() {
 		System.out.println("received faild");
@@ -138,7 +138,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         frameLayout.addView(adView);
         
         //settings view        
-        ImageView settingsView = new ImageView(GdxInvadersAndroid.this);
+        final ImageView settingsView = new ImageView(GdxInvadersAndroid.this);
         settingsView.setImageResource(android.R.drawable.ic_menu_preferences);
         FrameLayout.LayoutParams settingsParams = new FrameLayout.LayoutParams(72, 72);
         settingsParams.gravity = Gravity.LEFT | Gravity.BOTTOM;
@@ -149,6 +149,8 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 			public void onClick(View v) {
 				if(Settings.getStatus()==1)
 					Settings.setStatus(0);
+				Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate);
+				settingsView.startAnimation(animation);
 				showDialog(settingID);
 			}
 		});        
@@ -164,48 +166,10 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         bulletinView.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-				HttpClient client = new DefaultHttpClient();
-				List<Fighting> fightings = null;
-				try {
-					String url = "http://androidgame.sinaapp.com/rs.php?a="+Settings.appNo;
-					HttpGet httpGet = new HttpGet(url);
-					ResponseHandler<String> responseHandler = new BasicResponseHandler();
-					String response = client.execute(httpGet,responseHandler);
-				    if(!response.trim().equals("false")){
-				    	Gson json = new Gson();
-				    	Type listType = new TypeToken<List<Fighting>>() {}.getType();
-				    	fightings = json.fromJson(response, listType);			    	
-				    }
-				} catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} 
-				finally {
-					client.getConnectionManager().shutdown();
-				}				
-				if(fightings == null || fightings.size() == 0)
-					fightings = Settings.getFightings();
-				ArrayList<HashMap<String, Object>> scores = new ArrayList<HashMap<String, Object>>();
-		        for (int i = 0,length = fightings.size(); i < length && i < 5; i++) {
-		            HashMap<String, Object> score = new HashMap<String, Object>();
-		            score.put("img", R.drawable.icon);
-		            Fighting fighting = fightings.get(i);
-		            score.put("name", fighting.getName());
-		            score.put("score", fighting.getScore());
-		            scores.add(score);
-		        }
-		       
-		        SimpleAdapter saImageItems = new SimpleAdapter(GdxInvadersAndroid.this,
-		        		scores,
-		        		R.layout.score,
-		                new String[] { "img", "name", "score" },
-		                new int[] { R.id.img, R.id.name, R.id.score });
-		        LayoutInflater inflater = getLayoutInflater();
-		        bulletinDialogView = inflater.inflate(R.layout.fightings, null);	        
-		        ((ListView) bulletinDialogView.findViewById(R.id.lstFighting)).setAdapter(saImageItems);
+				Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.alpha);
+				bulletinView.startAnimation(animation);
+				LayoutInflater inflater = getLayoutInflater();
+				bulletinDialogView = inflater.inflate(R.layout.fightings, null);
 		        for(int i = 0, length = Settings.getFightings().size(); i < length; ++i){
 		        	Fighting fighting = Settings.getFightings().get(i);
 		        	if(fighting.getPhoneName().equals(Settings.getPhoneName())){
@@ -213,7 +177,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 		        		break;
 		        	}
 		        }
-				TextView txtTitle = (TextView)bulletinDialogView.findViewById(R.id.txtTitle);
+				final TextView txtTitle = (TextView)bulletinDialogView.findViewById(R.id.txtTitle);
 				txtTitle.setText(String.format(getResources().getString(R.string.best_result), highestScore));
 				showDialog(bulletinID);
 			}
@@ -231,11 +195,10 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
     }
 
 	@Override
-	protected Dialog onCreateDialog(int id) {		
-		switch(id){
+	protected Dialog onCreateDialog(int id) {	
+		LayoutInflater inflater = getLayoutInflater();
+		switch(id){		
 		case settingID:
-			
-			LayoutInflater inflater = getLayoutInflater();
 			View view = inflater.inflate(R.layout.settings, null);
 	        SeekBar barAD = (SeekBar)view.findViewById(R.id.barAD);
 	        barAD.setProgress(Settings.getAdCount()-1);
@@ -295,30 +258,26 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 			.setIcon(android.R.drawable.ic_menu_preferences)
 			.setTitle(getResources().getString(R.string.system_setting))
 			.show();			
-		case bulletinID:
-	        final AlertDialog dialog = new AlertDialog.Builder(GdxInvadersAndroid.this)
-			.setView(bulletinDialogView)
+		case bulletinID:	
+			bindScoreListView();
+			final AlertDialog dialog = new AlertDialog.Builder(GdxInvadersAndroid.this)
+			.setTitle(getResources().getString(R.string.leave_name))
+	        .setView(bulletinDialogView)
 			.show();
 	        Window window = dialog.getWindow();
 	        WindowManager.LayoutParams lp = window.getAttributes(); 
 	        lp.alpha = 0.8f;
-	        window.setAttributes(lp);	
+	        window.setAttributes(lp);
 	        Button btnSubmit = (Button)bulletinDialogView.findViewById(R.id.btnSubmit);
+	        final EditText editText = ((EditText)bulletinDialogView.findViewById(R.id.txtName));
 			btnSubmit.setOnClickListener(new Button.OnClickListener(){
 				@Override
 				public void onClick(View v) {
 					if(highestScore > 0){
-						EditText editText = ((EditText)bulletinDialogView.findViewById(R.id.txtName));
 						String name = editText.getText().toString();
 						if(name.equals(""))
 							name = getResources().getString(R.string.unsung_hero);
-						for(int i = 0, length = Settings.getFightings().size(); i < length; ++i){
-				        	Fighting fighting = Settings.getFightings().get(i);
-				        	if(fighting.getPhoneName().equals(Settings.getPhoneName())){
-				        		fighting.setName(name);
-				        		break;
-				        	}
-				        }
+						
 						HttpClient client = new DefaultHttpClient();
 						try {						
 							String url = "http://androidgame.sinaapp.com/ws.php";
@@ -331,11 +290,20 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 							httpPost.setEntity(new UrlEncodedFormEntity(params,HTTP.UTF_8));
 							HttpResponse response = client.execute(httpPost);
 							response.getEntity();
+							//remove the best score
+							for(int i = 0, length = Settings.getFightings().size(); i < length; ++i){
+					        	Fighting fighting = Settings.getFightings().get(i);
+					        	if(fighting.getPhoneName().equals(Settings.getPhoneName())){
+					        		Settings.getFightings().remove(i);
+					        		break;
+					        	}
+					        }
 						}catch (Exception e) {
 						    e.printStackTrace();
 						}finally{
 							client.getConnectionManager().shutdown();
 						}
+						bindScoreListView();
 						dialog.dismiss();
 					}
 				}});
@@ -343,16 +311,63 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 			btnCancel.setOnClickListener(new Button.OnClickListener(){
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					dialog.dismiss();
 				}});	  
 	        return dialog;
 		}
 		return super.onCreateDialog(id);
 	}
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onBackPressed()
-	 */
+
+	void bindScoreListView() {
+		HttpClient client = new DefaultHttpClient();
+		List<Fighting> fightings = null;
+		try {
+			String url = "http://androidgame.sinaapp.com/rs.php?a="+Settings.appNo;
+			HttpGet httpGet = new HttpGet(url);
+			ResponseHandler<String> responseHandler = new BasicResponseHandler();
+			String response = client.execute(httpGet,responseHandler);
+		    if(!response.trim().equals("false")){
+		    	Gson json = new Gson();
+		    	Type listType = new TypeToken<List<Fighting>>() {}.getType();
+		    	fightings = json.fromJson(response, listType);			    	
+		    }
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		finally {
+			client.getConnectionManager().shutdown();
+		}				
+		if(fightings == null || fightings.size() == 0)
+			fightings = Settings.getFightings();
+		ArrayList<HashMap<String, Object>> scores = new ArrayList<HashMap<String, Object>>();
+		for (int i = 0,length = fightings.size(); i < length && i < 20; i++) {
+		    HashMap<String, Object> score = new HashMap<String, Object>();
+		    score.put("img", R.drawable.icon);
+		    Fighting fighting = fightings.get(i);
+		    score.put("name", fighting.getName());
+		    score.put("score", fighting.getScore());
+		    scores.add(score);
+		}
+      
+		SimpleAdapter saImageItems = new SimpleAdapter(GdxInvadersAndroid.this,
+				scores,
+				R.layout.score,
+		        new String[] { "img", "name", "score" },
+		        new int[] { R.id.img, R.id.name, R.id.score });
+		final ListView listResult = (ListView) bulletinDialogView.findViewById(R.id.lstFighting);	        
+		listResult.setAdapter(saImageItems);
+//		for(int i = 0,length = listResult.getCount(); i < length; ++i){
+//			if(fightings.get(i).getPhoneName().equals(Settings.getPhoneName())){
+//				View childView = listResult.getChildAt(i);listResult.get
+//				TextView txtName = (TextView)childView.findViewById(R.id.name);
+//				txtName.setTextColor(Color.YELLOW);
+//				TextView txtScore = (TextView)childView.findViewById(R.id.score);
+//				txtScore.setTextColor(Color.YELLOW);
+//			}
+//		}
+	}
 	@Override
 	public void onBackPressed() {
 		new AlertDialog.Builder(GdxInvadersAndroid.this)

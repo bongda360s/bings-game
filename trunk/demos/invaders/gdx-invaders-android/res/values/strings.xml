@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">Star war</string>
     <string name="bulletinBoard">Hero World</string>
-    <string name="leave_name">Leave your name in hero world</string>
-    <string name="best_result">Best result was:%d in this time</string>
+    <string name="leave_name">Hero world</string>
+    <string name="best_result">The best uncommitted result was:%d, please submit your hero.</string>
     <string name="ad_message">Active %d ads, banner ads disappeared</string>
     <string name="ad_5message">Active 5 ads, banner ads disappeared</string>
     <string name="system_setting">System settings</string>

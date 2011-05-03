@@ -35,13 +35,7 @@ import com.badlogic.gdxinvaders.simulation.Settings;
 import com.badlogic.gdxinvaders.simulation.Simulation;
 import com.badlogic.gdxinvaders.simulation.SimulationListener;
 
-public class GameLoop implements Screen, SimulationListener {
-	public enum status{
-		playing,
-		pause,
-		award
-	}
-	
+public class GameLoop implements Screen, SimulationListener {	
 	/** the simulation **/
 	private final Simulation simulation;
 	/** the renderer **/

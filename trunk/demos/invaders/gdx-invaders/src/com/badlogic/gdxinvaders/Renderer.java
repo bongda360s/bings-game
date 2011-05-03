@@ -78,11 +78,12 @@ public class Renderer {
 	private Mesh invaderMesh;
 	/** the invader texture **/
 	private Texture invaderTexture;
+	private Texture shieldTexture;
+	private Mesh shieldMesh;
 	/** the block mesh **/
 	private Mesh blockMesh;
 	/** the shot mesh **/
 	private Mesh shotMesh;
-	private Mesh missileMesh;
 	/** the explosion mesh **/
 	private Mesh explosionMesh;
 	/** the explosion texture **/
@@ -94,10 +95,8 @@ public class Renderer {
 	public Renderer (Application app) {	
 		spriteBatch = new SpriteBatch();
 		camera = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		//font = new BitmapFont(Gdx.files.internal("data/font10.fnt"), Gdx.files.internal("data/font10.png"), false);
 		font = new BitmapFont();
-		font.setColor(Color.GREEN);
-		font.setColor(0x90, 0xEE, 0x90, 0xff);
+		font.setColor(1, 1, 0, 1);
 		earth = TextureDict.loadTexture("data/earth.png").get();
 		earth.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		background = TextureDict.loadTexture("data/background.png").get();
@@ -108,8 +107,8 @@ public class Renderer {
 		level.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		award = TextureDict.loadTexture("data/score.png").get();
 		award.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		playing = TextureDict.loadTexture("data/play.png").get();
-		playing.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+//		playing = TextureDict.loadTexture("data/play.png").get();
+//		playing.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		try{
 			InputStream in = Gdx.files.internal("data/ship.obj").read();
 			shipMesh = ModelLoader.loadObj(in);
@@ -127,21 +126,20 @@ public class Renderer {
 			shotMesh = ModelLoader.loadObj(in);
 			in.close();
 			
-			in = Gdx.files.internal("data/missile.obj").read();
-			missileMesh = ModelLoader.loadObj(in);
+			in = Gdx.files.internal("data/shield.obj").read();
+			shieldMesh = ModelLoader.loadObj(in);
 			in.close();
 			}catch(Exception e){
 				e.printStackTrace();
 			}
 			shipTexture = new Texture(Gdx.files.internal("data/ship.png"), true);
 			shipTexture.setFilter(TextureFilter.MipMap, TextureFilter.Linear);				
+			shieldTexture = new Texture(Gdx.files.internal("data/shield.png"), true);
+			shieldTexture.setFilter(TextureFilter.MipMap, TextureFilter.Linear);
 			invaderTexture = new Texture(Gdx.files.internal("data/invader.png"), true);
 			invaderTexture.setFilter(TextureFilter.MipMap, TextureFilter.Linear);
-	
 			explosionTexture = new Texture(Gdx.files.internal("data/explode.png"), true);
 			explosionTexture.setFilter(TextureFilter.MipMap, TextureFilter.Linear);
-			explosionMesh = new Mesh(true, 4 * 16, 0, new VertexAttribute(Usage.Position, 3, "a_position"),
-					new VertexAttribute(Usage.TextureCoordinates, 2, "a_texCoord"));
 			explosionMesh = new Mesh(true, 4 * 16, 0, new VertexAttribute(Usage.Position, 3, "a_position"),
 					new VertexAttribute(Usage.TextureCoordinates, 2, "a_texCoord"));
 
@@ -185,6 +183,8 @@ public class Renderer {
 		renderBackground(gl,simulation);
 		if(Settings.getStatus() == 2){
 			renderAward(gl,simulation);
+		}else if(Settings.getStatus()==0){
+			renderPlay();
 		}
 		
 		gl.glDisable(GL10.GL_DITHER);
@@ -198,23 +198,21 @@ public class Renderer {
 
 		renderShip(gl, simulation.ship, app);		
 		if(Settings.getStatus() != 2){
-			renderInvaders(gl, simulation.invaders);
+			renderInvaders(gl, simulation.invaders);			
+			
 			gl.glDisable(GL10.GL_TEXTURE_2D);
 			renderBlocks(gl, simulation.blocks);
 	
 			gl.glDisable(GL10.GL_LIGHTING);
 			renderShots(gl, simulation.shots);
-			renderMissiles(gl,simulation.missiles);
-	
+			
 			gl.glEnable(GL10.GL_TEXTURE_2D);
 			renderExplosions(gl, simulation.explosions);			
-	
+			renderShield(gl,simulation.ship);
 			invaderAngle += app.getGraphics().getDeltaTime() * 90;
 			if (invaderAngle > 360) invaderAngle -= 360;			
 		}
-		if(Settings.getStatus()==0){
-			renderPlay();
-		}
+		
 		gl.glDisable(GL10.GL_CULL_FACE);
 		gl.glDisable(GL10.GL_DEPTH_TEST);
 	}
@@ -255,7 +253,7 @@ public class Renderer {
 	}
 	private void renderPlay(){
 		spriteBatch.begin();
-		spriteBatch.enableBlending();
+		spriteBatch.disableBlending();
 		spriteBatch.setColor(Color.WHITE);
 		String strStart = "Touch to continue.";
 		TextBounds bounds = font.getBounds(strStart);
@@ -286,7 +284,6 @@ public class Renderer {
 
 		shipTexture.bind();
 		gl.glPushMatrix();
-		//System.out.println(ship.position.x+" "+ ship.position.y+" "+ship.position.z);
 		gl.glTranslatef(ship.position.x, ship.position.y, ship.position.z);
 		gl.glRotatef(45 * (-app.getInput().getAccelerometerY() / 5), 0, 0, 1);
 		gl.glRotatef(180, 0, 1, 0);
@@ -305,7 +302,22 @@ public class Renderer {
 			gl.glPopMatrix();
 		}
 	}
-
+	private void renderShield (GL10 gl, Ship ship) {
+		gl.glEnable(GL10.GL_BLEND);
+		//gl.glBlendFunc(GL10.GL_SRC_ALPHA,GL10.GL_ONE_MINUS_SRC_ALPHA);
+		gl.glBlendFunc(GL10.GL_ONE,GL10.GL_ONE);
+		//shieldTexture.bind();
+		gl.glColor4f(1, 1, 0, 1);
+		Missile missile = new Missile(ship.position,true);
+		//gl.glDepthMask(false);
+		gl.glPushMatrix();
+		gl.glTranslatef(missile.position.x, missile.position.y, missile.position.z);
+		shieldMesh.render(GL10.GL_TRIANGLES);
+		gl.glPopMatrix();
+		//gl.glDepthMask(true);
+		gl.glColor4f(1, 1, 1, 1);
+		gl.glDisable(GL10.GL_BLEND);
+	}
 	private void renderBlocks (GL10 gl, ArrayList<Block> blocks) {
 		gl.glEnable(GL10.GL_BLEND);
 		gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
@@ -332,22 +344,10 @@ public class Renderer {
 		}
 		gl.glColor4f(1, 1, 1, 1);
 	}
-	
-	private void renderMissiles (GL10 gl, ArrayList<Missile> missiles) {
-		gl.glColor4f(1, 1, 0, 1);
-		for (int i = 0; i < missiles.size(); i++) {
-			Missile missile = missiles.get(i);
-			gl.glPushMatrix();
-			gl.glTranslatef(missile.position.x, missile.position.y, missile.position.z);
-			shotMesh.render(GL10.GL_TRIANGLES);
-			gl.glPopMatrix();
-		}
-		gl.glColor4f(1, 1, 1, 1);
-	}
 
 	private void renderExplosions (GL10 gl, ArrayList<Explosion> explosions) {
 		gl.glEnable(GL10.GL_BLEND);
-		gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+		gl.glBlendFunc(GL10.GL_ONE_MINUS_DST_ALPHA, GL10.GL_DST_ALPHA);
 		explosionTexture.bind();
 		for (int i = 0; i < explosions.size(); i++) {
 			Explosion explosion = explosions.get(i);
@@ -370,7 +370,7 @@ public class Renderer {
 		shipMesh.dispose();
 		invaderMesh.dispose();
 		shotMesh.dispose();
-		missileMesh.dispose();
+		shieldMesh.dispose();
 		blockMesh.dispose();
 	}
 }

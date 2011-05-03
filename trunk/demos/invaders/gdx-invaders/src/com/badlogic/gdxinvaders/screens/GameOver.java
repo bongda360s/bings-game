@@ -64,7 +64,7 @@ public class GameOver implements Screen {
 		logo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		font = new BitmapFont();
-		font.setColor(Color.GREEN);
+		font.setColor(1, 1, 0, 1);
 		this.spriteBatch = new SpriteBatch();		
 	}
 
@@ -86,17 +86,16 @@ public class GameOver implements Screen {
 		spriteBatch.setTransformMatrix(transformMatrix);
 		spriteBatch.begin();
 		spriteBatch.disableBlending();
-		spriteBatch.setColor(Color.WHITE);
 		spriteBatch.draw(background, 0, 0, 480, 320, 0, 0, 512, 512, false, false);
 		spriteBatch.enableBlending();
-		spriteBatch.draw(logo, 0, 320-128, 280, 128, 0, 256, 512, 256, false, false);
-		spriteBatch.setBlendFunction(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);	
+		spriteBatch.draw(logo, 120, 120, 240, 80, 0, 0, 420, 140, false, false);
+		spriteBatch.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);	
 		spriteBatch.end();
 		renderPlay();
 	}
 	private void renderPlay(){
 		spriteBatch.begin();
-		spriteBatch.enableBlending();
+		spriteBatch.disableBlending();
 		spriteBatch.setColor(Color.WHITE);
 		String strStart = "Touch to continue.";
 		TextBounds bounds = font.getBounds(strStart);
