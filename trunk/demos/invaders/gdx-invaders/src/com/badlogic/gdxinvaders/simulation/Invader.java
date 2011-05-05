@@ -22,7 +22,7 @@ public class Invader {
 	public final static int STATE_MOVE_LEFT = 0;
 	public final static int STATE_MOVE_DOWN = 1;
 	public final static int STATE_MOVE_RIGHT = 2;
-
+	public boolean hasLeftField = false;
 	public final Vector3 position = new Vector3();
 	public int state = STATE_MOVE_LEFT;
 	public boolean wasLastStateLeft = true;

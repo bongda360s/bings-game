@@ -22,13 +22,31 @@ public class Ship {
 	public int lives = 3;
 	public boolean isExploding = false;
 	public float explodeTime = 0;
-
+	public boolean isInitial = true;
+	public float initialTime = 3;
+	public boolean canShot = true;
+	public float freezingTime = 0;
+	
 	public void update (float delta) {
+		if(isInitial){
+			initialTime -= delta;
+			if(initialTime <= 0){
+				isInitial = false;
+				initialTime = 0;
+			}
+		}
 		if (isExploding) {
 			explodeTime += delta;
 			if (explodeTime > Explosion.EXPLOSION_LIVE_TIME) {
 				isExploding = false;
 				explodeTime = 0;
+			}
+		}
+		if (!canShot){
+			freezingTime += delta;
+			if(freezingTime > Simulation.totalFreezingTime){
+				canShot = true;
+				freezingTime = 0;
 			}
 		}
 	}
