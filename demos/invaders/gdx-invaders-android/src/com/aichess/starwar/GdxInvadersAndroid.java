@@ -86,11 +86,10 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 	private boolean bReceiveAD = false;
 	View bulletinDialogView;
 	int highestScore;	
-	AdView adView;
+	AdView adView;	
 	@Override
 	public void onConnectFailed() {
-		System.out.println("received faild");
-		
+		System.out.println("received faild");		
 	}
 
 	@Override

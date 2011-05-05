@@ -21,4 +21,6 @@ public interface SimulationListener {
 	public void launch();
 	
 	public int getScore();
+	
+	public void shield();
 }

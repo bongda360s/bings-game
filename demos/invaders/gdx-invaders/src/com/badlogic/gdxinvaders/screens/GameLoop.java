@@ -44,11 +44,13 @@ public class GameLoop implements Screen, SimulationListener {
 	private  Sound explosion;
 	/** shot sound **/
 	private  Sound shot;
+	private Sound shieldSound;
 	private Sound missile;
 	public GameLoop (Application app) {
 		explosion = Gdx.audio.newSound(Gdx.files.internal("data/explosion.ogg"));
 		shot = Gdx.audio.newSound(Gdx.files.internal("data/shot.ogg"));
-		missile = Gdx.audio.newSound(Gdx.files.internal("data/missile.ogg"));
+		shieldSound = Gdx.audio.newSound(Gdx.files.internal("data/shield.ogg"));
+		missile = Gdx.audio.newSound(Gdx.files.internal("data/missile.wav"));
 		simulation = new Simulation();
 		simulation.listener = this;
 		renderer = new Renderer(app);
@@ -58,12 +60,13 @@ public class GameLoop implements Screen, SimulationListener {
 		missile.dispose();
 		shot.dispose();
 		explosion.dispose();
+		shieldSound.dispose();
 		renderer.dispose();
 		simulation.dispose();
 	}
 
 	@Override public boolean isDone () {
-		return simulation.ship.lives <= 0;
+		return simulation.isGameOver();
 	}
 
 	@Override public void render (Application app) {
@@ -87,8 +90,14 @@ public class GameLoop implements Screen, SimulationListener {
 			if (input.isKeyPressed(Keys.DPAD_LEFT)) simulation.moveShipLeft(app.getGraphics().getDeltaTime(), 0.5f);
 			if (input.isKeyPressed(Keys.DPAD_RIGHT)) simulation.moveShipRight(app.getGraphics().getDeltaTime(), 0.5f);
 	
-			if (input.isTouched() || input.isKeyPressed(Keys.SPACE)) simulation.shot();
-			if (input.getAccelerometerX() < 0) simulation.launch();
+			if (input.isTouched() || input.isKeyPressed(Keys.SPACE)){
+				simulation.shot();
+				//simulation.launch();
+			}
+			if (input.getAccelerometerX() < 0) 
+				simulation.launch();
+			if (Math.abs(input.getAccelerometerY()) > 6) 
+				simulation.shield();
 		}
 		else if(input.isTouched() || input.isKeyPressed(Keys.SPACE)){
 			if(Settings.getStatus()==0 || (Settings.getStatus()==2 && simulation.awardWait > 2))
@@ -108,5 +117,11 @@ public class GameLoop implements Screen, SimulationListener {
 	}
 	@Override public int getScore(){
 		return simulation.score;
+	}
+
+	@Override
+	public void shield() {
+		// TODO Auto-generated method stub
+		shieldSound.play(Settings.getSoundVolume());
 	}
 }
