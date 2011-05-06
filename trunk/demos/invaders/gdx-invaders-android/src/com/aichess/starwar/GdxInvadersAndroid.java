@@ -30,9 +30,6 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
-import net.youmi.android.AdListener;
-import net.youmi.android.AdManager;
-import net.youmi.android.AdView;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -48,6 +45,7 @@ import android.util.AttributeSet;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -60,12 +58,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.admob.android.ads.AdView;
+import com.admob.android.ads.AdView.AdListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.surfaceview.FillResolutionStrategy;
@@ -76,26 +77,27 @@ import com.badlogic.gdxinvaders.simulation.Settings;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class GdxInvadersAndroid extends AndroidApplication implements AdListener {
-	static{ 
-    	AdManager.init("f67d5f8c4e102945", "46ffddb0a2f1cf4d", 31, false,"1.0");
-    }
+public class GdxInvadersAndroid extends AndroidApplication {
+//	static{ 
+//    	AdManager.init("f67d5f8c4e102945", "46ffddb0a2f1cf4d", 31, false,"1.0");
+//    }
 	private final int settingID = 1;
 	private final int bulletinID = 2;
 	int adCount = 5;
 	private boolean bReceiveAD = false;
 	View bulletinDialogView;
-	int highestScore;	
-	AdView adView;	
-	@Override
-	public void onConnectFailed() {
-		System.out.println("received faild");		
-	}
-
-	@Override
-	public void onReceiveAd() {
-		bReceiveAD = true;
-	}
+	int highestScore;
+	boolean isNewAd = false;
+//	AdView adView;	
+//	@Override
+//	public void onConnectFailed() {
+//		System.out.println("received faild");		
+//	}
+//
+//	@Override
+//	public void onReceiveAd() {
+//		bReceiveAD = true;
+//	}
 	
 	/** Called when the activity is first created. */
 	@Override public void onCreate (Bundle savedInstanceState) {
@@ -120,6 +122,63 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         mainView.setLayoutParams(createLayoutParams());
         frameLayout.addView(mainView);
         
+        final AdView adview = new AdView(getApplicationContext());
+        FrameLayout.LayoutParams adLayoutParams = new FrameLayout.LayoutParams(400, LayoutParams.WRAP_CONTENT);
+        adLayoutParams.gravity = Gravity.RIGHT;
+        adview.setLayoutParams(adLayoutParams);
+        adview.setBackgroundColor(0x777777);
+        adview.setTextColor(0x000099);
+        adview.setRequestInterval(15);
+        //adview.setAlwaysDrawnWithCacheEnabled(true);
+        adview.setListener(new AdListener()
+        {
+			public void onFailedToReceiveAd(AdView adView) {
+				//System.out.println("onFailedToReceiveAd");
+			}
+
+			public void onNewAd() {
+				isNewAd = true;
+				//System.out.println("onNewAd");				
+			}
+
+			public void onReceiveAd(AdView adView){
+				isNewAd = true;
+				//System.out.println("onReceiveAd");
+			}        	
+        });
+        adview.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Settings.setStatus(0);
+			}
+		});
+        //frameLayout.addView(adview); 
+        /*
+        ImageView imageView = new ImageView(getApplicationContext());
+        imageView.setImageResource(R.drawable.resbackground);
+        imageView.setClickable(true);
+        //imageView.setAlpha(0);
+        FrameLayout.LayoutParams imageLayoutParams = new FrameLayout.LayoutParams(400, 20);
+        imageLayoutParams.gravity = Gravity.RIGHT;
+        imageView.setLayoutParams(adLayoutParams);
+        imageView.setScaleType(ScaleType.CENTER_INSIDE);
+        imageView.setOnTouchListener(new View.OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				System.out.println("you click ad");
+				if(isNewAd){
+					Settings.setClickNewAd(true);
+					isNewAd = false;
+					adview.performClick();
+				}
+				return true;
+			}
+		});
+        frameLayout.addView(imageView);
+        */ 
+        /*
         //youmi ad
         adView = new AdView(this,Color.GRAY, Color.WHITE, 100);
 		adView.setAdListener(this);
@@ -135,7 +194,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 			}
 		});
         frameLayout.addView(adView);
-        
+        */
         //settings view        
         final ImageView settingsView = new ImageView(GdxInvadersAndroid.this);
         settingsView.setImageResource(android.R.drawable.ic_menu_preferences);
@@ -146,8 +205,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         settingsView.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-				if(Settings.getStatus()==1)
-					Settings.setStatus(0);
+				Settings.setStatus(0);
 				Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate);
 				settingsView.startAnimation(animation);
 				showDialog(settingID);
@@ -165,6 +223,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
         bulletinView.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
+				Settings.setStatus(0);
 				Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.alpha);
 				bulletinView.startAnimation(animation);
 				LayoutInflater inflater = getLayoutInflater();
@@ -216,7 +275,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 					txtAD.setText(String.format(getResources().getString(R.string.ad_message), seekBar.getProgress()+1));
 					adCount = seekBar.getProgress()+1;
 					Settings.setAdCount(adCount);
-					adView.setVisibility(View.VISIBLE);
+					//adView.setVisibility(View.VISIBLE);
 				}
 			});
 	        
@@ -369,6 +428,7 @@ public class GdxInvadersAndroid extends AndroidApplication implements AdListener
 	}
 	@Override
 	public void onBackPressed() {
+		Settings.setStatus(0);
 		new AlertDialog.Builder(GdxInvadersAndroid.this)
 		.setTitle(getResources().getString(R.string.cancel_title))
 		.setMessage(getResources().getString(R.string.cancel_confirm))

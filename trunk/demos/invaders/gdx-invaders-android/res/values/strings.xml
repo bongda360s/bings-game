@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Star war</string>
+    <string name="app_name">Robotech</string>
     <string name="bulletinBoard">Hero World</string>
     <string name="leave_name">Hero world</string>
     <string name="best_result">The best uncommitted result was:%d, please submit your hero.</string>
@@ -8,7 +8,7 @@
     <string name="ad_5message">Active 5 ads, banner ads disappeared</string>
     <string name="system_setting">System settings</string>
     <string name="cancel_title">Cancel confirm</string>
-    <string name="cancel_confirm">Do you really want to exit Star war?</string>
+    <string name="cancel_confirm">Do you really want to exit Robotech?</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
     <string name="submit">Submit</string>

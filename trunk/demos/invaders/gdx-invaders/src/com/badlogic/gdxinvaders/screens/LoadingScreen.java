@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdxinvaders.simulation.Settings;
@@ -41,6 +42,8 @@ public class LoadingScreen implements Screen {
 	private Music music;
 	/** the font **/
 	private BitmapFont font;
+	private TextureRegion continueRegion;
+	private TextureRegion robotechRegion;
 	
 	public LoadingScreen(Application app){
 		music = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/menu.ogg", FileType.Internal));
@@ -55,6 +58,8 @@ public class LoadingScreen implements Screen {
 		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		title = TextureDict.loadTexture("data/title.png").get();
 		title.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		continueRegion = new TextureRegion(title,98,385,204,28);
+		robotechRegion = new TextureRegion(title,0, 210, 420, 80);
 		font = new BitmapFont();
 		font.setColor(1, 1, 0, 1);
 	}
@@ -108,17 +113,14 @@ public class LoadingScreen implements Screen {
 	}
 	private void renderPlay(){
 		spriteBatch.begin();
-		spriteBatch.disableBlending();
-		spriteBatch.setColor(Color.WHITE);
-		String strStart = "Touch to continue.";
-		TextBounds bounds = font.getBounds(strStart);
-		font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight - 30);
+		spriteBatch.enableBlending();
+		spriteBatch.draw(continueRegion, 180, 257,120,20);
 		spriteBatch.end();
 	}
 	private void renderTitle(){
 		spriteBatch.begin();
 		spriteBatch.enableBlending();
-		spriteBatch.draw(title, 120, 2, 240, 80, 0, 145, 420, 65, false, false);
+		spriteBatch.draw(robotechRegion, 122, 7, 240, 70);
 		spriteBatch.end();
 	}
 	
