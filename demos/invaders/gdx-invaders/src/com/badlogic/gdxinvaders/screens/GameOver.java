@@ -24,6 +24,7 @@ import com.badlogic.gdx.graphics.TextureDict;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -52,6 +53,7 @@ public class GameOver implements Screen {
 	/** the background music **/
 	private Music music;
 	private final SpriteBatch spriteBatch;
+	private TextureRegion continueRegion;
 	public GameOver (Application app) {
 		music = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/menu.ogg", FileType.Internal));
 		music.setVolume(Settings.getMusicVolume());
@@ -62,7 +64,7 @@ public class GameOver implements Screen {
 		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);		
 		logo = TextureDict.loadTexture("data/title.png").get();	
 		logo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
+		continueRegion = new TextureRegion(logo,98,385,204,28);
 		font = new BitmapFont();
 		font.setColor(1, 1, 0, 1);
 		this.spriteBatch = new SpriteBatch();		
@@ -95,11 +97,8 @@ public class GameOver implements Screen {
 	}
 	private void renderPlay(){
 		spriteBatch.begin();
-		spriteBatch.disableBlending();
-		spriteBatch.setColor(Color.WHITE);
-		String strStart = "Touch to continue.";
-		TextBounds bounds = font.getBounds(strStart);
-		font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight - 30);
+		spriteBatch.enableBlending();
+		spriteBatch.draw(continueRegion, 180, 257,120,20);
 		spriteBatch.end();
 	}
 	@Override public void update (Application app) {

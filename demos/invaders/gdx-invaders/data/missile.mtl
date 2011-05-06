@@ -1,0 +1,41 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# 创建的文件:04.05.2011 14:53:29
+
+newmtl 01___Default
+	Ns 29.00
+	Ni 1.50
+	d 1.00
+	Tr 0.00
+	Tf 1.00 1.00 1.00 
+	illum 2
+	Ka 1.00 1.00 1.00
+	Kd 1.00 1.00 1.00
+	Ks 0.20 0.20 0.20
+	Ke 0.00 0.00 0.00
+	map_bump -bm 0.30 Map__1_Noise.png
+
+newmtl 01___Default4
+	Ns 29.00
+	Ni 1.50
+	d 1.00
+	Tr 0.00
+	Tf 1.00 1.00 1.00 
+	illum 2
+	Ka 0.25 0.25 0.95
+	Kd 0.25 0.25 0.95
+	Ks 0.20 0.20 0.20
+	Ke 0.00 0.00 0.00
+	map_bump -bm 0.30 Map__1_Noise.png
+
+newmtl 01___Default44
+	Ns 29.00
+	Ni 1.50
+	d 1.00
+	Tr 0.00
+	Tf 1.00 1.00 1.00 
+	illum 2
+	Ka 0.96 0.34 0.25
+	Kd 0.96 0.34 0.25
+	Ks 0.20 0.20 0.20
+	Ke 0.00 0.00 0.00
+	map_bump -bm 0.30 Map__1_Noise.png

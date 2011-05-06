@@ -33,7 +33,7 @@ public class Settings {
 	private static float soundVolume = 0f;
 	private static float musicVolume = 0f;	
 	private static int status = 1; //0:stop 1:playing 2:award
-	private static String touchToContinue = "Touch to continue.";
+	private static boolean clickNewAd = false;
     /**
 	 * @return the fightings
 	 */
@@ -199,16 +199,16 @@ public class Settings {
 		Settings.status = status;
 	}
 	/**
-	 * @return the touchToContinue
+	 * @return the clickNewAd
 	 */
-	public static String getTouchToContinue() {
-		return touchToContinue;
+	public static boolean getClickNewAd() {
+		return clickNewAd;
 	}
 	/**
-	 * @param touchToContinue the touchToContinue to set
+	 * @param clickNewAd the clickNewAd to set
 	 */
-	public static void setTouchToContinue(String touchToContinue) {
-		Settings.touchToContinue = touchToContinue;
+	public static void setClickNewAd(boolean clickNewAd) {
+		Settings.clickNewAd = clickNewAd;
 	}
 }
 

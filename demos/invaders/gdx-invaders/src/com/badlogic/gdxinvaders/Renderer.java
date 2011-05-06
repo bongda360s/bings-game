@@ -32,6 +32,7 @@ import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.loaders.ModelLoader;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
@@ -71,6 +72,7 @@ public class Renderer {
 	private BitmapFont font;
 	/** the background texture **/
 	private Texture background;
+	private Texture title;
 	/** the ship mesh **/
 	private Mesh shipMesh;
 	/** the ship texture **/
@@ -79,7 +81,7 @@ public class Renderer {
 	private Mesh invaderMesh;
 	/** the invader texture **/
 	private Texture invaderTexture;
-	private Texture shieldTexture;
+	//private Texture shieldTexture;
 	private Mesh shieldMesh;
 	/** the block mesh **/
 	private Mesh blockMesh;
@@ -91,10 +93,14 @@ public class Renderer {
 	private Mesh explosionMesh;
 	/** the explosion texture **/
 	private Texture explosionTexture;
-	private Texture planeDemo;
-	private Texture level;
-	private Texture award;
-	private Texture playing;
+	private TextureRegion planeDemo;
+	private TextureRegion level;
+	private TextureRegion award;
+	private TextureRegion missileDemo;
+	private TextureRegion shieldDemo;
+	private TextureRegion levelComplete;
+	private TextureRegion continueRegion;
+	//private Texture playing;
 	public Renderer (Application app) {	
 		spriteBatch = new SpriteBatch();
 		camera = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -104,12 +110,23 @@ public class Renderer {
 		earth.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		background = TextureDict.loadTexture("data/background.png").get();
 		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		title = TextureDict.loadTexture("data/title.png").get();
+		title.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		levelComplete = new TextureRegion(title,0,300,420,78);
+		planeDemo = new TextureRegion(title,512-64,0,64,60);
+		level = new TextureRegion(title,0,512 - 135,64,64);
+		award = new TextureRegion(title,512-64,64,64,64);
+		missileDemo = new TextureRegion(title,512-64,128,64,64);
+		shieldDemo = new TextureRegion(title,512-64,512-64,64,64);
+		continueRegion = new TextureRegion(title,98,385,204,28);
+		/*
 		planeDemo = TextureDict.loadTexture("data/planedemo.png").get();
 		planeDemo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		level = TextureDict.loadTexture("data/medal.png").get();
 		level.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		award = TextureDict.loadTexture("data/score.png").get();
 		award.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		*/
 		try{
 			InputStream in = Gdx.files.internal("data/ship.obj").read();
 			shipMesh = ModelLoader.loadObj(in);
@@ -141,8 +158,8 @@ public class Renderer {
 			missileTexture.setFilter(TextureFilter.MipMap, TextureFilter.Linear);
 			shipTexture = new Texture(Gdx.files.internal("data/ship.png"), true);
 			shipTexture.setFilter(TextureFilter.MipMap, TextureFilter.Linear);				
-			shieldTexture = new Texture(Gdx.files.internal("data/shield.png"), true);
-			shieldTexture.setFilter(TextureFilter.MipMap, TextureFilter.Linear);
+			//shieldTexture = new Texture(Gdx.files.internal("data/thunder.png"), true);
+			//shieldTexture.setFilter(TextureFilter.MipMap, TextureFilter.Linear);
 			invaderTexture = new Texture(Gdx.files.internal("data/invader.png"), true);
 			invaderTexture.setFilter(TextureFilter.MipMap, TextureFilter.Linear);
 			explosionTexture = new Texture(Gdx.files.internal("data/explode.png"), true);
@@ -206,7 +223,8 @@ public class Renderer {
 		renderShip(gl, simulation.ship, app);
 		renderMissile(gl, simulation.missile, app);
 		if(Settings.getStatus() != 2){
-			renderInvaders(gl, simulation.invaders);			
+			renderInvaders(gl, simulation.invaders);
+			renderBorder(gl,simulation.borders);
 			gl.glDisable(GL10.GL_TEXTURE_2D);
 			renderBlocks(gl, simulation.blocks);
 			renderShield(gl,simulation.shield);
@@ -235,12 +253,16 @@ public class Renderer {
 		if(Settings.getStatus() != 2)
 			spriteBatch.draw(earth, 60 - 2 * simulation.ship.position.x, 40, 360, 240, 0, 0, 512, 512, false, false);
 		
-		spriteBatch.draw(level, 0, Settings.matricHeight - 16, 16, 16, 0, 0, 64, 64, false, false);
+		spriteBatch.draw(level, 0, Settings.matricHeight - 16, 16, 16);
 		font.draw(spriteBatch, "\327 " + simulation.wave, 16, Settings.matricHeight + 4);
-		spriteBatch.draw(planeDemo, 0, Settings.matricHeight - 37, 16, 16, 0, 0, 64, 64, false, false);
-		font.draw(spriteBatch, "\327 " + simulation.ship.lives, 16, Settings.matricHeight - 17);
-		spriteBatch.draw(award, 0, Settings.matricHeight - 58, 16, 16, 0, 0, 64, 64, false, false);
-		font.draw(spriteBatch, "\327 " + Integer.toString(simulation.score), 16, Settings.matricHeight - 38);
+		spriteBatch.draw(planeDemo, 0, Settings.matricHeight - 36, 16, 16);
+		font.draw(spriteBatch, "\327 " + simulation.ship.lives, 16, Settings.matricHeight - 16);
+		spriteBatch.draw(missileDemo, 0, Settings.matricHeight - 56, 16, 16);
+		font.draw(spriteBatch, "\327 " + Missile.count, 16, Settings.matricHeight - 36);
+		spriteBatch.draw(shieldDemo, 0, Settings.matricHeight - 76, 16, 16);
+		font.draw(spriteBatch, "\327 " + Shield.count, 16, Settings.matricHeight - 56);
+		spriteBatch.draw(award, 0, Settings.matricHeight - 98, 16, 16);
+		font.draw(spriteBatch, "\327 " + Integer.toString(simulation.score), 16, Settings.matricHeight - 76);
 		spriteBatch.end();
 	}
 	
@@ -248,22 +270,25 @@ public class Renderer {
 		spriteBatch.begin();
 		spriteBatch.enableBlending();
 		spriteBatch.setColor(Color.WHITE);
-		spriteBatch.draw(award, Settings.matricWidth/2 - 32, Settings.matricHeight/2, 32, 32, 0, 0, 64, 64, false, false);
-		spriteBatch.draw(planeDemo, Settings.matricWidth/2 - 32, Settings.matricHeight/2 - 40, 32, 32, 0, 0, 64, 64, false, false);
-		font.draw(spriteBatch, " + " + simulation.awardScore, Settings.matricWidth/2, Settings.matricHeight/2 + 32);
-		font.draw(spriteBatch, " + " + simulation.awardShip, Settings.matricWidth/2, Settings.matricHeight/2 - 8);
+		spriteBatch.draw(levelComplete, 140, 200, 200, 40);
+		spriteBatch.draw(award, Settings.matricWidth/2 - 32, Settings.matricHeight/2, 32, 32);
+		spriteBatch.draw(planeDemo, Settings.matricWidth/2 - 32, Settings.matricHeight/2 - 40, 32, 32);
+		spriteBatch.draw(missileDemo, Settings.matricWidth/2 - 32, Settings.matricHeight/2 - 80, 32, 32);
+		spriteBatch.draw(shieldDemo, Settings.matricWidth/2 - 32, Settings.matricHeight/2 - 120, 32, 32);
+		font.draw(spriteBatch, " \327 " + simulation.awardScore, Settings.matricWidth/2, Settings.matricHeight/2 + 32);
+		font.draw(spriteBatch, " \327 " + simulation.awardShip, Settings.matricWidth/2, Settings.matricHeight/2 - 8);
+		font.draw(spriteBatch, " \327 " + simulation.awardMissile, Settings.matricWidth/2, Settings.matricHeight/2 - 48);
+		font.draw(spriteBatch, " \327 " + simulation.awardShield, Settings.matricWidth/2, Settings.matricHeight/2 - 88);
 		spriteBatch.end();
 		if(simulation.awardWait > 1){
 			renderPlay();
 		}
 	}
+	
 	private void renderPlay(){
 		spriteBatch.begin();
-		spriteBatch.disableBlending();
-		spriteBatch.setColor(Color.WHITE);
-		String strStart = "Touch to continue.";
-		TextBounds bounds = font.getBounds(strStart);
-		font.draw(spriteBatch, strStart, Settings.matricWidth/2 - bounds.width/2, Settings.matricHeight - 30);
+		spriteBatch.enableBlending();
+		spriteBatch.draw(continueRegion, 180, 257,120,20);
 		spriteBatch.end();
 	}
 	
@@ -326,11 +351,23 @@ public class Renderer {
 		missileMesh.render(GL10.GL_TRIANGLES);
 		gl.glPopMatrix();
 	}
+	private void renderBorder(GL10 gl, ArrayList<Block> blocks ){
+		missileTexture.bind();
+		gl.glPushMatrix();
+		for(int i = 0; i < blocks.size(); i++){
+			Block block = blocks.get(i);
+			gl.glPushMatrix();
+			gl.glTranslatef(block.position.x, block.position.y, block.position.z);
+			gl.glRotatef(90, 0, 0, 1);
+			blockMesh.render(GL10.GL_TRIANGLES);
+			gl.glPopMatrix();
+		}
+	}
 	
 	private void setMissileLighting (GL10 gl, Missile missile) {
 		gl.glEnable(GL10.GL_LIGHTING);
-		gl.glEnable(GL10.GL_LIGHT3);
-		gl.glLightfv(GL10.GL_LIGHT3, GL10.GL_POSITION, new float[]{missile.position.x,missile.position.y,missile.position.z + 0.5f,0}, 0);
+		gl.glEnable(GL10.GL_LIGHT4);
+		gl.glLightfv(GL10.GL_LIGHT4, GL10.GL_POSITION, new float[]{missile.position.x,missile.position.y,missile.position.z + 0.5f,0}, 0);
 		gl.glEnable(GL10.GL_COLOR_MATERIAL);
 	}
 	
@@ -339,8 +376,8 @@ public class Renderer {
 			gl.glEnable(GL10.GL_BLEND);
 			gl.glBlendFunc(GL10.GL_SRC_ALPHA,GL10.GL_ONE_MINUS_SRC_ALPHA);
 			//gl.glBlendFunc(GL10.GL_ONE,GL10.GL_ONE);
-			shieldTexture.bind();		
-			gl.glColor4f(1f,1f, 1f, 0.5f);
+			//shieldTexture.bind();		
+			gl.glColor4f(0.8f,0.2f, 0.2f, 0.5f);
 			//gl.glDepthMask(false);
 			gl.glPushMatrix();
 			gl.glTranslatef(shield.position.x, shield.position.y, shield.position.z);

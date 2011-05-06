@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.TextureDict;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdxinvaders.simulation.Settings;
@@ -18,7 +19,8 @@ public class ShowLogo implements Screen {
 	private final SpriteBatch spriteBatch;
 	private float elapseTime = 0;
 	public ShowLogo(Application app){		
-		background = TextureDict.loadTexture("data/background.png").get();	
+		background = TextureDict.loadTexture("data/background.png").get();
+		background.setFilter(TextureFilter.Linear,TextureFilter.Linear);
 		this.spriteBatch = new SpriteBatch();
 	}
 	

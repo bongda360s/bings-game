@@ -6,7 +6,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/gdx-invaders"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/gdx"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/gdx-backend-android"/>
-	<classpathentry kind="lib" path="libs/youmiad-android.jar"/>
 	<classpathentry kind="lib" path="libs/gson-1.7.1.jar" sourcepath="D:/Users/bing/Downloads/google-gson-1.7.1/gson-1.7.1-sources.jar"/>
+	<classpathentry kind="lib" path="libs/admob-sdk-android.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
