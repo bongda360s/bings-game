@@ -92,7 +92,7 @@ public class GameLoop implements Screen, SimulationListener {
 	
 			if (input.isTouched() || input.isKeyPressed(Keys.SPACE)){
 				simulation.shot();
-				simulation.launch();
+				//simulation.launch();
 			}
 			if (input.getAccelerometerX() < 0) 
 				simulation.launch();

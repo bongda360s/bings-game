@@ -44,28 +44,28 @@ public class Simulation implements Disposable {
 	public int wave;
 	private ArrayList<Explosion> removedExplosions = new ArrayList<Explosion>();
 	private Music[] backgroundMusics = new Music[2];
-//	private final boolean[][] array = {
-//		{true,true,true,true,true,true,true,true,true},
-//		{true,true,true,true,true,true,true,true,true},
-//		{false,true,true,true,true,true,true,true,false},
-//		{false,true,true,true,true,true,true,true,false},
-//		{false,true,true,true,true,true,true,true,false},
-//		{false,false,true,true,true,true,true,false,false},
-//		{false,false,true,true,true,true,true,false,false},
-//		{false,false,false,true,true,true,false,false,false},
-//		{false,false,false,true,true,true,false,false,false},
-//		{false,false,false,false,true,false,false,false,false}};
 	private final boolean[][] array = {
-			{false,false,false,false,true,false,false,false,false},
-			{false,false,false,false,true,false,false,false,false},
-			{false,false,false,false,true,false,false,false,false},
-			{false,false,false,false,true,false,false,false,false},
-			{false,false,false,false,true,false,false,false,false},
-			{false,false,false,false,true,false,false,false,false},
-			{false,false,false,false,true,false,false,false,false},
-			{false,false,false,false,true,false,false,false,false},
-			{false,false,false,false,false,false,false,false,false},
-			{false,false,false,false,false,false,false,false,false}};
+		{true,true,true,true,true,true,true,true,true},
+		{true,true,true,true,true,true,true,true,true},
+		{false,true,true,true,true,true,true,true,false},
+		{false,true,true,true,true,true,true,true,false},
+		{false,true,true,true,true,true,true,true,false},
+		{false,false,true,true,true,true,true,false,false},
+		{false,false,true,true,true,true,true,false,false},
+		{false,false,false,true,true,true,false,false,false},
+		{false,false,false,true,true,true,false,false,false},
+		{false,false,false,false,true,false,false,false,false}};
+//	private final boolean[][] array = {
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,true,false,false,false,false},
+//			{false,false,false,false,false,false,false,false,false},
+//			{false,false,false,false,false,false,false,false,false}};
 	private Date loopbegin = new Date();
 	private float totalElapse = 0f;
 	public int awardScore = 0;

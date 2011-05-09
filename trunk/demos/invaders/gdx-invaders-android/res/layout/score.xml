@@ -27,6 +27,7 @@
 	               android:layout_width="150px" 
 	               android:id="@+id/score"
 	               android:layout_gravity="right"
+	               android:gravity="right"
 	               >  
 	         </TextView> 
          </TableRow> 

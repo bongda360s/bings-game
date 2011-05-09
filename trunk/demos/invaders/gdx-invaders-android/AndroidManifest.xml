@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.aichess.starwar"
-      android:versionCode="5"
-      android:versionName="1.5"
+      package="com.aichess.robotech"
+      android:versionCode="7"
+      android:versionName="1.5.2"
 >
-    <application android:icon="@drawable/icon" android:debuggable="true">
-        <activity android:name="com.aichess.starwar.GdxInvadersAndroid"
+    <application android:icon="@drawable/icon">
+        <activity android:name="com.aichess.robotech.GdxInvadersAndroid"
         		  android:label="@string/app_name"	
                   android:configChanges="keyboard|keyboardHidden|orientation"
                   android:theme="@android:style/Theme.NoTitleBar">
@@ -15,8 +15,12 @@
             </intent-filter>
         </activity>
         <meta-data android:value="a14dc2bc9186e13" android:name="ADMOB_PUBLISHER_ID" />
+        <activity android:name="com.ignitevision.android.ads.AdWebView" android:exported="false" android:configChanges="orientation|keyboardHidden"></activity>
+        
+        <!-- The application's publisher ID assigned by Tinmoo -->
+        <meta-data android:value="6gm2ookyn0cwe1266t3hm9z51ot3zje1vaajcau6svxlbd4c1kjoze9qfjgr0" android:name="TINMOO_PUBLISHER_ID" />
     </application>
-    <uses-sdk android:targetSdkVersion="7" android:minSdkVersion="7"/>
+    <uses-sdk android:targetSdkVersion="10" android:minSdkVersion="3"/>
 	<!-- 连接网络权限 ，用于请求广告(必须)-->
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<!-- 读取手机基本信息权限，用于精确统计用户的机型等信息(必须) -->

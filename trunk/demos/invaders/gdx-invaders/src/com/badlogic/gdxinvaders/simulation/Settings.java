@@ -30,8 +30,8 @@ public class Settings {
 	private static String phoneName;
     private static List<Fighting> fightings;
 	private static List<Fighting> netFightings;
-	private static float soundVolume = 0f;
-	private static float musicVolume = 0f;	
+	private static float soundVolume = 0.6f;
+	private static float musicVolume = 0.7f;	
 	private static int status = 1; //0:stop 1:playing 2:award
 	private static boolean clickNewAd = false;
     /**
@@ -104,8 +104,7 @@ public class Settings {
     public static void load() {
         BufferedReader in = null;
         try {
-            in = new BufferedReader(new InputStreamReader(Gdx.files.external(file).read()));
-                       
+            in = new BufferedReader(new InputStreamReader(Gdx.files.external(file).read()));                       
             soundVolume = Float.parseFloat(in.readLine());
             musicVolume = Float.parseFloat(in.readLine());
             adCount = Integer.parseInt(in.readLine());
@@ -130,13 +129,11 @@ public class Settings {
         BufferedWriter out = null;
         try {
             out = new BufferedWriter(new OutputStreamWriter(Gdx.files.external(file).write(false)));
-            
             out.write(Float.toString(soundVolume)+"\r\n");
             out.write(Float.toString(musicVolume)+"\r\n");
             out.write(Integer.toString(adCount)+"\r\n");
             Gson gson = new Gson();
             out.write(gson.toJson(fightings));
-
         } catch (Throwable e) {
         } finally {
             try {
