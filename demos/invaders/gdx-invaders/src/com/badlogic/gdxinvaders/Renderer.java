@@ -270,7 +270,7 @@ public class Renderer {
 		spriteBatch.begin();
 		spriteBatch.enableBlending();
 		spriteBatch.setColor(Color.WHITE);
-		spriteBatch.draw(levelComplete, 140, 200, 200, 40);
+		spriteBatch.draw(levelComplete, 145, 200, 200, 40);
 		spriteBatch.draw(award, Settings.matricWidth/2 - 32, Settings.matricHeight/2, 32, 32);
 		spriteBatch.draw(planeDemo, Settings.matricWidth/2 - 32, Settings.matricHeight/2 - 40, 32, 32);
 		spriteBatch.draw(missileDemo, Settings.matricWidth/2 - 32, Settings.matricHeight/2 - 80, 32, 32);

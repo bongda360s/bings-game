@@ -17,4 +17,10 @@
     <string name="sound">游戏音效</string>
     <string name="unsung_hero">无名英雄</string>
     <string name="start_game">点击屏幕继续</string>
+    <string name="game_control">游戏控制</string>
+    <string name="move_control">1. 向左或向右翻转可以移动太空堡垒</string>
+    <string name="fire_control">2. 触摸屏幕发射炮弹</string>
+    <string name="launch_control">3. 向上翻转可以发射导弹</string>
+    <string name="shield_control">4. 大幅度地向左或向右翻转可以释放离子盾</string>
+    <string name="more_info">5. 访问androidgame.sinaapp.com获得更多的帮助信息</string>
 </resources>
