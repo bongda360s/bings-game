@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< .mine
+      package="com.aichess.robotech"
+      android:versionCode="5"
+      android:versionName="1.5"
+=======
       package="com.aichess.robotech"
       android:versionCode="7"
       android:versionName="1.5.2"
+>>>>>>> .r59
 >
+<<<<<<< .mine
+    <application android:icon="@drawable/icon" android:debuggable="true">
+        <activity android:name="com.aichess.robotech.GdxInvadersAndroid"
+=======
     <application android:icon="@drawable/icon">
         <activity android:name="com.aichess.robotech.GdxInvadersAndroid"
+>>>>>>> .r59
         		  android:label="@string/app_name"	
                   android:configChanges="keyboard|keyboardHidden|orientation"
                   android:theme="@android:style/Theme.NoTitleBar">
