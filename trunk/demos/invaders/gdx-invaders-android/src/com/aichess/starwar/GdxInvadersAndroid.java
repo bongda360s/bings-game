@@ -1,5 +1,4 @@
-
-package com.aichess.starwar;
+package com.aichess.robotechhiapk;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,6 +8,10 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import net.youmi.android.AdListener;
+import net.youmi.android.AdManager;
+import net.youmi.android.AdView;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpRequest;
@@ -25,6 +28,7 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.params.DefaultedHttpParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
@@ -42,6 +46,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -65,8 +70,7 @@ import android.widget.SeekBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.admob.android.ads.AdView;
-import com.admob.android.ads.AdView.AdListener;
+import com.aichess.robotechhiapk.R;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.surfaceview.FillResolutionStrategy;
@@ -76,42 +80,37 @@ import com.badlogic.gdxinvaders.simulation.Invader;
 import com.badlogic.gdxinvaders.simulation.Settings;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.ignitevision.android.ads.SimpleAdListener;
 
-public class GdxInvadersAndroid extends AndroidApplication {
-//	static{ 
-//    	AdManager.init("f67d5f8c4e102945", "46ffddb0a2f1cf4d", 31, false,"1.0");
-//    }
+public class GdxInvadersAndroid extends AndroidApplication implements AdListener {
+	static{ 
+    	//AdManager.init("53456fcbcabb048d", "88f38b54dcd85147", 31, false,"1.0");
+    	// set test mode.
+    	com.ignitevision.android.ads.AdManager.setTest(true);
+		// set your key to load test ads.
+    	com.ignitevision.android.ads.AdManager.setPublisherKey("6gm2ookyn0cwe1266t3hm9z51ot3zje1vaajcau6svxlbd4c1kjoze9qfjgr0");
+    }
 	private final int settingID = 1;
 	private final int bulletinID = 2;
-	int adCount = 5;
-	private boolean bReceiveAD = false;
+	//int adCount = 5;
+	//private boolean bReceiveAD = false;
 	View bulletinDialogView;
 	int highestScore;
-	boolean isNewAd = false;
-//	AdView adView;	
-//	@Override
-//	public void onConnectFailed() {
-//		System.out.println("received faild");		
-//	}
-//
-//	@Override
-//	public void onReceiveAd() {
-//		bReceiveAD = true;
-//	}
+	//boolean isNewAd = false;
+	AdView adView;
 	
 	/** Called when the activity is first created. */
 	@Override public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
 		TelephonyManager telephonyManager=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
 		Settings.setPhoneName(telephonyManager.getDeviceId());
-		adCount = Settings.getAdCount();
+		//adCount = Settings.getAdCount();
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-        this.setContentView(R.layout.main);        
-        
+        //this.setContentView(R.layout.main);
         //main view
         FrameLayout frameLayout = new FrameLayout(this);       
         FrameLayout.LayoutParams mainLayoutParams = new FrameLayout.LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.FILL_PARENT);               
@@ -121,8 +120,9 @@ public class GdxInvadersAndroid extends AndroidApplication {
         View mainView = initializeForView(new GdxInvaders(), false);        
         mainView.setLayoutParams(createLayoutParams());
         frameLayout.addView(mainView);
-        
-        final AdView adview = new AdView(getApplicationContext());
+        /*
+        //admob        
+        final com.admob.android.ads.AdView adview = new com.admob.android.ads.AdView(getApplicationContext());
         FrameLayout.LayoutParams adLayoutParams = new FrameLayout.LayoutParams(400, LayoutParams.WRAP_CONTENT);
         adLayoutParams.gravity = Gravity.RIGHT;
         adview.setLayoutParams(adLayoutParams);
@@ -130,20 +130,23 @@ public class GdxInvadersAndroid extends AndroidApplication {
         adview.setTextColor(0x000099);
         adview.setRequestInterval(15);
         //adview.setAlwaysDrawnWithCacheEnabled(true);
-        adview.setListener(new AdListener()
+        adview.setListener(new com.admob.android.ads.AdView.AdListener()
         {
 			public void onFailedToReceiveAd(AdView adView) {
-				//System.out.println("onFailedToReceiveAd");
 			}
 
-			public void onNewAd() {
-				isNewAd = true;
-				//System.out.println("onNewAd");				
+			public void onNewAd() {				
 			}
 
-			public void onReceiveAd(AdView adView){
-				isNewAd = true;
-				//System.out.println("onReceiveAd");
+			@Override
+			public void onReceiveAd(com.admob.android.ads.AdView adView) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void onFailedToReceiveAd(com.admob.android.ads.AdView adView) {
+				// TODO Auto-generated method stub
+				
 			}        	
         });
         adview.setOnClickListener(new View.OnClickListener() {
@@ -153,7 +156,8 @@ public class GdxInvadersAndroid extends AndroidApplication {
 				Settings.setStatus(0);
 			}
 		});
-        //frameLayout.addView(adview); 
+        frameLayout.addView(adview); 
+        */
         /*
         ImageView imageView = new ImageView(getApplicationContext());
         imageView.setImageResource(R.drawable.resbackground);
@@ -178,23 +182,53 @@ public class GdxInvadersAndroid extends AndroidApplication {
 		});
         frameLayout.addView(imageView);
         */ 
-        /*
+        
         //youmi ad
+        /*
         adView = new AdView(this,Color.GRAY, Color.WHITE, 100);
 		adView.setAdListener(this);
-		FrameLayout.LayoutParams adViewParams = new FrameLayout.LayoutParams(360, 38);      
+		FrameLayout.LayoutParams adViewParams = new FrameLayout.LayoutParams(420,LayoutParams.WRAP_CONTENT);
 		adViewParams.gravity = Gravity.RIGHT;
-		adView.setLayoutParams(adViewParams);
-		adView.setOnClickListener(new View.OnClickListener() {			
-			@Override
-			public void onClick(View v) {
-				adCount--;
-				if(adCount==0)
-					adView.setVisibility(View.INVISIBLE);
-			}
-		});
+		adView.setLayoutParams(adViewParams);	
         frameLayout.addView(adView);
         */
+		//tinmoo ad
+        com.ignitevision.android.ads.AdView tinmooview = new com.ignitevision.android.ads.AdView(getApplicationContext());
+        FrameLayout.LayoutParams tinmooLayoutParams = new FrameLayout.LayoutParams(420,LayoutParams.WRAP_CONTENT);
+        tinmooLayoutParams.gravity = Gravity.RIGHT;
+        tinmooview.setLayoutParams(tinmooLayoutParams);
+        tinmooview.setRequestInterval(20);
+        tinmooview.setAdListener(new SimpleAdListener(){
+			public void onFailedToReceiveAd(AdView adview) {
+				// TODO Auto-generated method stub
+				// do something here when ads fail to received.
+				// if no ads or connect fail, this method will be callback. 
+				Log.i("sdk", "fail to received");
+			}
+
+			public void onReceiveAd(AdView adview) {
+				// TODO Auto-generated method stub
+				// do something here when ads have received.
+				//adview.setBackgroundColor(Color.BLACK);
+				//adview.setTextColor(Color.WHITE);
+				//adview.setRequestInterval(20);
+		        
+				Log.i("sdk", "ads received");
+			}
+
+			public void onFailedToReceiveRefreshedAd(AdView arg0) {
+				// TODO Auto-generated method stub
+				Log.i("sdk", "ads failed to refresh an new ad");
+			}
+
+			public void onReceiveRefreshedAd(AdView arg0) {
+				// TODO Auto-generated method stub
+				Log.i("sdk", "ads refresh an new ad");
+			}
+        	
+          });
+        frameLayout.addView(tinmooview);
+		
         //settings view        
         final ImageView settingsView = new ImageView(GdxInvadersAndroid.this);
         settingsView.setImageResource(android.R.drawable.ic_menu_preferences);
@@ -213,6 +247,8 @@ public class GdxInvadersAndroid extends AndroidApplication {
 		});        
         frameLayout.addView(settingsView);
         
+         
+        
         //bulletin view
         final ImageView bulletinView = new ImageView(GdxInvadersAndroid.this);
         bulletinView.setImageResource(android.R.drawable.ic_menu_sort_by_size);
@@ -228,15 +264,7 @@ public class GdxInvadersAndroid extends AndroidApplication {
 				bulletinView.startAnimation(animation);
 				LayoutInflater inflater = getLayoutInflater();
 				bulletinDialogView = inflater.inflate(R.layout.fightings, null);
-		        for(int i = 0, length = Settings.getFightings().size(); i < length; ++i){
-		        	Fighting fighting = Settings.getFightings().get(i);
-		        	if(fighting.getPhoneName().equals(Settings.getPhoneName())){
-		        		highestScore = fighting.getScore();
-		        		break;
-		        	}
-		        }
-				final TextView txtTitle = (TextView)bulletinDialogView.findViewById(R.id.txtTitle);
-				txtTitle.setText(String.format(getResources().getString(R.string.best_result), highestScore));
+		        setUnsubmitedText();
 				showDialog(bulletinID);
 			}
 		});
@@ -258,6 +286,7 @@ public class GdxInvadersAndroid extends AndroidApplication {
 		switch(id){		
 		case settingID:
 			View view = inflater.inflate(R.layout.settings, null);
+			/*
 	        SeekBar barAD = (SeekBar)view.findViewById(R.id.barAD);
 	        barAD.setProgress(Settings.getAdCount()-1);
 	        final TextView txtAD = (TextView)view.findViewById(R.id.txtAD);
@@ -278,7 +307,7 @@ public class GdxInvadersAndroid extends AndroidApplication {
 					//adView.setVisibility(View.VISIBLE);
 				}
 			});
-	        
+	        */
 	        SeekBar barMusic = (SeekBar)view.findViewById(R.id.barMusic);
 	        barMusic.setProgress((int)(Settings.getMusicVolume()*100));
 	        barMusic.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {				
@@ -337,9 +366,12 @@ public class GdxInvadersAndroid extends AndroidApplication {
 							name = getResources().getString(R.string.unsung_hero);
 						
 						HttpClient client = new DefaultHttpClient();
+						client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
+						client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 5000);
+					
 						try {						
 							String url = "http://androidgame.sinaapp.com/ws.php";
-							HttpPost httpPost = new HttpPost(url);
+							HttpPost httpPost = new HttpPost(url);  
 							List <NameValuePair> params=new ArrayList<NameValuePair>();
 							params.add(new BasicNameValuePair("n", name));
 							params.add(new BasicNameValuePair("s", Integer.toString(highestScore)));
@@ -362,6 +394,7 @@ public class GdxInvadersAndroid extends AndroidApplication {
 							client.getConnectionManager().shutdown();
 						}
 						bindScoreListView();
+						setUnsubmitedText();
 						dialog.dismiss();
 					}
 				}});
@@ -375,9 +408,21 @@ public class GdxInvadersAndroid extends AndroidApplication {
 		}
 		return super.onCreateDialog(id);
 	}
-
+	void setUnsubmitedText() {
+		for(int i = 0, length = Settings.getFightings().size(); i < length; ++i){
+        	Fighting fighting = Settings.getFightings().get(i);
+        	if(fighting.getPhoneName().equals(Settings.getPhoneName())){
+        		highestScore = fighting.getScore();
+        		break;
+        	}
+        }
+		final TextView txtTitle = (TextView)bulletinDialogView.findViewById(R.id.txtTitle);
+		txtTitle.setText(String.format(getResources().getString(R.string.best_result), highestScore));
+	}
 	void bindScoreListView() {
 		HttpClient client = new DefaultHttpClient();
+		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
+		client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 5000);
 		List<Fighting> fightings = null;
 		try {
 			String url = "http://androidgame.sinaapp.com/rs.php?a="+Settings.appNo;
@@ -393,7 +438,9 @@ public class GdxInvadersAndroid extends AndroidApplication {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} 
+		} catch(Exception e){
+			e.printStackTrace();
+		}
 		finally {
 			client.getConnectionManager().shutdown();
 		}				
@@ -447,5 +494,13 @@ public class GdxInvadersAndroid extends AndroidApplication {
 				System.exit(0);				
 			}})
 			.show();
+	}
+
+	@Override
+	public void onConnectFailed() {	
+	}
+
+	@Override
+	public void onReceiveAd() {	
 	}
 }
