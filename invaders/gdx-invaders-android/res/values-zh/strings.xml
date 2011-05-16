@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">太空堡垒</string>
+    <string name="bulletinBoard">英雄榜</string>
+    <string name="leave_name">英雄榜</string>
+    <string name="best_result">未提交的最好战绩是:%d,请写下英雄的名字</string>
+    <string name="ad_message">激活%d个广告, 广告条消失</string>
+    <string name="ad_5message">激活5个广告, 广告条消失</string>
+    <string name="system_setting">系统设置</string>
+    <string name="cancel_title">退出确认</string>
+    <string name="cancel_confirm">您真的要退出太空堡垒吗?</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
+    <string name="submit">提交</string>
+    <string name="next_time">不了，下次吧</string>
+    <string name="background_music">背景音乐</string>
+    <string name="sound">游戏音效</string>
+    <string name="unsung_hero">无名英雄</string>
+    <string name="start_game">点击屏幕继续</string>
+    <string name="game_control">游戏控制</string>
+    <string name="move_control">1. 向左或向右翻转可以移动太空堡垒</string>
+    <string name="fire_control">2. 触摸屏幕发射炮弹</string>
+    <string name="launch_control">3. 向上翻转可以发射导弹</string>
+    <string name="shield_control">4. 大幅度地向左或向右翻转可以释放离子盾</string>
+    <string name="more_info">5. 访问androidgame.sinaapp.com获得更多的帮助信息</string>
+</resources>
