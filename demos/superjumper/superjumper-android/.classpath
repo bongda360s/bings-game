@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/gdx"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/gdx-backend-android"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/superjumper"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="lib" path="libs/youmiad-android.jar"/>
+	<classpathentry kind="lib" path="libs/gson-1.7.1.jar"/>
+	<classpathentry kind="lib" path="libs/admob-sdk-android.jar"/>
+	<classpathentry kind="lib" path="libs/JTAdTag.jar"/>
+	<classpathentry kind="lib" path="libs/MMAdView.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gdx"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gdx-backend-android"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

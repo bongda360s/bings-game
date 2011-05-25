@@ -220,7 +220,16 @@ public class World {
 
     private void checkGameOver() {
         if (heightSoFar - 7.5f > bob.position.y) {
-            state = WORLD_STATE_GAME_OVER;
+        	bob.lives --;
+        	if(bob.lives <= 0)
+        		state = WORLD_STATE_GAME_OVER;
+        	else
+        	{
+        		bob.velocity.y = 20;
+        		bob.accel.y = 0;
+        		bob.state = bob.BOB_STATE_JUMP;
+        		GameScreen.state = GameScreen.GAME_PAUSED;
+        	}
         }
     }
 }

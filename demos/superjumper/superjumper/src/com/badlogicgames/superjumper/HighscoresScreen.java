@@ -26,8 +26,8 @@ public class HighscoresScreen extends Screen {
 		touchPoint = new Vector3();
 		batcher = new SpriteBatch();
 		highScores = new String[5];
-		for (int i = 0; i < 5; i++) {
-			highScores[i] = (i + 1) + ". " + Settings.highscores[i];
+		for (int i = 0; i < Settings.getFightings().size() && i < 5; i++) {
+			highScores[i] = (i + 1) + ". " + Settings.getFightings().get(i).getScore();
 			xOffset = Math.max(Assets.font.getBounds(highScores[i]).width, xOffset);
 		}
 		xOffset = 160 - xOffset / 2 + Assets.font.getSpaceWidth() / 2;

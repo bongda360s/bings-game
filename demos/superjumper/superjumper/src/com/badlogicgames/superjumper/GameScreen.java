@@ -13,13 +13,13 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogicgames.superjumper.World.WorldListener;
 
 public class GameScreen extends Screen {
-	static final int GAME_READY = 0;
-	static final int GAME_RUNNING = 1;
-	static final int GAME_PAUSED = 2;
-	static final int GAME_LEVEL_END = 3;
-	static final int GAME_OVER = 4;
+	public static final int GAME_READY = 0;
+	public static final int GAME_RUNNING = 1;
+	public static final int GAME_PAUSED = 2;
+	public static final int GAME_LEVEL_END = 3;
+	public static final int GAME_OVER = 4;
 
-	int state;
+	public static int state;
 	OrthographicCamera guiCam;
 	Vector3 touchPoint;
 	SpriteBatch batcher;
@@ -31,7 +31,7 @@ public class GameScreen extends Screen {
 	Rectangle quitBounds;
 	int lastScore;
 	String scoreString;
-
+	String liveString;
 	public GameScreen (Game game) {
 		super(game);
 		state = GAME_READY;
@@ -63,6 +63,7 @@ public class GameScreen extends Screen {
 		quitBounds = new Rectangle(160 - 96, 240 - 36, 192, 36);
 		lastScore = 0;
 		scoreString = "SCORE: 0";
+		liveString = "Lives: 1";
 	}
 
 	@Override public void update (float deltaTime) {
@@ -109,9 +110,9 @@ public class GameScreen extends Screen {
 		}
 		else {
 			float accel = 0;
-			if(Gdx.input.isKeyPressed(Keys.KEYCODE_DPAD_LEFT))
+			if(Gdx.input.isKeyPressed(Keys.DPAD_LEFT))
 				accel = 5f;
-			if(Gdx.input.isKeyPressed(Keys.KEYCODE_DPAD_RIGHT))
+			if(Gdx.input.isKeyPressed(Keys.DPAD_RIGHT))
 				accel = -5f;
 			world.update(deltaTime, accel);
 		}
@@ -119,16 +120,18 @@ public class GameScreen extends Screen {
 			lastScore = world.score;
 			scoreString = "SCORE: " + lastScore;
 		}
+		liveString = "Lives: " + Bob.lives;
 		if (world.state == World.WORLD_STATE_NEXT_LEVEL) {
 			state = GAME_LEVEL_END;
 		}
 		if (world.state == World.WORLD_STATE_GAME_OVER) {
 			state = GAME_OVER;
-			if (lastScore >= Settings.highscores[4])
-				scoreString = "NEW HIGHSCORE: " + lastScore;
-			else
-				scoreString = "SCORE: " + lastScore;
-			Settings.addScore(lastScore);
+//			if (lastScore >= Settings.highscores[4])
+//				scoreString = "NEW HIGHSCORE: " + lastScore;
+//			else
+//				scoreString = "SCORE: " + lastScore;
+//			Settings.addScore(lastScore);
+			Settings.addFighting(new Fighting(Settings.heroNames[(int)(Math.random()*(Settings.heroNames.length-1))], lastScore, Settings.getPhoneName()));
 			Settings.save();
 		}
 	}
@@ -204,12 +207,14 @@ public class GameScreen extends Screen {
 
 	private void presentRunning () {
 		batcher.draw(Assets.pause, 320 - 64, 480 - 64, 64, 64);
-		Assets.font.draw(batcher, scoreString, 16, 480 - 20);
+		Assets.font.draw(batcher, liveString, 16, 480 - 50);
+		Assets.font.draw(batcher, scoreString, 16, 480 - 70);
 	}
 
 	private void presentPaused () {
 		batcher.draw( Assets.pauseMenu, 160 - 192 / 2, 240 - 96 / 2, 192, 96);
-		Assets.font.draw(batcher, scoreString, 16, 480 - 20);
+		Assets.font.draw(batcher, liveString, 16, 480 - 50);
+		Assets.font.draw(batcher, scoreString, 16, 480 - 70);
 	}
 
 	private void presentLevelEnd () {
@@ -224,7 +229,7 @@ public class GameScreen extends Screen {
 	private void presentGameOver () {
 		batcher.draw(Assets.gameOver, 160 - 160 / 2, 240 - 96 / 2, 160, 96);
 		float scoreWidth = Assets.font.getBounds(scoreString).width;
-		Assets.font.draw(batcher, scoreString, 160 - scoreWidth / 2, 480 - 20);
+		Assets.font.draw(batcher, scoreString, 160 - scoreWidth / 2, 480 - 50);
 	}
 
 	@Override public void pause () {
