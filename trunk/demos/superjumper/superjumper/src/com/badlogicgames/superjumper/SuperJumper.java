@@ -13,6 +13,8 @@ public class SuperJumper extends Game {
     public void create() {                         
          Settings.load();
          Assets.load();
+         Assets.music.setVolume(Settings.getMusicVolume());
+         Assets.music.play();
          super.create();
     }            
 }

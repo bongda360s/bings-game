@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.aichess.jumpjump"
-      android:versionName="1.6" android:versionCode="6">
+      android:versionCode="10" android:versionName="1.8.1">
     <application android:icon="@drawable/icon" android:debuggable="true" android:label="@string/app_name">
         <activity android:name="SuperJumperAndroid"
                   android:label="@string/app_name"
                   android:configChanges="keyboard|keyboardHidden|orientation"
+                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
                   android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.millennialmedia.android.MMAdViewOverlayActivity" 
+                    android:theme="@android:style/Theme.Translucent.NoTitleBar">
+        </activity>        
+        <activity android:name="com.millennialmedia.android.VideoPlayer" 
+                    android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+                    android:configChanges="keyboardHidden|orientation|keyboard" >
+        </activity>
     </application>
-    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="7"/>
+    <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="10"/>
     <!-- 连接网络权限 ，用于请求广告(必须)-->
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<!-- 读取手机基本信息权限，用于精确统计用户的机型等信息(必须) -->

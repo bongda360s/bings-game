@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
@@ -49,14 +50,15 @@ public class MainMenuScreen extends Screen {
 				game.setScreen(new HelpScreen(game));
 				return;
 			}
-			if (OverlapTester.pointInRectangle(soundBounds, touchPoint.x, touchPoint.y)) {
-				Assets.playSound(Assets.clickSound);
-				Settings.soundEnabled = !Settings.soundEnabled;
-				if (Settings.soundEnabled)
-					Assets.music.play();
-				else
-					Assets.music.pause();
-			}
+			
+//			if (OverlapTester.pointInRectangle(soundBounds, touchPoint.x, touchPoint.y)) {
+//				Assets.playSound(Assets.clickSound);
+//				Settings.soundEnabled = !Settings.soundEnabled;
+//				if (Settings.soundEnabled)
+//					Assets.music.play();
+//				else
+//					Assets.music.pause();
+//			}
 		}
 	}
 
@@ -74,9 +76,10 @@ public class MainMenuScreen extends Screen {
 
 		batcher.enableBlending();
 		batcher.begin();
-		batcher.draw(Assets.logo, 160 - 274 / 2, 480 - 10 - 142, 274, 142);
+		batcher.draw(Assets.logo, 160 - 274 / 2, 480 - 50 - 142, 274, 142);
 		batcher.draw(Assets.mainMenu, 10, (int)(200 - 110 / 2), 300, 110);
-		batcher.draw(Settings.soundEnabled ? Assets.soundOn : Assets.soundOff, 0, 32, 64, 64);
+	
+		//batcher.draw(Settings.soundEnabled ? Assets.soundOn : Assets.soundOff, 0, 32, 64, 64);
 		batcher.end();	
 	}
 

@@ -13,7 +13,8 @@ public class Assets {
     public static Texture background;
     public static TextureRegion backgroundRegion;
     
-    public static Texture items;        
+    public static Texture items; 
+    public static Texture jumpgirl;
     public static TextureRegion mainMenu;
     public static TextureRegion pauseMenu;
     public static TextureRegion ready;
@@ -50,7 +51,8 @@ public class Assets {
         background = loadTexture("data/background.png");
         backgroundRegion = new TextureRegion(background, 0, 0, 320, 480);
         
-        items = loadTexture("data/items.png");        
+        items = loadTexture("data/items.png");  
+        jumpgirl = loadTexture("data/jumpgirl.png");
         mainMenu = new TextureRegion(items, 0, 224, 300, 110);
         pauseMenu = new TextureRegion(items, 224, 128, 192, 96);
         ready = new TextureRegion(items, 320, 224, 192, 32);
@@ -76,6 +78,16 @@ public class Assets {
                                 new TextureRegion(items, 64, 128, 32, 32),
                                 new TextureRegion(items, 96, 128, 32, 32));
         bobHit = new TextureRegion(items, 128, 128, 32, 32);
+//        bobJump = new Animation(0.2f,
+//                new TextureRegion(jumpgirl, 256, 0, 256, 256),
+//                new TextureRegion(jumpgirl, 512, 0, 256, 256),
+//                new TextureRegion(jumpgirl, 768, 0, 256, 256));
+//		bobFall = new Animation(0.2f,
+//		                new TextureRegion(jumpgirl, 768, 0, 256, 256),
+//		                new TextureRegion(jumpgirl, 0, 256, 256, 256),
+//		                new TextureRegion(jumpgirl, 256, 256, 256, 256),
+//		                new TextureRegion(jumpgirl, 256, 256, 256, 256));
+//		bobHit = new TextureRegion(jumpgirl, 0, 0, 256, 256);
         squirrelFly = new Animation(0.2f, 
                                     new TextureRegion(items, 0, 160, 32, 32),
                                     new TextureRegion(items, 32, 160, 32, 32));
@@ -90,9 +102,7 @@ public class Assets {
         
         music = Gdx.audio.newMusic(Gdx.files.internal("data/music.mp3"));
         music.setLooping(true);
-        music.setVolume(0.5f);         
-        if(Settings.soundEnabled)
-            music.play();
+        music.setVolume(Settings.getMusicVolume());         
         jumpSound = Gdx.audio.newSound(Gdx.files.internal("data/jump.ogg"));
         highJumpSound = Gdx.audio.newSound(Gdx.files.internal("data/highjump.ogg"));
         hitSound = Gdx.audio.newSound(Gdx.files.internal("data/hit.ogg"));
@@ -101,7 +111,6 @@ public class Assets {
     }           
     
     public static void playSound(Sound sound) {
-        if(Settings.soundEnabled)
-            sound.play(1);
+            sound.play(Settings.getSoundVolume());
     }
 }
