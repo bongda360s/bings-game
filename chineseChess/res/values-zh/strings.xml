@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">中国象棋</string>
+    <string name="info_title">提示</string>
+    <string name="info_not_support">您的分辨率太小，该游戏不支持。</string>
+    <string name="info_exit">"真的要退出游戏吗？</string>
+    <string name="text_positive_button">确定</string>
+    <string name="text_negative_button">取消</string>
+    <string name="text_exit">退出</string>
+    <string name="text_restart">重玩</string>
+    <string name="text_revise">悔棋</string>
+    <string name="text_setting">设置</string>
+    <string name="info_thinking">思考中...</string>
+    <string name="info_please">请走棋...</string>
+    <string name="cancel_title">退出确认</string>
+    <string name="cancel_confirm">真的要退出 中国象棋吗?</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
+    
+    <string name="text_congraduation">祝贺你取得胜利！</string>
+    <string name="text_retry">请再接再厉！</string>
+    <string name="text_gameover">游戏结束： </string>
+    <string name="text_longchess">长打作负，请不要气馁！</string>
+    <string name="text_computerlongchess">电脑长打作负，祝贺你取得胜利！</string>
+    <string name="text_equal">双方不变作和，辛苦了！</string>
+    <string name="text_longequal">超过自然限着作和，辛苦了！</string>
+    <string name="text_computerthink">电脑思考中，请稍等再试...</string>
+</resources>
