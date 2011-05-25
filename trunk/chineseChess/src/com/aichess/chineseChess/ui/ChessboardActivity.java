@@ -20,6 +20,7 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -33,6 +34,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -47,6 +49,11 @@ import com.aichess.chineseChess.utils.Debug;
 import com.ignitevision.android.ads.AdListener;
 import com.ignitevision.android.ads.AdManager;
 import com.ignitevision.android.ads.AdView;
+import com.ignitevision.android.offer.OfferManager;
+import com.ignitevision.android.offer.SimpleOfferListener;
+import com.ignitevision.android.offer.TinmooConnect;
+import com.ignitevision.android.offer.TinmooOffer;
+import com.ignitevision.android.offer.TinmooOffer.Type;
 
 /**
  * The Class ChessboardActivity.
@@ -55,12 +62,14 @@ public class ChessboardActivity extends Activity {
 	
 	static{
 		AdManager.setTest(false);
-		AdManager.setPublisherKey("1jirrtpcw5iaa1lwok915q6tziw0d4cc6l4rzj1b2pp0kgaa7d2320hd3z8ye64");
+		AdManager.setPublisherKey("1lbylp1a55p6p13utceuikkkndaurxu3jr1vyd1o1lsgt2qtyas1lpwd3b496i3d");
+		OfferManager.setApplicationKey("1a2s354gyuuksjdt04qit0ceg13xvsfiwcodmyhkg6pt8d9dnr12r3lp9m6mkr3");
 		}
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		mp.stop();
+		tinmooConnect.finalized();
 		super.onDestroy();
 	}
 	/** The m board view. */
@@ -80,7 +89,8 @@ public class ChessboardActivity extends Activity {
 	boolean mHasSound = true;
 	boolean mHasMusic = true;
 	HashMap<Integer, Integer> mSoundsMap = new HashMap<Integer, Integer>();
-
+	TinmooConnect tinmooConnect;
+	TinmooOffer offer;
 	Intent musicIntent;
 	/**
 	 * Called when the activity is first created.
@@ -95,6 +105,51 @@ public class ChessboardActivity extends Activity {
 		mLayout = (FrameLayout) LayoutInflater.from(this).inflate(
 				R.layout.game_board_layout, null);
 		setContentView(mLayout);
+		tinmooConnect = TinmooConnect.getTinmooConnectInstance(this);
+tinmooConnect.setListener(new SimpleOfferListener(){
+			
+			@Override
+			public void onConnected() {
+				//textView.setText("onConnected");
+				Log.d("TinmooSDK", "onConnected");
+			}
+
+			@Override
+			public void onConnectFailed() {
+				//textView.setText("onConnectFailed");
+				Log.d("TinmooSDK", "onConnectFailed");
+			}
+
+			@Override
+			public void onFailReceivedFeatureOffer(Type type, TinmooOffer offer) {
+				ChessboardActivity.this.offer = offer;
+				//textView.setText("Type:"+type+" Name:"+offer.getName()+" Icon:"+offer.getIcon()+" Amount:"+offer.getAmount()+" Price:"+offer.getPrice());
+				//ImageView iv = (ImageView) findViewById(R.id.icon);
+				//TextView tv = (TextView) findViewById(R.id.offerInfo);
+				//iv.setImageDrawable(null);
+				//tv.setText("fail to received feature offer.");
+				
+				Log.d("TinmooSDK", "onFailReceivedFeatureOffer");
+			}
+
+			@Override
+			public void onReceivedFeatureOffer(Type type, TinmooOffer offer) {
+				ChessboardActivity.this.offer = offer;
+				//textView.setText("Type:"+type+" Name:"+offer.getName()+" Icon:"+offer.getIcon()+" Amount:"+offer.getAmount()+" Price:"+offer.getPrice());
+				//ImageView iv = (ImageView) findViewById(R.id.icon);
+				//TextView tv = (TextView) findViewById(R.id.offerInfo);
+				//iv.setImageDrawable(loadIcon(offer.getIcon()));
+				//tv.setText("Type:"+type+" Name:"+offer.getName()+" Amount:"+offer.getAmount()+" Price:"+offer.getPrice());
+				
+				Log.d("TinmooSDK", "onReceivedFeatureOffer");
+			}
+			
+		});
+		
+		// Connnect with the Tinmoo server. Call this when the application first starts.
+		tinmooConnect.init();
+		
+		
 		AdView ad = (AdView) mLayout.findViewById(R.id.ad);
 		ad.setAdListener(new AdListener(){
 		@Override

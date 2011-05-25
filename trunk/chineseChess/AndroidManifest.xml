@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
 		<meta-data
-android:value="1jirrtpcw5iaa1lwok915q6tziw0d4cc6l4rzj1b2pp0kgaa7d2320hd3z8ye64"
+android:value="1lbylp1a55p6p13utceuikkkndaurxu3jr1vyd1o1lsgt2qtyas1lpwd3b496i3d"
 android:name="TINMOO_PUBLISHER_ID" />
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
