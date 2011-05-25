@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="谁先走" />
+    <RadioGroup android:orientation="horizontal" android:id="@id/group_who" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="我先走" />
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="电脑先走" />
+    </RadioGroup>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="先走让子" />
+    <RadioGroup android:orientation="horizontal" android:id="@id/group_handicap" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="不让" />
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="左马" />
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="双马" />
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="九子" />
+    </RadioGroup>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="电脑水平" />
+    <RadioGroup android:orientation="horizontal" android:id="@id/group_level" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="入门" />
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="业余" />
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="专业" />
+    </RadioGroup>
+    <CheckBox android:id="@id/music" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="背景音乐" />
+    <CheckBox android:id="@id/sound" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="游戏声音" />
+</LinearLayout>

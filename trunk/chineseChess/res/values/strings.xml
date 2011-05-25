@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Chinese Chess</string>
+    <string name="info_title">tips</string>
+    <string name="info_not_support">Sorry, your screen is too small to show game.</string>
+    <string name="info_exit">Do you really want to exit Chinese Chess?</string>
+    <string name="text_positive_button">Yes</string>
+    <string name="text_negative_button">Cancel</string>
+    <string name="text_exit">Exit</string>
+    <string name="text_restart">Retry</string>
+    <string name="text_revise">Undo</string>
+    <string name="text_setting">Setting</string>
+    <string name="info_thinking">Thinking...</string>
+    <string name="info_please">Your turn...</string>
+    <string name="cancel_title">Cancel confirm</string>
+    <string name="cancel_confirm">Do you really want to exit Chinese Chess?</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    
+    <string name="text_congraduation">Congratulations</string>
+    <string name="text_retry">You lose, try again</string>
+    <string name="text_gameover">Game over </string>
+    <string name="text_longchess">You lose, dont be discouraged</string>
+    <string name="text_computerlongchess">You win, congratulations！</string>
+    <string name="text_equal">The game of chess ended in a draw.</string>
+    <string name="text_longequal">The game of chess ended in a draw.</string>
+    <string name="text_computerthink">Please wait a moment...</string>
+</resources>
