@@ -20,9 +20,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.protocol.HTTP;
 
-import net.youmi.android.AdListener;
-import net.youmi.android.AdManager;
-import net.youmi.android.AdView;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -72,11 +69,11 @@ import com.badlogicgames.superjumper.Settings.ADStatus;
 import com.badlogicgames.superjumper.SuperJumper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.millennialmedia.android.MMAdView;
-import com.millennialmedia.android.MMAdViewSDK;
-import com.millennialmedia.android.MMAdView.MMAdListener;
+import com.waps.AdView;
+import com.waps.AppConnect;
+import com.waps.UpdatePointsNotifier;
 
-public class SuperJumperAndroid extends AndroidApplication  implements MMAdListener{
+public class SuperJumperAndroid extends AndroidApplication  implements UpdatePointsNotifier{
 	
 //	static{ 
 //    	AdManager.init("3cc0b18985648cb0", "6db73c99cfc2add4", 31, false,"1.8");   
@@ -85,13 +82,15 @@ public class SuperJumperAndroid extends AndroidApplication  implements MMAdListe
 	private final int bulletinID = 2;
 	View bulletinDialogView;
 	int highestScore;
+	
+	
 	//AdView adView;
 	// Declare your APID, given to you by Millennial Media
 	public final static String MYAPID = "43914";
 	public final static String MYGOALID = "12345";
 	
 	// The ad view object
-	private MMAdView adView;
+	//private MMAdView adView;
 	boolean isNewAd = true;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -113,8 +112,30 @@ public class SuperJumperAndroid extends AndroidApplication  implements MMAdListe
         view.setLayoutParams(createLayoutParams());
         frameLayout.addView(view);
         
+        //waps ad
+		AppConnect.getInstance(this);
+		LinearLayout.LayoutParams holderParams = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+		holderParams.gravity = Gravity.RIGHT;		
+		LinearLayout holder = new LinearLayout(SuperJumperAndroid.this);		
+				
+		LinearLayout.LayoutParams containerParams = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT);
+		containerParams.gravity = Gravity.RIGHT;
+		LinearLayout container = new LinearLayout(SuperJumperAndroid.this);
+		holder.addView(container,containerParams);
+		new AdView(this,container).DisplayAd(30);//每30秒轮换一次广告，此参数可修改
+		frameLayout.addView(holder,holderParams);
+		getWapsPoints();
+        //adview
+        /*
+        AdViewLayout adViewLayout = new AdViewLayout(this, "SDK20112311470452fuch0w1ffdtssz7");
+        FrameLayout.LayoutParams adviewLayoutParams = new FrameLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT);
+        adviewLayoutParams.gravity = Gravity.TOP;
+        frameLayout.addView(adViewLayout, adviewLayoutParams);                
+        adViewLayout.invalidate();
+        */
       //mm ad		
 		// Create the adview
+        /*
 		adView = new MMAdView(this, MYAPID, MMAdView.BANNER_AD_TOP, 30);
 		adView.setId(MMAdViewSDK.DEFAULT_VIEWID);
 		FrameLayout.LayoutParams adLayoutParams = new FrameLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
@@ -122,7 +143,7 @@ public class SuperJumperAndroid extends AndroidApplication  implements MMAdListe
         adView.setLayoutParams(adLayoutParams);	
 		// Add the adview to the view layout
 		frameLayout.addView(adView);
-
+		
 		// (Optional/Recommended) Set meta data (will be applied to subsequent ad requests)
 //		Hashtable<String, String> metaData = GdxInvadersAndroid.createMetaData();
 //		metaData.put("height", "53");
@@ -135,7 +156,7 @@ public class SuperJumperAndroid extends AndroidApplication  implements MMAdListe
 		// (Optional) Start conversion tracking
 		MMAdView.startConversionTrackerWithGoalId(this, MYGOALID);
 		adView.callForAd();
-        
+        */
         /*
         Button btnNew = new Button(this);
         btnNew.setText("new button");
@@ -236,38 +257,38 @@ public class SuperJumperAndroid extends AndroidApplication  implements MMAdListe
 		switch(id){		
 		case settingID:
 			View view = inflater.inflate(R.layout.settings, null);
-			Spinner spnAD = (Spinner)view.findViewById(R.id.spnAD);
-			ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(SuperJumperAndroid.this, R.array.adChoice, android.R.layout.simple_spinner_item);
-			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-			spnAD.setAdapter(adapter);
-			int ad = 0;
-			if(Settings.adStatus==ADStatus.AddRobotech)
-            	ad=1;
-            else if(Settings.adStatus==ADStatus.HideAd)
-            	ad=2;
-			spnAD.setSelection(ad);
-			spnAD.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-				@Override
-				public void onItemSelected(AdapterView<?> parent, View view,
-						int position, long id) {
-					adView.setVisibility(View.VISIBLE);
-					switch(position){
-					case 1:
-						Settings.adStatus = ADStatus.AddRobotech;
-						break;
-					case 2:
-						Settings.adStatus = ADStatus.HideAd;
-						break;
-					default:
-						Settings.adStatus = ADStatus.Nothing;
-					}					
-				}
-
-				@Override
-				public void onNothingSelected(AdapterView<?> parent) {					
-				}});
+//			Spinner spnAD = (Spinner)view.findViewById(R.id.spnAD);
+//			ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(SuperJumperAndroid.this, R.array.adChoice, android.R.layout.simple_spinner_item);
+//			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//			spnAD.setAdapter(adapter);
+//			int ad = 0;
+//			if(Settings.adStatus==ADStatus.AddRobotech)
+//            	ad=1;
+//            else if(Settings.adStatus==ADStatus.HideAd)
+//            	ad=2;
+//			spnAD.setSelection(ad);
+//			spnAD.setOnItemSelectedListener(new OnItemSelectedListener() {
+//
+//				@Override
+//				public void onItemSelected(AdapterView<?> parent, View view,
+//						int position, long id) {
+//					adView.setVisibility(View.VISIBLE);
+//					switch(position){
+//					case 1:
+//						Settings.adStatus = ADStatus.AddRobotech;
+//						break;
+//					case 2:
+//						Settings.adStatus = ADStatus.HideAd;
+//						break;
+//					default:
+//						Settings.adStatus = ADStatus.Nothing;
+//					}					
+//				}
+//
+//				@Override
+//				public void onNothingSelected(AdapterView<?> parent) {					
+//				}});
 	        SeekBar barMusic = (SeekBar)view.findViewById(R.id.barMusic);
 	        barMusic.setProgress((int)(Settings.getMusicVolume()*100));
 	        barMusic.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {				
@@ -301,6 +322,14 @@ public class SuperJumperAndroid extends AndroidApplication  implements MMAdListe
 				}
 			});
 	        
+	        Button btnAward = (Button)view.findViewById(R.id.btnAward);
+			btnAward.setOnClickListener(new Button.OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					AppConnect.getInstance(SuperJumperAndroid.this).showOffers(SuperJumperAndroid.this);					
+				}});
+			
 			return new AlertDialog.Builder(SuperJumperAndroid.this)
 			.setView(view)
 			.setIcon(android.R.drawable.ic_menu_preferences)
@@ -323,7 +352,7 @@ public class SuperJumperAndroid extends AndroidApplication  implements MMAdListe
 				public void onClick(View v) {
 					if(highestScore > 0){
 						String name = editText.getText().toString();
-						if(name.equals(""))
+						if("".equals(name))
 							name = getResources().getString(R.string.unsung_hero);
 						
 						HttpClient client = new DefaultHttpClient();
@@ -344,7 +373,7 @@ public class SuperJumperAndroid extends AndroidApplication  implements MMAdListe
 							//remove the best score
 							for(int i = 0, length = Settings.getFightings().size(); i < length; ++i){
 					        	Fighting fighting = Settings.getFightings().get(i);
-					        	if(fighting.getPhoneName().equals(Settings.getPhoneName())){
+					        	if(Settings.getPhoneName().equals(fighting.getPhoneName())){
 					        		Settings.getFightings().remove(i);
 					        		break;
 					        	}
@@ -456,6 +485,37 @@ public class SuperJumperAndroid extends AndroidApplication  implements MMAdListe
 			}})
 			.show();
 	}
+	private void getWapsPoints() {
+		AppConnect.getInstance(SuperJumperAndroid.this).getPoints(SuperJumperAndroid.this);
+	}
+	@Override
+	protected void onResume() {
+		getWapsPoints();		
+		super.onResume();
+	}
+	@Override
+    protected void onDestroy() {
+	  AppConnect.getInstance(this).finalize();
+      super.onDestroy();
+    }
+	@Override
+	public void getUpdatePoints(String arg0, int arg1) {
+		Settings.wapsValue = arg1;
+		Settings.awardCount  = Settings.wapsValue/Settings.jumperValue;
+		
+		if(Settings.awardCount > 0){
+			Bob.lives += Settings.awardCount;
+			Settings.wapsValue -= Settings.awardCount * Settings.jumperValue;
+			AppConnect.getInstance(SuperJumperAndroid.this).spendPoints(Settings.awardCount * Settings.jumperValue, SuperJumperAndroid.this);
+		}
+	}
+
+	@Override
+	public void getUpdatePointsFailed(String arg0) {
+		
+	}
+	//MM ad
+	/**
 	public void MMAdReturned(MMAdView adview)
 	{
 		Log.i("SampleApp", "Millennial Ad View Success");
@@ -509,7 +569,6 @@ public class SuperJumperAndroid extends AndroidApplication  implements MMAdListe
 		Log.i("SampleApp", "Millennial Ad caching completed successfully: " + success);
 	}
 
-	/* Use this if you wish to be notified that an advertisement was closed */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) 
 	{
@@ -522,4 +581,5 @@ public class SuperJumperAndroid extends AndroidApplication  implements MMAdListe
 			}	
 		}
 	}
+	*/
 }

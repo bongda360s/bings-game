@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/superjumper"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="libs/gson-1.7.1.jar"/>
+	<classpathentry kind="lib" path="libs/admob-sdk-android.jar"/>
+	<classpathentry kind="lib" path="libs/MMAdView.jar"/>
+	<classpathentry kind="lib" path="libs/adchina_android_sdk.jar"/>
+	<classpathentry kind="lib" path="libs/adlib_android.jar"/>
+	<classpathentry kind="lib" path="libs/AdViewSDK_Android.jar"/>
+	<classpathentry kind="lib" path="libs/casee-ad-sdk-2.3.jar"/>
+	<classpathentry kind="lib" path="libs/domob_android_sdk.jar"/>
+	<classpathentry kind="lib" path="libs/KuaiyouSDK_Android.jar"/>
+	<classpathentry kind="lib" path="libs/smartmad-sdk-android.jar"/>
+	<classpathentry kind="lib" path="libs/WiAd.jar"/>
+	<classpathentry kind="lib" path="libs/youmibannerad-android.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gdx"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gdx-backend-android"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

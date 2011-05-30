@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="adChoice">
+        <!-- <item>无需额外事件</item> -->
+        <item>增加太空堡垒</item>
+        <!-- <item>隐藏广告条</item> -->
+    </string-array>
+</resources>

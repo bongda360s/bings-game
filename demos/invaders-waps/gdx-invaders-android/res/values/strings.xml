@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Robotech</string>
+    <string name="bulletinBoard">Hero World</string>
+    <string name="leave_name">Hero world</string>
+    <string name="best_result">The best uncommitted result was:%d, please submit your hero.</string>
+    <string name="ad_message">Active %d ads, banner ads disappeared</string>
+    <string name="ad_5message">Active 5 ads, banner ads disappeared</string>
+    <string name="system_setting">System settings</string>
+    <string name="cancel_title">Cancel confirm</string>
+    <string name="cancel_confirm">Do you really want to exit Robotech?</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="submit">Submit</string>
+    <string name="next_time">Next time</string>
+    <string name="background_music">Music</string>
+    <string name="sound">Sound</string>
+    <string name="unsung_hero">Unsung hero</string>
+    <string name="start_game">Touch to continue</string>
+    <string name="game_control">Game Controls</string>
+    <string name="move_control">1. Turn left/right to move Robotech</string>
+    <string name="fire_control">2. Touch screen to fire</string>
+    <string name="launch_control">3. Turn up to launch missile</string>
+    <string name="shield_control">4. Turn left/right drastically to release ion shield</string>
+    <string name="more_info">5. Visit androidgame.sinaapp.com to seek more info and help</string>
+    <string name="ad_click">Click a new AD</string>
+    <string name="adAward">Install free App to get Robotech award.</string>
+</resources>
