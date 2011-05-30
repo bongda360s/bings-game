@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.aichess.robotech"
+      android:versionCode="7"
+      android:versionName="1.5.2"
+>
+    <application android:icon="@drawable/icon">
+        <activity android:name="com.aichess.robotech.GdxInvadersAndroid"
+        		  android:label="@string/app_name"	
+                  android:configChanges="keyboard|keyboardHidden|orientation"
+                  android:theme="@android:style/Theme.NoTitleBar">
+        	<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <meta-data android:value="a14dc2bc9186e13" android:name="ADMOB_PUBLISHER_ID" />
+        <activity android:name="com.ignitevision.android.ads.AdWebView" android:exported="false" android:configChanges="orientation|keyboardHidden"></activity>
+        
+        <!-- The application's publisher ID assigned by Tinmoo -->
+        <meta-data android:value="6gm2ookyn0cwe1266t3hm9z51ot3zje1vaajcau6svxlbd4c1kjoze9qfjgr0" android:name="TINMOO_PUBLISHER_ID" />
+    </application>
+    <uses-sdk android:targetSdkVersion="10" android:minSdkVersion="3"/>
+	<!-- 连接网络权限 ，用于请求广告(必须)-->
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<!-- 读取手机基本信息权限，用于精确统计用户的机型等信息(必须) -->
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+	<!-- 读取网络信息权限，用于识别gprs网络的接入点的情况(必须)-->
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<!-- 读写sd卡的权限，用于缓存广告所用到的图片，节省流量 ，并可获得更好的用户体验(所有使用有米android 2.0版本以上sdk的应用都会共享缓存的图片)-->
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+</manifest> 

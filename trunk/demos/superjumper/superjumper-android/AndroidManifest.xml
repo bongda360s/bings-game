@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.aichess.jumpjump"
-      android:versionCode="10" android:versionName="1.8.1">
+      android:versionCode="12" android:versionName="1.8.3">
     <application android:icon="@drawable/icon" android:debuggable="true" android:label="@string/app_name">
         <activity android:name="SuperJumperAndroid"
                   android:label="@string/app_name"
@@ -13,21 +13,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.millennialmedia.android.MMAdViewOverlayActivity" 
-                    android:theme="@android:style/Theme.Translucent.NoTitleBar">
-        </activity>        
-        <activity android:name="com.millennialmedia.android.VideoPlayer" 
-                    android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-                    android:configChanges="keyboardHidden|orientation|keyboard" >
-        </activity>
+        <activity android:name="com.waps.OffersWebView" 
+		android:configChanges="keyboardHidden|orientation" />
+		<meta-data android:name="CLIENT_PACKAGE" android:value="com.aichess.jumpjump" /> 
+		<meta-data android:name="WAPS_ID" android:value="362a6fc7f25327ae1487a9a68fe7f13b" /> 
+		<!--以下属性为分发渠道ID--> 
+		<meta-data android:name="WAPS_PID" android:value="WAPS" />
     </application>
-    <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="10"/>
-    <!-- 连接网络权限 ，用于请求广告(必须)-->
-	<uses-permission android:name="android.permission.INTERNET"/>
-	<!-- 读取手机基本信息权限，用于精确统计用户的机型等信息(必须) -->
-	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-	<!-- 读取网络信息权限，用于识别gprs网络的接入点的情况(必须)-->
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-	<!-- 读写sd卡的权限，用于缓存广告所用到的图片，节省流量 ，并可获得更好的用户体验(所有使用有米android 2.0版本以上sdk的应用都会共享缓存的图片)-->
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-</manifest> 
+    <uses-permission android:name="android.permission.INTERNET" /> 
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" /> 
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
+	<!--以下权限仅互动广告使用--> 
+	<uses-permission android:name="android.permission.GET_TASKS" />
+	<uses-sdk android:targetSdkVersion="10" android:minSdkVersion="4"></uses-sdk>
+</manifest>

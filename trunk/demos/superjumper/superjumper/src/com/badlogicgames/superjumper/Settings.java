@@ -36,6 +36,9 @@ public class Settings {
 	private static float musicVolume = 0.9f;	
 	private static int status = 1; //0:stop 1:playing 2:award
 	private static boolean clickNewAd = false;
+	public static final int jumperValue = 50;
+	public static int wapsValue = 0;
+	public static int awardCount = 0;
     /**
 	 * @return the fightings
 	 */

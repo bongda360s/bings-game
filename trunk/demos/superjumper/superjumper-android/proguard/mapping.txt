@@ -1,0 +1,2292 @@
+com.aichess.jumpjump.SuperJumperAndroid -> com.aichess.jumpjump.SuperJumperAndroid:
+    int settingID -> g
+    int bulletinID -> h
+    android.view.View bulletinDialogView -> e
+    int highestScore -> f
+    boolean isNewAd -> i
+    void onCreate(android.os.Bundle) -> onCreate
+    android.app.Dialog onCreateDialog(int) -> onCreateDialog
+    void setUnsubmitedText() -> b
+    void bindScoreListView() -> c
+    void onBackPressed() -> onBackPressed
+    void getWapsPoints() -> d
+    void onResume() -> onResume
+    void onDestroy() -> onDestroy
+    void getUpdatePoints$505cff1c(int) -> a
+com.aichess.jumpjump.SuperJumperAndroid$1 -> com.aichess.jumpjump.c:
+    com.aichess.jumpjump.SuperJumperAndroid this$0 -> a
+    android.widget.ImageView val$settingsView -> b
+    void onClick(android.view.View) -> onClick
+com.aichess.jumpjump.SuperJumperAndroid$10 -> com.aichess.jumpjump.j:
+    com.aichess.jumpjump.SuperJumperAndroid this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.aichess.jumpjump.SuperJumperAndroid$2 -> com.aichess.jumpjump.d:
+    com.aichess.jumpjump.SuperJumperAndroid this$0 -> a
+    android.widget.ImageView val$bulletinView -> b
+    void onClick(android.view.View) -> onClick
+com.aichess.jumpjump.SuperJumperAndroid$3 -> com.aichess.jumpjump.a:
+    com.aichess.jumpjump.SuperJumperAndroid this$0 -> a
+    void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+    void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+com.aichess.jumpjump.SuperJumperAndroid$4 -> com.aichess.jumpjump.b:
+    com.aichess.jumpjump.SuperJumperAndroid this$0 -> a
+    void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+    void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+com.aichess.jumpjump.SuperJumperAndroid$5 -> com.aichess.jumpjump.h:
+    com.aichess.jumpjump.SuperJumperAndroid this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.aichess.jumpjump.SuperJumperAndroid$6 -> com.aichess.jumpjump.i:
+    com.aichess.jumpjump.SuperJumperAndroid this$0 -> a
+    android.widget.EditText val$editText -> b
+    android.app.AlertDialog val$dialog -> c
+    void onClick(android.view.View) -> onClick
+com.aichess.jumpjump.SuperJumperAndroid$7 -> com.aichess.jumpjump.f:
+    com.aichess.jumpjump.SuperJumperAndroid this$0 -> a
+    android.app.AlertDialog val$dialog -> b
+    void onClick(android.view.View) -> onClick
+com.aichess.jumpjump.SuperJumperAndroid$8 -> com.aichess.jumpjump.g:
+    com.aichess.jumpjump.SuperJumperAndroid this$0 -> a
+com.aichess.jumpjump.SuperJumperAndroid$9 -> com.aichess.jumpjump.e:
+    com.aichess.jumpjump.SuperJumperAndroid this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.badlogic.gdx.Application -> com.badlogic.gdx.g:
+    void log(java.lang.String,java.lang.String) -> a
+    com.badlogic.gdx.Application$ApplicationType getType() -> a
+com.badlogic.gdx.Application$ApplicationType -> com.badlogic.gdx.l:
+    com.badlogic.gdx.Application$ApplicationType Android -> a
+    com.badlogic.gdx.Application$ApplicationType Desktop -> b
+    com.badlogic.gdx.Application$ApplicationType Applet -> c
+    com.badlogic.gdx.Application$ApplicationType[] ENUM$VALUES -> d
+    com.badlogic.gdx.Application$ApplicationType[] values() -> values
+    com.badlogic.gdx.Application$ApplicationType valueOf(java.lang.String) -> valueOf
+com.badlogic.gdx.ApplicationListener -> com.badlogic.gdx.h:
+    void create() -> b
+    void render() -> c
+    void pause() -> d
+com.badlogic.gdx.Audio -> com.badlogic.gdx.e:
+    com.badlogic.gdx.audio.Sound newSound(com.badlogic.gdx.files.FileHandle) -> b
+    com.badlogic.gdx.audio.Music newMusic(com.badlogic.gdx.files.FileHandle) -> a
+com.badlogic.gdx.Files -> com.badlogic.gdx.d:
+    com.badlogic.gdx.files.FileHandle classpath(java.lang.String) -> a
+    com.badlogic.gdx.files.FileHandle internal(java.lang.String) -> b
+    com.badlogic.gdx.files.FileHandle external(java.lang.String) -> c
+    java.lang.String getExternalStoragePath() -> a
+com.badlogic.gdx.Files$FileType -> com.badlogic.gdx.a:
+    com.badlogic.gdx.Files$FileType Classpath -> a
+    com.badlogic.gdx.Files$FileType Internal -> b
+    com.badlogic.gdx.Files$FileType External -> c
+    com.badlogic.gdx.Files$FileType Absolute -> d
+    com.badlogic.gdx.Files$FileType[] ENUM$VALUES -> e
+    com.badlogic.gdx.Files$FileType[] values() -> values
+    com.badlogic.gdx.Files$FileType valueOf(java.lang.String) -> valueOf
+com.badlogic.gdx.Gdx -> com.badlogic.gdx.i:
+    com.badlogic.gdx.Application app -> a
+    com.badlogic.gdx.Graphics graphics -> b
+    com.badlogic.gdx.Audio audio -> c
+    com.badlogic.gdx.Input input -> d
+    com.badlogic.gdx.Files files -> e
+    com.badlogic.gdx.graphics.GLCommon gl -> f
+    com.badlogic.gdx.graphics.GL10 gl10 -> g
+    com.badlogic.gdx.graphics.GL11 gl11 -> h
+    com.badlogic.gdx.graphics.GL20 gl20 -> i
+    com.badlogic.gdx.graphics.GLU glu -> j
+com.badlogic.gdx.Graphics -> com.badlogic.gdx.b:
+    boolean isGL20Available() -> a
+    com.badlogic.gdx.graphics.GL20 getGL20() -> b
+    int getWidth() -> c
+    int getHeight() -> d
+    float getDeltaTime() -> e
+com.badlogic.gdx.Input -> com.badlogic.gdx.j:
+    float getAccelerometerX() -> a
+    int getX() -> b
+    int getY() -> c
+    boolean justTouched() -> d
+    boolean isKeyPressed(int) -> a
+com.badlogic.gdx.Input$TextInputListener -> com.badlogic.gdx.f:
+com.badlogic.gdx.InputProcessor -> com.badlogic.gdx.c:
+com.badlogic.gdx.Version -> com.badlogic.gdx.k:
+    java.lang.String VERSION -> a
+com.badlogic.gdx.audio.Music -> com.badlogic.gdx.a.a:
+    void play() -> a
+    void setLooping$1385ff() -> b
+    void setVolume(float) -> a
+com.badlogic.gdx.audio.Sound -> com.badlogic.gdx.a.b:
+    void play(float) -> a
+com.badlogic.gdx.backends.android.AndroidApplication -> com.badlogic.gdx.backends.android.AndroidApplication:
+    com.badlogic.gdx.backends.android.AndroidGraphics graphics -> e
+    com.badlogic.gdx.backends.android.AndroidInput input -> a
+    com.badlogic.gdx.backends.android.AndroidAudio audio -> b
+    com.badlogic.gdx.backends.android.AndroidFiles files -> f
+    com.badlogic.gdx.ApplicationListener listener -> c
+    android.os.Handler handler -> g
+    boolean firstResume -> h
+    java.util.List runnables -> d
+    android.os.PowerManager$WakeLock wakeLock -> i
+    android.view.View initializeForView$61ffd2da(com.badlogic.gdx.ApplicationListener) -> a
+    void onPause() -> onPause
+    void onResume() -> onResume
+    void onDestroy() -> onDestroy
+    void log(java.lang.String,java.lang.String) -> a
+    com.badlogic.gdx.Application$ApplicationType getType() -> a
+    void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
+com.badlogic.gdx.backends.android.AndroidApplicationConfiguration -> com.badlogic.gdx.backends.android.m:
+    boolean useGL20 -> a
+    boolean useAccelerometer -> b
+    boolean useCompass -> c
+    int touchSleepTime -> d
+    boolean useWakelock -> e
+    com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy resolutionStrategy -> f
+com.badlogic.gdx.backends.android.AndroidAudio -> com.badlogic.gdx.backends.android.e:
+    android.media.SoundPool soundPool -> b
+    android.media.AudioManager manager -> c
+    java.util.List musics -> a
+    java.util.List wasPlaying -> d
+    void pause() -> a
+    void resume() -> b
+    com.badlogic.gdx.audio.Music newMusic(com.badlogic.gdx.files.FileHandle) -> a
+    com.badlogic.gdx.audio.Sound newSound(com.badlogic.gdx.files.FileHandle) -> b
+    void dispose() -> c
+com.badlogic.gdx.backends.android.AndroidFileHandle -> com.badlogic.gdx.backends.android.k:
+    android.content.res.AssetManager assets -> a
+    com.badlogic.gdx.files.FileHandle child(java.lang.String) -> a
+    com.badlogic.gdx.files.FileHandle parent() -> a
+    java.io.InputStream read() -> b
+com.badlogic.gdx.backends.android.AndroidFiles -> com.badlogic.gdx.backends.android.d:
+    java.lang.String sdcard -> a
+    android.content.res.AssetManager assets -> b
+    com.badlogic.gdx.files.FileHandle classpath(java.lang.String) -> a
+    com.badlogic.gdx.files.FileHandle internal(java.lang.String) -> b
+    com.badlogic.gdx.files.FileHandle external(java.lang.String) -> c
+    java.lang.String getExternalStoragePath() -> a
+com.badlogic.gdx.backends.android.AndroidGL10 -> com.badlogic.gdx.backends.android.b:
+    javax.microedition.khronos.opengles.GL10 gl -> a
+    void glBindTexture(int,int) -> glBindTexture
+    void glBlendFunc(int,int) -> glBlendFunc
+    void glClear(int) -> glClear
+    void glClearColor(float,float,float,float) -> glClearColor
+    void glClientActiveTexture(int) -> a
+    void glColorPointer(int,int,int,java.nio.Buffer) -> a
+    void glDeleteTextures(int,java.nio.IntBuffer) -> glDeleteTextures
+    void glDepthMask(boolean) -> glDepthMask
+    void glDisable(int) -> glDisable
+    void glDisableClientState(int) -> b
+    void glDrawArrays(int,int,int) -> glDrawArrays
+    void glDrawElements(int,int,int,java.nio.Buffer) -> glDrawElements
+    void glEnable(int) -> glEnable
+    void glEnableClientState(int) -> c
+    void glGenTextures(int,java.nio.IntBuffer) -> glGenTextures
+    void glMatrixMode(int) -> d
+    void glNormalPointer$4dfa77fc(int,java.nio.Buffer) -> a
+    void glTexCoordPointer$5efd7755(int,int,java.nio.Buffer) -> a
+    void glTexImage2D(int,int,int,int,int,int,int,int,java.nio.Buffer) -> glTexImage2D
+    void glTexParameterf(int,int,float) -> glTexParameterf
+    void glVertexPointer$5efd7755(int,int,java.nio.Buffer) -> b
+    void glLoadMatrixf$49651d03(float[]) -> a
+com.badlogic.gdx.backends.android.AndroidGL11 -> com.badlogic.gdx.backends.android.c:
+    javax.microedition.khronos.opengles.GL11 gl -> a
+    void glBindBuffer(int,int) -> a
+    void glBufferData(int,int,java.nio.Buffer,int) -> a
+    void glBufferSubData$5efd7755(int,int,java.nio.Buffer) -> c
+    void glGenBuffers$63f29576(java.nio.IntBuffer) -> a
+    void glColorPointer(int,int,int,int) -> a
+    void glNormalPointer$4868d30e(int,int) -> b
+    void glTexCoordPointer$3b4dfe4b(int,int,int) -> b
+    void glVertexPointer$3b4dfe4b(int,int,int) -> a
+    void glDrawElements$3b4dfe4b$4868d30e(int) -> e
+com.badlogic.gdx.backends.android.AndroidGL20 -> com.badlogic.gdx.backends.android.AndroidGL20:
+    void init() -> init
+    void glAttachShader(int,int) -> glAttachShader
+    void glBindBuffer(int,int) -> glBindBuffer
+    void glBindFramebuffer(int,int) -> glBindFramebuffer
+    void glBindRenderbuffer(int,int) -> glBindRenderbuffer
+    void glBindTexture(int,int) -> glBindTexture
+    void glBlendFunc(int,int) -> glBlendFunc
+    void glBufferData(int,int,java.nio.Buffer,int) -> glBufferData
+    void glBufferSubData(int,int,int,java.nio.Buffer) -> glBufferSubData
+    int glCheckFramebufferStatus(int) -> glCheckFramebufferStatus
+    void glClear(int) -> glClear
+    void glClearColor(float,float,float,float) -> glClearColor
+    void glCompileShader(int) -> glCompileShader
+    int glCreateProgram() -> glCreateProgram
+    int glCreateShader(int) -> glCreateShader
+    void glDeleteFramebuffers(int,java.nio.IntBuffer) -> glDeleteFramebuffers
+    void glDeleteRenderbuffers(int,java.nio.IntBuffer) -> glDeleteRenderbuffers
+    void glDeleteTextures(int,java.nio.IntBuffer) -> glDeleteTextures
+    void glDepthMask(boolean) -> glDepthMask
+    void glDisable(int) -> glDisable
+    void glDisableVertexAttribArray(int) -> glDisableVertexAttribArray
+    void glDrawArrays(int,int,int) -> glDrawArrays
+    void glDrawElements(int,int,int,java.nio.Buffer) -> glDrawElements
+    void glDrawElements(int,int,int,int) -> glDrawElements
+    void glEnable(int) -> glEnable
+    void glEnableVertexAttribArray(int) -> glEnableVertexAttribArray
+    void glFramebufferRenderbuffer(int,int,int,int) -> glFramebufferRenderbuffer
+    void glFramebufferTexture2D(int,int,int,int,int) -> glFramebufferTexture2D
+    void glGenBuffers(int,java.nio.IntBuffer) -> glGenBuffers
+    void glGenFramebuffers(int,java.nio.IntBuffer) -> glGenFramebuffers
+    void glGenRenderbuffers(int,java.nio.IntBuffer) -> glGenRenderbuffers
+    void glGenTextures(int,java.nio.IntBuffer) -> glGenTextures
+    int glGetAttribLocation(int,java.lang.String) -> glGetAttribLocation
+    void glGetProgramiv(int,int,java.nio.IntBuffer) -> glGetProgramiv
+    java.lang.String glGetProgramInfoLog(int) -> glGetProgramInfoLog
+    void glGetShaderiv(int,int,java.nio.IntBuffer) -> glGetShaderiv
+    java.lang.String glGetShaderInfoLog(int) -> glGetShaderInfoLog
+    int glGetUniformLocation(int,java.lang.String) -> glGetUniformLocation
+    void glLinkProgram(int) -> glLinkProgram
+    void glRenderbufferStorage(int,int,int,int) -> glRenderbufferStorage
+    void glShaderSource(int,java.lang.String) -> glShaderSource
+    void glTexImage2D(int,int,int,int,int,int,int,int,java.nio.Buffer) -> glTexImage2D
+    void glTexParameterf(int,int,float) -> glTexParameterf
+    void glUniform1i(int,int) -> glUniform1i
+    void glUniformMatrix4fv(int,int,boolean,java.nio.FloatBuffer) -> glUniformMatrix4fv
+    void glUseProgram(int) -> glUseProgram
+    void glVertexAttribPointer(int,int,int,boolean,int,int) -> glVertexAttribPointer
+com.badlogic.gdx.backends.android.AndroidGLU -> com.badlogic.gdx.backends.android.f:
+com.badlogic.gdx.backends.android.AndroidGraphics -> com.badlogic.gdx.backends.android.i:
+    android.view.View view -> a
+    int width -> h
+    int height -> i
+    com.badlogic.gdx.backends.android.AndroidApplication app -> b
+    com.badlogic.gdx.graphics.GLCommon gl -> j
+    com.badlogic.gdx.graphics.GL10 gl10 -> k
+    com.badlogic.gdx.graphics.GL11 gl11 -> l
+    com.badlogic.gdx.graphics.GL20 gl20 -> m
+    com.badlogic.gdx.graphics.GLU glu -> n
+    long lastFrameTime -> o
+    float deltaTime -> p
+    long frameStart -> q
+    int frames -> r
+    int fps -> s
+    com.badlogic.gdx.math.WindowedMean mean -> t
+    boolean created -> u
+    boolean running -> c
+    boolean pause -> d
+    boolean resume -> e
+    boolean destroy -> f
+    float ppiX -> v
+    float ppiY -> w
+    float ppcX -> x
+    float ppcY -> y
+    int[] value -> z
+    java.lang.Object synch -> g
+    void updatePpi() -> f
+    com.badlogic.gdx.graphics.GL20 getGL20() -> b
+    int getHeight() -> d
+    int getWidth() -> c
+    boolean isGL20Available() -> a
+    void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int) -> onSurfaceChanged
+    void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig) -> onSurfaceCreated
+    int getAttrib$6739ccb4(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig,int) -> a
+    void onDrawFrame(javax.microedition.khronos.opengles.GL10) -> onDrawFrame
+    float getDeltaTime() -> e
+com.badlogic.gdx.backends.android.AndroidGraphics$1 -> com.badlogic.gdx.backends.android.o:
+    com.badlogic.gdx.backends.android.AndroidGraphics this$0 -> a
+    javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay) -> chooseConfig
+com.badlogic.gdx.backends.android.AndroidInput -> com.badlogic.gdx.backends.android.q:
+    com.badlogic.gdx.utils.Pool usedKeyEvents -> g
+    com.badlogic.gdx.utils.Pool usedTouchEvents -> a
+    java.util.ArrayList keyEvents -> h
+    java.util.ArrayList touchEvents -> b
+    int[] touchX -> c
+    int[] touchY -> d
+    boolean[] touched -> e
+    boolean hasMultitouch -> i
+    java.util.HashSet keys -> j
+    android.hardware.SensorManager manager -> k
+    boolean accelerometerAvailable -> l
+    float[] accelerometerValues -> m
+    java.lang.String text -> n
+    com.badlogic.gdx.Input$TextInputListener textListener -> o
+    android.os.Handler handle -> p
+    com.badlogic.gdx.backends.android.AndroidApplication app -> q
+    com.badlogic.gdx.backends.android.AndroidTouchHandler touchHandler -> r
+    int sleepTime -> s
+    boolean catchBack -> t
+    android.os.Vibrator vibrator -> u
+    boolean compassAvailable -> v
+    boolean keyboardAvailable -> f
+    float[] magneticFieldValues -> w
+    float azimuth -> x
+    float pitch -> y
+    float roll -> z
+    float inclination -> A
+    boolean justTouched -> B
+    com.badlogic.gdx.InputProcessor processor -> C
+    com.badlogic.gdx.backends.android.AndroidApplicationConfiguration config -> D
+    boolean requestFocus -> E
+    float[] R -> F
+    float[] orientation -> G
+    float getAccelerometerX() -> a
+    int getX() -> b
+    int getY() -> c
+    boolean isKeyPressed(int) -> a
+    void processEvents() -> e
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
+    void onAccuracyChanged(android.hardware.Sensor,int) -> onAccuracyChanged
+    void onSensorChanged(android.hardware.SensorEvent) -> onSensorChanged
+    boolean justTouched() -> d
+    void registerSensorListeners() -> f
+    void unregisterSensorListeners() -> g
+com.badlogic.gdx.backends.android.AndroidInput$1 -> com.badlogic.gdx.backends.android.g:
+    com.badlogic.gdx.backends.android.AndroidInput this$0 -> a
+    java.lang.Object newObject() -> a
+com.badlogic.gdx.backends.android.AndroidInput$2 -> com.badlogic.gdx.backends.android.h:
+    com.badlogic.gdx.backends.android.AndroidInput this$0 -> a
+    java.lang.Object newObject() -> a
+com.badlogic.gdx.backends.android.AndroidInput$KeyEvent -> com.badlogic.gdx.backends.android.l:
+    int type -> a
+    int keyCode -> b
+    char keyChar -> c
+    com.badlogic.gdx.backends.android.AndroidInput this$0 -> d
+com.badlogic.gdx.backends.android.AndroidInput$TouchEvent -> com.badlogic.gdx.backends.android.a:
+    long timeStamp -> a
+    int type -> b
+    int x -> c
+    int y -> d
+    int pointer -> e
+    com.badlogic.gdx.backends.android.AndroidInput this$0 -> f
+com.badlogic.gdx.backends.android.AndroidMultiTouchHandler -> com.badlogic.gdx.backends.android.r:
+    void onTouch(android.view.MotionEvent,com.badlogic.gdx.backends.android.AndroidInput) -> a
+    void postTouchEvent(com.badlogic.gdx.backends.android.AndroidInput,int,int,int,int) -> a
+com.badlogic.gdx.backends.android.AndroidMusic -> com.badlogic.gdx.backends.android.s:
+    com.badlogic.gdx.backends.android.AndroidAudio audio -> a
+    android.media.MediaPlayer player -> b
+    boolean isPrepared -> c
+    void dispose() -> c
+    boolean isPlaying() -> d
+    void pause() -> e
+    void play() -> a
+    void setLooping$1385ff() -> b
+    void setVolume(float) -> a
+com.badlogic.gdx.backends.android.AndroidSingleTouchHandler -> com.badlogic.gdx.backends.android.j:
+    void onTouch(android.view.MotionEvent,com.badlogic.gdx.backends.android.AndroidInput) -> a
+    void postTouchEvent$43d4ac95(com.badlogic.gdx.backends.android.AndroidInput,int,int,int) -> a
+com.badlogic.gdx.backends.android.AndroidSound -> com.badlogic.gdx.backends.android.p:
+    android.media.SoundPool soundPool -> a
+    android.media.AudioManager manager -> b
+    int soundId -> c
+    void play(float) -> a
+com.badlogic.gdx.backends.android.AndroidTouchHandler -> com.badlogic.gdx.backends.android.n:
+    void onTouch(android.view.MotionEvent,com.badlogic.gdx.backends.android.AndroidInput) -> a
+com.badlogic.gdx.backends.android.surfaceview.DefaultGLSurfaceView -> com.badlogic.gdx.backends.android.a.i:
+    com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy resolutionStrategy -> a
+    void onMeasure(int,int) -> onMeasure
+com.badlogic.gdx.backends.android.surfaceview.FillResolutionStrategy -> com.badlogic.gdx.backends.android.a.e:
+    com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy$MeasuredDimension calcMeasures(int,int) -> a
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20 -> com.badlogic.gdx.backends.android.a.n:
+    java.lang.String TAG -> a
+    com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy resolutionStrategy -> b
+    void onMeasure(int,int) -> onMeasure
+    void checkEglError(java.lang.String,javax.microedition.khronos.egl.EGL10) -> a
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$ConfigChooser -> com.badlogic.gdx.backends.android.a.g:
+    int EGL_OPENGL_ES2_BIT -> a
+    int[] s_configAttribs2 -> b
+    int mRedSize -> c
+    int mGreenSize -> d
+    int mBlueSize -> e
+    int mAlphaSize -> f
+    int mDepthSize -> g
+    int mStencilSize -> h
+    int[] mValue -> i
+    javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay) -> chooseConfig
+    javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig[]) -> a
+    int findConfigAttrib$6739ccb4(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig,int) -> a
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$ContextFactory -> com.badlogic.gdx.backends.android.a.c:
+    int EGL_CONTEXT_CLIENT_VERSION -> a
+    javax.microedition.khronos.egl.EGLContext createContext(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig) -> createContext
+    void destroyContext(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLContext) -> destroyContext
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceViewCupcake -> com.badlogic.gdx.backends.android.a.b:
+    com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy resolutionStrategy -> d
+    java.util.concurrent.Semaphore sEglSemaphore -> a
+    com.badlogic.gdx.backends.android.surfaceview.GLSurfaceViewCupcake$GLThread mGLThread -> e
+    android.opengl.GLSurfaceView$EGLConfigChooser mEGLConfigChooser -> b
+    com.badlogic.gdx.backends.android.surfaceview.GLSurfaceViewCupcake$GLWrapper mGLWrapper -> c
+    int mRenderMode -> f
+    android.opengl.GLSurfaceView$Renderer mRenderer -> g
+    int mSurfaceWidth -> h
+    int mSurfaceHeight -> i
+    boolean mHasSurface -> j
+    void onMeasure(int,int) -> onMeasure
+    void setRenderer(android.opengl.GLSurfaceView$Renderer) -> a
+    void setEGLConfigChooser(android.opengl.GLSurfaceView$EGLConfigChooser) -> a
+    void surfaceCreated(android.view.SurfaceHolder) -> surfaceCreated
+    void surfaceDestroyed(android.view.SurfaceHolder) -> surfaceDestroyed
+    void surfaceChanged(android.view.SurfaceHolder,int,int,int) -> surfaceChanged
+    void onPause() -> a
+    void onResume() -> b
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceViewCupcake$BaseConfigChooser -> com.badlogic.gdx.backends.android.a.j:
+    int[] mConfigSpec -> a
+    javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay) -> chooseConfig
+    javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig[]) -> a
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceViewCupcake$ComponentSizeChooser -> com.badlogic.gdx.backends.android.a.k:
+    int[] mValue -> d
+    int mRedSize -> a
+    int mGreenSize -> b
+    int mBlueSize -> c
+    int mAlphaSize -> e
+    int mDepthSize -> f
+    int mStencilSize -> g
+    javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig[]) -> a
+    int findConfigAttrib$6739ccb4(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig,int) -> a
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceViewCupcake$EglHelper -> com.badlogic.gdx.backends.android.a.h:
+    javax.microedition.khronos.egl.EGL10 mEgl -> a
+    javax.microedition.khronos.egl.EGLDisplay mEglDisplay -> b
+    javax.microedition.khronos.egl.EGLSurface mEglSurface -> c
+    javax.microedition.khronos.egl.EGLConfig mEglConfig -> d
+    javax.microedition.khronos.egl.EGLContext mEglContext -> e
+    com.badlogic.gdx.backends.android.surfaceview.GLSurfaceViewCupcake this$0 -> f
+    void start() -> a
+    void finish() -> b
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceViewCupcake$GLThread -> com.badlogic.gdx.backends.android.a.d:
+    boolean mDone -> a
+    boolean mPaused -> b
+    boolean mHasSurface -> c
+    int mWidth -> d
+    int mHeight -> e
+    int mRenderMode -> f
+    boolean mRequestRender -> g
+    android.opengl.GLSurfaceView$Renderer mRenderer -> h
+    java.util.ArrayList mEventQueue -> i
+    com.badlogic.gdx.backends.android.surfaceview.GLSurfaceViewCupcake$EglHelper mEglHelper -> j
+    boolean mSizeChanged -> k
+    com.badlogic.gdx.backends.android.surfaceview.GLSurfaceViewCupcake this$0 -> l
+    void run() -> run
+    void setRenderMode(int) -> a
+    void surfaceCreated() -> a
+    void surfaceDestroyed() -> b
+    void onPause() -> c
+    void onResume() -> d
+    void onWindowResize(int,int) -> a
+    void requestExitAndWait() -> e
+    java.lang.Runnable getEvent() -> f
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceViewCupcake$GLWrapper -> com.badlogic.gdx.backends.android.a.m:
+    javax.microedition.khronos.opengles.GL wrap$40ce139f() -> a
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceViewCupcake$SimpleEGLConfigChooser -> com.badlogic.gdx.backends.android.a.f:
+com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy -> com.badlogic.gdx.backends.android.a.a:
+    com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy$MeasuredDimension calcMeasures(int,int) -> a
+com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy$MeasuredDimension -> com.badlogic.gdx.backends.android.a.l:
+    int width -> a
+    int height -> b
+com.badlogic.gdx.files.FileHandle -> com.badlogic.gdx.b.a:
+    java.io.File file -> b
+    com.badlogic.gdx.Files$FileType type -> c
+    java.lang.String path() -> c
+    com.badlogic.gdx.Files$FileType type() -> d
+    java.io.File file() -> f
+    java.io.InputStream read() -> b
+    java.io.OutputStream write$55d208a9() -> e
+    com.badlogic.gdx.files.FileHandle child(java.lang.String) -> a
+    com.badlogic.gdx.files.FileHandle parent() -> a
+    java.lang.String toString() -> toString
+com.badlogic.gdx.graphics.Camera -> com.badlogic.gdx.graphics.a:
+    com.badlogic.gdx.math.Vector3 position -> a
+    com.badlogic.gdx.math.Vector3 direction -> b
+    com.badlogic.gdx.math.Vector3 up -> c
+    com.badlogic.gdx.math.Matrix4 projection -> d
+    com.badlogic.gdx.math.Matrix4 view -> e
+    com.badlogic.gdx.math.Matrix4 combined -> f
+    com.badlogic.gdx.math.Matrix4 invProjectionView -> g
+    float near -> h
+    float far -> i
+    float viewportWidth -> j
+    float viewportHeight -> k
+    com.badlogic.gdx.math.Frustum frustum -> l
+    com.badlogic.gdx.math.Matrix4 tmpMat -> m
+    com.badlogic.gdx.math.Vector3 tmpVec -> n
+    com.badlogic.gdx.math.collision.Ray ray -> o
+    void apply(com.badlogic.gdx.graphics.GL10) -> a
+    void unproject(com.badlogic.gdx.math.Vector3) -> a
+com.badlogic.gdx.graphics.Color -> com.badlogic.gdx.graphics.l:
+    com.badlogic.gdx.graphics.Color WHITE -> a
+    com.badlogic.gdx.graphics.Color BLACK -> b
+    com.badlogic.gdx.graphics.Color RED -> c
+    com.badlogic.gdx.graphics.Color GREEN -> d
+    com.badlogic.gdx.graphics.Color BLUE -> e
+    float r -> f
+    float g -> g
+    float b -> h
+    float a -> i
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    float toFloatBits() -> a
+com.badlogic.gdx.graphics.GL10 -> com.badlogic.gdx.graphics.d:
+    void glClientActiveTexture(int) -> a
+    void glColorPointer(int,int,int,java.nio.Buffer) -> a
+    void glDisableClientState(int) -> b
+    void glEnableClientState(int) -> c
+    void glLoadMatrixf$49651d03(float[]) -> a
+    void glMatrixMode(int) -> d
+    void glNormalPointer$4dfa77fc(int,java.nio.Buffer) -> a
+    void glTexCoordPointer$5efd7755(int,int,java.nio.Buffer) -> a
+    void glVertexPointer$5efd7755(int,int,java.nio.Buffer) -> b
+com.badlogic.gdx.graphics.GL11 -> com.badlogic.gdx.graphics.e:
+    void glBindBuffer(int,int) -> a
+    void glBufferData(int,int,java.nio.Buffer,int) -> a
+    void glBufferSubData$5efd7755(int,int,java.nio.Buffer) -> c
+    void glGenBuffers$63f29576(java.nio.IntBuffer) -> a
+    void glVertexPointer$3b4dfe4b(int,int,int) -> a
+    void glColorPointer(int,int,int,int) -> a
+    void glNormalPointer$4868d30e(int,int) -> b
+    void glTexCoordPointer$3b4dfe4b(int,int,int) -> b
+    void glDrawElements$3b4dfe4b$4868d30e(int) -> e
+com.badlogic.gdx.graphics.GL20 -> com.badlogic.gdx.graphics.c:
+    void glAttachShader(int,int) -> glAttachShader
+    void glBindBuffer(int,int) -> glBindBuffer
+    void glBindFramebuffer(int,int) -> glBindFramebuffer
+    void glBindRenderbuffer(int,int) -> glBindRenderbuffer
+    void glBufferData(int,int,java.nio.Buffer,int) -> glBufferData
+    void glBufferSubData(int,int,int,java.nio.Buffer) -> glBufferSubData
+    int glCheckFramebufferStatus(int) -> glCheckFramebufferStatus
+    void glCompileShader(int) -> glCompileShader
+    int glCreateProgram() -> glCreateProgram
+    int glCreateShader(int) -> glCreateShader
+    void glDeleteFramebuffers(int,java.nio.IntBuffer) -> glDeleteFramebuffers
+    void glDeleteRenderbuffers(int,java.nio.IntBuffer) -> glDeleteRenderbuffers
+    void glDisableVertexAttribArray(int) -> glDisableVertexAttribArray
+    void glDrawElements(int,int,int,int) -> glDrawElements
+    void glEnableVertexAttribArray(int) -> glEnableVertexAttribArray
+    void glFramebufferRenderbuffer(int,int,int,int) -> glFramebufferRenderbuffer
+    void glFramebufferTexture2D(int,int,int,int,int) -> glFramebufferTexture2D
+    void glGenBuffers(int,java.nio.IntBuffer) -> glGenBuffers
+    void glGenFramebuffers(int,java.nio.IntBuffer) -> glGenFramebuffers
+    void glGenRenderbuffers(int,java.nio.IntBuffer) -> glGenRenderbuffers
+    int glGetAttribLocation(int,java.lang.String) -> glGetAttribLocation
+    void glGetProgramiv(int,int,java.nio.IntBuffer) -> glGetProgramiv
+    java.lang.String glGetProgramInfoLog(int) -> glGetProgramInfoLog
+    void glGetShaderiv(int,int,java.nio.IntBuffer) -> glGetShaderiv
+    java.lang.String glGetShaderInfoLog(int) -> glGetShaderInfoLog
+    int glGetUniformLocation(int,java.lang.String) -> glGetUniformLocation
+    void glLinkProgram(int) -> glLinkProgram
+    void glRenderbufferStorage(int,int,int,int) -> glRenderbufferStorage
+    void glShaderSource(int,java.lang.String) -> glShaderSource
+    void glUniform1i(int,int) -> glUniform1i
+    void glUniformMatrix4fv(int,int,boolean,java.nio.FloatBuffer) -> glUniformMatrix4fv
+    void glUseProgram(int) -> glUseProgram
+    void glVertexAttribPointer(int,int,int,boolean,int,int) -> glVertexAttribPointer
+com.badlogic.gdx.graphics.GLCommon -> com.badlogic.gdx.graphics.g:
+    void glBindTexture(int,int) -> glBindTexture
+    void glBlendFunc(int,int) -> glBlendFunc
+    void glClear(int) -> glClear
+    void glClearColor(float,float,float,float) -> glClearColor
+    void glDeleteTextures(int,java.nio.IntBuffer) -> glDeleteTextures
+    void glDepthMask(boolean) -> glDepthMask
+    void glDisable(int) -> glDisable
+    void glDrawArrays(int,int,int) -> glDrawArrays
+    void glDrawElements(int,int,int,java.nio.Buffer) -> glDrawElements
+    void glEnable(int) -> glEnable
+    void glGenTextures(int,java.nio.IntBuffer) -> glGenTextures
+    void glTexImage2D(int,int,int,int,int,int,int,int,java.nio.Buffer) -> glTexImage2D
+    void glTexParameterf(int,int,float) -> glTexParameterf
+com.badlogic.gdx.graphics.GLU -> com.badlogic.gdx.graphics.f:
+com.badlogic.gdx.graphics.Mesh -> com.badlogic.gdx.graphics.q:
+    java.util.Map meshes -> a
+    boolean forceVBO -> b
+    com.badlogic.gdx.graphics.glutils.VertexData vertices -> c
+    com.badlogic.gdx.graphics.glutils.IndexData indices -> d
+    boolean autoBind -> e
+    boolean isVertexArray -> f
+    void setVertices$1cc109a0(float[],int) -> a
+    void setIndices(short[]) -> a
+    void render$4868d30e(int) -> a
+    void render$6e88a955(com.badlogic.gdx.graphics.glutils.ShaderProgram,int) -> a
+    void invalidateAllMeshes(com.badlogic.gdx.Application) -> a
+    void clearAllMeshes(com.badlogic.gdx.Application) -> b
+    java.lang.String getManagedStatus() -> a
+com.badlogic.gdx.graphics.Mesh$VertexDataType -> com.badlogic.gdx.graphics.j:
+    com.badlogic.gdx.graphics.Mesh$VertexDataType VertexArray -> a
+    com.badlogic.gdx.graphics.Mesh$VertexDataType VertexBufferObject -> b
+    com.badlogic.gdx.graphics.Mesh$VertexDataType VertexBufferObjectSubData -> c
+    com.badlogic.gdx.graphics.Mesh$VertexDataType[] ENUM$VALUES -> d
+    com.badlogic.gdx.graphics.Mesh$VertexDataType[] values() -> values
+    com.badlogic.gdx.graphics.Mesh$VertexDataType valueOf(java.lang.String) -> valueOf
+com.badlogic.gdx.graphics.OrthographicCamera -> com.badlogic.gdx.graphics.h:
+    float zoom -> m
+    com.badlogic.gdx.math.Vector3 tmp -> n
+    void update() -> a
+com.badlogic.gdx.graphics.Pixmap -> com.badlogic.gdx.graphics.m:
+    com.badlogic.gdx.graphics.Pixmap$Blending blending -> a
+    com.badlogic.gdx.graphics.g2d.Gdx2DPixmap pixmap -> b
+    int color -> c
+    void setBlending(com.badlogic.gdx.graphics.Pixmap$Blending) -> a
+    void setColor$4098370b() -> a
+    void fill() -> b
+    void drawPixmap$23690701(com.badlogic.gdx.graphics.Pixmap,int,int) -> a
+    void drawPixmap$12cb159f(com.badlogic.gdx.graphics.Pixmap,int,int,int,int) -> a
+    int getWidth() -> c
+    int getHeight() -> d
+    void dispose() -> e
+    int getGLFormat() -> f
+    int getGLInternalFormat() -> g
+    int getGLType() -> h
+    java.nio.ByteBuffer getPixels() -> i
+    com.badlogic.gdx.graphics.Pixmap$Format getFormat() -> j
+    com.badlogic.gdx.graphics.Pixmap$Blending getBlending() -> k
+com.badlogic.gdx.graphics.Pixmap$Blending -> com.badlogic.gdx.graphics.r:
+    com.badlogic.gdx.graphics.Pixmap$Blending None -> a
+    com.badlogic.gdx.graphics.Pixmap$Blending SourceOver -> b
+    com.badlogic.gdx.graphics.Pixmap$Blending[] ENUM$VALUES -> c
+    com.badlogic.gdx.graphics.Pixmap$Blending[] values() -> values
+    com.badlogic.gdx.graphics.Pixmap$Blending valueOf(java.lang.String) -> valueOf
+com.badlogic.gdx.graphics.Pixmap$Format -> com.badlogic.gdx.graphics.n:
+    com.badlogic.gdx.graphics.Pixmap$Format Alpha -> a
+    com.badlogic.gdx.graphics.Pixmap$Format LuminanceAlpha -> b
+    com.badlogic.gdx.graphics.Pixmap$Format RGB565 -> c
+    com.badlogic.gdx.graphics.Pixmap$Format RGBA4444 -> d
+    com.badlogic.gdx.graphics.Pixmap$Format RGB888 -> e
+    com.badlogic.gdx.graphics.Pixmap$Format RGBA8888 -> f
+    com.badlogic.gdx.graphics.Pixmap$Format[] ENUM$VALUES -> g
+    int toGdx2DPixmapFormat(com.badlogic.gdx.graphics.Pixmap$Format) -> a
+    com.badlogic.gdx.graphics.Pixmap$Format fromGdx2DPixmapFormat(int) -> a
+    com.badlogic.gdx.graphics.Pixmap$Format[] values() -> values
+    com.badlogic.gdx.graphics.Pixmap$Format valueOf(java.lang.String) -> valueOf
+com.badlogic.gdx.graphics.Texture -> com.badlogic.gdx.graphics.k:
+    boolean enforcePotImages -> a
+    java.nio.IntBuffer buffer -> b
+    java.util.Map managedTextures -> c
+    int width -> d
+    int height -> e
+    boolean isMipMap -> f
+    boolean isManaged -> g
+    int glHandle -> h
+    com.badlogic.gdx.files.FileHandle file -> i
+    com.badlogic.gdx.graphics.TextureData textureData -> j
+    com.badlogic.gdx.graphics.Texture$TextureFilter minFilter -> k
+    com.badlogic.gdx.graphics.Texture$TextureFilter magFilter -> l
+    com.badlogic.gdx.graphics.Texture$TextureWrap uWrap -> m
+    com.badlogic.gdx.graphics.Texture$TextureWrap vWrap -> n
+    com.badlogic.gdx.graphics.Pixmap$Format format -> o
+    int createGLHandle() -> g
+    void uploadImageData(com.badlogic.gdx.graphics.Pixmap) -> a
+    void bind() -> a
+    int getWidth() -> b
+    int getHeight() -> c
+    void dispose() -> d
+    int getTextureObjectHandle() -> e
+    void setWrap(com.badlogic.gdx.graphics.Texture$TextureWrap,com.badlogic.gdx.graphics.Texture$TextureWrap) -> a
+    void setFilter(com.badlogic.gdx.graphics.Texture$TextureFilter,com.badlogic.gdx.graphics.Texture$TextureFilter) -> a
+    int getTextureFilter(com.badlogic.gdx.graphics.Texture$TextureFilter) -> a
+    void clearAllTextures(com.badlogic.gdx.Application) -> a
+    void invalidateAllTextures(com.badlogic.gdx.Application) -> b
+    java.lang.String getManagedStatus() -> f
+com.badlogic.gdx.graphics.Texture$TextureFilter -> com.badlogic.gdx.graphics.b:
+    com.badlogic.gdx.graphics.Texture$TextureFilter Nearest -> a
+    com.badlogic.gdx.graphics.Texture$TextureFilter Linear -> b
+    com.badlogic.gdx.graphics.Texture$TextureFilter MipMap -> c
+    com.badlogic.gdx.graphics.Texture$TextureFilter MipMapNearestNearest -> d
+    com.badlogic.gdx.graphics.Texture$TextureFilter MipMapLinearNearest -> e
+    com.badlogic.gdx.graphics.Texture$TextureFilter MipMapNearestLinear -> f
+    com.badlogic.gdx.graphics.Texture$TextureFilter MipMapLinearLinear -> g
+    com.badlogic.gdx.graphics.Texture$TextureFilter[] ENUM$VALUES -> h
+    com.badlogic.gdx.graphics.Texture$TextureFilter[] values() -> values
+    com.badlogic.gdx.graphics.Texture$TextureFilter valueOf(java.lang.String) -> valueOf
+com.badlogic.gdx.graphics.Texture$TextureWrap -> com.badlogic.gdx.graphics.p:
+    com.badlogic.gdx.graphics.Texture$TextureWrap ClampToEdge -> a
+    com.badlogic.gdx.graphics.Texture$TextureWrap Repeat -> b
+    com.badlogic.gdx.graphics.Texture$TextureWrap[] ENUM$VALUES -> c
+    com.badlogic.gdx.graphics.Texture$TextureWrap[] values() -> values
+    com.badlogic.gdx.graphics.Texture$TextureWrap valueOf(java.lang.String) -> valueOf
+com.badlogic.gdx.graphics.TextureData -> com.badlogic.gdx.graphics.i:
+com.badlogic.gdx.graphics.VertexAttribute -> com.badlogic.gdx.graphics.s:
+    int usage -> a
+    int numComponents -> b
+    int offset -> c
+    java.lang.String alias -> d
+com.badlogic.gdx.graphics.VertexAttributes -> com.badlogic.gdx.graphics.o:
+    com.badlogic.gdx.graphics.VertexAttribute[] attributes -> b
+    int vertexSize -> a
+    int calculateOffsets() -> b
+    void checkValidity() -> c
+    int size() -> a
+    com.badlogic.gdx.graphics.VertexAttribute get(int) -> a
+    java.lang.String toString() -> toString
+com.badlogic.gdx.graphics.g2d.BitmapFont -> com.badlogic.gdx.graphics.g2d.c:
+    com.badlogic.gdx.graphics.g2d.TextureRegion region -> a
+    float lineHeight -> b
+    float capHeight -> c
+    float ascent -> d
+    float down -> e
+    float scaleX -> f
+    float scaleY -> g
+    com.badlogic.gdx.graphics.g2d.BitmapFont$Glyph[][] glyphs -> h
+    float spaceWidth -> i
+    float xHeight -> j
+    com.badlogic.gdx.graphics.g2d.BitmapFont$TextBounds textBounds -> k
+    float color -> l
+    com.badlogic.gdx.graphics.Color tempColor -> m
+    boolean flipped -> n
+    void init$14808588(com.badlogic.gdx.files.FileHandle,com.badlogic.gdx.graphics.g2d.TextureRegion) -> a
+    com.badlogic.gdx.graphics.g2d.BitmapFont$Glyph getGlyph(char) -> a
+    com.badlogic.gdx.graphics.g2d.BitmapFont$TextBounds draw(com.badlogic.gdx.graphics.g2d.SpriteBatch,java.lang.CharSequence,float,float) -> a
+    com.badlogic.gdx.graphics.g2d.BitmapFont$TextBounds getBounds(java.lang.CharSequence) -> a
+    float getLineHeight() -> a
+    float getSpaceWidth() -> b
+com.badlogic.gdx.graphics.g2d.BitmapFont$Glyph -> com.badlogic.gdx.graphics.g2d.e:
+    int width -> a
+    int height -> b
+    float u -> c
+    float v -> d
+    float u2 -> e
+    float v2 -> f
+    int xoffset -> g
+    int yoffset -> h
+    int xadvance -> i
+    byte[][] kerning -> j
+    int getKerning(char) -> a
+com.badlogic.gdx.graphics.g2d.BitmapFont$TextBounds -> com.badlogic.gdx.graphics.g2d.a:
+    float width -> a
+    float height -> b
+com.badlogic.gdx.graphics.g2d.Gdx2DPixmap -> com.badlogic.gdx.graphics.g2d.Gdx2DPixmap:
+    long basePtr -> a
+    int width -> b
+    int height -> c
+    int format -> d
+    java.nio.ByteBuffer pixelPtr -> e
+    long[] nativeData -> f
+    void dispose() -> a
+    void clear(int) -> a
+    void drawPixmap$1d45ff80(com.badlogic.gdx.graphics.g2d.Gdx2DPixmap,int,int) -> a
+    void drawPixmap$1c4a40e0(com.badlogic.gdx.graphics.g2d.Gdx2DPixmap,int,int,int,int) -> a
+    java.nio.ByteBuffer load(long[],byte[],int,int) -> load
+    java.nio.ByteBuffer newPixmap(long[],int,int,int) -> newPixmap
+    void free(long) -> free
+    void clear(long,int) -> clear
+    void drawPixmap(long,long,int,int,int,int,int,int,int,int) -> drawPixmap
+    void setBlend(int) -> setBlend
+    void setScale(int) -> setScale
+    java.nio.ByteBuffer getPixels() -> b
+    int getHeight() -> c
+    int getWidth() -> d
+    int getFormat() -> e
+    int getGLInternalFormat() -> f
+    int getGLFormat() -> g
+    int getGLType() -> h
+com.badlogic.gdx.graphics.g2d.SpriteBatch -> com.badlogic.gdx.graphics.g2d.d:
+    com.badlogic.gdx.graphics.Mesh mesh -> b
+    com.badlogic.gdx.graphics.Mesh[] buffers -> c
+    com.badlogic.gdx.graphics.Texture lastTexture -> d
+    float invTexWidth -> e
+    float invTexHeight -> f
+    int idx -> g
+    int currBufferIdx -> h
+    float[] vertices -> i
+    com.badlogic.gdx.math.Matrix4 transformMatrix -> j
+    com.badlogic.gdx.math.Matrix4 projectionMatrix -> k
+    com.badlogic.gdx.math.Matrix4 combinedMatrix -> l
+    boolean drawing -> m
+    boolean blendingDisabled -> n
+    int blendSrcFunc -> o
+    int blendDstFunc -> p
+    com.badlogic.gdx.graphics.glutils.ShaderProgram shader -> q
+    float color -> a
+    com.badlogic.gdx.graphics.Color tempColor -> r
+    int renderCalls -> s
+    int maxSpritesInBatch -> t
+    com.badlogic.gdx.graphics.glutils.ShaderProgram customShader -> u
+    void begin() -> a
+    void end() -> b
+    void draw(com.badlogic.gdx.graphics.Texture,float,float,float,float,float,float,float,float) -> a
+    void draw(com.badlogic.gdx.graphics.g2d.TextureRegion,float,float,float,float) -> a
+    void renderMesh() -> e
+    void disableBlending() -> c
+    void enableBlending() -> d
+    void setProjectionMatrix(com.badlogic.gdx.math.Matrix4) -> a
+com.badlogic.gdx.graphics.g2d.TextureRegion -> com.badlogic.gdx.graphics.g2d.b:
+    com.badlogic.gdx.graphics.Texture texture -> a
+    float u -> b
+    float v -> c
+    float u2 -> d
+    float v2 -> e
+    void setRegion(int,int,int,int) -> a
+com.badlogic.gdx.graphics.glutils.FrameBuffer -> com.badlogic.gdx.graphics.a.d:
+    java.util.Map buffers -> a
+    com.badlogic.gdx.graphics.Texture colorTexture -> b
+    int framebufferHandle -> c
+    int depthbufferHandle -> d
+    int width -> e
+    int height -> f
+    com.badlogic.gdx.graphics.Pixmap$Format format -> g
+    void invalidateAllFrameBuffers(com.badlogic.gdx.Application) -> a
+    void clearAllFrameBuffers(com.badlogic.gdx.Application) -> b
+    java.lang.String getManagedStatus() -> a
+com.badlogic.gdx.graphics.glutils.IndexBufferObject -> com.badlogic.gdx.graphics.a.a:
+    java.nio.IntBuffer tmpHandle -> a
+    java.nio.ShortBuffer buffer -> b
+    java.nio.ByteBuffer byteBuffer -> c
+    int bufferHandle -> d
+    boolean isDirect -> e
+    boolean isDirty -> f
+    boolean isBound -> g
+    int usage -> h
+    int createBufferObject() -> f
+    int getNumIndices() -> a
+    void setIndices$1c09d813(short[],int) -> a
+    java.nio.ShortBuffer getBuffer() -> b
+    void bind() -> c
+    void unbind() -> d
+    void invalidate() -> e
+com.badlogic.gdx.graphics.glutils.IndexBufferObjectSubData -> com.badlogic.gdx.graphics.a.h:
+    java.nio.IntBuffer tmpHandle -> a
+    java.nio.ShortBuffer buffer -> b
+    java.nio.ByteBuffer byteBuffer -> c
+    int bufferHandle -> d
+    boolean isDirect -> e
+    boolean isDirty -> f
+    boolean isBound -> g
+    int usage -> h
+    int createBufferObject() -> f
+    int getNumIndices() -> a
+    void setIndices$1c09d813(short[],int) -> a
+    java.nio.ShortBuffer getBuffer() -> b
+    void bind() -> c
+    void unbind() -> d
+    void invalidate() -> e
+com.badlogic.gdx.graphics.glutils.IndexData -> com.badlogic.gdx.graphics.a.i:
+    int getNumIndices() -> a
+    void setIndices$1c09d813(short[],int) -> a
+    java.nio.ShortBuffer getBuffer() -> b
+    void bind() -> c
+    void unbind() -> d
+    void invalidate() -> e
+com.badlogic.gdx.graphics.glutils.ShaderProgram -> com.badlogic.gdx.graphics.a.b:
+    boolean pedantic -> a
+    java.util.Map shaders -> b
+    java.lang.String log -> c
+    boolean isCompiled -> d
+    com.badlogic.gdx.utils.ObjectMap uniforms -> e
+    com.badlogic.gdx.utils.ObjectMap attributes -> f
+    int program -> g
+    int vertexShaderHandle -> h
+    int fragmentShaderHandle -> i
+    java.nio.FloatBuffer matrix -> j
+    java.lang.String vertexShaderSource -> k
+    java.lang.String fragmentShaderSource -> l
+    boolean invalidated -> m
+    java.nio.ByteBuffer buffer -> n
+    java.nio.FloatBuffer floatBuffer -> o
+    java.nio.IntBuffer intBuffer -> p
+    void compileShaders(java.lang.String,java.lang.String) -> a
+    int loadShader(int,java.lang.String) -> a
+    java.lang.String getLog() -> a
+    boolean isCompiled() -> b
+    int fetchAttributeLocation(java.lang.String) -> d
+    int fetchUniformLocation(java.lang.String) -> e
+    void setUniformi$505cff1c(java.lang.String) -> a
+    void setUniformMatrix(java.lang.String,com.badlogic.gdx.math.Matrix4) -> a
+    void setVertexAttribute(java.lang.String,int,int,boolean,int,int) -> a
+    void begin() -> c
+    void end() -> d
+    void disableVertexAttribute(java.lang.String) -> b
+    void enableVertexAttribute(java.lang.String) -> c
+    void checkManaged() -> f
+    void invalidateAllShaderPrograms(com.badlogic.gdx.Application) -> a
+    void clearAllShaderPrograms(com.badlogic.gdx.Application) -> b
+    java.lang.String getManagedStatus() -> e
+com.badlogic.gdx.graphics.glutils.VertexArray -> com.badlogic.gdx.graphics.a.e:
+    com.badlogic.gdx.graphics.VertexAttributes attributes -> a
+    java.nio.FloatBuffer buffer -> b
+    java.nio.ByteBuffer byteBuffer -> c
+    boolean isBound -> d
+    void setVertices$1cc109a0(float[],int) -> a
+    void bind() -> a
+    void unbind() -> b
+com.badlogic.gdx.graphics.glutils.VertexBufferObject -> com.badlogic.gdx.graphics.a.f:
+    java.nio.IntBuffer tmpHandle -> a
+    com.badlogic.gdx.graphics.VertexAttributes attributes -> b
+    java.nio.FloatBuffer buffer -> c
+    java.nio.ByteBuffer byteBuffer -> d
+    int bufferHandle -> e
+    boolean isDirect -> f
+    boolean isStatic -> g
+    int usage -> h
+    boolean isDirty -> i
+    boolean isBound -> j
+    int createBufferObject() -> d
+    void setVertices$1cc109a0(float[],int) -> a
+    void bind() -> a
+    void bind(com.badlogic.gdx.graphics.glutils.ShaderProgram) -> a
+    void unbind() -> b
+    void unbind(com.badlogic.gdx.graphics.glutils.ShaderProgram) -> b
+    void invalidate() -> c
+com.badlogic.gdx.graphics.glutils.VertexBufferObjectSubData -> com.badlogic.gdx.graphics.a.c:
+    java.nio.IntBuffer tmpHandle -> a
+    com.badlogic.gdx.graphics.VertexAttributes attributes -> b
+    java.nio.FloatBuffer buffer -> c
+    java.nio.ByteBuffer byteBuffer -> d
+    int bufferHandle -> e
+    boolean isDirect -> f
+    boolean isStatic -> g
+    int usage -> h
+    boolean isDirty -> i
+    boolean isBound -> j
+    void setVertices$1cc109a0(float[],int) -> a
+    void bind() -> a
+    void unbind() -> b
+com.badlogic.gdx.graphics.glutils.VertexData -> com.badlogic.gdx.graphics.a.g:
+    void setVertices$1cc109a0(float[],int) -> a
+    void bind() -> a
+    void unbind() -> b
+com.badlogic.gdx.math.Frustum -> com.badlogic.gdx.math.d:
+    com.badlogic.gdx.math.Vector3[] clipSpacePlanePoints -> a
+    float[] clipSpacePlanePointsArray -> b
+    com.badlogic.gdx.math.Plane[] planes -> c
+    com.badlogic.gdx.math.Vector3[] planePoints -> d
+    float[] planePointsArray -> e
+    void update(com.badlogic.gdx.math.Matrix4) -> a
+com.badlogic.gdx.math.MathUtils -> com.badlogic.gdx.math.e:
+    float[] sin -> a
+    float[] cos -> b
+    int ATAN2_DIM -> c
+    float INV_ATAN2_DIM_MINUS_1 -> d
+    float[] atan2 -> e
+    java.util.Random random -> f
+    double BIG_ENOUGH_CEIL -> g
+    int random$134621() -> a
+    boolean isPowerOfTwo(int) -> a
+com.badlogic.gdx.math.Matrix4 -> com.badlogic.gdx.math.Matrix4:
+    float[] tmp -> b
+    float[] val -> a
+    com.badlogic.gdx.math.Quaternion quat -> c
+    com.badlogic.gdx.math.Vector3 tmpV -> d
+    com.badlogic.gdx.math.Vector3 l_vez -> e
+    com.badlogic.gdx.math.Vector3 l_vex -> f
+    com.badlogic.gdx.math.Vector3 l_vey -> g
+    com.badlogic.gdx.math.Vector3 tmpVec -> h
+    com.badlogic.gdx.math.Matrix4 tmpMat -> i
+    com.badlogic.gdx.math.Vector3 right -> j
+    com.badlogic.gdx.math.Vector3 tmpForward -> k
+    com.badlogic.gdx.math.Vector3 tmpUp -> l
+    com.badlogic.gdx.math.Matrix4 set(com.badlogic.gdx.math.Matrix4) -> a
+    com.badlogic.gdx.math.Matrix4 set(float[]) -> a
+    com.badlogic.gdx.math.Matrix4 mul(com.badlogic.gdx.math.Matrix4) -> b
+    com.badlogic.gdx.math.Matrix4 idt() -> a
+    com.badlogic.gdx.math.Matrix4 setToOrtho2D$7167aba2(float,float) -> a
+    com.badlogic.gdx.math.Matrix4 setToOrtho(float,float,float,float,float,float) -> a
+    com.badlogic.gdx.math.Matrix4 setToLookAt(com.badlogic.gdx.math.Vector3,com.badlogic.gdx.math.Vector3,com.badlogic.gdx.math.Vector3) -> a
+    java.lang.String toString() -> toString
+    void mul(float[],float[]) -> mul
+    void prj(float[],float[],int,int,int) -> prj
+    boolean inv(float[]) -> inv
+com.badlogic.gdx.math.Plane -> com.badlogic.gdx.math.c:
+    com.badlogic.gdx.math.Vector3 normal -> a
+    float d -> b
+    void set(com.badlogic.gdx.math.Vector3,com.badlogic.gdx.math.Vector3,com.badlogic.gdx.math.Vector3) -> a
+    java.lang.String toString() -> toString
+com.badlogic.gdx.math.Quaternion -> com.badlogic.gdx.math.f:
+    com.badlogic.gdx.math.Quaternion tmp1 -> a
+    com.badlogic.gdx.math.Quaternion tmp2 -> b
+    float x -> c
+    float y -> d
+    float z -> e
+    float w -> f
+    java.lang.String toString() -> toString
+    boolean equals(java.lang.Object) -> equals
+com.badlogic.gdx.math.Rectangle -> com.badlogic.gdx.math.b:
+    float x -> a
+    float y -> b
+    float width -> c
+    float height -> d
+com.badlogic.gdx.math.Vector2 -> com.badlogic.gdx.math.h:
+    com.badlogic.gdx.math.Vector2 tmp -> c
+    float x -> a
+    float y -> b
+    com.badlogic.gdx.math.Vector2 set$34f5662(float) -> a
+    com.badlogic.gdx.math.Vector2 add(float,float) -> a
+    java.lang.String toString() -> toString
+com.badlogic.gdx.math.Vector3 -> com.badlogic.gdx.math.g:
+    float x -> a
+    float y -> b
+    float z -> c
+    com.badlogic.gdx.math.Vector3 tmp -> d
+    com.badlogic.gdx.math.Vector3 tmp2 -> e
+    com.badlogic.gdx.math.Vector3 tmp3 -> f
+    com.badlogic.gdx.math.Vector3 set(float,float,float) -> a
+    com.badlogic.gdx.math.Vector3 set(com.badlogic.gdx.math.Vector3) -> a
+    com.badlogic.gdx.math.Vector3 tmp() -> a
+    com.badlogic.gdx.math.Vector3 tmp2() -> b
+    com.badlogic.gdx.math.Vector3 add(com.badlogic.gdx.math.Vector3) -> b
+    com.badlogic.gdx.math.Vector3 sub(com.badlogic.gdx.math.Vector3) -> c
+    com.badlogic.gdx.math.Vector3 mul$38479b49() -> c
+    com.badlogic.gdx.math.Vector3 nor() -> d
+    float dot(com.badlogic.gdx.math.Vector3) -> d
+    com.badlogic.gdx.math.Vector3 crs(com.badlogic.gdx.math.Vector3) -> e
+    com.badlogic.gdx.math.Vector3 prj(com.badlogic.gdx.math.Matrix4) -> a
+    java.lang.String toString() -> toString
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+com.badlogic.gdx.math.WindowedMean -> com.badlogic.gdx.math.a:
+    float[] values -> a
+    int added_values -> b
+    int last_value -> c
+    float mean -> d
+    boolean dirty -> e
+    void addValue(float) -> a
+    float getMean() -> a
+com.badlogic.gdx.math.collision.Ray -> com.badlogic.gdx.math.a.a:
+    com.badlogic.gdx.math.Vector3 origin -> a
+    com.badlogic.gdx.math.Vector3 direction -> b
+    com.badlogic.gdx.math.Vector3 tmp -> c
+    java.lang.String toString() -> toString
+com.badlogic.gdx.utils.Array -> com.badlogic.gdx.utils.c:
+    java.lang.Object[] items -> a
+    int size -> b
+    boolean ordered -> c
+    com.badlogic.gdx.utils.Array$ArrayIterator iterator -> d
+    java.util.Iterator iterator() -> iterator
+    java.lang.String toString() -> toString
+com.badlogic.gdx.utils.Array$ArrayIterator -> com.badlogic.gdx.utils.d:
+    com.badlogic.gdx.utils.Array array -> b
+    int index -> a
+    boolean hasNext() -> hasNext
+    java.lang.Object next() -> next
+    void remove() -> remove
+com.badlogic.gdx.utils.BufferUtils -> com.badlogic.gdx.utils.BufferUtils:
+    void copy$154271e7(float[],java.nio.Buffer,int) -> a
+    void copyJni(float[],java.nio.Buffer,int,int) -> copyJni
+    java.nio.IntBuffer newIntBuffer$ba72910() -> a
+com.badlogic.gdx.utils.GdxNativesLoader -> com.badlogic.gdx.utils.a:
+    boolean disableNativesLoading -> a
+    boolean nativesLoaded -> b
+    boolean isWindows -> c
+    boolean isLinux -> d
+    boolean isMac -> e
+    boolean is64Bit -> f
+    java.io.File nativesDir -> g
+    java.lang.String crc(java.lang.String) -> a
+    boolean loadLibrary(java.lang.String,java.lang.String) -> a
+    java.lang.String extractLibrary(java.lang.String,java.lang.String) -> b
+    void load() -> a
+com.badlogic.gdx.utils.GdxRuntimeException -> com.badlogic.gdx.utils.e:
+com.badlogic.gdx.utils.ObjectMap -> com.badlogic.gdx.utils.b:
+    int size -> a
+    java.lang.Object[] keyTable -> b
+    java.lang.Object[] valueTable -> c
+    int capacity -> d
+    int stashSize -> e
+    float loadFactor -> f
+    int hashShift -> g
+    int mask -> h
+    int threshold -> i
+    int stashCapacity -> j
+    int pushIterations -> k
+    java.lang.Object put(java.lang.Object,java.lang.Object) -> a
+    void push(java.lang.Object,java.lang.Object,int,java.lang.Object,int,java.lang.Object,int,java.lang.Object) -> a
+    java.lang.Object get(java.lang.Object) -> a
+    void resize(int) -> a
+    int hash2(long) -> a
+    int hash3(long) -> b
+    java.lang.String toString() -> toString
+com.badlogic.gdx.utils.Pool -> com.badlogic.gdx.utils.f:
+    int max -> a
+    com.badlogic.gdx.utils.Array freeObjects -> b
+    java.lang.Object newObject() -> a
+    java.lang.Object obtain() -> b
+    void free(java.lang.Object) -> a
+com.badlogicgames.superjumper.Animation -> com.b.a.i:
+    com.badlogic.gdx.graphics.g2d.TextureRegion[] keyFrames -> a
+    float frameDuration -> b
+    com.badlogic.gdx.graphics.g2d.TextureRegion getKeyFrame(float,int) -> a
+com.badlogicgames.superjumper.Assets -> com.b.a.e:
+    com.badlogic.gdx.graphics.Texture background -> a
+    com.badlogic.gdx.graphics.g2d.TextureRegion backgroundRegion -> b
+    com.badlogic.gdx.graphics.Texture items -> c
+    com.badlogic.gdx.graphics.Texture jumpgirl -> d
+    com.badlogic.gdx.graphics.g2d.TextureRegion mainMenu -> e
+    com.badlogic.gdx.graphics.g2d.TextureRegion pauseMenu -> f
+    com.badlogic.gdx.graphics.g2d.TextureRegion ready -> g
+    com.badlogic.gdx.graphics.g2d.TextureRegion gameOver -> h
+    com.badlogic.gdx.graphics.g2d.TextureRegion highScoresRegion -> i
+    com.badlogic.gdx.graphics.g2d.TextureRegion logo -> j
+    com.badlogic.gdx.graphics.g2d.TextureRegion soundOn -> k
+    com.badlogic.gdx.graphics.g2d.TextureRegion soundOff -> l
+    com.badlogic.gdx.graphics.g2d.TextureRegion arrow -> m
+    com.badlogic.gdx.graphics.g2d.TextureRegion pause -> n
+    com.badlogic.gdx.graphics.g2d.TextureRegion spring -> o
+    com.badlogic.gdx.graphics.g2d.TextureRegion castle -> p
+    com.badlogicgames.superjumper.Animation coinAnim -> q
+    com.badlogicgames.superjumper.Animation bobJump -> r
+    com.badlogicgames.superjumper.Animation bobFall -> s
+    com.badlogic.gdx.graphics.g2d.TextureRegion bobHit -> t
+    com.badlogicgames.superjumper.Animation squirrelFly -> u
+    com.badlogic.gdx.graphics.g2d.TextureRegion platform -> v
+    com.badlogicgames.superjumper.Animation brakingPlatform -> w
+    com.badlogic.gdx.graphics.g2d.BitmapFont font -> x
+    com.badlogic.gdx.audio.Music music -> y
+    com.badlogic.gdx.audio.Sound jumpSound -> z
+    com.badlogic.gdx.audio.Sound highJumpSound -> A
+    com.badlogic.gdx.audio.Sound hitSound -> B
+    com.badlogic.gdx.audio.Sound coinSound -> C
+    com.badlogic.gdx.audio.Sound clickSound -> D
+    com.badlogic.gdx.graphics.Texture loadTexture(java.lang.String) -> a
+    void playSound(com.badlogic.gdx.audio.Sound) -> a
+com.badlogicgames.superjumper.Bob -> com.b.a.b:
+    int lives -> a
+    int state -> b
+    void update(float) -> a
+    void hitSquirrel() -> a
+    void hitPlatform() -> b
+    void hitSpring() -> c
+com.badlogicgames.superjumper.Castle -> com.b.a.ac:
+    float CASTLE_WIDTH -> a
+    float CASTLE_HEIGHT -> b
+com.badlogicgames.superjumper.Coin -> com.b.a.m:
+com.badlogicgames.superjumper.DynamicGameObject -> com.b.a.aa:
+    com.badlogic.gdx.math.Vector2 velocity -> e
+    com.badlogic.gdx.math.Vector2 accel -> f
+    float stateTime -> g
+com.badlogicgames.superjumper.Fighting -> com.b.a.ab:
+    java.lang.String name -> a
+    int score -> b
+    java.lang.String phoneName -> c
+    java.lang.String getName() -> a
+    int getScore() -> b
+    java.lang.String getPhoneName() -> c
+    int compareTo(java.lang.Object) -> compareTo
+com.badlogicgames.superjumper.Game -> com.b.a.y:
+    com.badlogicgames.superjumper.Screen screen -> a
+    void setScreen(com.badlogicgames.superjumper.Screen) -> a
+    com.badlogicgames.superjumper.Screen getStartScreen() -> a
+    void create() -> b
+    void render() -> c
+    void pause() -> d
+com.badlogicgames.superjumper.GameObject -> com.b.a.j:
+    com.badlogic.gdx.math.Vector2 position -> c
+    com.badlogic.gdx.math.Rectangle bounds -> d
+com.badlogicgames.superjumper.GameScreen -> com.b.a.n:
+    int state -> b
+    com.badlogic.gdx.graphics.OrthographicCamera guiCam -> c
+    com.badlogic.gdx.math.Vector3 touchPoint -> d
+    com.badlogic.gdx.graphics.g2d.SpriteBatch batcher -> e
+    com.badlogicgames.superjumper.World world -> f
+    com.badlogicgames.superjumper.World$WorldListener worldListener -> g
+    com.badlogicgames.superjumper.WorldRenderer renderer -> h
+    com.badlogic.gdx.math.Rectangle pauseBounds -> i
+    com.badlogic.gdx.math.Rectangle resumeBounds -> j
+    com.badlogic.gdx.math.Rectangle quitBounds -> k
+    int lastScore -> l
+    java.lang.String scoreString -> m
+    java.lang.String liveString -> n
+    void update(float) -> a
+    void present$133aeb() -> b
+    void pause() -> a
+com.badlogicgames.superjumper.GameScreen$1 -> com.b.a.p:
+    com.badlogicgames.superjumper.GameScreen this$0 -> a
+    void jump() -> a
+    void highJump() -> b
+    void hit() -> c
+    void coin() -> d
+com.badlogicgames.superjumper.HelpScreen -> com.b.a.f:
+    com.badlogic.gdx.graphics.OrthographicCamera guiCam -> b
+    com.badlogic.gdx.graphics.g2d.SpriteBatch batcher -> c
+    com.badlogic.gdx.math.Rectangle nextBounds -> d
+    com.badlogic.gdx.math.Vector3 touchPoint -> e
+    com.badlogic.gdx.graphics.Texture helpImage -> f
+    com.badlogic.gdx.graphics.g2d.TextureRegion helpRegion -> g
+    void pause() -> a
+    void update(float) -> a
+    void present$133aeb() -> b
+com.badlogicgames.superjumper.HelpScreen2 -> com.b.a.o:
+    com.badlogic.gdx.graphics.OrthographicCamera guiCam -> b
+    com.badlogic.gdx.graphics.g2d.SpriteBatch batcher -> c
+    com.badlogic.gdx.math.Rectangle nextBounds -> d
+    com.badlogic.gdx.math.Vector3 touchPoint -> e
+    com.badlogic.gdx.graphics.Texture helpImage -> f
+    com.badlogic.gdx.graphics.g2d.TextureRegion helpRegion -> g
+    void pause() -> a
+    void update(float) -> a
+    void present$133aeb() -> b
+com.badlogicgames.superjumper.HelpScreen3 -> com.b.a.q:
+    com.badlogic.gdx.graphics.OrthographicCamera guiCam -> b
+    com.badlogic.gdx.graphics.g2d.SpriteBatch batcher -> c
+    com.badlogic.gdx.math.Rectangle nextBounds -> d
+    com.badlogic.gdx.math.Vector3 touchPoint -> e
+    com.badlogic.gdx.graphics.Texture helpImage -> f
+    com.badlogic.gdx.graphics.g2d.TextureRegion helpRegion -> g
+    void pause() -> a
+    void update(float) -> a
+    void present$133aeb() -> b
+com.badlogicgames.superjumper.HelpScreen4 -> com.b.a.r:
+    com.badlogic.gdx.graphics.OrthographicCamera guiCam -> b
+    com.badlogic.gdx.graphics.g2d.SpriteBatch batcher -> c
+    com.badlogic.gdx.math.Rectangle nextBounds -> d
+    com.badlogic.gdx.math.Vector3 touchPoint -> e
+    com.badlogic.gdx.graphics.Texture helpImage -> f
+    com.badlogic.gdx.graphics.g2d.TextureRegion helpRegion -> g
+    void pause() -> a
+    void update(float) -> a
+    void present$133aeb() -> b
+com.badlogicgames.superjumper.HelpScreen5 -> com.b.a.s:
+    com.badlogic.gdx.graphics.OrthographicCamera guiCam -> b
+    com.badlogic.gdx.graphics.g2d.SpriteBatch batcher -> c
+    com.badlogic.gdx.math.Rectangle nextBounds -> d
+    com.badlogic.gdx.math.Vector3 touchPoint -> e
+    com.badlogic.gdx.graphics.Texture helpImage -> f
+    com.badlogic.gdx.graphics.g2d.TextureRegion helpRegion -> g
+    void pause() -> a
+    void update(float) -> a
+    void present$133aeb() -> b
+com.badlogicgames.superjumper.HighscoresScreen -> com.b.a.t:
+    com.badlogic.gdx.graphics.OrthographicCamera guiCam -> b
+    com.badlogic.gdx.graphics.g2d.SpriteBatch batcher -> c
+    com.badlogic.gdx.math.Rectangle backBounds -> d
+    com.badlogic.gdx.math.Vector3 touchPoint -> e
+    java.lang.String[] highScores -> f
+    float xOffset -> g
+    void update(float) -> a
+    void present$133aeb() -> b
+    void pause() -> a
+com.badlogicgames.superjumper.MainMenuScreen -> com.b.a.h:
+    com.badlogic.gdx.graphics.OrthographicCamera guiCam -> b
+    com.badlogic.gdx.graphics.g2d.SpriteBatch batcher -> c
+    com.badlogic.gdx.math.Rectangle soundBounds -> d
+    com.badlogic.gdx.math.Rectangle playBounds -> e
+    com.badlogic.gdx.math.Rectangle highscoresBounds -> f
+    com.badlogic.gdx.math.Rectangle helpBounds -> g
+    com.badlogic.gdx.math.Vector3 touchPoint -> h
+    void update(float) -> a
+    void present$133aeb() -> b
+    void pause() -> a
+com.badlogicgames.superjumper.OverlapTester -> com.b.a.z:
+    boolean overlapRectangles(com.badlogic.gdx.math.Rectangle,com.badlogic.gdx.math.Rectangle) -> a
+    boolean pointInRectangle(com.badlogic.gdx.math.Rectangle,float,float) -> a
+com.badlogicgames.superjumper.Platform -> com.b.a.a:
+    int type -> a
+    int state -> b
+com.badlogicgames.superjumper.Screen -> com.b.a.g:
+    com.badlogicgames.superjumper.Game game -> a
+    void update(float) -> a
+    void present$133aeb() -> b
+    void pause() -> a
+com.badlogicgames.superjumper.Settings -> com.b.a.u:
+    com.badlogicgames.superjumper.Settings$ADStatus adStatus -> d
+    java.lang.String[] heroNames -> a
+    int adCount -> e
+    java.lang.String phoneName -> f
+    java.util.List fightings -> g
+    float soundVolume -> h
+    float musicVolume -> i
+    int status -> j
+    boolean clickNewAd -> k
+    int wapsValue -> b
+    int awardCount -> c
+    java.util.List getFightings() -> a
+    float getSoundVolume() -> b
+    void setSoundVolume(float) -> a
+    float getMusicVolume() -> c
+    void setMusicVolume(float) -> b
+    void load() -> d
+    void save() -> e
+    void addFighting(com.badlogicgames.superjumper.Fighting) -> a
+    java.lang.String getPhoneName() -> f
+    void setPhoneName(java.lang.String) -> a
+    void setStatus$13462e() -> g
+com.badlogicgames.superjumper.Settings$1 -> com.b.a.x:
+com.badlogicgames.superjumper.Settings$ADStatus -> com.b.a.v:
+    com.badlogicgames.superjumper.Settings$ADStatus Nothing -> a
+    com.badlogicgames.superjumper.Settings$ADStatus AddRobotech -> b
+    com.badlogicgames.superjumper.Settings$ADStatus HideAd -> c
+    com.badlogicgames.superjumper.Settings$ADStatus[] ENUM$VALUES -> d
+    com.badlogicgames.superjumper.Settings$ADStatus[] values() -> values
+    com.badlogicgames.superjumper.Settings$ADStatus valueOf(java.lang.String) -> valueOf
+com.badlogicgames.superjumper.Spring -> com.b.a.c:
+    float SPRING_WIDTH -> b
+    float SPRING_HEIGHT -> a
+com.badlogicgames.superjumper.Squirrel -> com.b.a.k:
+com.badlogicgames.superjumper.SuperJumper -> com.b.a.d:
+    boolean firstTimeCreate -> a
+    com.badlogicgames.superjumper.Screen getStartScreen() -> a
+    void create() -> b
+com.badlogicgames.superjumper.World -> com.b.a.l:
+    com.badlogic.gdx.math.Vector2 gravity -> a
+    com.badlogicgames.superjumper.Bob bob -> b
+    java.util.List platforms -> c
+    java.util.List springs -> d
+    java.util.List squirrels -> e
+    java.util.List coins -> f
+    com.badlogicgames.superjumper.Castle castle -> g
+    com.badlogicgames.superjumper.World$WorldListener listener -> j
+    java.util.Random rand -> k
+    float heightSoFar -> l
+    int score -> h
+    int state -> i
+    float generateLevel() -> a
+    void update(float,float) -> a
+com.badlogicgames.superjumper.World$WorldListener -> com.b.a.ad:
+    void jump() -> a
+    void highJump() -> b
+    void hit() -> c
+    void coin() -> d
+com.badlogicgames.superjumper.WorldRenderer -> com.b.a.w:
+    com.badlogicgames.superjumper.World world -> a
+    com.badlogic.gdx.graphics.OrthographicCamera cam -> b
+    com.badlogic.gdx.graphics.g2d.SpriteBatch batch -> c
+com.google.gson.AnonymousAndLocalClassExclusionStrategy -> com.a.a.aa:
+    boolean shouldSkipField(com.google.gson.FieldAttributes) -> a
+    boolean shouldSkipClass(java.lang.Class) -> a
+    boolean isAnonymousOrLocal(java.lang.Class) -> b
+com.google.gson.BaseMapTypeAdapter -> com.a.a.f:
+com.google.gson.Cache -> com.a.a.cl:
+    void addElement(java.lang.Object,java.lang.Object) -> a
+    java.lang.Object getElement(java.lang.Object) -> a
+com.google.gson.CircularReferenceException -> com.a.a.am:
+    java.lang.Object offendingNode -> a
+    java.lang.IllegalStateException createDetailedException(com.google.gson.FieldAttributes) -> a
+com.google.gson.DefaultConstructorAllocator -> com.a.a.k:
+    java.lang.reflect.Constructor NULL_CONSTRUCTOR -> a
+    com.google.gson.Cache constructorCache -> b
+    java.lang.reflect.Constructor createNullConstructor() -> a
+    java.lang.Object newInstance(java.lang.Class) -> a
+    java.lang.reflect.Constructor getNoArgsConstructor(java.lang.Class) -> b
+com.google.gson.DefaultConstructorAllocator$Null -> com.a.a.au:
+com.google.gson.DefaultTypeAdapters -> com.a.a.cf:
+    com.google.gson.DefaultTypeAdapters$DefaultDateTypeAdapter DATE_TYPE_ADAPTER -> a
+    com.google.gson.DefaultTypeAdapters$DefaultJavaSqlDateTypeAdapter JAVA_SQL_DATE_TYPE_ADAPTER -> b
+    com.google.gson.DefaultTypeAdapters$DefaultTimeTypeAdapter TIME_TYPE_ADAPTER -> c
+    com.google.gson.DefaultTypeAdapters$DefaultTimestampDeserializer TIMESTAMP_DESERIALIZER -> d
+    com.google.gson.DefaultTypeAdapters$EnumTypeAdapter ENUM_TYPE_ADAPTER -> e
+    com.google.gson.DefaultTypeAdapters$UrlTypeAdapter URL_TYPE_ADAPTER -> f
+    com.google.gson.DefaultTypeAdapters$UriTypeAdapter URI_TYPE_ADAPTER -> g
+    com.google.gson.DefaultTypeAdapters$UuidTypeAdapter UUUID_TYPE_ADAPTER -> h
+    com.google.gson.DefaultTypeAdapters$LocaleTypeAdapter LOCALE_TYPE_ADAPTER -> i
+    com.google.gson.DefaultTypeAdapters$DefaultInetAddressAdapter INET_ADDRESS_ADAPTER -> j
+    com.google.gson.DefaultTypeAdapters$CollectionTypeAdapter COLLECTION_TYPE_ADAPTER -> k
+    com.google.gson.MapTypeAdapter MAP_TYPE_ADAPTER -> l
+    com.google.gson.DefaultTypeAdapters$BigDecimalTypeAdapter BIG_DECIMAL_TYPE_ADAPTER -> m
+    com.google.gson.DefaultTypeAdapters$BigIntegerTypeAdapter BIG_INTEGER_TYPE_ADAPTER -> n
+    com.google.gson.DefaultTypeAdapters$BooleanTypeAdapter BOOLEAN_TYPE_ADAPTER -> o
+    com.google.gson.DefaultTypeAdapters$ByteTypeAdapter BYTE_TYPE_ADAPTER -> p
+    com.google.gson.DefaultTypeAdapters$CharacterTypeAdapter CHARACTER_TYPE_ADAPTER -> q
+    com.google.gson.DefaultTypeAdapters$DoubleDeserializer DOUBLE_TYPE_ADAPTER -> r
+    com.google.gson.DefaultTypeAdapters$FloatDeserializer FLOAT_TYPE_ADAPTER -> s
+    com.google.gson.DefaultTypeAdapters$IntegerTypeAdapter INTEGER_TYPE_ADAPTER -> t
+    com.google.gson.DefaultTypeAdapters$LongDeserializer LONG_DESERIALIZER -> u
+    com.google.gson.DefaultTypeAdapters$NumberTypeAdapter NUMBER_TYPE_ADAPTER -> v
+    com.google.gson.DefaultTypeAdapters$ShortTypeAdapter SHORT_TYPE_ADAPTER -> w
+    com.google.gson.DefaultTypeAdapters$StringTypeAdapter STRING_TYPE_ADAPTER -> x
+    com.google.gson.DefaultTypeAdapters$StringBuilderTypeAdapter STRING_BUILDER_TYPE_ADAPTER -> y
+    com.google.gson.DefaultTypeAdapters$StringBufferTypeAdapter STRING_BUFFER_TYPE_ADAPTER -> z
+    com.google.gson.DefaultTypeAdapters$GregorianCalendarTypeAdapter GREGORIAN_CALENDAR_TYPE_ADAPTER -> A
+    com.google.gson.ParameterizedTypeHandlerMap DEFAULT_SERIALIZERS -> B
+    com.google.gson.ParameterizedTypeHandlerMap DEFAULT_HIERARCHY_SERIALIZERS -> C
+    com.google.gson.ParameterizedTypeHandlerMap DEFAULT_DESERIALIZERS -> D
+    com.google.gson.ParameterizedTypeHandlerMap DEFAULT_HIERARCHY_DESERIALIZERS -> E
+    com.google.gson.ParameterizedTypeHandlerMap DEFAULT_INSTANCE_CREATORS -> F
+    com.google.gson.JsonDeserializer wrapDeserializer(com.google.gson.JsonDeserializer) -> a
+    com.google.gson.ParameterizedTypeHandlerMap getAllDefaultSerializers() -> a
+    com.google.gson.ParameterizedTypeHandlerMap getAllDefaultDeserializers() -> b
+    com.google.gson.ParameterizedTypeHandlerMap getDefaultInstanceCreators() -> c
+com.google.gson.DefaultTypeAdapters$BigDecimalTypeAdapter -> com.a.a.j:
+    java.math.BigDecimal deserialize$33f8e5ec(com.google.gson.JsonElement) -> a
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$BigIntegerTypeAdapter -> com.a.a.u:
+    java.math.BigInteger deserialize$343e359f(com.google.gson.JsonElement) -> a
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$BooleanTypeAdapter -> com.a.a.cn:
+    java.lang.Boolean deserialize$20809595(com.google.gson.JsonElement) -> a
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$ByteTypeAdapter -> com.a.a.v:
+    java.lang.Byte deserialize$1bd9addb(com.google.gson.JsonElement) -> a
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$CharacterTypeAdapter -> com.a.a.bv:
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$CollectionTypeAdapter -> com.a.a.q:
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$DefaultConstructorCreator -> com.a.a.ak:
+    java.lang.Class defaultInstance -> a
+    com.google.gson.DefaultConstructorAllocator allocator -> b
+    java.lang.Object createInstance(java.lang.reflect.Type) -> a
+    java.lang.String toString() -> toString
+com.google.gson.DefaultTypeAdapters$DefaultDateTypeAdapter -> com.a.a.br:
+    java.text.DateFormat enUsFormat -> a
+    java.text.DateFormat localFormat -> b
+    java.text.DateFormat iso8601Format -> c
+    com.google.gson.JsonElement serialize$107ba52a(java.util.Date) -> a
+    java.util.Date deserializeToDate(com.google.gson.JsonElement) -> a
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$DefaultInetAddressAdapter -> com.a.a.w:
+    java.net.InetAddress deserialize$d1fe936(com.google.gson.JsonElement) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+com.google.gson.DefaultTypeAdapters$DefaultJavaSqlDateTypeAdapter -> com.a.a.ck:
+    java.text.DateFormat format -> a
+    com.google.gson.JsonElement serialize$538457fc(java.sql.Date) -> a
+    java.sql.Date deserialize$2ac9f39d(com.google.gson.JsonElement) -> a
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$DefaultTimeTypeAdapter -> com.a.a.aq:
+    java.text.DateFormat format -> a
+    com.google.gson.JsonElement serialize$2a7edcc5(java.sql.Time) -> a
+    java.sql.Time deserialize$29e4f2dc(com.google.gson.JsonElement) -> a
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$DefaultTimestampDeserializer -> com.a.a.b:
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$DoubleDeserializer -> com.a.a.ax:
+    java.lang.Double deserialize$1b10ddce(com.google.gson.JsonElement) -> a
+    java.lang.String toString() -> toString
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$DoubleSerializer -> com.a.a.az:
+    boolean serializeSpecialFloatingPointValues -> a
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+com.google.gson.DefaultTypeAdapters$EnumTypeAdapter -> com.a.a.ay:
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$FloatDeserializer -> com.a.a.bc:
+    java.lang.Float deserialize$6575f0b7(com.google.gson.JsonElement) -> a
+    java.lang.String toString() -> toString
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$FloatSerializer -> com.a.a.bm:
+    boolean serializeSpecialFloatingPointValues -> a
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+com.google.gson.DefaultTypeAdapters$GregorianCalendarTypeAdapter -> com.a.a.bq:
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$IntegerTypeAdapter -> com.a.a.ch:
+    java.lang.Integer deserialize$761807eb(com.google.gson.JsonElement) -> a
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$LocaleTypeAdapter -> com.a.a.bb:
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$LongDeserializer -> com.a.a.as:
+    java.lang.Long deserialize$1c61f6e7(com.google.gson.JsonElement) -> a
+    java.lang.String toString() -> toString
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$LongSerializer -> com.a.a.ae:
+    com.google.gson.LongSerializationPolicy longSerializationPolicy -> a
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+com.google.gson.DefaultTypeAdapters$NumberTypeAdapter -> com.a.a.aw:
+    java.lang.Number deserialize$464e46(com.google.gson.JsonElement) -> a
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$ShortTypeAdapter -> com.a.a.ce:
+    java.lang.Short deserialize$7b6cd297(com.google.gson.JsonElement) -> a
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$StringBufferTypeAdapter -> com.a.a.av:
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$StringBuilderTypeAdapter -> com.a.a.p:
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$StringTypeAdapter -> com.a.a.by:
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$UriTypeAdapter -> com.a.a.bk:
+    java.net.URI deserialize$1ec1690a(com.google.gson.JsonElement) -> a
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$UrlTypeAdapter -> com.a.a.co:
+    java.net.URL deserialize$1ec16967(com.google.gson.JsonElement) -> a
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DefaultTypeAdapters$UuidTypeAdapter -> com.a.a.bs:
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.DisjunctionExclusionStrategy -> com.a.a.aj:
+    java.util.Collection strategies -> a
+    boolean shouldSkipField(com.google.gson.FieldAttributes) -> a
+    boolean shouldSkipClass(java.lang.Class) -> a
+com.google.gson.Escaper -> com.a.a.cj:
+    char[] HEX_CHARS -> a
+    java.util.Set JS_ESCAPE_CHARS -> b
+    java.util.Set HTML_ESCAPE_CHARS -> c
+    boolean escapeHtmlCharacters -> d
+    java.lang.String escapeJsonString(java.lang.CharSequence) -> a
+    void escapeJsonString(java.lang.CharSequence,java.lang.StringBuilder) -> a
+    void appendHexJavaScriptRepresentation(int,java.lang.Appendable) -> a
+com.google.gson.ExclusionStrategy -> com.a.a.y:
+    boolean shouldSkipField(com.google.gson.FieldAttributes) -> a
+    boolean shouldSkipClass(java.lang.Class) -> a
+com.google.gson.FieldAttributes -> com.a.a.al:
+    com.google.gson.Cache ANNOTATION_CACHE -> a
+    java.lang.Class declaringClazz -> b
+    java.lang.reflect.Field field -> c
+    java.lang.Class declaredType -> d
+    boolean isSynthetic -> e
+    int modifiers -> f
+    java.lang.String name -> g
+    java.lang.reflect.Type resolvedType -> h
+    java.lang.reflect.Type genericType -> i
+    java.util.Collection annotations -> j
+    int getMaxCacheSize() -> g
+    java.lang.String getName() -> a
+    java.lang.reflect.Type getDeclaredType() -> b
+    java.lang.Class getDeclaredClass() -> c
+    java.lang.annotation.Annotation getAnnotation(java.lang.Class) -> a
+    java.util.Collection getAnnotations() -> d
+    boolean hasModifier(int) -> a
+    void set(java.lang.Object,java.lang.Object) -> a
+    java.lang.Object get(java.lang.Object) -> a
+    boolean isSynthetic() -> e
+    java.lang.reflect.Type getResolvedType() -> f
+com.google.gson.FieldNamingStrategy2 -> com.a.a.be:
+    java.lang.String translateName(com.google.gson.FieldAttributes) -> a
+com.google.gson.Gson -> com.a.a.bt:
+    com.google.gson.AnonymousAndLocalClassExclusionStrategy DEFAULT_ANON_LOCAL_CLASS_EXCLUSION_STRATEGY -> a
+    com.google.gson.SyntheticFieldExclusionStrategy DEFAULT_SYNTHETIC_FIELD_EXCLUSION_STRATEGY -> b
+    com.google.gson.ModifierBasedExclusionStrategy DEFAULT_MODIFIER_BASED_EXCLUSION_STRATEGY -> c
+    com.google.gson.FieldNamingStrategy2 DEFAULT_NAMING_POLICY -> d
+    com.google.gson.ExclusionStrategy DEFAULT_EXCLUSION_STRATEGY -> e
+    com.google.gson.ExclusionStrategy deserializationExclusionStrategy -> f
+    com.google.gson.ExclusionStrategy serializationExclusionStrategy -> g
+    com.google.gson.FieldNamingStrategy2 fieldNamingPolicy -> h
+    com.google.gson.MappedObjectConstructor objectConstructor -> i
+    com.google.gson.ParameterizedTypeHandlerMap serializers -> j
+    com.google.gson.ParameterizedTypeHandlerMap deserializers -> k
+    boolean serializeNulls -> l
+    boolean htmlSafe -> m
+    boolean generateNonExecutableJson -> n
+    boolean prettyPrinting -> o
+    java.lang.String toJson(java.lang.Object) -> a
+    void toJson(com.google.gson.JsonElement,java.lang.Appendable) -> a
+    java.lang.Object fromJson(java.lang.String,java.lang.reflect.Type) -> a
+    java.lang.Object fromJson(com.google.gson.stream.JsonReader,java.lang.reflect.Type) -> a
+    java.lang.String toString() -> toString
+com.google.gson.InstanceCreator -> com.a.a.ar:
+    java.lang.Object createInstance(java.lang.reflect.Type) -> a
+com.google.gson.JavaFieldNamingPolicy -> com.a.a.at:
+    java.lang.String translateName$252cc7e1(java.lang.String) -> a
+com.google.gson.JsonArray -> com.a.a.a:
+    java.util.List elements -> a
+    void add(com.google.gson.JsonElement) -> a
+    int size() -> a
+    java.util.Iterator iterator() -> iterator
+    com.google.gson.JsonElement get(int) -> a
+    java.lang.Number getAsNumber() -> b
+    java.lang.String getAsString() -> c
+    double getAsDouble() -> d
+    java.math.BigDecimal getAsBigDecimal() -> e
+    java.math.BigInteger getAsBigInteger() -> f
+    float getAsFloat() -> g
+    long getAsLong() -> h
+    int getAsInt() -> i
+    byte getAsByte() -> j
+    char getAsCharacter() -> k
+    short getAsShort() -> l
+    boolean getAsBoolean() -> m
+    java.lang.Object getAsObject() -> n
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    void toString(java.lang.Appendable,com.google.gson.Escaper) -> a
+com.google.gson.JsonArrayDeserializationVisitor -> com.a.a.g:
+    java.lang.Object constructTarget() -> b
+    void visitArray(java.lang.Object,java.lang.reflect.Type) -> a
+    void startVisitingObject(java.lang.Object) -> a
+    void visitArrayField(com.google.gson.FieldAttributes,java.lang.reflect.Type,java.lang.Object) -> a
+    void visitObjectField(com.google.gson.FieldAttributes,java.lang.reflect.Type,java.lang.Object) -> b
+    boolean visitFieldUsingCustomHandler(com.google.gson.FieldAttributes,java.lang.reflect.Type,java.lang.Object) -> c
+    void visitPrimitive(java.lang.Object) -> b
+com.google.gson.JsonDeserializationContext -> com.a.a.bu:
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type) -> a
+com.google.gson.JsonDeserializationContextDefault -> com.a.a.an:
+    com.google.gson.ObjectNavigator objectNavigator -> a
+    com.google.gson.FieldNamingStrategy2 fieldNamingPolicy -> b
+    com.google.gson.ParameterizedTypeHandlerMap deserializers -> c
+    com.google.gson.MappedObjectConstructor objectConstructor -> d
+    com.google.gson.ObjectConstructor getObjectConstructor() -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type) -> a
+com.google.gson.JsonDeserializationVisitor -> com.a.a.d:
+    com.google.gson.ObjectNavigator objectNavigator -> g
+    com.google.gson.FieldNamingStrategy2 fieldNamingPolicy -> a
+    com.google.gson.ObjectConstructor objectConstructor -> b
+    com.google.gson.ParameterizedTypeHandlerMap deserializers -> c
+    java.lang.Object target -> d
+    com.google.gson.JsonElement json -> e
+    java.lang.reflect.Type targetType -> f
+    com.google.gson.JsonDeserializationContext context -> h
+    boolean constructed -> i
+    java.lang.Object getTarget() -> a
+    java.lang.Object constructTarget() -> b
+    void start(com.google.gson.ObjectTypePair) -> a
+    void end(com.google.gson.ObjectTypePair) -> b
+    boolean visitUsingCustomHandler(com.google.gson.ObjectTypePair) -> c
+    java.lang.Object invokeCustomDeserializer(com.google.gson.JsonElement,com.google.gson.Pair) -> a
+    java.lang.Object visitChildAsObject(java.lang.reflect.Type,com.google.gson.JsonElement) -> a
+    java.lang.Object visitChildAsArray(java.lang.reflect.Type,com.google.gson.JsonArray) -> a
+    java.lang.Object visitChild(java.lang.reflect.Type,com.google.gson.JsonDeserializationVisitor) -> a
+com.google.gson.JsonDeserializer -> com.a.a.x:
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.JsonDeserializerExceptionWrapper -> com.a.a.l:
+    com.google.gson.JsonDeserializer delegate -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+    java.lang.String toString() -> toString
+com.google.gson.JsonElement -> com.a.a.bl:
+    com.google.gson.Escaper BASIC_ESCAPER -> a
+    boolean isJsonArray() -> p
+    boolean isJsonObject() -> q
+    boolean isJsonPrimitive() -> r
+    boolean isJsonNull() -> s
+    com.google.gson.JsonObject getAsJsonObject() -> t
+    com.google.gson.JsonArray getAsJsonArray() -> u
+    com.google.gson.JsonPrimitive getAsJsonPrimitive() -> v
+    boolean getAsBoolean() -> m
+    java.lang.Number getAsNumber() -> b
+    java.lang.String getAsString() -> c
+    double getAsDouble() -> d
+    float getAsFloat() -> g
+    long getAsLong() -> h
+    int getAsInt() -> i
+    byte getAsByte() -> j
+    char getAsCharacter() -> k
+    java.math.BigDecimal getAsBigDecimal() -> e
+    java.math.BigInteger getAsBigInteger() -> f
+    short getAsShort() -> l
+    java.lang.Object getAsObject() -> n
+    java.lang.String toString() -> toString
+    void toString(java.lang.Appendable,com.google.gson.Escaper) -> a
+com.google.gson.JsonIOException -> com.a.a.ba:
+com.google.gson.JsonNull -> com.a.a.bf:
+    com.google.gson.JsonNull INSTANCE -> a
+    void toString(java.lang.Appendable,com.google.gson.Escaper) -> a
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+    com.google.gson.JsonNull createJsonNull() -> a
+com.google.gson.JsonObject -> com.a.a.bh:
+    java.util.Map members -> a
+    void add(java.lang.String,com.google.gson.JsonElement) -> a
+    void addProperty(java.lang.String,java.lang.Number) -> a
+    java.util.Set entrySet() -> a
+    com.google.gson.JsonElement get(java.lang.String) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    void toString(java.lang.Appendable,com.google.gson.Escaper) -> a
+com.google.gson.JsonObjectDeserializationVisitor -> com.a.a.o:
+    java.lang.Object constructTarget() -> b
+    void startVisitingObject(java.lang.Object) -> a
+    void visitArray(java.lang.Object,java.lang.reflect.Type) -> a
+    void visitObjectField(com.google.gson.FieldAttributes,java.lang.reflect.Type,java.lang.Object) -> b
+    void visitArrayField(com.google.gson.FieldAttributes,java.lang.reflect.Type,java.lang.Object) -> a
+    java.lang.String getFieldName(com.google.gson.FieldAttributes) -> a
+    boolean visitFieldUsingCustomHandler(com.google.gson.FieldAttributes,java.lang.reflect.Type,java.lang.Object) -> c
+    void visitPrimitive(java.lang.Object) -> b
+com.google.gson.JsonParseException -> com.a.a.r:
+com.google.gson.JsonPrimitive -> com.a.a.bj:
+    java.lang.Class[] PRIMITIVE_TYPES -> a
+    java.math.BigInteger INTEGER_MAX -> b
+    java.math.BigInteger LONG_MAX -> c
+    java.lang.Object value -> d
+    void setValue(java.lang.Object) -> a
+    boolean isBoolean() -> a
+    boolean getAsBoolean() -> m
+    boolean isNumber() -> o
+    java.lang.Number getAsNumber() -> b
+    java.lang.Number stringToNumber(java.lang.String) -> a
+    java.lang.String getAsString() -> c
+    double getAsDouble() -> d
+    java.math.BigDecimal getAsBigDecimal() -> e
+    java.math.BigInteger getAsBigInteger() -> f
+    float getAsFloat() -> g
+    long getAsLong() -> h
+    short getAsShort() -> l
+    int getAsInt() -> i
+    byte getAsByte() -> j
+    char getAsCharacter() -> k
+    java.lang.Object getAsObject() -> n
+    void toString(java.lang.Appendable,com.google.gson.Escaper) -> a
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+    boolean isIntegral(com.google.gson.JsonPrimitive) -> a
+    boolean isFloatingPoint(com.google.gson.JsonPrimitive) -> b
+com.google.gson.JsonSerializationContext -> com.a.a.cp:
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type) -> a
+com.google.gson.JsonSerializationContextDefault -> com.a.a.ac:
+    com.google.gson.ObjectNavigator objectNavigator -> a
+    com.google.gson.FieldNamingStrategy2 fieldNamingPolicy -> b
+    com.google.gson.ParameterizedTypeHandlerMap serializers -> c
+    boolean serializeNulls -> d
+    com.google.gson.MemoryRefStack ancestors -> e
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type) -> a
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,boolean) -> a
+com.google.gson.JsonSerializationVisitor -> com.a.a.bi:
+    com.google.gson.ObjectNavigator objectNavigator -> a
+    com.google.gson.FieldNamingStrategy2 fieldNamingPolicy -> b
+    com.google.gson.ParameterizedTypeHandlerMap serializers -> c
+    boolean serializeNulls -> d
+    com.google.gson.JsonSerializationContext context -> e
+    com.google.gson.MemoryRefStack ancestors -> f
+    com.google.gson.JsonElement root -> g
+    java.lang.Object getTarget() -> a
+    void start(com.google.gson.ObjectTypePair) -> a
+    void end(com.google.gson.ObjectTypePair) -> b
+    void startVisitingObject(java.lang.Object) -> a
+    void visitArray(java.lang.Object,java.lang.reflect.Type) -> a
+    void visitArrayField(com.google.gson.FieldAttributes,java.lang.reflect.Type,java.lang.Object) -> a
+    void visitObjectField(com.google.gson.FieldAttributes,java.lang.reflect.Type,java.lang.Object) -> b
+    void visitPrimitive(java.lang.Object) -> b
+    void addAsChildOfObject(com.google.gson.FieldAttributes,com.google.gson.ObjectTypePair) -> a
+    void addChildAsElement(com.google.gson.FieldAttributes,com.google.gson.JsonElement) -> a
+    com.google.gson.JsonElement getJsonElementForChild(com.google.gson.ObjectTypePair) -> d
+    boolean visitUsingCustomHandler(com.google.gson.ObjectTypePair) -> c
+    com.google.gson.JsonElement findAndInvokeCustomSerializer(com.google.gson.ObjectTypePair) -> e
+    boolean visitFieldUsingCustomHandler(com.google.gson.FieldAttributes,java.lang.reflect.Type,java.lang.Object) -> c
+    void assignToRoot(com.google.gson.JsonElement) -> a
+    boolean isFieldNull(com.google.gson.FieldAttributes,java.lang.Object) -> a
+    java.lang.Object getFieldValue(com.google.gson.FieldAttributes,java.lang.Object) -> b
+    com.google.gson.JsonElement getJsonElement() -> b
+com.google.gson.JsonSerializer -> com.a.a.ai:
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+com.google.gson.JsonSyntaxException -> com.a.a.cm:
+com.google.gson.LongSerializationPolicy -> com.a.a.e:
+    com.google.gson.LongSerializationPolicy DEFAULT -> a
+    com.google.gson.LongSerializationPolicy STRING -> b
+    com.google.gson.LongSerializationPolicy$Strategy strategy -> c
+    com.google.gson.LongSerializationPolicy[] $VALUES -> d
+    com.google.gson.LongSerializationPolicy[] values() -> values
+    com.google.gson.LongSerializationPolicy valueOf(java.lang.String) -> valueOf
+    com.google.gson.JsonElement serialize(java.lang.Long) -> a
+com.google.gson.LongSerializationPolicy$DefaultStrategy -> com.a.a.cc:
+    com.google.gson.JsonElement serialize(java.lang.Long) -> a
+com.google.gson.LongSerializationPolicy$Strategy -> com.a.a.cd:
+    com.google.gson.JsonElement serialize(java.lang.Long) -> a
+com.google.gson.LongSerializationPolicy$StringStrategy -> com.a.a.z:
+    com.google.gson.JsonElement serialize(java.lang.Long) -> a
+com.google.gson.LruCache -> com.a.a.af:
+    int maxCapacity -> a
+    void addElement(java.lang.Object,java.lang.Object) -> a
+    java.lang.Object getElement(java.lang.Object) -> a
+    boolean removeEldestEntry(java.util.Map$Entry) -> removeEldestEntry
+com.google.gson.MapTypeAdapter -> com.a.a.bd:
+    java.lang.String toString() -> toString
+    com.google.gson.JsonElement serialize(java.lang.Object,java.lang.reflect.Type,com.google.gson.JsonSerializationContext) -> a
+    java.lang.Object deserialize(com.google.gson.JsonElement,java.lang.reflect.Type,com.google.gson.JsonDeserializationContext) -> a
+com.google.gson.MappedObjectConstructor -> com.a.a.ah:
+    com.google.gson.UnsafeAllocator unsafeAllocator -> a
+    com.google.gson.DefaultConstructorAllocator defaultConstructorAllocator -> b
+    com.google.gson.ParameterizedTypeHandlerMap instanceCreatorMap -> c
+    java.lang.Object construct(java.lang.reflect.Type) -> a
+    java.lang.Object constructArray(java.lang.reflect.Type,int) -> a
+    java.lang.Object constructWithAllocators(java.lang.reflect.Type) -> b
+    java.lang.String toString() -> toString
+com.google.gson.MemoryRefStack -> com.a.a.ag:
+    java.util.Stack stack -> a
+    com.google.gson.ObjectTypePair push(com.google.gson.ObjectTypePair) -> a
+    com.google.gson.ObjectTypePair pop() -> a
+    boolean contains(com.google.gson.ObjectTypePair) -> b
+com.google.gson.ModifierBasedExclusionStrategy -> com.a.a.ao:
+    java.util.Collection modifiers -> a
+    boolean shouldSkipField(com.google.gson.FieldAttributes) -> a
+    boolean shouldSkipClass(java.lang.Class) -> a
+com.google.gson.NullExclusionStrategy -> com.a.a.cg:
+    boolean shouldSkipField(com.google.gson.FieldAttributes) -> a
+    boolean shouldSkipClass(java.lang.Class) -> a
+com.google.gson.ObjectConstructor -> com.a.a.ab:
+    java.lang.Object construct(java.lang.reflect.Type) -> a
+    java.lang.Object constructArray(java.lang.reflect.Type,int) -> a
+com.google.gson.ObjectNavigator -> com.a.a.c:
+    com.google.gson.ExclusionStrategy exclusionStrategy -> a
+    com.google.gson.ReflectingFieldNavigator reflectingFieldNavigator -> b
+    void accept(com.google.gson.ObjectTypePair,com.google.gson.ObjectNavigator$Visitor) -> a
+com.google.gson.ObjectNavigator$Visitor -> com.a.a.h:
+    void start(com.google.gson.ObjectTypePair) -> a
+    void end(com.google.gson.ObjectTypePair) -> b
+    void startVisitingObject(java.lang.Object) -> a
+    void visitArray(java.lang.Object,java.lang.reflect.Type) -> a
+    void visitObjectField(com.google.gson.FieldAttributes,java.lang.reflect.Type,java.lang.Object) -> b
+    void visitArrayField(com.google.gson.FieldAttributes,java.lang.reflect.Type,java.lang.Object) -> a
+    boolean visitUsingCustomHandler(com.google.gson.ObjectTypePair) -> c
+    boolean visitFieldUsingCustomHandler(com.google.gson.FieldAttributes,java.lang.reflect.Type,java.lang.Object) -> c
+    void visitPrimitive(java.lang.Object) -> b
+    java.lang.Object getTarget() -> a
+com.google.gson.ObjectTypePair -> com.a.a.ci:
+    java.lang.Object obj -> b
+    java.lang.reflect.Type type -> a
+    boolean preserveType -> c
+    java.lang.Object getObject() -> a
+    void setObject(java.lang.Object) -> a
+    java.lang.String toString() -> toString
+    com.google.gson.Pair getMatchingHandler(com.google.gson.ParameterizedTypeHandlerMap) -> a
+    java.lang.reflect.Type getMoreSpecificType() -> b
+    java.lang.reflect.Type getActualTypeIfMoreSpecific(java.lang.reflect.Type,java.lang.Class) -> a
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+com.google.gson.Pair -> com.a.a.s:
+    java.lang.Object first -> a
+    java.lang.Object second -> b
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+    boolean equal(java.lang.Object,java.lang.Object) -> a
+    java.lang.String toString() -> toString
+com.google.gson.ParameterizedTypeHandlerMap -> com.a.a.bp:
+    java.util.logging.Logger logger -> a
+    java.util.Map map -> b
+    java.util.List typeHierarchyList -> c
+    boolean modifiable -> d
+    void registerForTypeHierarchy(java.lang.Class,java.lang.Object) -> a
+    void registerForTypeHierarchy(com.google.gson.Pair) -> a
+    int getIndexOfAnOverriddenHandler(java.lang.Class) -> a
+    void register(java.lang.reflect.Type,java.lang.Object) -> a
+    void registerIfAbsent(com.google.gson.ParameterizedTypeHandlerMap) -> a
+    void register(com.google.gson.ParameterizedTypeHandlerMap) -> b
+    void registerIfAbsent(java.lang.reflect.Type,java.lang.Object) -> b
+    void makeUnmodifiable() -> a
+    java.lang.Object getHandlerFor(java.lang.reflect.Type) -> a
+    boolean hasSpecificHandlerFor(java.lang.reflect.Type) -> b
+    int getIndexOfSpecificHandlerForTypeHierarchy(java.lang.Class) -> b
+    com.google.gson.ParameterizedTypeHandlerMap copyOf() -> b
+    java.lang.String toString() -> toString
+com.google.gson.Primitives -> com.a.a.bo:
+    java.util.Map PRIMITIVE_TO_WRAPPER_TYPE -> a
+    java.util.Map WRAPPER_TO_PRIMITIVE_TYPE -> b
+    void add(java.util.Map,java.util.Map,java.lang.Class,java.lang.Class) -> a
+    boolean isPrimitive(java.lang.reflect.Type) -> a
+    java.lang.Class unwrap(java.lang.Class) -> a
+com.google.gson.RecursiveFieldNamingPolicy -> com.a.a.bw:
+    java.lang.String translateName(com.google.gson.FieldAttributes) -> a
+    java.lang.String translateName$252cc7e1(java.lang.String) -> a
+com.google.gson.ReflectingFieldNavigator -> com.a.a.ap:
+    com.google.gson.Cache fieldsCache -> a
+    com.google.gson.ExclusionStrategy exclusionStrategy -> b
+    void visitFieldsReflectively(com.google.gson.ObjectTypePair,com.google.gson.ObjectNavigator$Visitor) -> a
+    java.util.List getInheritanceHierarchy(java.lang.reflect.Type) -> a
+com.google.gson.SerializedNameAnnotationInterceptingNamingPolicy -> com.a.a.t:
+    com.google.gson.FieldNamingStrategy2 delegate -> a
+    java.lang.String translateName(com.google.gson.FieldAttributes) -> a
+com.google.gson.Streams -> com.a.a.m:
+    com.google.gson.JsonElement parse(com.google.gson.stream.JsonReader) -> a
+    com.google.gson.JsonElement parseRecursive(com.google.gson.stream.JsonReader) -> b
+    void write(com.google.gson.JsonElement,boolean,com.google.gson.stream.JsonWriter) -> a
+com.google.gson.Streams$1 -> com.a.a.bn:
+    int[] $SwitchMap$com$google$gson$stream$JsonToken -> a
+com.google.gson.Streams$AppendableWriter -> com.a.a.i:
+    java.lang.Appendable appendable -> a
+    com.google.gson.Streams$AppendableWriter$CurrentWrite currentWrite -> b
+    void write(char[],int,int) -> write
+    void write(int) -> write
+    void flush() -> flush
+    void close() -> close
+com.google.gson.Streams$AppendableWriter$CurrentWrite -> com.a.a.n:
+    char[] chars -> a
+    int length() -> length
+    char charAt(int) -> charAt
+    java.lang.CharSequence subSequence(int,int) -> subSequence
+com.google.gson.SyntheticFieldExclusionStrategy -> com.a.a.ad:
+    boolean skipSyntheticFields -> a
+    boolean shouldSkipClass(java.lang.Class) -> a
+    boolean shouldSkipField(com.google.gson.FieldAttributes) -> a
+com.google.gson.UnsafeAllocator -> com.a.a.bg:
+    java.lang.Object newInstance(java.lang.Class) -> a
+    com.google.gson.UnsafeAllocator create() -> a
+com.google.gson.UnsafeAllocator$1 -> com.a.a.bz:
+    java.lang.reflect.Method val$allocateInstance -> a
+    java.lang.Object val$unsafe -> b
+    java.lang.Object newInstance(java.lang.Class) -> a
+com.google.gson.UnsafeAllocator$2 -> com.a.a.bx:
+    java.lang.reflect.Method val$newInstance -> a
+    java.lang.Object newInstance(java.lang.Class) -> a
+com.google.gson.UnsafeAllocator$3 -> com.a.a.cb:
+    java.lang.reflect.Method val$newInstance -> a
+    int val$constructorId -> b
+    java.lang.Object newInstance(java.lang.Class) -> a
+com.google.gson.UnsafeAllocator$4 -> com.a.a.ca:
+    java.lang.Object newInstance(java.lang.Class) -> a
+com.google.gson.annotations.SerializedName -> com.a.a.b.a:
+    java.lang.String value() -> a
+com.google.gson.internal.$Gson$Preconditions -> com.a.a.c.e:
+    java.lang.Object checkNotNull(java.lang.Object) -> a
+    void checkArgument(boolean) -> a
+com.google.gson.internal.$Gson$Types -> com.a.a.c.a:
+    java.lang.reflect.Type[] EMPTY_TYPE_ARRAY -> a
+    java.lang.reflect.GenericArrayType arrayOf(java.lang.reflect.Type) -> g
+    java.lang.reflect.Type canonicalize(java.lang.reflect.Type) -> a
+    java.lang.Class getRawType(java.lang.reflect.Type) -> b
+    boolean equals(java.lang.reflect.Type,java.lang.reflect.Type) -> a
+    java.lang.String typeToString(java.lang.reflect.Type) -> c
+    java.lang.reflect.Type getGenericSupertype(java.lang.reflect.Type,java.lang.Class,java.lang.Class) -> a
+    java.lang.reflect.Type getSupertype(java.lang.reflect.Type,java.lang.Class,java.lang.Class) -> b
+    boolean isArray(java.lang.reflect.Type) -> d
+    java.lang.reflect.Type getArrayComponentType(java.lang.reflect.Type) -> e
+    java.lang.reflect.Type getCollectionElementType(java.lang.reflect.Type,java.lang.Class) -> a
+    java.lang.reflect.Type[] getMapKeyAndValueTypes(java.lang.reflect.Type,java.lang.Class) -> b
+    java.lang.reflect.Type resolve(java.lang.reflect.Type,java.lang.Class,java.lang.reflect.Type) -> a
+    void access$000(java.lang.reflect.Type) -> f
+    int access$100(java.lang.Object) -> a
+com.google.gson.internal.$Gson$Types$GenericArrayTypeImpl -> com.a.a.c.b:
+    java.lang.reflect.Type componentType -> a
+    java.lang.reflect.Type getGenericComponentType() -> getGenericComponentType
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+com.google.gson.internal.$Gson$Types$ParameterizedTypeImpl -> com.a.a.c.c:
+    java.lang.reflect.Type ownerType -> a
+    java.lang.reflect.Type rawType -> b
+    java.lang.reflect.Type[] typeArguments -> c
+    java.lang.reflect.Type[] getActualTypeArguments() -> getActualTypeArguments
+    java.lang.reflect.Type getRawType() -> getRawType
+    java.lang.reflect.Type getOwnerType() -> getOwnerType
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+com.google.gson.internal.$Gson$Types$WildcardTypeImpl -> com.a.a.c.d:
+    java.lang.reflect.Type upperBound -> a
+    java.lang.reflect.Type lowerBound -> b
+    java.lang.reflect.Type[] getUpperBounds() -> getUpperBounds
+    java.lang.reflect.Type[] getLowerBounds() -> getLowerBounds
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+com.google.gson.reflect.TypeToken -> com.a.a.d.a:
+    java.lang.Class rawType -> a
+    java.lang.reflect.Type type -> b
+    int hashCode -> c
+    java.lang.reflect.Type getType() -> a
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+    java.lang.String toString() -> toString
+com.google.gson.stream.JsonReader -> com.a.a.a.f:
+    char[] NON_EXECUTE_PREFIX -> a
+    java.io.Reader in -> b
+    boolean lenient -> c
+    char[] buffer -> d
+    int pos -> e
+    int limit -> f
+    java.util.List stack -> g
+    boolean hasToken -> h
+    com.google.gson.stream.JsonToken token -> i
+    java.lang.String name -> j
+    java.lang.String value -> k
+    boolean skipping -> l
+    void setLenient(boolean) -> a
+    boolean isLenient() -> a
+    void beginArray() -> b
+    void endArray() -> c
+    void beginObject() -> d
+    void endObject() -> e
+    void expect(com.google.gson.stream.JsonToken) -> a
+    boolean hasNext() -> f
+    com.google.gson.stream.JsonToken peek() -> g
+    com.google.gson.stream.JsonToken quickPeek() -> l
+    com.google.gson.stream.JsonToken advance() -> m
+    java.lang.String nextName() -> h
+    java.lang.String nextString() -> i
+    boolean nextBoolean() -> j
+    void nextNull() -> k
+    void close() -> close
+    com.google.gson.stream.JsonScope pop() -> n
+    void push(com.google.gson.stream.JsonScope) -> a
+    void replaceTop(com.google.gson.stream.JsonScope) -> b
+    com.google.gson.stream.JsonToken nextInArray(boolean) -> b
+    com.google.gson.stream.JsonToken nextInObject(boolean) -> c
+    com.google.gson.stream.JsonToken nextValue() -> o
+    boolean fillBuffer(int) -> a
+    int nextNonWhitespace() -> p
+    void checkLenient() -> q
+    void skipToEndOfLine() -> r
+    java.lang.String nextString(char) -> a
+    java.lang.String nextLiteral() -> s
+    java.lang.String toString() -> toString
+    java.io.IOException syntaxError(java.lang.String) -> a
+    java.lang.CharSequence getSnippet() -> t
+com.google.gson.stream.JsonReader$1 -> com.a.a.a.b:
+    int[] $SwitchMap$com$google$gson$stream$JsonScope -> a
+com.google.gson.stream.JsonScope -> com.a.a.a.c:
+    com.google.gson.stream.JsonScope EMPTY_ARRAY -> a
+    com.google.gson.stream.JsonScope NONEMPTY_ARRAY -> b
+    com.google.gson.stream.JsonScope EMPTY_OBJECT -> c
+    com.google.gson.stream.JsonScope DANGLING_NAME -> d
+    com.google.gson.stream.JsonScope NONEMPTY_OBJECT -> e
+    com.google.gson.stream.JsonScope EMPTY_DOCUMENT -> f
+    com.google.gson.stream.JsonScope NONEMPTY_DOCUMENT -> g
+    com.google.gson.stream.JsonScope CLOSED -> h
+    com.google.gson.stream.JsonScope[] $VALUES -> i
+    com.google.gson.stream.JsonScope[] values() -> values
+    com.google.gson.stream.JsonScope valueOf(java.lang.String) -> valueOf
+com.google.gson.stream.JsonToken -> com.a.a.a.d:
+    com.google.gson.stream.JsonToken BEGIN_ARRAY -> a
+    com.google.gson.stream.JsonToken END_ARRAY -> b
+    com.google.gson.stream.JsonToken BEGIN_OBJECT -> c
+    com.google.gson.stream.JsonToken END_OBJECT -> d
+    com.google.gson.stream.JsonToken NAME -> e
+    com.google.gson.stream.JsonToken STRING -> f
+    com.google.gson.stream.JsonToken NUMBER -> g
+    com.google.gson.stream.JsonToken BOOLEAN -> h
+    com.google.gson.stream.JsonToken NULL -> i
+    com.google.gson.stream.JsonToken END_DOCUMENT -> j
+    com.google.gson.stream.JsonToken[] $VALUES -> k
+    com.google.gson.stream.JsonToken[] values() -> values
+    com.google.gson.stream.JsonToken valueOf(java.lang.String) -> valueOf
+com.google.gson.stream.JsonWriter -> com.a.a.a.e:
+    java.io.Writer out -> a
+    java.util.List stack -> b
+    java.lang.String indent -> c
+    java.lang.String separator -> d
+    boolean lenient -> e
+    boolean htmlSafe -> f
+    void setIndent(java.lang.String) -> a
+    void setLenient(boolean) -> a
+    boolean isLenient() -> a
+    void setHtmlSafe(boolean) -> b
+    boolean isHtmlSafe() -> b
+    com.google.gson.stream.JsonWriter beginArray() -> c
+    com.google.gson.stream.JsonWriter endArray() -> d
+    com.google.gson.stream.JsonWriter beginObject() -> e
+    com.google.gson.stream.JsonWriter endObject() -> f
+    com.google.gson.stream.JsonWriter open(com.google.gson.stream.JsonScope,java.lang.String) -> a
+    com.google.gson.stream.JsonWriter close(com.google.gson.stream.JsonScope,com.google.gson.stream.JsonScope,java.lang.String) -> a
+    com.google.gson.stream.JsonScope peek() -> h
+    void replaceTop(com.google.gson.stream.JsonScope) -> a
+    com.google.gson.stream.JsonWriter name(java.lang.String) -> b
+    com.google.gson.stream.JsonWriter value(java.lang.String) -> c
+    com.google.gson.stream.JsonWriter nullValue() -> g
+    com.google.gson.stream.JsonWriter value(boolean) -> c
+    com.google.gson.stream.JsonWriter value(java.lang.Number) -> a
+    void close() -> close
+    void string(java.lang.String) -> d
+    void newline() -> i
+    void beforeValue(boolean) -> d
+com.google.gson.stream.JsonWriter$1 -> com.a.a.a.g:
+    int[] $SwitchMap$com$google$gson$stream$JsonScope -> a
+com.google.gson.stream.MalformedJsonException -> com.a.a.a.a:
+com.waps.AdView -> com.waps.h:
+    android.os.Handler mHandler -> e
+    android.widget.LinearLayout adLinearLayout -> f
+    boolean update_display_ad -> g
+    android.view.View adView -> h
+    android.content.Context context -> a
+    long last_time -> b
+    int second -> c
+    java.lang.String mainName -> d
+    java.lang.Runnable mUpdateResults -> i
+    void DisplayAd$13462e() -> a
+    void showADS() -> b
+    void getDisplayAdResponse(android.view.View) -> a
+    void getDisplayAdResponseFailed$552c4e01() -> c
+    void access$000(com.waps.AdView) -> a
+com.waps.AdView$1 -> com.waps.r:
+    com.waps.AdView this$0 -> a
+    void run() -> run
+com.waps.AdView$2 -> com.waps.q:
+    com.waps.AdView this$0 -> a
+    void run() -> run
+com.waps.AppConnect -> com.waps.d:
+    com.waps.AppConnect$ConnectTask connectTask -> a
+    android.content.Context context -> b
+    com.waps.AppConnect appConnectInstance -> c
+    com.waps.AppURLConnection appURLConnection -> d
+    com.waps.DisplayAd displayAd -> e
+    java.lang.String deviceID -> f
+    java.lang.String deviceName -> g
+    java.lang.String deviceType -> h
+    java.lang.String deviceOSVersion -> i
+    java.lang.String deviceCountryCode -> j
+    java.lang.String deviceLanguage -> k
+    java.lang.String appID -> l
+    java.lang.String appVersion -> m
+    java.lang.String libraryVersion -> n
+    java.lang.String channel -> o
+    java.lang.String spendPoints -> p
+    java.lang.String clientPackage -> q
+    java.lang.String urlParams -> r
+    java.lang.String installURI -> s
+    java.lang.String installPackageName -> t
+    java.lang.String uninstallPackageName -> u
+    java.lang.String deviceScreenDensity -> v
+    int deviceScreenWidth -> w
+    int deviceScreenHeight -> x
+    java.lang.String server_version -> y
+    boolean isUpdate -> z
+    java.lang.String DEVICE_ID_NAME -> A
+    java.lang.String DEVICE_NAME -> B
+    java.lang.String DEVICE_TYPE_NAME -> C
+    java.lang.String DEVICE_OS_VERSION_NAME -> D
+    java.lang.String DEVICE_COUNTRY_CODE -> E
+    java.lang.String DEVICE_LANGUAGE -> F
+    java.lang.String APP_ID_NAME -> G
+    java.lang.String APP_VERSION_NAME -> H
+    java.lang.String CONNECT_LIBRARY_VERSION_NAME -> I
+    java.lang.String APP_ACT -> J
+    java.lang.String USER_STR -> K
+    java.lang.String APP_CHANNEL -> L
+    java.lang.String SPEND_POINTS -> M
+    java.lang.String INSTALL_PACKAGE -> N
+    java.lang.String UNINSTALL_PACKAGE -> O
+    java.lang.String DEVICE_SCREEN_DENSITY -> P
+    java.lang.String DEVICE_SCREEN_WIDTH -> Q
+    java.lang.String DEVICE_SCREEN_HEIGHT -> R
+    com.waps.UpdatePointsNotifier updatePointsNotifier -> S
+    com.waps.AppConnect$ConnectGetPointsTask connectGetPointsTask -> T
+    com.waps.AppConnect$ConnectSpendPointsTask connectSpendPointsTask -> U
+    com.waps.AppConnect$ConnectPackageADD connectPackageADD -> V
+    com.waps.AppConnect$ConnectPackageRemov connectPackageRemov -> W
+    int primaryColor -> X
+    com.waps.AppConnect getInstance(android.content.Context) -> a
+    void initMetaData() -> d
+    org.w3c.dom.Document buildDocument(java.lang.String) -> e
+    java.lang.String getNodeTrimValue(org.w3c.dom.NodeList) -> a
+    void finalize() -> finalize
+    void showOffers(android.content.Context) -> b
+    void getPoints(com.waps.UpdatePointsNotifier) -> a
+    void package_added(java.lang.String) -> a
+    void package_removed(java.lang.String) -> b
+    void spendPoints(int,com.waps.UpdatePointsNotifier) -> a
+    void getDisplayAd(com.waps.DisplayAdNotifier) -> a
+    java.lang.String access$100(com.waps.AppConnect) -> a
+    java.lang.String access$200(com.waps.AppConnect) -> b
+    com.waps.AppURLConnection access$300() -> a
+    boolean access$400(com.waps.AppConnect,java.lang.String) -> a
+    boolean access$500() -> b
+    java.lang.String access$600(com.waps.AppConnect) -> c
+    java.lang.String access$700(com.waps.AppConnect) -> d
+    void access$800(com.waps.AppConnect,java.lang.String) -> b
+    java.lang.String access$900(com.waps.AppConnect) -> e
+    java.lang.String access$1000(com.waps.AppConnect) -> f
+    boolean access$1100$194e3443(java.lang.String) -> c
+    java.lang.String access$1300(com.waps.AppConnect) -> g
+    boolean access$1400$194e3443(java.lang.String) -> d
+    android.content.Context access$1500(com.waps.AppConnect) -> h
+    java.lang.String access$1600(com.waps.AppConnect) -> i
+    boolean access$502$138603() -> c
+com.waps.AppConnect$1 -> com.waps.m:
+    java.lang.String val$url -> a
+    com.waps.AppConnect this$0 -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.waps.AppConnect$2 -> com.waps.l:
+    com.waps.AppConnect this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.waps.AppConnect$ConnectGetPointsTask -> com.waps.j:
+    com.waps.AppConnect this$0 -> a
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.waps.AppConnect$ConnectPackageADD -> com.waps.b:
+    com.waps.AppConnect this$0 -> a
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.waps.AppConnect$ConnectPackageRemov -> com.waps.f:
+    com.waps.AppConnect this$0 -> a
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.waps.AppConnect$ConnectSpendPointsTask -> com.waps.e:
+    com.waps.AppConnect this$0 -> a
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.waps.AppConnect$ConnectTask -> com.waps.v:
+    com.waps.AppConnect this$0 -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.waps.AppLog -> com.waps.n:
+    boolean showLog -> a
+    void i(java.lang.String,java.lang.String) -> a
+    void e(java.lang.String,java.lang.String) -> b
+    void w(java.lang.String,java.lang.String) -> c
+com.waps.AppTracker -> com.waps.AppTracker:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.waps.AppURLConnection -> com.waps.g:
+    boolean isCmwap -> a
+    void setCmwap$1385ff() -> a
+    java.lang.String connectToURL(java.lang.String,java.lang.String) -> a
+com.waps.DisplayAd -> com.waps.c:
+    com.waps.DisplayAd$ConnectTask connectTask -> a
+    com.waps.DisplayAdNotifier displayAdNotifier -> b
+    com.waps.AppURLConnection appURLConnection -> c
+    android.content.Context context -> d
+    java.lang.String clickURL -> e
+    java.lang.String baseURL -> f
+    java.lang.String urlParams -> g
+    java.lang.String adClickURL -> h
+    android.graphics.Bitmap bitmapImage -> i
+    android.view.View adView -> j
+    java.lang.String DISPLAY_AD -> k
+    byte[] DECODE_TABLE -> l
+    byte[] buffer -> m
+    int pos -> n
+    int modulus -> o
+    boolean eof -> p
+    int x -> q
+    void getDisplayAdDataFromServer(java.lang.String,java.lang.String,com.waps.DisplayAdNotifier) -> a
+    boolean buildResponse(java.lang.String) -> a
+    java.lang.String getNodeTrimValue(org.w3c.dom.NodeList) -> a
+    void decodeBase64(byte[],int,int) -> a
+    java.lang.String access$100(com.waps.DisplayAd) -> a
+    java.lang.String access$200(com.waps.DisplayAd) -> b
+    com.waps.AppURLConnection access$300() -> a
+    com.waps.DisplayAdNotifier access$400() -> b
+    boolean access$500(com.waps.DisplayAd,java.lang.String) -> a
+    android.content.Context access$600(com.waps.DisplayAd) -> c
+    java.lang.String access$700() -> c
+com.waps.DisplayAd$1 -> com.waps.a:
+    com.waps.DisplayAd this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.waps.DisplayAd$ConnectTask -> com.waps.p:
+    com.waps.DisplayAd this$0 -> a
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.waps.DisplayAdNotifier -> com.waps.u:
+    void getDisplayAdResponse(android.view.View) -> a
+    void getDisplayAdResponseFailed$552c4e01() -> c
+com.waps.OffersWebView -> com.waps.OffersWebView:
+    android.webkit.WebView webView -> c
+    java.lang.String clickURL -> d
+    android.widget.ProgressBar progressBar -> e
+    android.app.Dialog dialog -> f
+    java.lang.String clientPackage -> g
+    java.lang.String URL -> h
+    java.lang.String urlParams -> i
+    java.lang.String userID -> j
+    java.lang.String isFinshClose -> k
+    com.waps.AppTracker appTracker -> a
+    android.widget.TextView downloadTextView -> l
+    java.lang.String path -> m
+    android.app.Notification notification -> n
+    android.app.NotificationManager manager -> o
+    com.waps.OffersWebView$DownloadFileTask downloadTask -> b
+    void onCreate(android.os.Bundle) -> onCreate
+    void onResume() -> onResume
+    void onDestroy() -> onDestroy
+    boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
+    java.lang.String access$100(com.waps.OffersWebView) -> a
+    java.lang.String access$200(com.waps.OffersWebView) -> b
+    void access$600$2b702999(com.waps.OffersWebView,java.lang.String,int,java.lang.String) -> a
+    void access$700$2b702999(com.waps.OffersWebView,java.lang.String,int,java.lang.String) -> b
+    android.widget.TextView access$800(com.waps.OffersWebView) -> c
+    android.widget.ProgressBar access$900(com.waps.OffersWebView) -> d
+    java.lang.String access$102(com.waps.OffersWebView,java.lang.String) -> a
+    android.app.Dialog access$1002(com.waps.OffersWebView,android.app.Dialog) -> a
+    android.app.Dialog access$1000(com.waps.OffersWebView) -> e
+com.waps.OffersWebView$1 -> com.waps.k:
+    com.waps.OffersWebView this$0 -> a
+    void onDownloadStart(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long) -> onDownloadStart
+com.waps.OffersWebView$AppWebViewClient -> com.waps.s:
+    com.waps.OffersWebView this$0 -> a
+    void onReceivedError(android.webkit.WebView,int,java.lang.String,java.lang.String) -> onReceivedError
+    void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
+    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+com.waps.OffersWebView$AppWebViewClient$1 -> com.waps.o:
+    com.waps.OffersWebView$AppWebViewClient this$1 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.waps.OffersWebView$DownloadFileTask -> com.waps.t:
+    float fileLength -> a
+    float downLength -> b
+    java.text.NumberFormat formatter -> c
+    float num -> d
+    com.waps.OffersWebView this$0 -> e
+    java.lang.String doInBackground(java.lang.String[]) -> a
+    void onProgressUpdate(java.lang.Object[]) -> onProgressUpdate
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.waps.UpdatePointsNotifier -> com.waps.i:
+    void getUpdatePoints$505cff1c(int) -> a
