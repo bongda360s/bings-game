@@ -2,8 +2,8 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aichess.chineseChess"
-    android:versionCode="1"
-    android:versionName="1.5">
+    android:versionCode="5"
+    android:versionName="1.6.2">
     <uses-sdk
         android:minSdkVersion="4" />
 
@@ -23,11 +23,17 @@
                     android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-		<meta-data
-android:value="1lbylp1a55p6p13utceuikkkndaurxu3jr1vyd1o1lsgt2qtyas1lpwd3b496i3d"
-android:name="TINMOO_PUBLISHER_ID" />
+        <activity android:name="com.waps.OffersWebView" 
+		android:configChanges="keyboardHidden|orientation" />
+		<meta-data android:name="CLIENT_PACKAGE" android:value="com.aichess.chineseChess" /> 
+		<meta-data android:name="WAPS_ID" android:value="9b4a0c9e6692687f6cfb11193d717961" /> 
+		<!--以下属性为分发渠道ID--> 
+		<meta-data android:name="WAPS_PID" android:value="WAPS" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
-	<user-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" /> 
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" /> 
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
+	<!--以下权限仅互动广告使用--> 
+	<uses-permission android:name="android.permission.GET_TASKS" />
 </manifest>

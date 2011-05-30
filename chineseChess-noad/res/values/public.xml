@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <public type="drawable" name="ba" id="0x7f020000" />
+    <public type="drawable" name="background" id="0x7f020001" />
+    <public type="drawable" name="bb" id="0x7f020002" />
+    <public type="drawable" name="bc" id="0x7f020003" />
+    <public type="drawable" name="bk" id="0x7f020004" />
+    <public type="drawable" name="bn" id="0x7f020005" />
+    <public type="drawable" name="board" id="0x7f020006" />
+    <public type="drawable" name="bp" id="0x7f020007" />
+    <public type="drawable" name="br" id="0x7f020008" />
+    <public type="drawable" name="ra" id="0x7f020009" />
+    <public type="drawable" name="rb" id="0x7f02000a" />
+    <public type="drawable" name="rc" id="0x7f02000b" />
+    <public type="drawable" name="rk" id="0x7f02000c" />
+    <public type="drawable" name="rn" id="0x7f02000d" />
+    <public type="drawable" name="rp" id="0x7f02000e" />
+    <public type="drawable" name="rr" id="0x7f02000f" />
+    <public type="drawable" name="selected" id="0x7f020010" />
+    <public type="drawable" name="selected2" id="0x7f020011" />
+    <public type="drawable" name="xqwlight" id="0x7f020012" />
+    <public type="layout" name="game_board_layout" id="0x7f030000" />
+    <public type="layout" name="setting_layout" id="0x7f030001" />
+    <public type="raw" name="capture" id="0x7f040000" />
+    <public type="raw" name="capture2" id="0x7f040001" />
+    <public type="raw" name="check" id="0x7f040002" />
+    <public type="raw" name="check2" id="0x7f040003" />
+    <public type="raw" name="click" id="0x7f040004" />
+    <public type="raw" name="draw" id="0x7f040005" />
+    <public type="raw" name="illegal" id="0x7f040006" />
+    <public type="raw" name="loss" id="0x7f040007" />
+    <public type="raw" name="move" id="0x7f040008" />
+    <public type="raw" name="move2" id="0x7f040009" />
+    <public type="raw" name="win" id="0x7f04000a" />
+    <public type="string" name="app_name" id="0x7f050000" />
+    <public type="string" name="info_title" id="0x7f050001" />
+    <public type="string" name="info_not_support" id="0x7f050002" />
+    <public type="string" name="info_exit" id="0x7f050003" />
+    <public type="string" name="text_positive_button" id="0x7f050004" />
+    <public type="string" name="text_negative_button" id="0x7f050005" />
+    <public type="string" name="text_exit" id="0x7f050006" />
+    <public type="string" name="text_restart" id="0x7f050007" />
+    <public type="string" name="text_revise" id="0x7f050008" />
+    <public type="string" name="text_setting" id="0x7f050009" />
+    <public type="string" name="info_thinking" id="0x7f05000a" />
+    <public type="string" name="info_please" id="0x7f05000b" />
+    
+    <public type="string" name="cancel_title" id="0x7f05000c" />
+    <public type="string" name="cancel_confirm" id="0x7f05000d" />
+    <public type="string" name="cancel" id="0x7f05000e" />
+    <public type="string" name="confirm" id="0x7f05000f" />
+    
+    <public type="string" name="text_congraduation" id="0x7f050010" />
+    <public type="string" name="text_retry" id="0x7f050011" />
+    <public type="string" name="text_gameover" id="0x7f050012" />
+    <public type="string" name="text_longchess" id="0x7f050013" />
+    <public type="string" name="text_computerlongchess" id="0x7f050014" />
+    <public type="string" name="text_equal" id="0x7f050015" />
+    <public type="string" name="text_longequal" id="0x7f050016" />
+    <public type="string" name="text_computerthink" id="0x7f050017" />
+
+    <public type="id" name="text" id="0x7f060000" />
+    <public type="id" name="group_who" id="0x7f060001" />
+    <public type="id" name="group_handicap" id="0x7f060002" />
+    <public type="id" name="group_level" id="0x7f060003" />
+    <public type="id" name="sound" id="0x7f060004" />
+    <public type="id" name="music" id="0x7f060005" />
+    
+    <public type="id" name="ad" id="0x7f060006" />
+    <public type="id" name="btn_setting" id="0x7f060007" />
+    <public type="id" name="btn_reset" id="0x7f060008" />
+    <public type="id" name="btn_back" id="0x7f060009" />
+    <public type="id" name="btn_exit" id="0x7f06000a" />
+    
+    <public type="id" name="txtScore" id="0x7f06000b" />
+    <public type="id" name="txtTip" id="0x7f06000c" />
+</resources>

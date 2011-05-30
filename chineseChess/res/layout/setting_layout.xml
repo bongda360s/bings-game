@@ -21,4 +21,5 @@
     </RadioGroup>
     <CheckBox android:id="@id/music" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="背景音乐" />
     <CheckBox android:id="@id/sound" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="游戏声音" />
+    <TextView android:text="" android:id="@id/txt_amount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip"></TextView>
 </LinearLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="text">false</item>
+    <item type="id" name="group_who">false</item>
+    <item type="id" name="group_handicap">false</item>
+    <item type="id" name="group_level">false</item>
+    <item type="id" name="sound">false</item>
+    <item type="id" name="music">false</item>
+    <item type="id" name="ad">false</item>
+    <item type="id" name="btn_setting">false</item>
+    <item type="id" name="btn_reset">false</item>
+    <item type="id" name="btn_back">false</item>
+    <item type="id" name="btn_exit">false</item>
+    <item type="id" name="txtScore">false</item>
+    <item type="id" name="txtTip">false</item>
+</resources>

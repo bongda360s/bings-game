@@ -1,0 +1,84 @@
+com.aichess.chineseChess.R
+com.aichess.chineseChess.R$attr
+com.aichess.chineseChess.R$drawable
+com.aichess.chineseChess.R$id
+com.aichess.chineseChess.R$layout
+com.aichess.chineseChess.R$raw
+com.aichess.chineseChess.R$string
+com.aichess.chineseChess.R$styleable
+com.aichess.chineseChess.data.Data:
+    public static final int RESP_CLICK
+    public static final int RESP_ILLEGAL
+    public static final int RESP_MOVE
+    public static final int RESP_MOVE2
+    public static final int RESP_CAPTURE
+    public static final int RESP_CAPTURE2
+    public static final int RESP_CHECK
+    public static final int RESP_CHECK2
+    public static final int RESP_WIN
+    public static final int RESP_DRAW
+    public static final int RESP_LOSS
+    public static final int LOW_SCREEN_WIDTH
+    public static final int RS_DATA_LEN
+    public static final int WHAT_THINKING
+    public static final int WHAT_OTHER
+    public static final int WHAT_SOUND
+com.aichess.chineseChess.data.DbHelper:
+    public static final java.lang.String DB_NAME
+    public static final int DB_VERSION
+    public static final java.lang.String _DATA
+    public static final java.lang.String TABLE_NAME
+com.aichess.chineseChess.ui.ChessboadView:
+    protected static final int PHASE_LOADING
+    protected static final int PHASE_WAITING
+    protected static final int PHASE_THINKING
+    protected static final int PHASE_EXITTING
+com.aichess.chineseChess.ui.ImageTextButton
+com.aichess.chineseChess.utils.Debug:
+    public static final java.lang.String TAG
+    private static final boolean DEBUG_ENABLE
+com.aichess.chineseChess.utils.Position:
+    public static final int MATE_VALUE
+    public static final int BAN_VALUE
+    public static final int WIN_VALUE
+    public static final int NULL_SAFE_MARGIN
+    public static final int NULL_OKAY_MARGIN
+    public static final int DRAW_VALUE
+    public static final int ADVANCED_VALUE
+    public static final int MAX_MOVE_NUM
+    public static final int MAX_GEN_MOVES
+    public static final int MAX_BOOK_SIZE
+    public static final int PIECE_KING
+    public static final int PIECE_ADVISOR
+    public static final int PIECE_BISHOP
+    public static final int PIECE_KNIGHT
+    public static final int PIECE_ROOK
+    public static final int PIECE_CANNON
+    public static final int PIECE_PAWN
+    public static final int RANK_TOP
+    public static final int RANK_BOTTOM
+    public static final int FILE_LEFT
+    public static final int FILE_RIGHT
+    public static final java.lang.String FEN_PIECE
+    321:321:public static int RANK_FLIP(int)
+    653:675:public java.lang.String toFen()
+com.aichess.chineseChess.utils.Search:
+    private static final int HASH_ALPHA
+    private static final int HASH_BETA
+    private static final int HASH_PV
+    private static final int LIMIT_DEPTH
+    private static final int NULL_DEPTH
+    private static final int RANDOM_MASK
+    private static final int MAX_GEN_MOVES
+    private static final int MATE_VALUE
+    private static final int BAN_VALUE
+    private static final int WIN_VALUE
+    432:432:public int getKNPS()
+com.aichess.chineseChess.utils.Search$SortItem:
+    private static final int PHASE_HASH
+    private static final int PHASE_KILLER_1
+    private static final int PHASE_KILLER_2
+    private static final int PHASE_GEN_MOVES
+    private static final int PHASE_REST
+com.aichess.chineseChess.utils.Util:
+    24:24:public static int POP_COUNT_16(int)

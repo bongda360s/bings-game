@@ -1,0 +1,3 @@
+com.aichess.chineseChess.ui.ImageTextButton
+com.aichess.chineseChess.ui.ImageTextButton: ImageTextButton(android.content.Context,android.util.AttributeSet)
+com.aichess.chineseChess.ui.ChessboardActivity
