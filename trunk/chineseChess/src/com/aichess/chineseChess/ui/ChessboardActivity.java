@@ -20,13 +20,10 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.ViewGroup.LayoutParams;
@@ -34,7 +31,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -46,30 +42,30 @@ import com.aichess.chineseChess.R;
 import com.aichess.chineseChess.data.Data;
 import com.aichess.chineseChess.data.DbHelper;
 import com.aichess.chineseChess.utils.Debug;
-import com.ignitevision.android.ads.AdListener;
-import com.ignitevision.android.ads.AdManager;
-import com.ignitevision.android.ads.AdView;
-import com.ignitevision.android.offer.OfferManager;
-import com.ignitevision.android.offer.SimpleOfferListener;
-import com.ignitevision.android.offer.TinmooConnect;
-import com.ignitevision.android.offer.TinmooOffer;
-import com.ignitevision.android.offer.TinmooOffer.Type;
+import com.waps.AdView;
+import com.waps.AppConnect;
+import com.waps.UpdatePointsNotifier;
 
 /**
  * The Class ChessboardActivity.
  */
-public class ChessboardActivity extends Activity {
+public class ChessboardActivity extends Activity implements UpdatePointsNotifier{
 	
-	static{
-		AdManager.setTest(false);
-		AdManager.setPublisherKey("1lbylp1a55p6p13utceuikkkndaurxu3jr1vyd1o1lsgt2qtyas1lpwd3b496i3d");
-		OfferManager.setApplicationKey("1a2s354gyuuksjdt04qit0ceg13xvsfiwcodmyhkg6pt8d9dnr12r3lp9m6mkr3");
-		}
+@Override
+	protected void onResume() {
+		AppConnect.getInstance(ChessboardActivity.this).getPoints(ChessboardActivity.this);
+		super.onResume();
+	}
+
+	//	static{
+//		AdManager.setTest(false);
+//		AdManager.setPublisherKey("1lbylp1a55p6p13utceuikkkndaurxu3jr1vyd1o1lsgt2qtyas1lpwd3b496i3d");
+//		//OfferManager.setApplicationKey("1a2s354gyuuksjdt04qit0ceg13xvsfiwcodmyhkg6pt8d9dnr12r3lp9m6mkr3");
+//		}
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		mp.stop();
-		tinmooConnect.finalized();
+		AppConnect.getInstance(this).finalize();
 		super.onDestroy();
 	}
 	/** The m board view. */
@@ -89,9 +85,10 @@ public class ChessboardActivity extends Activity {
 	boolean mHasSound = true;
 	boolean mHasMusic = true;
 	HashMap<Integer, Integer> mSoundsMap = new HashMap<Integer, Integer>();
-	TinmooConnect tinmooConnect;
-	TinmooOffer offer;
+	//TinmooConnect tinmooConnect;
+	//TinmooOffer offer;
 	Intent musicIntent;
+	private int amount;
 	/**
 	 * Called when the activity is first created.
 	 * 
@@ -99,57 +96,20 @@ public class ChessboardActivity extends Activity {
 	 *            the saved instance state
 	 */
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		mLayout = (FrameLayout) LayoutInflater.from(this).inflate(
 				R.layout.game_board_layout, null);
 		setContentView(mLayout);
-		tinmooConnect = TinmooConnect.getTinmooConnectInstance(this);
-tinmooConnect.setListener(new SimpleOfferListener(){
-			
-			@Override
-			public void onConnected() {
-				//textView.setText("onConnected");
-				Log.d("TinmooSDK", "onConnected");
-			}
-
-			@Override
-			public void onConnectFailed() {
-				//textView.setText("onConnectFailed");
-				Log.d("TinmooSDK", "onConnectFailed");
-			}
-
-			@Override
-			public void onFailReceivedFeatureOffer(Type type, TinmooOffer offer) {
-				ChessboardActivity.this.offer = offer;
-				//textView.setText("Type:"+type+" Name:"+offer.getName()+" Icon:"+offer.getIcon()+" Amount:"+offer.getAmount()+" Price:"+offer.getPrice());
-				//ImageView iv = (ImageView) findViewById(R.id.icon);
-				//TextView tv = (TextView) findViewById(R.id.offerInfo);
-				//iv.setImageDrawable(null);
-				//tv.setText("fail to received feature offer.");
-				
-				Log.d("TinmooSDK", "onFailReceivedFeatureOffer");
-			}
-
-			@Override
-			public void onReceivedFeatureOffer(Type type, TinmooOffer offer) {
-				ChessboardActivity.this.offer = offer;
-				//textView.setText("Type:"+type+" Name:"+offer.getName()+" Icon:"+offer.getIcon()+" Amount:"+offer.getAmount()+" Price:"+offer.getPrice());
-				//ImageView iv = (ImageView) findViewById(R.id.icon);
-				//TextView tv = (TextView) findViewById(R.id.offerInfo);
-				//iv.setImageDrawable(loadIcon(offer.getIcon()));
-				//tv.setText("Type:"+type+" Name:"+offer.getName()+" Amount:"+offer.getAmount()+" Price:"+offer.getPrice());
-				
-				Log.d("TinmooSDK", "onReceivedFeatureOffer");
-			}
-			
-		});
 		
-		// Connnect with the Tinmoo server. Call this when the application first starts.
-		tinmooConnect.init();
-		
-		
+		//waps ad
+		AppConnect.getInstance(this);		
+		LinearLayout container =(LinearLayout)findViewById(R.id.AdLinearLayout);
+		new AdView(this,container).DisplayAd(30);//每30秒轮换一次广告，此参数可修改
+		AppConnect.getInstance(ChessboardActivity.this).getPoints(ChessboardActivity.this);
+		//tinmoo
+		/*
 		AdView ad = (AdView) mLayout.findViewById(R.id.ad);
 		ad.setAdListener(new AdListener(){
 		@Override
@@ -170,11 +130,22 @@ tinmooConnect.setListener(new SimpleOfferListener(){
 		}
 		});
 		ad.requestFreshAd();
+		*/
+		//adview.cn
+		/*
+		AdViewLayout adViewLayout = new AdViewLayout(this, "SDK20110128120537w03x1azumjdq1ip");
+        FrameLayout.LayoutParams adviewLayoutParams = new FrameLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT);
+        adviewLayoutParams.gravity = Gravity.TOP;
+        mLayout.addView(adViewLayout, adviewLayoutParams);                
+        adViewLayout.invalidate();
+        */
+
 		mp = MediaPlayer.create(this,R.raw.bgsound);
 		mp.setLooping(true);	
 		mPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
 		mHasSound = getSharedPreferences("data", 0).getBoolean("sound", true);
 		mHasMusic = getSharedPreferences("data", 0).getBoolean("music", true);
+		amount = getSharedPreferences("data", 0).getInt("amount", 100);
 		// 如果设置为有声音，则初始化。
 		if (mHasSound) {
 			initSounds();
@@ -209,7 +180,6 @@ tinmooConnect.setListener(new SimpleOfferListener(){
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				AlertDialog.Builder b = new AlertDialog.Builder(
 						ChessboardActivity.this);
 				b.setTitle(R.string.text_setting);
@@ -301,7 +271,8 @@ tinmooConnect.setListener(new SimpleOfferListener(){
 						mHasSound = isChecked;
 					}
 				});
-
+				TextView txtAmount = (TextView)setting.findViewById(R.id.txt_amount);
+				txtAmount.setText(String.format(getResources().getString(R.string.text_nodescription,amount)));
 				b.setView(setting);
 				b.create().show();
 			}});
@@ -320,15 +291,37 @@ tinmooConnect.setListener(new SimpleOfferListener(){
 		btnBack.setOnClickListener(new Button.OnClickListener(){
 
 			@Override
-			public void onClick(View v) {
-				mBoardView.retract();
+			public void onClick(View v) {				
+				if(amount > 0){
+					if(mBoardView.retract()){
+						AppConnect.getInstance(ChessboardActivity.this).spendPoints(10, ChessboardActivity.this);
+						amount = amount - 10;
+					}
+				}else{
+					new AlertDialog.Builder(ChessboardActivity.this)
+					.setTitle(getResources().getString(R.string.text_nottitle))
+					.setMessage(String.format(getResources().getString(R.string.text_nodescription,amount)))
+					.setIcon(android.R.drawable.ic_menu_close_clear_cancel)
+					.setNegativeButton(getResources().getString(R.string.text_back), new OnClickListener(){
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}})
+						.setPositiveButton(getResources().getString(R.string.text_know), new OnClickListener(){
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							AppConnect.getInstance(ChessboardActivity.this).showOffers(ChessboardActivity.this);
+						}})
+						.show();
+				}
 			}});
 		Button btnExit = (Button)mLayout.findViewById(R.id.btn_exit);
 		btnExit.setOnClickListener(new Button.OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				onProgramExit();
+				AppConnect.getInstance(ChessboardActivity.this).showOffers(ChessboardActivity.this);
 			}});
 	}
 
@@ -477,6 +470,10 @@ tinmooConnect.setListener(new SimpleOfferListener(){
 			.setPositiveButton(getResources().getString(R.string.confirm), new OnClickListener(){
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
+				//程序退出时，把金币数保存
+				final SharedPreferences data = getSharedPreferences("data", 0);
+				final Editor editor = data.edit();
+				editor.putInt("amount", amount);
 				SQLiteDatabase db = mHelper.getWritableDatabase();
 				Cursor c = db.query(DbHelper.TABLE_NAME, null, null, null,
 						null, null, null);
@@ -498,5 +495,17 @@ tinmooConnect.setListener(new SimpleOfferListener(){
 				System.exit(0);			
 			}})
 			.show();
+	}
+
+	@Override
+	public void getUpdatePoints(String arg0, int arg1) {
+		// TODO Auto-generated method stub
+		amount = arg1 <= 0? amount : arg1;
+	}
+
+	@Override
+	public void getUpdatePointsFailed(String arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

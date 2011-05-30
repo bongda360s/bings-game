@@ -71,4 +71,5 @@
     <public type="id" name="btn_reset" id="0x7f060008" />
     <public type="id" name="btn_back" id="0x7f060009" />
     <public type="id" name="btn_exit" id="0x7f06000a" />
+    <public type="id" name="txt_amount" id="0x7f06000b" />
 </resources>

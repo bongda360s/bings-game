@@ -6,23 +6,28 @@ android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:sdk="http://schemas.android.com/apk/res/com.aichess.chineseChess">
-	<com.ignitevision.android.ads.AdView
-android:id="@id/ad"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-sdk:textColor="#FFFFFF"
-sdk:backgroundColor="#000000"
-sdk:refreshInterval="20"
-android:layout_gravity="top"
-android:layout_marginTop="3dip"
-/>
+	<!-- <com.ignitevision.android.ads.AdView
+	android:id="@id/ad"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	sdk:textColor="#FFFFFF"
+	sdk:backgroundColor="#000000"
+	sdk:refreshInterval="20"
+	android:layout_gravity="top"
+	android:layout_marginTop="3dip"
+	/> -->
+	<LinearLayout
+	android:id="@+id/AdLinearLayout"
+	android:layout_width="fill_parent" 
+	android:layout_height="wrap_content" 
+	android:gravity="center_horizontal"/>
 	<LinearLayout
 	android:orientation="horizontal"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
 	android:gravity="center"
 	android:layout_gravity="bottom"
-	android:background="#ff333333">
+	android:background="#ff1C86EE"   >
 		<com.aichess.chineseChess.ui.ImageTextButton 
 	    	sdk:text="设置" 
 	    	sdk:bitmap="@drawable/android:ic_menu_preferences"  
@@ -31,7 +36,7 @@ android:layout_marginTop="3dip"
 	        android:layout_weight="1"
 	        android:id="@id/btn_setting"
 	        android:layout_gravity="center" 
-			android:layout_marginTop="1dip"       
+			android:layout_marginTop="1dip"    
 	        />
 	    <com.aichess.chineseChess.ui.ImageTextButton 
 	    	sdk:text="重玩" 
@@ -54,8 +59,8 @@ android:layout_marginTop="3dip"
 	        android:layout_marginTop="1dip"  
 	        />
 	    <com.aichess.chineseChess.ui.ImageTextButton 
-	    	sdk:text="退出" 
-	    	sdk:bitmap="@drawable/android:ic_menu_close_clear_cancel"
+	    	sdk:text="推荐" 
+	    	sdk:bitmap="@drawable/android:btn_star_big_on"
 	     	android:layout_width="wrap_content"
 	        android:layout_height="65dip"
 	        android:layout_weight="1"

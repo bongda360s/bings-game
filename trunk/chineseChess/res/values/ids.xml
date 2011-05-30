@@ -11,4 +11,5 @@
     <item type="id" name="btn_reset">false</item>
     <item type="id" name="btn_back">false</item>
     <item type="id" name="btn_exit">false</item>
+    <item type="id" name="txt_amount">false</item>
 </resources>

@@ -1,0 +1,247 @@
+com.aichess.chineseChess.data.Data -> com.aichess.chineseChess.b.a:
+    int[] SOUND_ID -> a
+    byte[] rsData -> b
+    boolean flipped -> c
+    int handicap -> d
+    int level -> e
+    int Amount -> f
+    double Price -> g
+    void reInit() -> a
+com.aichess.chineseChess.data.DbHelper -> com.aichess.chineseChess.b.b:
+    void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
+    void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
+com.aichess.chineseChess.ui.ChessboadView -> com.aichess.chineseChess.ui.l:
+    android.view.SurfaceHolder mHolder -> b
+    android.graphics.Canvas mCanvas -> c
+    android.graphics.Paint mPaint -> d
+    int mCursorX -> e
+    int mCursorY -> f
+    int sqSelected -> g
+    int mvLast -> h
+    java.lang.String message -> i
+    int phase -> a
+    int[] IMAGE_NAME -> j
+    byte[] retractData -> k
+    int squareSize -> l
+    int width -> m
+    int height -> n
+    int left -> o
+    int top -> p
+    com.aichess.chineseChess.utils.Position pos -> q
+    com.aichess.chineseChess.utils.Search search -> r
+    android.graphics.Bitmap mBoardBitmap -> s
+    android.graphics.Bitmap imgSelected -> t
+    android.graphics.Bitmap imgSelected2 -> u
+    android.graphics.Bitmap imgCursor -> v
+    android.graphics.Bitmap imgCursor2 -> w
+    android.graphics.Bitmap[] imgPieces -> x
+    android.os.Handler mHandler -> y
+    void init() -> a
+    void load() -> b
+    void paint() -> c
+    void drawSquare(android.graphics.Canvas,android.graphics.Bitmap,android.graphics.Paint,int) -> a
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    void retract() -> d
+    void surfaceCreated(android.view.SurfaceHolder) -> surfaceCreated
+    void surfaceChanged(android.view.SurfaceHolder,int,int,int) -> surfaceChanged
+    void surfaceDestroyed(android.view.SurfaceHolder) -> surfaceDestroyed
+    boolean responseMove() -> e
+    boolean getResult(int) -> a
+    void saveRetractData() -> f
+    void access$0(com.aichess.chineseChess.ui.ChessboadView) -> a
+com.aichess.chineseChess.ui.ChessboadView$1 -> com.aichess.chineseChess.ui.o:
+    com.aichess.chineseChess.ui.ChessboadView this$0 -> a
+    void run() -> run
+com.aichess.chineseChess.ui.ChessboadView$2 -> com.aichess.chineseChess.ui.p:
+    com.aichess.chineseChess.ui.ChessboadView this$0 -> a
+    void run() -> run
+com.aichess.chineseChess.ui.ChessboardActivity -> com.aichess.chineseChess.ui.ChessboardActivity:
+    com.aichess.chineseChess.ui.ChessboadView mBoardView -> a
+    android.widget.TextView mInfoTextView -> b
+    android.widget.FrameLayout mLayout -> h
+    com.aichess.chineseChess.data.DbHelper mHelper -> c
+    android.media.SoundPool mPool -> d
+    android.media.MediaPlayer mp -> e
+    boolean mHasSound -> f
+    boolean mHasMusic -> i
+    java.util.HashMap mSoundsMap -> g
+    android.os.Handler handler -> j
+    void onCreate(android.os.Bundle) -> onCreate
+    void initSounds() -> a
+    void loadConfigData() -> b
+    boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
+    void onProgramExit() -> c
+    void onDestroy() -> onDestroy
+    void access$0(com.aichess.chineseChess.ui.ChessboardActivity) -> a
+    void access$1(com.aichess.chineseChess.ui.ChessboardActivity) -> b
+com.aichess.chineseChess.ui.ChessboardActivity$1 -> com.aichess.chineseChess.ui.m:
+    com.aichess.chineseChess.ui.ChessboardActivity this$0 -> a
+    void handleMessage(android.os.Message) -> handleMessage
+com.aichess.chineseChess.ui.ChessboardActivity$2 -> com.aichess.chineseChess.ui.n:
+    com.aichess.chineseChess.ui.ChessboardActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.aichess.chineseChess.ui.ChessboardActivity$2$1 -> com.aichess.chineseChess.ui.e:
+    com.aichess.chineseChess.ui.ChessboardActivity$2 this$1 -> a
+    android.content.SharedPreferences$Editor val$editor -> b
+    void onCheckedChanged(android.widget.RadioGroup,int) -> onCheckedChanged
+com.aichess.chineseChess.ui.ChessboardActivity$2$2 -> com.aichess.chineseChess.ui.d:
+    com.aichess.chineseChess.ui.ChessboardActivity$2 this$1 -> a
+    android.content.SharedPreferences$Editor val$editor -> b
+    void onCheckedChanged(android.widget.RadioGroup,int) -> onCheckedChanged
+com.aichess.chineseChess.ui.ChessboardActivity$2$3 -> com.aichess.chineseChess.ui.c:
+    com.aichess.chineseChess.ui.ChessboardActivity$2 this$1 -> a
+    android.content.SharedPreferences$Editor val$editor -> b
+    void onCheckedChanged(android.widget.RadioGroup,int) -> onCheckedChanged
+com.aichess.chineseChess.ui.ChessboardActivity$2$4 -> com.aichess.chineseChess.ui.b:
+    com.aichess.chineseChess.ui.ChessboardActivity$2 this$1 -> a
+    android.content.SharedPreferences$Editor val$editor -> b
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+com.aichess.chineseChess.ui.ChessboardActivity$2$5 -> com.aichess.chineseChess.ui.a:
+    com.aichess.chineseChess.ui.ChessboardActivity$2 this$1 -> a
+    android.content.SharedPreferences$Editor val$editor -> b
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+com.aichess.chineseChess.ui.ChessboardActivity$3 -> com.aichess.chineseChess.ui.j:
+    com.aichess.chineseChess.ui.ChessboardActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.aichess.chineseChess.ui.ChessboardActivity$4 -> com.aichess.chineseChess.ui.k:
+    com.aichess.chineseChess.ui.ChessboardActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.aichess.chineseChess.ui.ChessboardActivity$5 -> com.aichess.chineseChess.ui.h:
+    com.aichess.chineseChess.ui.ChessboardActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.aichess.chineseChess.ui.ChessboardActivity$6 -> com.aichess.chineseChess.ui.i:
+    com.aichess.chineseChess.ui.ChessboardActivity this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.aichess.chineseChess.ui.ChessboardActivity$7 -> com.aichess.chineseChess.ui.f:
+    com.aichess.chineseChess.ui.ChessboardActivity this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.aichess.chineseChess.ui.ChessboardActivity$8 -> com.aichess.chineseChess.ui.g:
+    com.aichess.chineseChess.ui.ChessboardActivity this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.aichess.chineseChess.utils.HashItem -> com.aichess.chineseChess.a.f:
+    byte depth -> a
+    byte flag -> b
+    short vl -> c
+    int mv -> d
+    int zobristLock -> e
+com.aichess.chineseChess.utils.Position -> com.aichess.chineseChess.a.d:
+    byte[] IN_BOARD -> i
+    byte[] IN_FORT -> j
+    byte[] LEGAL_SPAN -> k
+    byte[] KNIGHT_PIN -> l
+    int[] KING_DELTA -> m
+    int[] ADVISOR_DELTA -> n
+    int[][] KNIGHT_DELTA -> o
+    int[][] KNIGHT_CHECK_DELTA -> p
+    int[] MVV_VALUE -> q
+    short[][] PIECE_VALUE -> r
+    java.lang.String[] STARTUP_FEN -> a
+    int PreGen_zobristKeyPlayer -> s
+    int PreGen_zobristLockPlayer -> t
+    int[][] PreGen_zobristKeyTable -> u
+    int[][] PreGen_zobristLockTable -> v
+    java.util.Random random -> b
+    int bookSize -> w
+    int[] bookLock -> x
+    short[] bookMove -> y
+    short[] bookValue -> z
+    int sdPlayer -> c
+    byte[] squares -> d
+    int zobristKey -> e
+    int zobristLock -> f
+    int vlWhite -> A
+    int vlBlack -> B
+    int moveNum -> g
+    int distance -> h
+    int[] mvList -> C
+    int[] pcList -> D
+    int[] keyList -> E
+    boolean[] chkList -> F
+    boolean IN_BOARD(int) -> a
+    boolean IN_FORT(int) -> m
+    int RANK_Y(int) -> b
+    int FILE_X(int) -> c
+    int COORD_XY(int,int) -> a
+    int SQUARE_FLIP(int) -> d
+    int MIRROR_SQUARE(int) -> n
+    int SQUARE_FORWARD(int,int) -> e
+    boolean HOME_HALF(int,int) -> b
+    boolean AWAY_HALF(int,int) -> f
+    int SIDE_TAG(int) -> e
+    int SRC(int) -> f
+    int DST(int) -> g
+    int MOVE(int,int) -> c
+    int MVV_LVA(int,int) -> g
+    void clearBoard() -> a
+    void setIrrev() -> b
+    void addPiece(int,int,boolean) -> a
+    void addPiece(int,int) -> d
+    void undoMovePiece() -> q
+    void changeSide() -> c
+    boolean makeMove(int) -> h
+    void undoMakeMove() -> d
+    void nullMove() -> e
+    void undoNullMove() -> f
+    int fenPiece(char) -> a
+    void fromFen(java.lang.String) -> a
+    int generateAllMoves(int[]) -> a
+    int generateMoves(int[],int[]) -> a
+    boolean legalMove(int) -> i
+    boolean checked() -> r
+    boolean isMate() -> g
+    int mateValue() -> h
+    int banValue() -> s
+    int drawValue() -> i
+    int evaluate() -> j
+    boolean nullOkay() -> k
+    boolean nullSafe() -> l
+    boolean inCheck() -> m
+    boolean captured() -> n
+    int repValue(int) -> j
+    int repStatus() -> o
+    int repStatus(int) -> k
+    int bookMove() -> p
+    int historyIndex(int) -> l
+com.aichess.chineseChess.utils.Search -> com.aichess.chineseChess.a.b:
+    int hashMask -> d
+    int mvResult -> e
+    int allNodes -> f
+    int allMillis -> g
+    com.aichess.chineseChess.utils.HashItem[] hashTable -> h
+    com.aichess.chineseChess.utils.Position pos -> a
+    int[] historyTable -> b
+    int[][] mvKiller -> c
+    com.aichess.chineseChess.utils.HashItem getHashItem() -> a
+    void setBestMove(int,int) -> a
+    int searchQuiesc(int,int) -> b
+    int searchNoNull(int,int,int) -> a
+    int searchFull(int,int,int) -> b
+    int searchFull(int,int,int,boolean) -> a
+    int searchMain(int) -> a
+com.aichess.chineseChess.utils.Search$SortItem -> com.aichess.chineseChess.a.c:
+    int index -> b
+    int moves -> c
+    int phase -> d
+    int mvHash -> e
+    int mvKiller1 -> f
+    int mvKiller2 -> g
+    int[] mvs -> h
+    int[] vls -> i
+    boolean singleReply -> a
+    com.aichess.chineseChess.utils.Search this$0 -> j
+    int next() -> a
+com.aichess.chineseChess.utils.Util -> com.aichess.chineseChess.a.a:
+    byte[] POP_COUNT_16 -> a
+    int[] SHELL_STEP -> b
+    int MIN_MAX$4868d301(int,int) -> a
+    int readShort(java.io.InputStream) -> a
+    int readInt(java.io.InputStream) -> b
+    int binarySearch$fba1cf1(int,int[],int) -> a
+    void shellSort$332cd44f(int[],int[],int) -> a
+com.aichess.chineseChess.utils.Util$RC4 -> com.aichess.chineseChess.a.e:
+    int[] state -> a
+    int x -> b
+    int y -> c
+    void swap(int,int) -> a
+    int nextByte() -> b
+    int nextLong() -> a

@@ -25,10 +25,8 @@
     <string name="text_equal">双方不变作和，辛苦了！</string>
     <string name="text_longequal">超过自然限着作和，辛苦了！</string>
     <string name="text_computerthink">电脑思考中，请稍等再试...</string>
-    <!--  <string name="text_unlocktitle">开启悔棋功能</string>
-    <string name="text_unlockdescription">点击下面的广告，完成游戏任务</string>
-    <string name="text_back">返回</string>
-    <string name="text_notenought">游戏币不足</string>
-    <string name="text_clickad">悔棋功能要消耗一个游戏币，您目前游戏币不足，可以激活一个新广告来获取游戏币。</string>
-    <string name="text_know">知道了</string>-->
+    <string name="text_nottitle">积分不足</string>
+   <string name="text_nodescription">悔棋功能要消耗10个积分，您目前积分为%d，可以安装免费程序来赚取大量积分。</string>
+    <string name="text_back">下次吧</string>    
+    <string name="text_know">免费赚积分</string>
 </resources>

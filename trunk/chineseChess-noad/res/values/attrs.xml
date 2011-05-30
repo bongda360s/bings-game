@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<declare-styleable name="ImageTextButton"><!-- 控件名称-->
+   <attr name="text" format="string"/><!-- 属性名称，类型-->
+   <attr name="bitmap" format="reference"/>
+</declare-styleable>
+<declare-styleable name="com.ignitevision.android.ads.AdView">
+<attr name="backgroundColor" format="color" />
+<attr name="textColor" format="color" />
+<attr name="refreshInterval" format="integer" />
+</declare-styleable>
+</resources>

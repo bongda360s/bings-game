@@ -1,5 +1,7 @@
 package com.aichess.chineseChess.ui;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -70,7 +72,7 @@ public class ChessboadView extends SurfaceView implements Callback {
 
 	/** 游戏状态. */
 	byte[] retractData = new byte[Data.RS_DATA_LEN];
-
+	ArrayList<byte[]> retractDataList = new ArrayList<byte[]>();
 	/** The top. */
 	private int squareSize, width, height, left, top;
 
@@ -161,14 +163,15 @@ public class ChessboadView extends SurfaceView implements Callback {
 	/**
 	 * Load.
 	 */
-	protected void load() {
-
+	protected boolean load() {
+		boolean canRetract = false;
 		sqSelected = mvLast = 0;
 		if (Data.rsData[0] == 0) {
 			// 初始化棋盘
 			pos.fromFen(Position.STARTUP_FEN[Data.handicap]);
 		} else { // 否则就读取上次的游戏棋盘状态
 			// Restore Record-Score Data
+			canRetract = true;
 			pos.clearBoard();
 			for (int sq = 0; sq < 256; sq++) {
 				int pc = Data.rsData[sq + 256];
@@ -183,6 +186,7 @@ public class ChessboadView extends SurfaceView implements Callback {
 		}
 		// 保存撤销状态
 		System.arraycopy(Data.rsData, 0, retractData, 0, Data.RS_DATA_LEN);
+
 		// 如果是电脑先走，就执行responseMove()方法
 		phase = PHASE_LOADING;
 		if (pos.sdPlayer == 0 ? Data.flipped : !Data.flipped) {
@@ -200,6 +204,7 @@ public class ChessboadView extends SurfaceView implements Callback {
 				}
 			}.start();
 		}
+		return canRetract;
 	}
 
 	/**
@@ -392,15 +397,19 @@ public class ChessboadView extends SurfaceView implements Callback {
 	/**
 	 * 悔棋.
 	 */
-	protected void retract() {
+	protected boolean retract() {
 		if (phase == PHASE_THINKING) {
 			// 哎，电脑在思考就别打扰吧，等它想完了再说，要不然会生气。。。
-			return;
+			return false;
 		}
 		// Restore Retract Status
-		System.arraycopy(retractData, 0, Data.rsData, 0, Data.RS_DATA_LEN);
-		load();
+		if(retractDataList.size()>0){
+			System.arraycopy(retractDataList.get(retractDataList.size()-1), 0, Data.rsData, 0, Data.RS_DATA_LEN);
+			retractDataList.remove(retractDataList.size()-1);
+		}
+		boolean canRetract = load();
 		paint();
+		return canRetract;
 	}
 
 	/*
@@ -537,7 +546,9 @@ public class ChessboadView extends SurfaceView implements Callback {
 	
 	void saveRetractData() {
 		// Backup Retract Status
+		retractData = new byte[Data.RS_DATA_LEN];
 		System.arraycopy(Data.rsData, 0, retractData, 0, Data.RS_DATA_LEN);
+		retractDataList.add(retractData);
 		// Backup Record-Score Data
 		Data.rsData[0] = 1;
 		System.arraycopy(pos.squares, 0, Data.rsData, 256, 256);
