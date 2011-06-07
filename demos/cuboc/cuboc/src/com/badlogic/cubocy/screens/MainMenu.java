@@ -35,7 +35,7 @@ public class MainMenu extends CubocScreen {
 		if(time > 1) {
 			if(Gdx.input.isKeyPressed(Keys.ANY_KEY) || Gdx.input.justTouched()) {
 				Assests.load();
-				game.setScreen(new GameScreen(game));
+				game.setScreen(new LevelChoiceScreen(game));
 			}
 		}
 	}
