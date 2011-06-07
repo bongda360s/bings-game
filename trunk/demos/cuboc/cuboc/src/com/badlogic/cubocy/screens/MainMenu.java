@@ -1,5 +1,6 @@
 package com.badlogic.cubocy.screens;
 
+import com.badlogic.cubocy.Assests;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -33,14 +34,15 @@ public class MainMenu extends CubocScreen {
 		time += delta;
 		if(time > 1) {
 			if(Gdx.input.isKeyPressed(Keys.ANY_KEY) || Gdx.input.justTouched()) {
-				isDone = true;
+				Assests.load();
+				game.setScreen(new GameScreen(game));
 			}
 		}
 	}
 	
-	@Override public boolean isDone(){
-		return isDone;
-	}
+//	@Override public boolean isDone(){
+//		return isDone;
+//	}
 	
 	@Override public void hide () {
 		System.out.println("dispose main menu");

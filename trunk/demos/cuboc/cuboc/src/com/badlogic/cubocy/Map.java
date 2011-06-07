@@ -6,6 +6,8 @@ import com.badlogic.gdx.utils.Array;
 
 public class Map {
 	static int EMPTY = 0;
+	static int ICE = 0x111111;
+	static int MUD = 0x222222;
 	static int TILE = 0xffffff;
 	static int START = 0xff0000;
 	static int END = 0xff00ff;
@@ -14,7 +16,11 @@ public class Map {
 	static int ROCKET = 0x0000ff;
 	static int MOVING_SPIKES = 0xffff00;
 	static int LASER = 0x00ffff;
-	
+	static String[] levelMaps = {"data/levels.png",
+		"data/levels1.png",
+		"data/levels2.png",
+		"data/levels3.png"};
+	Pixmap pixmap;
 	int[][] tiles;	
 	public Bob bob;
 	Cube cube;
@@ -25,8 +31,13 @@ public class Map {
 	Array<Laser> lasers = new Array<Laser>();
 	public EndDoor endDoor;
 	
-	public Map() {
-		Pixmap pixmap = new Pixmap(Gdx.files.internal("data/levels.png"));
+	public Map(int level) {
+		loadMap(level);
+	}
+
+	public void loadMap(int level) {
+		level = level%levelMaps.length; 
+		pixmap = new Pixmap(Gdx.files.internal(levelMaps[level]));
 		tiles = new int[pixmap.getWidth()][pixmap.getHeight()];		
 		for(int y = 0; y < pixmap.getHeight(); y++) {
 			for(int x = 0; x < pixmap.getWidth(); x++) {
@@ -76,8 +87,11 @@ public class Map {
 		cube.update(deltaTime);
 		if(cube.state == Cube.DEAD) cube = new Cube(this, bob.bounds.x, bob.bounds.y);
 		for(int i = 0; i < dispensers.size; i++) {
-			if(bob.bounds.overlaps(dispensers.get(i).bounds)) {
+			if(bob.bounds.overlaps(dispensers.get(i).bounds) && 
+					activeDispenser != dispensers.get(i) && 
+					Settings.rememberStone > 0) {
 				activeDispenser = dispensers.get(i);
+				Settings.rememberStone--;
 			}
 		}
 		for(int i = 0; i < rockets.size; i++) {

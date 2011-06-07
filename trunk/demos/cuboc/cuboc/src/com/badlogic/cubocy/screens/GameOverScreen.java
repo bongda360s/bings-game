@@ -34,14 +34,14 @@ public class GameOverScreen extends CubocScreen {
 		time += delta;
 		if(time > 1) {
 			if(Gdx.input.isKeyPressed(Keys.ANY_KEY) || Gdx.input.justTouched()) {
-				isDone = true;
+				game.setScreen(new MainMenu(game));
 			}
 		}
 	}
 	
-	@Override public boolean isDone(){
-		return isDone;
-	}
+//	@Override public boolean isDone(){
+//		return isDone;
+//	}
 
 	@Override public void hide () {
 		System.out.println("dispose intro");
