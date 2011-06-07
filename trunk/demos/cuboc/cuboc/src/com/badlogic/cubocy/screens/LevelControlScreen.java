@@ -1,6 +1,7 @@
 package com.badlogic.cubocy.screens;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actors.Button;
@@ -28,6 +29,7 @@ public class LevelControlScreen extends CubocScreen {
 		stage.addActor(btnList);
 		stage.addActor(btnRepeat);
 		stage.addActor(btnNext);
+		Gdx.input.setInputProcessor(stage);
 	}
 	
 	public void render(float deltaTime) {
