@@ -57,7 +57,7 @@ public class Bob {
 			int middleX = (int)Math.floor(bounds.x + bounds.width/2);
 			int middleY = (int)Math.floor(bounds.y + bounds.height/2) - 1;
 			if(middleY < 0) middleY = 0;
-			if(map.tiles[middleX][middleY] == Map.EMPTY)
+			if(map.tiles[middleX][middleY] == Map.TILE)
 				vel.x *= DAMP;
 			else if(map.tiles[middleX][middleY] == Map.MUD)
 				vel.x *= MUDDAMP;

@@ -19,7 +19,7 @@ public class IntroScreen extends CubocScreen {
 	}
 
 	@Override public void show () {
-		intro = new TextureRegion(TextureDict.loadTexture("data/intro.png").get(), 0, 0, 480, 320);
+		intro = new TextureRegion(new Texture(Gdx.files.internal("data/intro.png")), 0, 0, 480, 320);
 		batch = new SpriteBatch();
 		batch.getProjectionMatrix().setToOrtho2D(0, 0, 480, 320);
 	}
