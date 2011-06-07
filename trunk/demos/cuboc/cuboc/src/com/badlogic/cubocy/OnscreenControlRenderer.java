@@ -23,7 +23,7 @@ public class OnscreenControlRenderer {
 	}
 	
 	private void loadAssets() {
-		Texture texture = TextureDict.loadTexture("data/controls.png").get();
+		Texture texture = new Texture(Gdx.files.internal("data/controls.png"));
 		TextureRegion[] buttons = TextureRegion.split(texture, 64, 64)[0];
 		left = buttons[0];
 		right = buttons[1];

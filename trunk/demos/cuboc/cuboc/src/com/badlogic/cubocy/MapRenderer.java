@@ -74,8 +74,10 @@ public class MapRenderer {
 						if(y > height) continue;
 						int posX = x;
 						int posY = height - y - 1;
-						if(map.tiles[x][y] == Map.TILE) cache.add(tileRegion, posX, posY, 1, 1);						
-						if(map.tiles[x][y] == Map.SPIKES) cache.add(spikes, posX, posY, 1, 1);
+						if(map.tiles[x][y] == Map.TILE) 
+							cache.add(tileRegion, posX, posY, 1, 1);						
+						if(map.tiles[x][y] == Map.SPIKES) 
+							cache.add(spikes, posX, posY, 1, 1);
 					}
 				}
 				blocks[blockX][blockY] = cache.endCache();				
@@ -89,7 +91,7 @@ public class MapRenderer {
 		this.tiles = new TextureRegion(tile).split(20, 20)[0];
 		this.tileRegion = tiles[0];
 		//this.tile = new TextureRegion(new Texture(Gdx.files.internal("data/tile1.png")), 0, 0, 20, 20);
-		bobTexture = TextureDict.loadTexture("data/bob.png").get();
+		bobTexture = new Texture(Gdx.files.internal("data/bob.png"));
 		TextureRegion[] split = new TextureRegion(bobTexture).split(20, 20)[0];
 		TextureRegion[] mirror = new TextureRegion(bobTexture).split(20,20)[0];
 		for(TextureRegion region: mirror) region.flip(true, false);
