@@ -20,7 +20,9 @@ public class Bob {
 	static final float GRAVITY = 20.0f;
 	static final float MAX_VEL = 6f;
 	static final float DAMP = 0.90f;
-
+	static final float ICEDAMP = 0.99f;
+	static final float MUDDAMP = 0.6f;
+	
 	Vector2 pos = new Vector2();
 	Vector2 accel = new Vector2();
 	Vector2 vel = new Vector2();
@@ -51,7 +53,17 @@ public class Bob {
 		accel.y = -GRAVITY;		
 		accel.mul(deltaTime);
 		vel.add(accel.x, accel.y);
-		if(accel.x == 0) vel.x *= DAMP;
+		if(accel.x == 0){
+			int middleX = (int)Math.floor(bounds.x + bounds.width/2);
+			int middleY = (int)Math.floor(bounds.y + bounds.height/2) - 1;
+			if(middleY < 0) middleY = 0;
+			if(map.tiles[middleX][middleY] == Map.EMPTY)
+				vel.x *= DAMP;
+			else if(map.tiles[middleX][middleY] == Map.MUD)
+				vel.x *= MUDDAMP;
+			else
+				vel.x *= ICEDAMP;
+		}
 		if (vel.x > MAX_VEL) vel.x = MAX_VEL;
 		if (vel.x < -MAX_VEL) vel.x = -MAX_VEL;		
 		vel.mul(deltaTime);		

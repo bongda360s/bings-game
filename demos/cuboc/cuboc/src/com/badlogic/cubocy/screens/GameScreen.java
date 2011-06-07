@@ -13,15 +13,19 @@ public class GameScreen extends CubocScreen {
 	Map map;
 	MapRenderer renderer;
 	OnscreenControlRenderer controlRenderer;
+	LevelControlScreen levelControlScreen;
+	int level;
+	final int maxLevel = 18;
 	
 	public GameScreen(Game game) {
 		super(game);
 	}
 	
 	@Override public void show () {
-		map = new Map();
+		map = new Map(level);
 		renderer = new MapRenderer(map);
 		controlRenderer = new OnscreenControlRenderer(map);
+		levelControlScreen = new LevelControlScreen(game);
 	}
 	
 	@Override public void render (float delta) {
@@ -33,11 +37,16 @@ public class GameScreen extends CubocScreen {
 		controlRenderer.render();
 		
 		if(map.bob.bounds.overlaps(map.endDoor.bounds)) {
-			game.setScreen(new GameOverScreen(game));
+			level++;
+			if(level < maxLevel){				
+				levelControlScreen.show();
+			}
+			else
+				game.setScreen(new GameOverScreen(game));
 		}
 		
 		if(Gdx.input.isKeyPressed(Keys.ESCAPE)) {
-			game.setScreen(new MainMenu(game));
+			levelControlScreen.show();
 		}
 	}
 	
@@ -47,7 +56,7 @@ public class GameScreen extends CubocScreen {
 		controlRenderer.dispose();
 	}
 	
-	@Override public boolean isDone(){
-		return isDone;
-	}
+//	@Override public boolean isDone(){
+//		return isDone;
+//	}
 }
