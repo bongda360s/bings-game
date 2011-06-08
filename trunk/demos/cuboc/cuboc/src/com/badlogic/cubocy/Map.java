@@ -17,9 +17,9 @@ public class Map {
 	static int MOVING_SPIKES = 0xffff00;
 	static int LASER = 0x00ffff;
 	static String[] levelMaps = {"data/levels.png",
-		"data/levels1.png",
-		"data/levels2.png",
-		"data/levels3.png"};
+		"data/levels.png",
+		"data/levels.png",
+		"data/levels.png"};
 	Pixmap pixmap;
 	int[][] tiles;	
 	public Bob bob;

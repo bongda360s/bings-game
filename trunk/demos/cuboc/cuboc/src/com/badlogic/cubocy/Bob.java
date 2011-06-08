@@ -1,7 +1,6 @@
 package com.badlogic.cubocy;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;

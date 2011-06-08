@@ -13,10 +13,12 @@ public class Cubocy extends Game {
 	
 	@Override public void create () {	
 		Settings.load();
+		level = Settings.level;
 		setScreen(new MainMenu(this));
 	}
 	
 	@Override public void dispose () {
+		Settings.level = level;
 		Settings.save();
 		Assests.dispose();
 		super.dispose();

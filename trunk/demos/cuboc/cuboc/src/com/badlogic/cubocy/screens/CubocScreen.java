@@ -5,8 +5,6 @@ import com.badlogic.gdx.Screen;
 
 public abstract class CubocScreen implements Screen {
 	Game game;
-	//boolean isDone = false;
-	
 	public CubocScreen(Game game) {
 		this.game = game;
 	}
@@ -25,7 +23,5 @@ public abstract class CubocScreen implements Screen {
 
 	@Override
 	public void dispose() {
-	}
-	//public abstract boolean isDone();
-	
+	}	
 }

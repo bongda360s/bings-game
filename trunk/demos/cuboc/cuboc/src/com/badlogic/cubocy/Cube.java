@@ -1,8 +1,5 @@
 package com.badlogic.cubocy;
 
-import org.lwjgl.opengl.Display;
-
-import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Rectangle;

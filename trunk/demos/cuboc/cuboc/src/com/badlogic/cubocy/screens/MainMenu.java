@@ -11,8 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.actors.Button.ClickListener;
 
 public class MainMenu extends CubocScreen {
 	Stage stage;
-	Button btnStart;
-	Image imgBackground;
 	public MainMenu(Game game) {
 		super(game);
 	}
@@ -20,9 +18,9 @@ public class MainMenu extends CubocScreen {
 	@Override
 	public void show() {
 		stage = new Stage(480,320,true);		
-		imgBackground = new Image("Bean Background",new TextureRegion(new Texture(Gdx.files.internal("data/beanbackground.png")),0,0,480,320));
+		Image imgBackground = new Image("Bean Background",new TextureRegion(new Texture(Gdx.files.internal("data/beanbackground.png")),0,0,480,320));
 		stage.addActor(imgBackground);
-		btnStart = new Button("Start Button");
+		Button btnStart = new Button("Start Button");
 		stage.addActor(btnStart);
 		btnStart.clickListener = new ClickListener(){
 			@Override
