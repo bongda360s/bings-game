@@ -42,6 +42,8 @@ public class Cube {
 		processKeys();
 		
 		if(state == FOLLOW) {
+			if(map.bob.pos.dst(this.pos) >= 8)
+				this.pos.set(map.bob.pos.x-0.2f,map.bob.pos.y+0.2f);
 			target.set(map.bob.pos);
 			if(map.bob.dir == Bob.RIGHT) target.x--;
 			if(map.bob.dir == Bob.LEFT) target.x++;

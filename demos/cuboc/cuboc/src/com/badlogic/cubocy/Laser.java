@@ -150,11 +150,9 @@ public class Laser {
 			map.bob.state = Bob.DYING;
 			map.bob.stateTime = 0;
 		}
-//		float volume = Settings.soundVolume *(15 - map.bob.pos.dst(this.pos))/15 ;
-//		if(volume>0.1){
-//			Assests.laserSound.play(volume);
-//		}else{
-//			Assests.laserSound.stop();
-//		}
+		float dist = map.bob.pos.dst(this.pos);
+		if(dist<1){
+			Assests.laserSound.play(Settings.soundVolume);
+		}
 	}	
 }

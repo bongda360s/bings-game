@@ -22,6 +22,8 @@ public class MapRenderer {
 	ImmediateModeRenderer renderer = new ImmediateModeRenderer(2000*2);
 	int[][] blocks;
 	TextureRegion tileRegion;
+	TextureRegion iceRegion;
+	TextureRegion mudRegion;
 	TextureRegion[] tiles;
 	Texture tile;	
 	Texture idleLeftTexture;
@@ -75,8 +77,12 @@ public class MapRenderer {
 						int posX = x;
 						int posY = height - y - 1;
 						if(map.tiles[x][y] == Map.TILE) 
-							cache.add(tileRegion, posX, posY, 1, 1);						
-						if(map.tiles[x][y] == Map.SPIKES) 
+							cache.add(tileRegion, posX, posY, 1, 1);
+						else if(map.tiles[x][y] == Map.ICE)
+							cache.add(iceRegion, posX, posY, 1, 1);
+						else if(map.tiles[x][y] == Map.MUD)
+							cache.add(mudRegion, posX, posY, 1, 1);
+						else if(map.tiles[x][y] == Map.SPIKES) 
 							cache.add(spikes, posX, posY, 1, 1);
 					}
 				}
@@ -90,6 +96,8 @@ public class MapRenderer {
 		tile = new Texture(Gdx.files.internal("data/background.png"));
 		this.tiles = new TextureRegion(tile).split(20, 20)[0];
 		this.tileRegion = tiles[0];
+		this.iceRegion = tiles[4];
+		this.mudRegion = tiles[5];
 		//this.tile = new TextureRegion(new Texture(Gdx.files.internal("data/tile1.png")), 0, 0, 20, 20);
 		bobTexture = new Texture(Gdx.files.internal("data/bob.png"));
 		TextureRegion[] split = new TextureRegion(bobTexture).split(20, 20)[0];
