@@ -21,13 +21,11 @@ public class LevelChoiceScreen extends CubocScreen{
 
 	@Override
 	public void show() {
-		stage = new Stage(480,320,true);
-		
+		stage = new Stage(480,320,true);		
 		imgBackground = new Image("Bean Background",new TextureRegion(new Texture(Gdx.files.internal("data/beanbackground.png"))).split(480, 320)[0][0]);
 		stage.addActor(imgBackground);
 		levels = new TextureRegion(new Texture(Gdx.files.internal("data/gameLevel.png"))).split(40, 36)[0];
-		final Cubocy cubocy = (Cubocy)game;
-		int level = cubocy.level;
+		int level = ((Cubocy)game).level;
 		btnLevels = new Button[16];
 		for(int i = 0; i < btnLevels.length; i++){
 			if(i > level)
@@ -37,8 +35,8 @@ public class LevelChoiceScreen extends CubocScreen{
 				btnLevels[i].clickListener = new ClickListener(){
 					@Override
 					public void clicked(Button button) {
-						cubocy.level = Integer.parseInt(button.name);
-						cubocy.setScreen(new GameScreen(cubocy));
+						((Cubocy)game).level = Integer.parseInt(button.name);
+						game.setScreen(new GameScreen(game));
 					}};
 			}
 			btnLevels[i].x = (i % 4) * 80 + 20;

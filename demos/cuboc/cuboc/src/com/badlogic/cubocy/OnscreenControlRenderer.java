@@ -3,7 +3,6 @@ package com.badlogic.cubocy;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.TextureDict;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
