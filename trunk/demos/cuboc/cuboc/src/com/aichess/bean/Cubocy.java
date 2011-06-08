@@ -1,6 +1,6 @@
-package com.badlogic.cubocy;
+package com.aichess.bean;
 
-import com.badlogic.cubocy.screens.MainMenu;
+import com.aichess.bean.screens.MainMenu;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 

@@ -1,4 +1,4 @@
-package com.badlogic.cubocy;
+package com.aichess.bean;
 
 import com.badlogic.gdx.math.Rectangle;
 

@@ -1,6 +1,5 @@
-package com.badlogic.cubocy.screens;
-
-import com.badlogic.cubocy.Cubocy;
+package com.aichess.bean.screens;
+import com.aichess.bean.Cubocy;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

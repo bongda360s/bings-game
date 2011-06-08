@@ -1,4 +1,4 @@
-package com.badlogic.cubocy.screens;
+package com.aichess.bean.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;

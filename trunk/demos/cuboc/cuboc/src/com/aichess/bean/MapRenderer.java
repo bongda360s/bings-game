@@ -1,4 +1,4 @@
-package com.badlogic.cubocy;
+package com.aichess.bean;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
@@ -87,16 +87,14 @@ public class MapRenderer {
 				blocks[blockX][blockY] = cache.endCache();				
 			}			
 		}
-		//System.out.println("blocks created");
 	}
 	
 	private void createAnimations() {
 		tile = new Texture(Gdx.files.internal("data/background.png"));
 		this.tiles = new TextureRegion(tile).split(20, 20)[0];
-		this.tileRegion = tiles[0];
+		this.tileRegion = tiles[map.level%4];
 		this.iceRegion = tiles[4];
 		this.mudRegion = tiles[5];
-		//this.tile = new TextureRegion(new Texture(Gdx.files.internal("data/tile1.png")), 0, 0, 20, 20);
 		bobTexture = new Texture(Gdx.files.internal("data/bob.png"));
 		TextureRegion[] split = new TextureRegion(bobTexture).split(20, 20)[0];
 		TextureRegion[] mirror = new TextureRegion(bobTexture).split(20,20)[0];
