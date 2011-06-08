@@ -1,52 +1,45 @@
 package com.badlogic.cubocy.screens;
 
-import com.badlogic.cubocy.Assests;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.TextureDict;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actors.Button;
+import com.badlogic.gdx.scenes.scene2d.actors.Image;
+import com.badlogic.gdx.scenes.scene2d.actors.Button.ClickListener;
 
 public class MainMenu extends CubocScreen {
-	TextureRegion title;
-	SpriteBatch batch;
-	float time = 0;
-	
+	Stage stage;
+	Button btnStart;
+	Image imgBackground;
 	public MainMenu(Game game) {
 		super(game);
 	}
-	
-	@Override public void show () {
-		title = new TextureRegion(new Texture(Gdx.files.internal("data/title.png")), 0, 0, 480, 320);
-		batch = new SpriteBatch();
-		batch.getProjectionMatrix().setToOrtho2D(0, 0, 480, 320);
+
+	@Override
+	public void show() {
+		stage = new Stage(480,320,true);		
+		imgBackground = new Image("Bean Background",new TextureRegion(new Texture(Gdx.files.internal("data/beanbackground.png")),0,0,480,320));
+		stage.addActor(imgBackground);
+		btnStart = new Button("Start Button");
+		stage.addActor(btnStart);
+		btnStart.clickListener = new ClickListener(){
+			@Override
+			public void clicked(Button button) {
+				game.setScreen(new LevelChoiceScreen(game));				
+			}};
+		Gdx.input.setInputProcessor(stage);
 	}
 	
-	@Override public void render (float delta) {
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(title, 0, 0);
-		batch.end();
-		
-		time += delta;
-		if(time > 1) {
-			if(Gdx.input.isKeyPressed(Keys.ANY_KEY) || Gdx.input.justTouched()) {
-				Assests.load();
-				game.setScreen(new LevelChoiceScreen(game));
-			}
-		}
+	@Override
+	public void render(float delta) {
+		stage.draw();
+		stage.act(delta);
 	}
-	
-//	@Override public boolean isDone(){
-//		return isDone;
-//	}
-	
-	@Override public void hide () {
-		System.out.println("dispose main menu");
-		batch.dispose();
-		title.getTexture().dispose();
+
+	@Override
+	public void hide() {
+		stage.dispose();
 	}
 }
