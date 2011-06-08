@@ -1,4 +1,4 @@
-package com.badlogic.cubocy;
+package com.aichess.bean;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -30,12 +30,13 @@ public class Map {
 	Array<MovingSpikes> movingSpikes = new Array<MovingSpikes>();
 	Array<Laser> lasers = new Array<Laser>();
 	public EndDoor endDoor;
-	
+	public int level;
 	public Map(int level) {
 		loadMap(level);
 	}
 
 	public void loadMap(int level) {
+		this.level = level;
 		level = level%levelMaps.length; 
 		pixmap = new Pixmap(Gdx.files.internal(levelMaps[level]));
 		tiles = new int[pixmap.getWidth()][pixmap.getHeight()];		

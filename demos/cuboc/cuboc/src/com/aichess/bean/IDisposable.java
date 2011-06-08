@@ -1,4 +1,4 @@
-package com.badlogic.cubocy;
+package com.aichess.bean;
 
 public interface IDisposable {
 	public void dispose();

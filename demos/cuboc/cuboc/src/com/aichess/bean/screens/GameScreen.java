@@ -1,9 +1,9 @@
-package com.badlogic.cubocy.screens;
+package com.aichess.bean.screens;
 
-import com.badlogic.cubocy.Cubocy;
-import com.badlogic.cubocy.Map;
-import com.badlogic.cubocy.MapRenderer;
-import com.badlogic.cubocy.OnscreenControlRenderer;
+import com.aichess.bean.Cubocy;
+import com.aichess.bean.Map;
+import com.aichess.bean.MapRenderer;
+import com.aichess.bean.OnscreenControlRenderer;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -97,7 +97,6 @@ public class GameScreen extends CubocScreen {
 	}
 	
 	@Override public void hide () {
-		System.out.println("dispose game screen");
 		renderer.dispose();
 		controlRenderer.dispose();
 		stage.dispose();	

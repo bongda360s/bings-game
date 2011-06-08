@@ -1,4 +1,4 @@
-package com.badlogic.cubocy.screens;
+package com.aichess.bean.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -37,12 +37,7 @@ public class IntroScreen extends CubocScreen {
 		}
 	}
 	
-//	@Override public boolean isDone(){
-//		return isDone;
-//	}
-	
 	@Override public void hide () {
-		System.out.println("dispose intro");
 		batch.dispose();
 		intro.getTexture().dispose();
 	}
