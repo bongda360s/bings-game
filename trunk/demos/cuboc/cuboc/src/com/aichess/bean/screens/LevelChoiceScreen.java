@@ -1,5 +1,7 @@
 package com.aichess.bean.screens;
+import com.aichess.bean.Assests;
 import com.aichess.bean.Cubocy;
+import com.aichess.bean.Settings;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -24,6 +26,17 @@ public class LevelChoiceScreen extends CubocScreen{
 		imgBackground = new Image("Bean Background",new TextureRegion(new Texture(Gdx.files.internal("data/beanbackground.png"))).split(480, 320)[0][0]);
 		stage.addActor(imgBackground);
 		levels = new TextureRegion(new Texture(Gdx.files.internal("data/gameLevel.png"))).split(40, 36)[0];
+		TextureRegion[][] regionList = new TextureRegion(new Texture(Gdx.files.internal("data/iconlist.png"))).split(64, 64);
+		Button btnBack = new Button("Back Button", regionList[0][0],regionList[0][1]);
+		btnBack.x = 420;
+		btnBack.y = 260;
+		btnBack.clickListener = new ClickListener(){
+			@Override
+			public void clicked(Button button) {
+				Assests.clickSound.play(Settings.soundVolume);
+				game.setScreen(new MainMenu(game));
+			}
+		};
 		int level = ((Cubocy)game).level;
 		btnLevels = new Button[16];
 		for(int i = 0; i < btnLevels.length; i++){
@@ -34,6 +47,7 @@ public class LevelChoiceScreen extends CubocScreen{
 				btnLevels[i].clickListener = new ClickListener(){
 					@Override
 					public void clicked(Button button) {
+						Assests.clickSound.play(Settings.soundVolume);
 						((Cubocy)game).level = Integer.parseInt(button.name);
 						game.setScreen(new GameScreen(game));
 					}};
