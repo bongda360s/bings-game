@@ -90,9 +90,9 @@ public class Map {
 		for(int i = 0; i < dispensers.size; i++) {
 			if(bob.bounds.overlaps(dispensers.get(i).bounds) && 
 					activeDispenser != dispensers.get(i) && 
-					Settings.rememberStone > 0) {
+					(Settings.rememberStone <= Settings.totalStone || Settings.totalStone >= 50)) {
 				activeDispenser = dispensers.get(i);
-				Settings.rememberStone--;
+				Settings.rememberStone++;
 			}
 		}
 		for(int i = 0; i < rockets.size; i++) {

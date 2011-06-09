@@ -1,17 +1,24 @@
 package com.aichess.bean;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.aichess.bean.Cubocy;
 import com.aichess.bean.screens.CubocScreen;
@@ -22,7 +29,7 @@ import com.waps.AdView;
 import com.waps.AppConnect;
 import com.waps.UpdatePointsNotifier;
 
-public class Cuboc extends AndroidApplication implements UpdatePointsNotifier {
+public class Cuboc extends AndroidApplication implements UpdatePointsNotifier, ShowDialogNotify {
 	Game game;
 	/** Called when the activity is first created. */
     @Override
@@ -47,33 +54,14 @@ public class Cuboc extends AndroidApplication implements UpdatePointsNotifier {
         View mainView = initializeForView(game, false);        
         mainView.setLayoutParams(createLayoutParams());
         frameLayout.addView(mainView);       
-        
-        //adcn
-        /*
-        AdViewLayout adViewLayout = new AdViewLayout(this, "SDK20110506530628h41f7cp3s595v19");
-        FrameLayout.LayoutParams adviewLayoutParams = new FrameLayout.LayoutParams(420,LayoutParams.WRAP_CONTENT);
-        adviewLayoutParams.gravity = Gravity.TOP;
-        frameLayout.addView(adViewLayout, adviewLayoutParams);                
-        adViewLayout.invalidate();
-        */
-        //wiyun
-        /*
-        com.wiyun.ad.AdView ad = new com.wiyun.ad.AdView(this);
-		ad.setResId("9cba7263d77ef878");
-		FrameLayout.LayoutParams adLayoutParams = new FrameLayout.LayoutParams(400, LayoutParams.WRAP_CONTENT);
-        adLayoutParams.gravity = Gravity.TOP;
-        ad.setLayoutParams(adLayoutParams);
-		frameLayout.addView(ad);
-		ad.requestAd();
-		ad.setRefreshInterval(30);
-		*/
+        ((Cubocy)game).setDialogNotify(Cuboc.this);
         //waps ad
 		AppConnect.getInstance(this);
 		LinearLayout.LayoutParams containerParams = new LinearLayout.LayoutParams(420, LayoutParams.WRAP_CONTENT);
 		containerParams.gravity = Gravity.TOP;
-		LinearLayout container = new LinearLayout(Cuboc.this);		
-		new AdView(this,container).DisplayAd(30);
-		frameLayout.addView(container,containerParams);
+		LinearLayout wapsContainer = new LinearLayout(Cuboc.this);		
+		new AdView(this,wapsContainer).DisplayAd(30);
+		frameLayout.addView(wapsContainer,containerParams);
 		AppConnect.getInstance(Cuboc.this).getPoints(Cuboc.this);
         setContentView(frameLayout);        
     }
@@ -94,14 +82,73 @@ public class Cuboc extends AndroidApplication implements UpdatePointsNotifier {
 
 	@Override
 	public void getUpdatePoints(String arg0, int arg1) {
-		if(arg1 > 0){
-			Settings.rememberStone += arg1;
-			Settings.totalStone += arg1;
-			AppConnect.getInstance(Cuboc.this).spendPoints(arg1, Cuboc.this);
-		}		
+		Settings.totalStone = arg1;
 	}
 
 	@Override
 	public void getUpdatePointsFailed(String arg0) {
 	}
+
+	@Override
+	public void DialogNotify(final int id) {
+		this.runOnUiThread(new Runnable(){
+			@Override
+			public void run() {
+				showDialog(id);				
+			}});		
+	}
+	
+	@Override
+	protected Dialog onCreateDialog(int id) {	
+		LayoutInflater inflater = getLayoutInflater();
+		switch(id){		
+		case Settings.settingID:
+			View view = inflater.inflate(R.layout.settings, null);
+			Button btnInstall = (Button)view.findViewById(R.id.btnInstall);
+			btnInstall.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					AppConnect.getInstance(Cuboc.this).showOffers(Cuboc.this);
+			}});
+	        SeekBar barMusic = (SeekBar)view.findViewById(R.id.barMusic);
+	        barMusic.setProgress((int)(Settings.musicVolume*100));
+	        barMusic.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {				
+				@Override
+				public void onStopTrackingTouch(SeekBar seekBar) {
+					Settings.musicVolume = seekBar.getProgress()/100f;
+				}				
+				@Override
+				public void onStartTrackingTouch(SeekBar seekBar) {	
+				}				
+				@Override
+				public void onProgressChanged(SeekBar seekBar, int progress,
+						boolean fromUser) {
+				}
+			});
+	        
+	        SeekBar barSound = (SeekBar)view.findViewById(R.id.barSound);
+	        barSound.setProgress((int)(Settings.soundVolume*100));
+	        barSound.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {				
+				@Override
+				public void onStopTrackingTouch(SeekBar seekBar) {
+					Settings.soundVolume = seekBar.getProgress()/100f;
+				}				
+				@Override
+				public void onStartTrackingTouch(SeekBar seekBar) {	
+				}				
+				@Override
+				public void onProgressChanged(SeekBar seekBar, int progress,
+						boolean fromUser) {
+				}
+			});
+	        
+			return new AlertDialog.Builder(Cuboc.this)
+			.setView(view)
+//			.setIcon(android.R.drawable.ic_menu_preferences)
+//			.setTitle(getResources().getString(R.string.system_setting))
+			.show();			
+		}
+		return super.onCreateDialog(id);
+	}
+
 }

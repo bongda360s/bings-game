@@ -158,8 +158,6 @@ public class MapRenderer {
 	float stateTime = 0;
 	Vector3 lerpTarget = new Vector3();
 	public void render(float deltaTime) {
-		Assests.backgroundMusics[0].setVolume(Settings.musicVolume);
-		Assests.backgroundMusics[0].play();
 		if(map.cube.state != Cube.CONTROLLED)
 			cam.position.lerp(lerpTarget.set(map.bob.pos.x, map.bob.pos.y, 0), 2f * deltaTime);
 		else
