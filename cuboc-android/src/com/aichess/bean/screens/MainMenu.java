@@ -1,6 +1,7 @@
 package com.aichess.bean.screens;
 
 import com.aichess.bean.Assests;
+import com.aichess.bean.Cubocy;
 import com.aichess.bean.Settings;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -43,7 +44,8 @@ public class MainMenu extends CubocScreen {
 			@Override
 			public void clicked(Button button) {
 				Assests.clickSound.play(Settings.soundVolume);
-						
+				if(((Cubocy)game).notifier!=null)
+					((Cubocy)game).notifier.DialogNotify((Settings.settingID));	
 			}};
 			
 		Gdx.input.setInputProcessor(stage);

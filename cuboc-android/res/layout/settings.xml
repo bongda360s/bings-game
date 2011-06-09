@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent" 
+  android:orientation="vertical"
+  android:paddingTop ="5px"
+  android:paddingLeft ="5px"
+  android:paddingRight ="5px"
+  android:paddingBottom ="5px"
+  >
+  <TextView android:text="@string/install_desc" 
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+			android:gravity="left"
+			android:textStyle="bold">
+  </TextView>
+  <Button android:text="@string/install_app" 
+  android:id="@+id/btnInstall" 
+  android:layout_width="wrap_content" 
+  android:layout_height="wrap_content"
+  android:gravity="center">
+  </Button>
+  <LinearLayout
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content" 
+  android:orientation="horizontal"
+  android:gravity="center_vertical"
+  >
+    <TextView android:text="@string/background_music" 
+    android:id="@+id/textView1" 
+    android:layout_height="wrap_content" 
+    android:layout_width="wrap_content"
+    android:layout_marginRight="10px">
+    </TextView>
+    <SeekBar android:layout_height="wrap_content" 
+    android:id="@+id/barMusic" 
+    android:layout_width="fill_parent"
+    android:max="100"
+    android:progress="60">
+    </SeekBar>
+    </LinearLayout>
+  <LinearLayout
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content" 
+  android:orientation="horizontal"
+  android:gravity="center_vertical"
+  android:layout_marginTop="5px"
+  android:layout_marginBottom="10px"
+  >
+    <TextView android:text="@string/sound" 
+    android:id="@+id/textView2" 
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:layout_marginRight="10px">
+    </TextView>
+    <SeekBar android:layout_height="wrap_content" 
+    android:id="@+id/barSound" 
+    android:layout_width="fill_parent"
+    android:max="100"
+    android:progress="70">
+    </SeekBar>
+  </LinearLayout>
+  <ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+	  <LinearLayout
+	  android:layout_width="fill_parent"
+	  android:layout_height="wrap_content" 
+	  android:orientation="vertical"
+	  android:scrollbars="vertical"
+	  >
+		  <TextView android:text="@string/game_control" 
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+			android:gravity="center">
+		  </TextView>
+		  <TextView android:text="@string/control1" 
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+			android:gravity="left">
+		  </TextView>
+		  <TextView android:text="@string/control2" 
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+			android:gravity="left">
+		  </TextView>
+		  <TextView android:text="@string/control3" 
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+			android:gravity="left">
+		  </TextView>
+		  <TextView android:text="@string/control4" 
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+			android:gravity="left">
+		  </TextView>
+		  <TextView android:text="@string/control5" 
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+			android:gravity="left">
+		  </TextView>
+	  </LinearLayout> 	
+  </ScrollView>
+</LinearLayout>

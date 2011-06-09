@@ -9,6 +9,7 @@ import com.aichess.bean.Settings;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -31,7 +32,8 @@ public class GameScreen extends CubocScreen {
 	}
 	
 	@Override public void show () {
-		map = new Map(((Cubocy)game).level);
+		int level = ((Cubocy)game).level;
+		map = new Map(level);
 		renderer = new MapRenderer(map);
 		controlRenderer = new OnscreenControlRenderer(map);
 		
@@ -76,7 +78,11 @@ public class GameScreen extends CubocScreen {
 		stage.addActor(imgBackground);
 		stage.addActor(btnList);
 		stage.addActor(btnRepeat);
-		stage.addActor(btnPlay);		
+		stage.addActor(btnPlay);
+		
+		for(Music music : Assests.backgroundMusics) music.stop();
+		Assests.backgroundMusics[level%Assests.backgroundMusics.length].setVolume(Settings.musicVolume);
+		Assests.backgroundMusics[level%Assests.backgroundMusics.length].play();
 	}
 	
 	@Override public void render (float delta) {

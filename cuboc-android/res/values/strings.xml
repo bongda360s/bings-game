@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Cuboc!</string>
-    <string name="app_name">Cuboc</string>
+    <string name="app_name">Mr. Bean</string>    
+    <string name="system_setting">System settings</string>
+    <string name="cancel_title">Cancel confirm</string>
+    <string name="cancel_confirm">Do you really want to exit Mr. Bean?</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="submit">Submit</string>
+    <string name="next_time">Next time</string>
+    <string name="background_music">Music</string>
+    <string name="sound">Sound</string>
+    <string name="start_game">Touch to continue</string>
+    <string name="game_control">Game Controls</string>
+    <string name="control1">1. Cube have 3 status: follow, controlled, fixed.</string>
+    <string name="control2">2. Touch human button to change cube\'s status to follow.</string>
+    <string name="control3">3. And then touch cube button to switch cube\'s status between controlled and fixed.</string>
+    <string name="control4">4. Touch left, right, up button to control Mr. Bean to move and jump.</string>
+    <string name="control5">5. Touch dashboard button to control cube to move.</string>
+	<string name="install_app">Install free app, earn remember stones.</string>
+	<string name="install_desc">Remember stone is used to record your game state.</string>
 </resources>

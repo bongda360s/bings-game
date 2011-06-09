@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">憨豆闯关</string>    
+    <string name="system_setting">系统设置</string>
+    <string name="cancel_title">退出确认</string>
+    <string name="cancel_confirm">您真的要退出憨豆闯关吗?</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
+    <string name="submit">提交</string>
+    <string name="next_time">不了，下次吧</string>
+    <string name="background_music">背景音乐</string>
+    <string name="sound">游戏音效</string>
+    <string name="start_game">点击屏幕继续</string>
+    <string name="game_control">游戏控制</string>
+    <string name="control1">1. 立方体伴侣有3种状态：跟随、受控、固定。</string>
+    <string name="control2">2. 点击小人按钮设置伴侣为跟随状态。</string>
+    <string name="control3">3. 再点击立方体按钮可以在受控、固定之间转换。</string>
+    <string name="control4">4. 点击向左、向右、向上按钮控制憨豆移动和跳跃。</string>
+    <string name="control5">5. 点击仪表板按钮控制伴侣移动。</string>
+    <string name="install_app">安装免费应用获取记忆石</string>
+    <string name="install_desc">闯关的旅途凶险，记忆石记录您征程的每一步。</string>
+</resources>
