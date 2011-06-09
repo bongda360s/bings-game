@@ -51,6 +51,8 @@ public class Cuboc extends AndroidApplication {
         frameLayout.addView(adViewLayout, adviewLayoutParams);                
         adViewLayout.invalidate();
         */
+        //wiyun
+        /*
         com.wiyun.ad.AdView ad = new com.wiyun.ad.AdView(this);
 		ad.setResId("9cba7263d77ef878");
 		FrameLayout.LayoutParams adLayoutParams = new FrameLayout.LayoutParams(400, LayoutParams.WRAP_CONTENT);
@@ -59,8 +61,18 @@ public class Cuboc extends AndroidApplication {
 		frameLayout.addView(ad);
 		ad.requestAd();
 		ad.setRefreshInterval(30);
-        setContentView(frameLayout);
-        
+		*/
+        //waps ad
+		AppConnect.getInstance(this);
+		LinearLayout.LayoutParams holderParams = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+		holderParams.gravity = Gravity.Top;		
+
+		LinearLayout container = new LinearLayout(GdxInvadersAndroid.this);
+		holder.addView(container,containerParams);
+		new AdView(this,container).DisplayAd(30);
+		frameLayout.addView(holder,holderParams);
+		getWapsPoints();
+        setContentView(frameLayout);        
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -69,5 +81,10 @@ public class Cuboc extends AndroidApplication {
         		return true;
     	}
         return super.onKeyDown(keyCode, event);
+    }
+	@Override
+    protected void onDestroy() {
+	  AppConnect.getInstance(this).finalize();
+      super.onDestroy();
     }
 }

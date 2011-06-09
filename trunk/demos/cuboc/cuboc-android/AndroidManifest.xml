@@ -17,9 +17,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.waps.OffersWebView" 
+		android:configChanges="keyboardHidden|orientation" />
+		<meta-data android:name="CLIENT_PACKAGE" android:value="com.aichess.bean" /> 
+		<meta-data android:name="WAPS_ID" android:value="a660373b6b5e4fd115ad29eccebc62e6" /> 
+		<meta-data android:name="WAPS_PID" android:value="WAPS" />
     </application>
-    <!-- AdView permission add -->
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" /> 
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" /> 
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
+	<uses-permission android:name="android.permission.GET_TASKS" />
 </manifest>
