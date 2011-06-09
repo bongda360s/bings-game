@@ -24,4 +24,8 @@ public abstract class CubocScreen implements Screen {
 	@Override
 	public void dispose() {
 	}	
+	
+	public boolean onBackPressed(){
+		return false;
+	}
 }
