@@ -5,17 +5,21 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import com.badlogic.cubocy.Cubocy;
+import com.aichess.bean.Cubocy;
+import com.aichess.bean.screens.CubocScreen;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 
 public class Cuboc extends AndroidApplication {
-    /** Called when the activity is first created. */
+	Game game;
+	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);	
@@ -34,7 +38,8 @@ public class Cuboc extends AndroidApplication {
         config.useAccelerometer = false;
         config.useCompass = false;
         config.useWakelock = true;
-        View mainView = initializeForView(new Cubocy(), false);        
+        game = new Cubocy();
+        View mainView = initializeForView(game, false);        
         mainView.setLayoutParams(createLayoutParams());
         frameLayout.addView(mainView);       
         
@@ -56,5 +61,13 @@ public class Cuboc extends AndroidApplication {
 		ad.setRefreshInterval(30);
         setContentView(frameLayout);
         
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    	if (keyCode == KeyEvent.KEYCODE_BACK){
+        	if(((CubocScreen)game.getScreen()).onBackPressed())
+        		return true;
+    	}
+        return super.onKeyDown(keyCode, event);
     }
 }
