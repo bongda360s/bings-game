@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.aichess.bean"
+      android:versionCode="1"
+      android:versionName="1.0"
+      android:installLocation="preferExternal">
+    <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="10"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:name="com.aichess.bean.Cuboc"
+                  android:label="@string/app_name"
+                  android:screenOrientation="landscape"
+                  android:configChanges="keyboard|keyboardHidden|orientation">                 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.waps.OffersWebView" 
+		android:configChanges="keyboardHidden|orientation" />
+		<meta-data android:name="CLIENT_PACKAGE" android:value="com.aichess.bean" /> 
+		<meta-data android:name="WAPS_ID" android:value="a660373b6b5e4fd115ad29eccebc62e6" /> 
+		<meta-data android:name="WAPS_PID" android:value="WAPS" />
+    </application>
+    <uses-permission android:name="android.permission.INTERNET" /> 
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" /> 
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
+	<uses-permission android:name="android.permission.GET_TASKS" />
+</manifest>
