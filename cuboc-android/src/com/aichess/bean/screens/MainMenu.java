@@ -16,6 +16,7 @@ public class MainMenu extends CubocScreen {
 	Stage stage;
 	public MainMenu(Game game) {
 		super(game);
+		Assests.load();
 	}
 
 	@Override
@@ -23,6 +24,12 @@ public class MainMenu extends CubocScreen {
 		stage = new Stage(480,320,true);		
 		Image imgBackground = new Image("Bean Background",new TextureRegion(new Texture(Gdx.files.internal("data/beanbackground.png")),0,0,480,320));
 		stage.addActor(imgBackground);
+		Image imgTitle = new Image("Bean Title",new TextureRegion(new Texture(Gdx.files.internal("data/beantitle.png")),0,0,250,65));
+		imgTitle.x = 120;
+		imgTitle.y = 190;
+		imgTitle.scaleX = 0.8f;
+		imgTitle.scaleY = 0.8f;
+		stage.addActor(imgTitle);
 		TextureRegion iconList[][] = new TextureRegion(new Texture(Gdx.files.internal("data/iconlist.png"))).split(64, 64);
 		Button btnStart = new Button("Start Button",iconList[6][0],iconList[6][1]);
 		btnStart.x = (480-64)/2;
@@ -31,7 +38,6 @@ public class MainMenu extends CubocScreen {
 		btnStart.clickListener = new ClickListener(){
 			@Override
 			public void clicked(Button button) {
-				Assests.load();
 				Assests.clickSound.play(Settings.soundVolume);
 				game.setScreen(new LevelChoiceScreen(game));				
 		}};
@@ -59,6 +65,7 @@ public class MainMenu extends CubocScreen {
 
 	@Override
 	public void hide() {
+		stage.clear();
 		stage.dispose();
 	}
 }

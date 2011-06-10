@@ -18,5 +18,5 @@
     <string name="control4">4. 点击向左、向右、向上按钮控制憨豆移动和跳跃。</string>
     <string name="control5">5. 点击仪表板按钮控制伴侣移动。</string>
     <string name="install_app">安装免费应用获取记忆石</string>
-    <string name="install_desc">闯关的旅途凶险，记忆石记录您征程的每一步。</string>
+    <string name="install_desc" formatted="false">闯关的旅途凶险，记忆石记录您征程的每一步；\r\n当前可用的记忆石：%d个；\r\n累计已获得记忆石：%d个；\r\n再获取%d个记忆石后，游戏无功能限制。</string>
 </resources>

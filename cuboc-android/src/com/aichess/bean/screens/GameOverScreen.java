@@ -31,7 +31,7 @@ public class GameOverScreen extends CubocScreen {
 		time += delta;
 		if(time > 1) {
 			if(Gdx.input.isKeyPressed(Keys.ANY_KEY) || Gdx.input.justTouched()) {
-				game.setScreen(new MainMenu(game));
+				game.setScreen(new LevelChoiceScreen(game));
 			}
 		}
 	}

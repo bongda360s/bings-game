@@ -92,7 +92,13 @@ public class Bob {
 			Assests.deadSound.play(Settings.soundVolume);
 			break;
 		default:
-			Assests.runMusic.stop();
+			try{
+				if(state != SPAWN && Assests.runMusic!=null && Assests.runMusic.isPlaying())
+					Assests.runMusic.stop();
+			}
+			catch(Exception e){
+				
+			}
 			break;
 		}
 	}

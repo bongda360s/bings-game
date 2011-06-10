@@ -6,8 +6,8 @@ import com.badlogic.gdx.utils.Array;
 
 public class Map {
 	static int EMPTY = 0;
-	static int ICE = 0x111111;
-	static int MUD = 0x222222;
+	static int ICE = 0xeeee00;
+	static int MUD = 0xcccc00;
 	static int TILE = 0xffffff;
 	static int START = 0xff0000;
 	static int END = 0xff00ff;
@@ -17,9 +17,9 @@ public class Map {
 	static int MOVING_SPIKES = 0xffff00;
 	static int LASER = 0x00ffff;
 	static String[] levelMaps = {"data/levels.png",
-		"data/levels.png",
-		"data/levels.png",
-		"data/levels.png"};
+		"data/levels1.png",
+		"data/levels1.png",
+		"data/levels1.png"};
 	Pixmap pixmap;
 	int[][] tiles;	
 	public Bob bob;
@@ -93,6 +93,7 @@ public class Map {
 					(Settings.rememberStone <= Settings.totalStone || Settings.totalStone >= 50)) {
 				activeDispenser = dispensers.get(i);
 				Settings.rememberStone++;
+				activeDispenser.active = true;
 			}
 		}
 		for(int i = 0; i < rockets.size; i++) {

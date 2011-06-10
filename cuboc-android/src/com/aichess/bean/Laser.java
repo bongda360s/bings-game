@@ -148,7 +148,7 @@ public class Laser {
 			map.bob.state = Bob.DYING;
 			map.bob.stateTime = 0;
 		}		
-		if(Math.abs(map.bob.pos.x - this.pos.x)<1 || Math.abs(map.bob.pos.y - this.pos.y)<1)
-			Assests.laserSound.play(Settings.soundVolume);
+//		if(Math.abs(map.bob.pos.x - this.pos.x)<1 || Math.abs(map.bob.pos.y - this.pos.y)<1)
+//			Assests.laserSound.play(Settings.soundVolume);
 	}	
 }

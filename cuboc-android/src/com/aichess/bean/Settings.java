@@ -5,6 +5,7 @@ import com.badlogic.gdx.Preferences;
 
 public class Settings {
 	public static final int settingID = 1;
+	public static final int stoneID = 2;
 	public static float soundVolume = 0.7f;
 	public static float musicVolume = 0.8f;
 	public static int rememberStone = -10;
