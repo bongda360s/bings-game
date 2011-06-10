@@ -39,6 +39,7 @@ public class MapRenderer {
 	Animation cubeFixed;
 	TextureRegion cubeControlled;
 	TextureRegion dispenser;
+	TextureRegion activeDispenser;
 	Animation spawn;
 	Animation dying;
 	TextureRegion spikes;
@@ -153,6 +154,9 @@ public class MapRenderer {
 		endDoor = split[2];
 		movingSpikes = split[0];
 		laser = split[1];
+		iceRegion = split[3];
+		mudRegion = split[4];
+		activeDispenser = split[5];
 	}
 	
 	float stateTime = 0;
@@ -240,7 +244,10 @@ public class MapRenderer {
 	private void renderDispensers() {
 		for(int i = 0; i < map.dispensers.size; i++) {
 			Dispenser dispenser = map.dispensers.get(i);
-			batch.draw(this.dispenser, dispenser.bounds.x, dispenser.bounds.y, 1, 1);
+			if(dispenser.active)
+				batch.draw(this.activeDispenser, dispenser.bounds.x, dispenser.bounds.y, 1, 1);
+			else
+				batch.draw(this.dispenser, dispenser.bounds.x, dispenser.bounds.y, 1, 1);
 		}		
 	}
 	

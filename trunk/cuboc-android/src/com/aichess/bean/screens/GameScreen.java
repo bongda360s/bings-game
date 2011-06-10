@@ -37,21 +37,30 @@ public class GameScreen extends CubocScreen {
 		renderer = new MapRenderer(map);
 		controlRenderer = new OnscreenControlRenderer(map);
 		
-		stage = new Stage(240,160,false);
-		TextureRegion background = new TextureRegion(new Texture(Gdx.files.internal("data/dialogframe.png")),0,0,240,160);
+		stage = new Stage(480,320,false);
+		TextureRegion background = new TextureRegion(new Texture(Gdx.files.internal("data/dialogframe.png")),0,0,480,320);
 		TextureRegion[][] regionList = new TextureRegion(new Texture(Gdx.files.internal("data/iconlist.png"))).split(64, 64);
 
 		Image imgBackground = new Image("Background Image",background);
+		Button btnStone = new Button("List Button", regionList[2][0],regionList[2][1]);
+		btnStone.x = 210;
+		btnStone.y = 180;
+
 		Button btnList = new Button("List Button", regionList[4][0],regionList[4][1]);
-		btnList.x = 60;
-		btnList.y = 100;
+		btnList.x = 140;
+		btnList.y = 90;
+		btnList.scaleX=0.8f;
+		btnList.scaleY=0.8f;
 		Button btnRepeat = new Button("Repeat Button", regionList[7][0],regionList[7][1]);
-		btnRepeat.x = 120;
-		btnRepeat.y = 100;
+		btnRepeat.x = 205;
+		btnRepeat.y = 90;
+		btnRepeat.scaleX=0.8f;
+		btnRepeat.scaleY=0.8f;
 		Button btnPlay = new Button("Play Button", regionList[6][0],regionList[6][1]);
-		btnPlay.x = 180;
-		btnPlay.y = 100;
-		
+		btnPlay.x = 270;
+		btnPlay.y = 90;
+		btnPlay.scaleX=0.8f;
+		btnPlay.scaleY=0.8f;
 		btnList.clickListener = new ClickListener(){
 			@Override
 			public void clicked(Button button) {
@@ -75,14 +84,21 @@ public class GameScreen extends CubocScreen {
 					game.setScreen(new GameScreen(game));
 				}
 		}};
+		btnStone.clickListener = new ClickListener(){
+			@Override
+			public void clicked(Button button) {
+				if(((Cubocy)game).notifier!=null)
+					((Cubocy)game).notifier.DialogNotify((Settings.stoneID));				
+			}			
+		};
 		stage.addActor(imgBackground);
 		stage.addActor(btnList);
 		stage.addActor(btnRepeat);
 		stage.addActor(btnPlay);
-		
-		for(Music music : Assests.backgroundMusics) music.stop();
-		Assests.backgroundMusics[level%Assests.backgroundMusics.length].setVolume(Settings.musicVolume);
-		Assests.backgroundMusics[level%Assests.backgroundMusics.length].play();
+		stage.addActor(btnStone);
+//		for(Music music : Assests.backgroundMusics) music.stop();
+//		Assests.backgroundMusics[level%Assests.backgroundMusics.length].setVolume(Settings.musicVolume);
+//		Assests.backgroundMusics[level%Assests.backgroundMusics.length].play();
 	}
 	
 	@Override public void render (float delta) {
@@ -122,6 +138,7 @@ public class GameScreen extends CubocScreen {
 	@Override public void hide () {
 		renderer.dispose();
 		controlRenderer.dispose();
+		stage.clear();
 		stage.dispose();	
 	}
 }

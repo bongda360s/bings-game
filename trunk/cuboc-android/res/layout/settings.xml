@@ -9,7 +9,7 @@
   android:paddingRight ="5px"
   android:paddingBottom ="5px"
   >
-  <TextView android:text="@string/install_desc" 
+  <TextView android:id="@+id/txtInstall" 
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 			android:gravity="left"
@@ -17,9 +17,10 @@
   </TextView>
   <Button android:text="@string/install_app" 
   android:id="@+id/btnInstall" 
-  android:layout_width="wrap_content" 
+  android:layout_width="fill_parent" 
   android:layout_height="wrap_content"
-  android:gravity="center">
+  android:gravity="center"
+  android:layout_gravity="center_vertical">
   </Button>
   <LinearLayout
   android:layout_width="fill_parent"
@@ -64,7 +65,7 @@
   <ScrollView
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:scrollbars="none">
+    android:scrollbars="vertical">
 	  <LinearLayout
 	  android:layout_width="fill_parent"
 	  android:layout_height="wrap_content" 

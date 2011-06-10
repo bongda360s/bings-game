@@ -8,10 +8,10 @@ import com.badlogic.gdx.audio.Sound;
 public class Assests {
 	public static Sound deadSound;
 	public static Music runMusic;
-	public static Sound laserSound;
+	//public static Sound laserSound;
 	public static Sound launchSound,explosionSound;
 	public static Sound clickSound;
-	public static Music[] backgroundMusics = new Music[2];
+	public static Music[] backgroundMusics = new Music[1];
 	static boolean isLoaded = false;
 	public static void load(){
 		if(!isLoaded){
@@ -19,11 +19,13 @@ public class Assests {
 			runMusic.setLooping(true);
 			
 			deadSound = Gdx.audio.newSound(Gdx.files.getFileHandle("data/dead.ogg", FileType.Internal));
-			laserSound = Gdx.audio.newSound(Gdx.files.getFileHandle("data/laser.ogg", FileType.Internal));
+			//laserSound = Gdx.audio.newSound(Gdx.files.getFileHandle("data/laser.ogg", FileType.Internal));
 			backgroundMusics[0] = Gdx.audio.newMusic(Gdx.files.internal("data/background0.ogg"));
 			backgroundMusics[0].setLooping(true);
-			backgroundMusics[1] = Gdx.audio.newMusic(Gdx.files.internal("data/background1.ogg"));
-			backgroundMusics[1].setLooping(true);
+			backgroundMusics[0].setVolume(Settings.musicVolume);
+			backgroundMusics[0].play();
+//			backgroundMusics[1] = Gdx.audio.newMusic(Gdx.files.internal("data/background1.ogg"));
+//			backgroundMusics[1].setLooping(true);
 			launchSound = Gdx.audio.newSound(Gdx.files.getFileHandle("data/missile.ogg", FileType.Internal));
 			explosionSound = Gdx.audio.newSound(Gdx.files.getFileHandle("data/explosion.ogg", FileType.Internal));
 			clickSound = Gdx.audio.newSound(Gdx.files.getFileHandle("data/click.ogg", FileType.Internal));
@@ -34,7 +36,7 @@ public class Assests {
 		if(isLoaded){
 			runMusic.dispose();
 			deadSound.dispose();
-			laserSound.dispose();
+			//laserSound.dispose();
 			for(Music music : backgroundMusics) music.dispose();
 			launchSound.dispose();
 			explosionSound.dispose();

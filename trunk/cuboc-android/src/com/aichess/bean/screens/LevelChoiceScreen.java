@@ -13,9 +13,6 @@ import com.badlogic.gdx.scenes.scene2d.actors.Image;
 
 public class LevelChoiceScreen extends CubocScreen{
 	Stage stage;
-	TextureRegion[] levels;
-	Button[] btnLevels;
-	Image imgBackground;
 	public LevelChoiceScreen(Game game) {
 		super(game);
 	}
@@ -23,13 +20,15 @@ public class LevelChoiceScreen extends CubocScreen{
 	@Override
 	public void show() {
 		stage = new Stage(480,320,true);		
-		imgBackground = new Image("Bean Background",new TextureRegion(new Texture(Gdx.files.internal("data/beanbackground.png"))).split(480, 320)[0][0]);
+		Image imgBackground = new Image("Bean Background",new TextureRegion(new Texture(Gdx.files.internal("data/beanbackground.png")),0,0,480, 320));
 		stage.addActor(imgBackground);
-		levels = new TextureRegion(new Texture(Gdx.files.internal("data/gameLevel.png"))).split(40, 36)[0];
-		TextureRegion[][] regionList = new TextureRegion(new Texture(Gdx.files.internal("data/iconlist.png"))).split(64, 64);
-		Button btnBack = new Button("Back Button", regionList[0][0],regionList[0][1]);
+		TextureRegion[] levels = new TextureRegion(new Texture(Gdx.files.internal("data/gameLevel.png"))).split(40, 36)[0];
+		TextureRegion[] regionList = new TextureRegion(new Texture(Gdx.files.internal("data/iconlist.png"))).split(64, 64)[0];
+		Button btnBack = new Button("Back Button", regionList[0],regionList[1]);
 		btnBack.x = 420;
 		btnBack.y = 260;
+		btnBack.scaleX = 0.6f;
+		btnBack.scaleY = 0.6f;
 		btnBack.clickListener = new ClickListener(){
 			@Override
 			public void clicked(Button button) {
@@ -37,8 +36,9 @@ public class LevelChoiceScreen extends CubocScreen{
 				game.setScreen(new MainMenu(game));
 			}
 		};
+		stage.addActor(btnBack);
 		int level = ((Cubocy)game).level;
-		btnLevels = new Button[16];
+		Button[] btnLevels = new Button[16];
 		for(int i = 0; i < btnLevels.length; i++){
 			if(i > level)
 				btnLevels[i] = new Button(Integer.toString(i),levels[18]);
@@ -64,10 +64,9 @@ public class LevelChoiceScreen extends CubocScreen{
 		stage.draw();
 		stage.act(delta);
 	}
-
 	@Override
 	public void hide() {
+		stage.clear();
 		stage.dispose();
 	}
-
 }
