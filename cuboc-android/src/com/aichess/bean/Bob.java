@@ -128,10 +128,14 @@ public class Bob {
 			dir = RIGHT;
 			accel.x = ACCELERATION * dir;
 		} else {
-			if (state != JUMP) {
-				state = IDLE;
-				if(Assests.runMusic.isPlaying())
+			try{
+				if(Assests.runMusic!=null && Assests.runMusic.isPlaying())
 					Assests.runMusic.stop();
+			}catch(Exception exp){
+				exp.printStackTrace();
+			}
+			if (state != JUMP) {
+				state = IDLE;				
 			}
 			accel.x = 0;
 		}

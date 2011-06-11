@@ -34,12 +34,17 @@ public class Assests {
 	}
 	public static void dispose(){
 		if(isLoaded){
+			runMusic.stop();
 			runMusic.dispose();
 			deadSound.dispose();
 			//laserSound.dispose();
-			for(Music music : backgroundMusics) music.dispose();
+			for(Music music : backgroundMusics) {
+				music.stop();
+				music.dispose();
+			}
 			launchSound.dispose();
 			explosionSound.dispose();
+			isLoaded=false;
 		}
 	}
 }
