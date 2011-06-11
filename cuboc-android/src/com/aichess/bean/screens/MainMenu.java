@@ -24,7 +24,13 @@ public class MainMenu extends CubocScreen {
 		stage = new Stage(480,320,true);		
 		Image imgBackground = new Image("Bean Background",new TextureRegion(new Texture(Gdx.files.internal("data/beanbackground.png")),0,0,480,320));
 		stage.addActor(imgBackground);
-		Image imgTitle = new Image("Bean Title",new TextureRegion(new Texture(Gdx.files.internal("data/beantitle.png")),0,0,250,65));
+		
+		String titlePath = "data/beantitle.png";
+		if(System.getProperty("language").contains("zh"))
+			titlePath = "data/beantitle.png";
+		else
+			titlePath = "data/beantitle-en.png";
+		Image imgTitle = new Image("Bean Title",new TextureRegion(new Texture(Gdx.files.internal(titlePath)),0,0,250,65));
 		imgTitle.x = 120;
 		imgTitle.y = 190;
 		imgTitle.scaleX = 0.8f;
