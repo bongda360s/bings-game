@@ -81,6 +81,8 @@ public class GameScreen extends CubocScreen {
 					pause = false;
 				else{
 					((Cubocy)game).level++;
+					if(((Cubocy)game).level > Settings.activeLevel)
+						Settings.activeLevel = ((Cubocy)game).level;
 					game.setScreen(new GameScreen(game));
 				}
 		}};

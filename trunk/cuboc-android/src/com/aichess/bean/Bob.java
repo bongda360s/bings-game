@@ -76,31 +76,14 @@ public class Bob {
 		}
 		
 		if(state == DYING) {
+			Assests.deadSound.play(Settings.soundVolume);
 			if(stateTime > 0.4f) {
+				Assests.deadSound.stop();
 				state = DEAD;
 			}				
-		}				
+		}	
 		
 		stateTime += deltaTime;	
-		switch(state){
-		case RUN:
-			Assests.runMusic.setVolume(Settings.soundVolume);
-			Assests.runMusic.play();
-			break;
-		case DYING:
-			Assests.runMusic.stop();
-			Assests.deadSound.play(Settings.soundVolume);
-			break;
-		default:
-			try{
-				if(state != SPAWN && Assests.runMusic!=null && Assests.runMusic.isPlaying())
-					Assests.runMusic.stop();
-			}
-			catch(Exception e){
-				
-			}
-			break;
-		}
 	}
 
 	private void processKeys () {
@@ -122,18 +105,34 @@ public class Bob {
 			state = JUMP;
 			vel.y = JUMP_VELOCITY;			
 			grounded = false;
+			if(Assests.runMusic.isPlaying())
+				Assests.runMusic.stop();
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.A) || leftButton) {
-			if (state != JUMP) state = RUN;
+			if (state != JUMP) {
+				state = RUN;
+				Assests.runMusic.setVolume(Settings.soundVolume);
+				if(!Assests.runMusic.isPlaying())
+					Assests.runMusic.play();
+			}			
 			dir = LEFT;
 			accel.x = ACCELERATION * dir;
 		} else if (Gdx.input.isKeyPressed(Keys.D) || rightButton) {
-			if (state != JUMP) state = RUN;
+			if (state != JUMP) {
+				state = RUN;
+				Assests.runMusic.setVolume(Settings.soundVolume);
+				if(!Assests.runMusic.isPlaying())
+					Assests.runMusic.play();
+			}
 			dir = RIGHT;
 			accel.x = ACCELERATION * dir;
 		} else {
-			if (state != JUMP) state = IDLE;
+			if (state != JUMP) {
+				state = IDLE;
+				if(Assests.runMusic.isPlaying())
+					Assests.runMusic.stop();
+			}
 			accel.x = 0;
 		}
 	}
