@@ -47,18 +47,18 @@ public class GameScreen extends CubocScreen {
 		btnStone.y = 180;
 
 		Button btnList = new Button("List Button", regionList[4][0],regionList[4][1]);
-		btnList.x = 140;
-		btnList.y = 90;
+		btnList.x = 145;
+		btnList.y = 100;
 		btnList.scaleX=0.8f;
 		btnList.scaleY=0.8f;
 		Button btnRepeat = new Button("Repeat Button", regionList[7][0],regionList[7][1]);
-		btnRepeat.x = 205;
-		btnRepeat.y = 90;
+		btnRepeat.x = 210;
+		btnRepeat.y = 100;
 		btnRepeat.scaleX=0.8f;
 		btnRepeat.scaleY=0.8f;
 		Button btnPlay = new Button("Play Button", regionList[6][0],regionList[6][1]);
-		btnPlay.x = 270;
-		btnPlay.y = 90;
+		btnPlay.x = 275;
+		btnPlay.y = 100;
 		btnPlay.scaleX=0.8f;
 		btnPlay.scaleY=0.8f;
 		btnList.clickListener = new ClickListener(){

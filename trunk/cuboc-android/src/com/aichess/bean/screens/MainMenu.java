@@ -1,5 +1,7 @@
 package com.aichess.bean.screens;
 
+import java.util.Locale;
+
 import com.aichess.bean.Assests;
 import com.aichess.bean.Cubocy;
 import com.aichess.bean.Settings;
@@ -25,8 +27,8 @@ public class MainMenu extends CubocScreen {
 		Image imgBackground = new Image("Bean Background",new TextureRegion(new Texture(Gdx.files.internal("data/beanbackground.png")),0,0,480,320));
 		stage.addActor(imgBackground);
 		
-		String titlePath = "data/beantitle.png";
-		if(System.getProperty("language").contains("zh"))
+		String titlePath = "data/beantitle.png";		
+		if(Locale.getDefault().getLanguage().contains("zh"))
 			titlePath = "data/beantitle.png";
 		else
 			titlePath = "data/beantitle-en.png";
