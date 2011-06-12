@@ -51,8 +51,8 @@ public class MainMenu extends CubocScreen {
 		}};
 		
 		Button btnSetting = new Button("Start Button",iconList[3][0],iconList[3][1]);
-		btnSetting.x = 10;
-		btnSetting.y = 10;
+		btnSetting.x = 5;
+		btnSetting.y = 5;
 		stage.addActor(btnSetting);
 		btnSetting.clickListener = new ClickListener(){
 			@Override

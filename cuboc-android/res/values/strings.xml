@@ -18,5 +18,5 @@
     <string name="control4">4. Touch left, right, up button to control Mr. Bean to move and jump.</string>
     <string name="control5">5. Touch dashboard button to control cube to move.</string>
 	<string name="install_app">Install free app, earn remember stones.</string>
-	<string name="install_desc">Remember stone is used to record your game state.</string>
+	<string name="install_desc" formatted="false">Memory stone is used to record your footprints in the game.\r\nCurrently available memory stones：%d ;\r\nAccumulated memory stones：%d; \r\nAfter accumulate %d more memory stones，no functional limitation.</string>
 </resources>
