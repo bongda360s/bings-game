@@ -58,8 +58,9 @@ public class Cuboc extends AndroidApplication implements UpdatePointsNotifier, S
         frameLayout.addView(mainView);       
         ((Cubocy)game).setDialogNotify(Cuboc.this);
         //waps ad
+        
         AppConnect.getInstance(this);
-		LinearLayout.LayoutParams containerParams = new LinearLayout.LayoutParams(420,LayoutParams.WRAP_CONTENT);
+		LinearLayout.LayoutParams containerParams = new LinearLayout.LayoutParams(getWindowManager().getDefaultDisplay().getWidth()/2,LayoutParams.WRAP_CONTENT);
 		containerParams.gravity = Gravity.LEFT;
 		LinearLayout container = new LinearLayout(Cuboc.this);
 		new AdView(this,container).DisplayAd(30);
